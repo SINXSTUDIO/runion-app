@@ -140,10 +140,10 @@ export default function Footer() {
 
                 {/* Bottom Bar - 4 Sections (Smaller) */}
                 <div className="border-t border-white/5 py-5">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-3 items-center text-xs">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-4 md:gap-3 items-center text-xs">
 
                         {/* 1. Copyright */}
-                        <div className="flex items-center justify-center md:justify-start gap-1.5 text-gray-500 col-span-2 md:col-span-1">
+                        <div className="flex items-center justify-center md:justify-start gap-1.5 text-gray-500 order-1">
                             <span
                                 onClick={handleSecretClick}
                                 className="cursor-default hover:text-accent transition-colors"
@@ -155,7 +155,7 @@ export default function Footer() {
                         </div>
 
                         {/* 2. Security Level */}
-                        <div className="flex justify-center md:justify-start order-last md:order-none col-span-2 md:col-span-1">
+                        <div className="flex justify-center md:justify-start order-2 sm:order-3 md:order-2">
                             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-blue-500/10 border border-blue-500/20 backdrop-blur-sm">
                                 <svg className="w-3 h-3 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -167,7 +167,7 @@ export default function Footer() {
                         </div>
 
                         {/* 3. Powered By Sinx */}
-                        <div className="flex justify-center">
+                        <div className="flex justify-center order-3 sm:order-4 md:order-3">
                             <a
                                 href="https://sinxstudio.com/"
                                 target="_blank"
@@ -187,7 +187,7 @@ export default function Footer() {
                         </div>
 
                         {/* 4. System Status */}
-                        <div className="flex justify-center md:justify-end">
+                        <div className="flex justify-center md:justify-end order-4 sm:order-2 md:order-4">
                             <div className="flex items-center gap-1.5 bg-gradient-to-r from-emerald-500/10 to-emerald-400/10 px-3 py-1.5 rounded-full border border-emerald-500/20 backdrop-blur-sm">
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
