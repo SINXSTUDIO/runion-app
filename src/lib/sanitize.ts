@@ -1,44 +1,32 @@
 /**
  * @fileoverview HTML Sanitization utilities for XSS protection
- * Uses DOMPurify to clean user-generated HTML content
+ * Uses sanitize-html (Server-side friendly) to clean user-generated HTML content
  */
 
-import DOMPurify from 'isomorphic-dompurify';
+import sanitizeHtmlLibrary from 'sanitize-html';
 
 /**
  * Configuration for allowed HTML tags and attributes
- * Whitelist approach for maximum security
  */
-const SANITIZE_CONFIG = {
-    ALLOWED_TAGS: [
-        'p', 'br', 'strong', 'em', 'b', 'i', 'u',
-        'ul', 'ol', 'li',
-        'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-        'blockquote', 'code', 'pre',
-        'table', 'thead', 'tbody', 'tr', 'th', 'td',
-        'div', 'span'
-    ],
-    ALLOWED_ATTR: [
-        'href', 'target', 'rel', 'class', 'id'
-    ],
-    ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto):)/i,
-    KEEP_CONTENT: true,
-    RETURN_DOM: false,
-    RETURN_DOM_FRAGMENT: false,
+const DEFAULT_TAGS = [
+    'p', 'br', 'strong', 'em', 'b', 'i', 'u',
+    'ul', 'ol', 'li',
+    'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    'blockquote', 'code', 'pre',
+    'table', 'thead', 'tbody', 'tr', 'th', 'td',
+    'div', 'span'
+];
+
+const DEFAULT_OPTIONS = {
+    allowedTags: DEFAULT_TAGS,
+    allowedAttributes: {
+        '*': ['class', 'id'],
+        'a': ['href', 'target', 'rel']
+    },
+    allowedSchemes: ['http', 'https', 'mailto', 'tel'],
+
 };
 
-/**
- * Sanitize HTML content to prevent XSS attacks
- * @param dirty - Raw HTML string that may contain malicious code
- * @returns Sanitized HTML safe for rendering
- * 
- * @example
- * ```typescript
- * const userInput = '<script>alert("xss")</script><p>Hello</p>';
- * const clean = sanitizeHtml(userInput);
- * // Returns: '<p>Hello</p>'
- * ```
- */
 export function sanitizeHtml(dirty: string): string {
     if (!dirty || typeof dirty !== 'string') {
         return '';
@@ -50,30 +38,23 @@ export function sanitizeHtml(dirty: string): string {
         throw new Error(`HTML content exceeds maximum length of ${MAX_LENGTH} characters`);
     }
 
-    const clean = DOMPurify.sanitize(dirty, SANITIZE_CONFIG) as string;
-    return clean;
+    return sanitizeHtmlLibrary(dirty, DEFAULT_OPTIONS);
 }
 
-/**
- * Sanitize plain text (strips all HTML)
- * Use for user input that should never contain HTML
- * 
- * @param dirty - Raw text that may contain HTML
- * @returns Plain text with all HTML removed
- */
 export function sanitizePlainText(dirty: string): string {
     if (!dirty || typeof dirty !== 'string') {
         return '';
     }
 
-    const clean = DOMPurify.sanitize(dirty, { ALLOWED_TAGS: [] });
-    return clean;
+    return sanitizeHtmlLibrary(dirty, {
+        allowedTags: [],
+        allowedAttributes: {}
+    });
 }
 
 /**
  * Sanitize URL to prevent javascript: and data: protocols
- * @param url - URL to validate
- * @returns Sanitized URL or empty string if invalid
+ * (Kept identical to original logic as it uses Regex, not DOMPurify)
  */
 export function sanitizeUrl(url: string): string {
     if (!url || typeof url !== 'string') {
@@ -100,25 +81,24 @@ export function sanitizeUrl(url: string): string {
 
 /**
  * Validate and sanitize email confirmation text
- * More permissive than general HTML but still safe
  */
 export function sanitizeEmailContent(dirty: string): string {
     if (!dirty || typeof dirty !== 'string') {
         return '';
     }
 
-    const emailConfig = {
-        ...SANITIZE_CONFIG,
-        ALLOWED_TAGS: [
-            ...(SANITIZE_CONFIG.ALLOWED_TAGS as string[]),
+    const emailOptions = {
+        ...DEFAULT_OPTIONS,
+        allowedTags: [
+            ...DEFAULT_TAGS,
             'img', 'hr'
         ],
-        ALLOWED_ATTR: [
-            ...(SANITIZE_CONFIG.ALLOWED_ATTR as string[]),
-            'src', 'alt', 'width', 'height', 'style'
-        ],
+        allowedAttributes: {
+            ...DEFAULT_OPTIONS.allowedAttributes,
+            'img': ['src', 'alt', 'width', 'height', 'style'],
+            '*': ['class', 'id', 'style'] // Allow style in emails
+        }
     };
 
-    const clean = DOMPurify.sanitize(dirty, emailConfig) as string;
-    return clean;
+    return sanitizeHtmlLibrary(dirty, emailOptions);
 }
