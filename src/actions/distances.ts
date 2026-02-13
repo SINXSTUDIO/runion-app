@@ -130,28 +130,26 @@ export async function duplicateDistance(id: string, eventId: string) {
 
         if (!existing) return { success: false, error: 'Distance not found' };
 
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { id: _, priceTiers, ...data } = existing;
-
+        // Explicitly create data object to avoid issues with hidden fields or type mismatches
         await prisma.distance.create({
             data: {
-                name: `${data.name} (Másolat)`,
-                nameEn: data.nameEn,
-                nameDe: data.nameDe,
-                description: data.description,
-                price: Number(data.price),
-                priceEur: data.priceEur ? Number(data.priceEur) : null,
-                capacityLimit: data.capacityLimit,
-                startTime: data.startTime,
-                eventId: data.eventId,
-                crewPricing: data.crewPricing as any,
+                name: `${existing.name} (Másolat)`,
+                nameEn: existing.nameEn,
+                nameDe: existing.nameDe,
+                description: existing.description,
+                price: Number(existing.price),
+                priceEur: existing.priceEur ? Number(existing.priceEur) : null,
+                capacityLimit: existing.capacityLimit,
+                startTime: existing.startTime, // Date object is valid
+                eventId: existing.eventId,
+                crewPricing: existing.crewPricing ?? undefined, // Handle JSON explicitly
                 priceTiers: {
-                    create: priceTiers.map(t => ({
+                    create: existing.priceTiers.map(t => ({
                         name: t.name,
-                        price: t.price,
-                        priceEur: t.priceEur,
-                        validFrom: new Date(t.validFrom),
-                        validTo: new Date(t.validTo)
+                        price: Number(t.price),
+                        priceEur: t.priceEur ? Number(t.priceEur) : null,
+                        validFrom: t.validFrom,
+                        validTo: t.validTo
                     }))
                 }
             }
