@@ -65,7 +65,7 @@ export default function SponsorSlider({ sponsors: initialSponsors }: SponsorSlid
             onMouseEnter={stopAutoScroll}
             onMouseLeave={startAutoScroll}
         >
-            <div className="flex justify-between items-center gap-8">
+            <div className="flex justify-between items-center gap-2 md:gap-8">
                 {getVisibleSponsors().map((sponsor, idx) => {
                     // Temporary fix for known bad seed data to stop log spam
                     if (sponsor.logoUrl.includes('sponser.png') || sponsor.logoUrl.includes('ilovebalaton.png')) {
@@ -75,7 +75,7 @@ export default function SponsorSlider({ sponsors: initialSponsors }: SponsorSlid
                     return (
                         <div
                             key={sponsor.id}
-                            className="flex-1 min-w-[300px] h-48 bg-white rounded-xl flex items-center justify-center p-6 hover:scale-105 transition-transform duration-300 shadow-lg"
+                            className="flex-1 min-w-[30vw] md:min-w-[300px] h-24 md:h-48 bg-white rounded-xl flex items-center justify-center p-2 md:p-6 hover:scale-105 transition-transform duration-300 shadow-lg"
                         >
                             <img
                                 src={sponsor.logoUrl}
