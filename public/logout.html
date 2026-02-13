@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Emergency Logout</title>
+    <meta charset="utf-8">
+    <style>
+        body {
+            background: linear-gradient(135deg, #000 0%, #1a1a2e 100%);
+            color: #00f2fe;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            border: 3px solid #00f2fe;
+            border-radius: 25px;
+            background: rgba(0, 242, 254, 0.05);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.3);
+            max-width: 500px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff0040 0%, #cc0033 100%);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 0, 64, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 64, 0.6);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 32px;
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.8);
+        }
+
+        p {
+            color: #aaa;
+        }
+
+        #status {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            min-height: 20px;
+        }
+
+        .success {
+            background: rgba(0, 255, 0, 0.1);
+            color: #0f0;
+        }
+
+        .error {
+            background: rgba(255, 0, 0, 0.1);
+            color: #f00;
+        }
+
+        .info {
+            background: rgba(0, 242, 254, 0.1);
+            color: #00f2fe;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🚪 RUNION LOGOUT</h1>
+        <p>Ha a normál kijelentkezés gomb nem működik,<br>használd az alábbi vészhelyzeti módszereket:</p>
+
+        <button onclick="logoutFull()">🔥 TELJES KIJELENTKEZÉS</button>
+        <button onclick="logoutAPI()">📡 API Logout</button>
+        <button onclick="logoutCookies()">🍪 Cookie Törlés</button>
+
+        <div id="status"></div>
+    </div>
+
+    <script>
+        function setStatus(msg, type = 'info') {
+            const el = document.getElementById('status');
+            el.textContent = msg;
+            el.className = type;
+        }
+
+        // Full logout (recommended)
+        async function logoutFull() {
+            setStatus('⏳ Teljes kijelentkezés folyamatban...', 'info');
+
+            // Clear all cookies
+            document.cookie.split(";").forEach(c => {
+                const name = c.split("=")[0].trim();
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;domain=" + location.hostname;
+            });
+
+            // Clear storage
+            try {
+                localStorage.clear();
+                sessionStorage.clear();
+            } catch (e) {
+                console.warn('Storage clear failed:', e);
+            }
+
+            // Call API
+            try {
+                await fetch('/api/auth/signout', {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+            } catch (e) {
+                console.warn('API signout failed, continuing anyway:', e);
+            }
+
+            setStatus('✅ Kijelentkezve! Átirányítás...', 'success');
+            setTimeout(() => {
+                window.location.href = '/hu';
+            }, 1500);
+        }
+
+        // API only
+        async function logoutAPI() {
+            setStatus('⏳ API kijelentkezés...', 'info');
+            try {
+                const res = await fetch('/api/auth/signout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include'
+                });
+
+                if (res.ok || res.redirected) {
+                    setStatus('✅ Sikeres! Átirányítás...', 'success');
+                    setTimeout(() => location.href = '/hu', 1000);
+                } else {
+                    setStatus('⚠️ API hiba, próbáld a teljes logout-ot', 'error');
+                }
+            } catch (e) {
+                setStatus('❌ Hiba: ' + e.message + ' - Próbáld a teljes logout-ot', 'error');
+            }
+        }
+
+        // Cookies only
+        function logoutCookies() {
+            setStatus('⏳ Cookie törlés...', 'info');
+
+            let cleared = 0;
+            document.cookie.split(";").forEach(c => {
+                const name = c.split("=")[0].trim();
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+                cleared++;
+            });
+
+            localStorage.clear();
+            sessionStorage.clear();
+
+            setStatus(`✅ ${cleared} cookie törölve! Átirányítás...`, 'success');
+            setTimeout(() => location.href = '/hu', 1500);
+        }
+    </script>
+</body>
+
+</html>

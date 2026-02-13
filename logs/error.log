@@ -1,0 +1,461 @@
+
+[2026-02-10T13:15:43.596Z] [CONTEXT: Image Delete] 
+ERROR: ENOENT: no such file or directory, unlink 'F:\RUNION\runion\public\uploads\buff2026.jpg'
+STACK: Error: ENOENT: no such file or directory, unlink 'F:\RUNION\runion\public\uploads\buff2026.jpg'
+    at async Object.unlink (node:internal/fs/promises:1070:10)
+    at async deleteImage (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__b43ca7e7._.js:979:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f7f38f87._.js:3014:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f7f38f87._.js:3220:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f7f38f87._.js:3591:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-10T13:45:48.678Z] [CONTEXT: Secret Login - Unexpected Error] 
+ERROR: NEXT_REDIRECT
+STACK: Error: NEXT_REDIRECT
+    at getRedirectError (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_next_17e10cf0._.js:2917:41)
+    at redirect (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_next_17e10cf0._.js:2927:11)
+    at signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10490:230)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:2891:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3097:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3468:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-10T13:57:26.834Z] [CONTEXT: Secret Login - Unexpected Error] 
+ERROR: NEXT_REDIRECT
+STACK: Error: NEXT_REDIRECT
+    at getRedirectError (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_next_17e10cf0._.js:2917:41)
+    at redirect (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_next_17e10cf0._.js:2927:11)
+    at signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10490:230)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c86287a8._.js:641:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:2891:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3097:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3468:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-10T15:24:15.327Z] [CONTEXT: Secret Login - Invalid Credentials] 
+ERROR: Read more at https://errors.authjs.dev#credentialssignin
+STACK: CredentialsSignin: Read more at https://errors.authjs.dev#credentialssignin
+    at Module.callback (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:4314:30)
+    at async AuthInternal (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5148:24)
+    at async Auth (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5370:34)
+    at async signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10479:17)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:2891:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3097:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3468:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-10T15:24:22.620Z] [CONTEXT: Secret Login - Invalid Credentials] 
+ERROR: Read more at https://errors.authjs.dev#credentialssignin
+STACK: CredentialsSignin: Read more at https://errors.authjs.dev#credentialssignin
+    at Module.callback (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:4314:30)
+    at async AuthInternal (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5148:24)
+    at async Auth (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5370:34)
+    at async signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10479:17)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:2891:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3097:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3468:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-10T15:24:27.687Z] [CONTEXT: Secret Login - Invalid Credentials] 
+ERROR: Read more at https://errors.authjs.dev#credentialssignin
+STACK: CredentialsSignin: Read more at https://errors.authjs.dev#credentialssignin
+    at Module.callback (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:4314:30)
+    at async AuthInternal (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5148:24)
+    at async Auth (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5370:34)
+    at async signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10479:17)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:2891:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3097:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3468:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-10T15:24:40.090Z] [CONTEXT: Secret Login - Invalid Credentials] 
+ERROR: Read more at https://errors.authjs.dev#credentialssignin
+STACK: CredentialsSignin: Read more at https://errors.authjs.dev#credentialssignin
+    at Module.callback (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:4314:30)
+    at async AuthInternal (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5148:24)
+    at async Auth (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5370:34)
+    at async signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10479:17)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:2891:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3097:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3468:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-10T15:24:47.674Z] [CONTEXT: Secret Login - Invalid Credentials] 
+ERROR: Read more at https://errors.authjs.dev#credentialssignin
+STACK: CredentialsSignin: Read more at https://errors.authjs.dev#credentialssignin
+    at Module.callback (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:4314:30)
+    at async AuthInternal (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5148:24)
+    at async Auth (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5370:34)
+    at async signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10479:17)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:2891:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3097:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3468:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-10T15:28:44.381Z] [CONTEXT: Secret Login - Auth Error] 
+ERROR: Read more at https://errors.authjs.dev#callbackrouteerror
+STACK: CallbackRouteError: Read more at https://errors.authjs.dev#callbackrouteerror
+    at Module.callback (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:4488:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async AuthInternal (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5148:24)
+    at async Auth (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5370:34)
+    at async signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10479:17)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:2891:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3097:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3468:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-10T15:28:52.234Z] [CONTEXT: Secret Login - Auth Error] 
+ERROR: Read more at https://errors.authjs.dev#callbackrouteerror
+STACK: CallbackRouteError: Read more at https://errors.authjs.dev#callbackrouteerror
+    at Module.callback (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:4488:23)
+    at async AuthInternal (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5148:24)
+    at async Auth (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5370:34)
+    at async signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10479:17)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:2891:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3097:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3468:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-10T15:29:05.181Z] [CONTEXT: Secret Login - Auth Error] 
+ERROR: Read more at https://errors.authjs.dev#callbackrouteerror
+STACK: CallbackRouteError: Read more at https://errors.authjs.dev#callbackrouteerror
+    at Module.callback (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:4488:23)
+    at async AuthInternal (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5148:24)
+    at async Auth (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5370:34)
+    at async signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10479:17)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:2891:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3097:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_d4e9dba0._.js:3468:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-11T15:11:31.321Z] [CONTEXT: Secret Login - Invalid Credentials] 
+ERROR: Read more at https://errors.authjs.dev#credentialssignin
+STACK: CredentialsSignin: Read more at https://errors.authjs.dev#credentialssignin
+    at Module.callback (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:4314:30)
+    at async AuthInternal (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5148:24)
+    at async Auth (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5370:34)
+    at async signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10479:17)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f1dd3199._.js:2897:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f1dd3199._.js:3103:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f1dd3199._.js:3474:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-11T15:11:43.339Z] [CONTEXT: Secret Login - Invalid Credentials] 
+ERROR: Read more at https://errors.authjs.dev#credentialssignin
+STACK: CredentialsSignin: Read more at https://errors.authjs.dev#credentialssignin
+    at Module.callback (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:4314:30)
+    at async AuthInternal (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5148:24)
+    at async Auth (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5370:34)
+    at async signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10479:17)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f1dd3199._.js:2897:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f1dd3199._.js:3103:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f1dd3199._.js:3474:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-11T15:26:33.204Z] [CONTEXT: Secret Login - Invalid Credentials] 
+ERROR: Read more at https://errors.authjs.dev#credentialssignin
+STACK: CredentialsSignin: Read more at https://errors.authjs.dev#credentialssignin
+    at Module.callback (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:4314:30)
+    at async AuthInternal (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5148:24)
+    at async Auth (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5370:34)
+    at async signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10479:17)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f1dd3199._.js:2897:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f1dd3199._.js:3103:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f1dd3199._.js:3474:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------
+
+[2026-02-11T15:26:47.851Z] [CONTEXT: Secret Login - Invalid Credentials] 
+ERROR: Read more at https://errors.authjs.dev#credentialssignin
+STACK: CredentialsSignin: Read more at https://errors.authjs.dev#credentialssignin
+    at Module.callback (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:4314:30)
+    at async AuthInternal (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5148:24)
+    at async Auth (F:\RUNION\runion\.next\dev\server\chunks\ssr\97170_@auth_core_a59a75bc._.js:5370:34)
+    at async signIn (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__c552305e._.js:10479:17)
+    at async secretAuthenticate (F:\RUNION\runion\.next\dev\server\chunks\ssr\[root-of-the-server]__9ce9a791._.js:88:9)
+    at async executeActionAndPrepareForRender (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:3803)
+    at async F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:36:1109
+    at async handleAction (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:34:23598)
+    at async renderToHTMLOrFlightImpl (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:41:42106)
+    at async doRender (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f1dd3199._.js:2897:28)
+    at async AppPageRouteModule.handleResponse (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js:43:64241)
+    at async handleResponse (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f1dd3199._.js:3103:32)
+    at async Module.handler (F:\RUNION\runion\.next\dev\server\chunks\ssr\node_modules_f1dd3199._.js:3474:20)
+    at async DevServer.renderToResponseWithComponentsImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1422:9)
+    at async DevServer.renderPageComponent (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1474:24)
+    at async DevServer.renderToResponseImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1524:32)
+    at async DevServer.pipeImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:1018:25)
+    at async NextNodeServer.handleCatchallRenderRequest (F:\RUNION\runion\node_modules\next\dist\server\next-server.js:395:17)
+    at async DevServer.handleRequestImpl (F:\RUNION\runion\node_modules\next\dist\server\base-server.js:909:17)
+    at async F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:387:20
+    at async Span.traceAsyncFn (F:\RUNION\runion\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (F:\RUNION\runion\node_modules\next\dist\server\dev\next-dev-server.js:383:24)
+    at async invokeRender (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:248:21)
+    at async handleRequest (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:447:24)
+    at async requestHandlerImpl (F:\RUNION\runion\node_modules\next\dist\server\lib\router-server.js:496:13)
+    at async Server.requestListener (F:\RUNION\runion\node_modules\next\dist\server\lib\start-server.js:226:13)
+--------------------------------------------------------------------------------

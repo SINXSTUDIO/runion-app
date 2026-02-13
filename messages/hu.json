@@ -1,0 +1,773 @@
+{
+    "Common": {
+        "save": "Mentés",
+        "saving": "Mentés..."
+    },
+    "Navbar": {
+        "races": "Versenyeink",
+        "results": "Butik",
+        "about": "Rólunk",
+        "contact": "Kapcsolat",
+        "login": "Belépés",
+        "register": "Regisztráció",
+        "welcome": "Üdv",
+        "transfer": "Átnevezés"
+    },
+    "Dashboard": {
+        "Home": {
+            "hello": "Szia, <accent>{name}</accent>!",
+            "subtitle": "Itt láthatod a nevezéseidet és állíthatod be a profilodat.",
+            "myRegistrations": "Verseny Nevezéseim",
+            "stats": "Statisztika",
+            "races": "Verseny",
+            "kmRun": "Km futva",
+            "logout": "Kilépés",
+            "admin": "Admin"
+        },
+        "Registrations": {
+            "title": "Nevezéseim",
+            "total": "Összes nevezésed:",
+            "balanceTitle": "Egyenleg",
+            "paid": "Kifizetve",
+            "unpaid": "Nincs kifizetve",
+            "emptyTitle": "Még nincs nevezésed",
+            "emptyDesc": "Fedezd fel a következő versenyeket és nevezz be!",
+            "viewEvents": "Versenyek Megtekintése",
+            "paymentInfo": "Utalási Információk",
+            "paymentInstruction": "A nevezés véglegesítéséhez kérjük utald át az alábbi összeget:",
+            "beneficiary": "Kedvezményezett",
+            "bank": "Bank",
+            "account": "Számlaszám",
+            "amount": "Összeg",
+            "reference": "Közlemény",
+            "close": "Bezárás",
+            "transferBtn": "Utalás",
+            "confirmed": "Sikeres Nevezés",
+            "status": {
+                "pending": "Fizetésre vár",
+                "confirmed": "Nevezve"
+            }
+        },
+        "Orders": {
+            "title": "Rendeléseim",
+            "subtitle": "Korábbi vásárlásaid és letölthető dokumentumok.",
+            "empty": "Még nem vásároltál semmit.",
+            "goToStore": "Irány a Bolt",
+            "table": {
+                "orderNumber": "Rendelés #",
+                "date": "Dátum",
+                "items": "Termékek",
+                "amount": "Összeg",
+                "status": "Státusz",
+                "actions": "Műveletek"
+            },
+            "itemCount": "{count} db termék",
+            "invoice": "Díjbekérő",
+            "status": {
+                "pending": "Függőben",
+                "paid": "Fizetve",
+                "shipped": "Szállítva",
+                "cancelled": "Törölve"
+            }
+        },
+        "Documents": {
+            "title": "Dokumentumok",
+            "total": "Összes dokumentum:",
+            "searchPlaceholder": "Keresés dokumentumok között...",
+            "types": {
+                "Nyugta": "Nyugta",
+                "Számla": "Számla",
+                "Díjbekérő": "Díjbekérő"
+            },
+            "eventLabel": "Verseny:",
+            "noDate": "Dátum nincs",
+            "emptyTitle": "Még nincs dokumentumod",
+            "emptyDesc": "A fizetések után automatikusan generálódnak a nyugták és számlák.",
+            "allMonths": "Minden hónap",
+            "allYears": "Minden év",
+            "months": {
+                "january": "Január",
+                "february": "Február",
+                "march": "Március",
+                "april": "Április",
+                "may": "Május",
+                "june": "Június",
+                "july": "Július",
+                "august": "Augusztus",
+                "september": "Szeptember",
+                "october": "Október",
+                "november": "November",
+                "december": "December"
+            }
+        },
+        "Notifications": {
+            "title": "Értesítések",
+            "unreadCount": "{count} olvasatlan értesítés",
+            "noNew": "Nincs új értesítésed",
+            "markAllRead": "Összes olvasottnak jelölése",
+            "emptyTitle": "Nincs értesítésed",
+            "emptyDesc": "Az új értesítések itt fognak megjelenni.",
+            "mock": {
+                "paymentSuccess": {
+                    "title": "Sikeres fizetés",
+                    "message": "A Budapest Félmaraton nevezési díjad beérkezett. Nyugtád letölthető a Dokumentumok oldalon."
+                },
+                "raceNear": {
+                    "title": "Verseny közeledik",
+                    "message": "A Budapest Félmaraton 7 nap múlva kezdődik! Ne feledd a rajtcsomagod átvételét."
+                },
+                "proformaWaiting": {
+                    "title": "Díjbekérő várakozik",
+                    "message": "Az Ultrabalaton nevezési díjbekérőd kint van. Kérjük, rendezd a számlát 5 napon belül."
+                }
+            }
+        },
+        "Sidebar": {
+            "overview": "Vezérlőpult",
+            "registrations": "Nevezéseim",
+            "orders": "Rendeléseim",
+            "documents": "Dokumentumok",
+            "profile": "Profil",
+            "notifications": "Értesítések",
+            "backToHome": "Vissza a főoldalra",
+            "membership": "Tagság",
+            "memberType": "Standard",
+            "expires": "Lejárat",
+            "admin": "Adminisztráció",
+            "feedback": "Visszajelzés"
+        },
+        "Membership": {
+            "title": "Tagság Kezelés",
+            "currentStatus": "Jelenlegi Státusz",
+            "noMembership": "Nincs aktív tagságod",
+            "activeUntil": "Érvényes eddig:",
+            "availablePlans": "Elérhető Csomagok",
+            "buy": "Megvásárolom",
+            "renew": "Megújítom",
+            "month": "hónap",
+            "billingDetails": "Számlázási Adatok",
+            "confirmPurchase": "Vásárlás Megerősítése",
+            "successTitle": "Sikeres Rendelés!",
+            "successMessage": "A díjbekérőt elküldtük e-mailben. Kérlek utald át az összeget a tagság aktiválásához.",
+            "back": "Vissza",
+            "processing": "Feldolgozás...",
+            "cancel": "Tagság Megszüntetése",
+            "confirmCancel": "Biztosan meg akarod szüntetni a tagságot?",
+            "discount": "kedvezmény nevezésekből",
+            "Success": {
+                "title": "Köszönjük a rendelésed!",
+                "message": "A díjbekérőt elküldtük az email címedre. Kérjük, ellenőrizd a fiókodat (a spam mappát is) és utald át az összeget az aktiváláshoz.",
+                "documents": "Dokumentumok",
+                "dashboard": "Vezérlőpult"
+            }
+        }
+    },
+    "Admin": {
+        "Sidebar": {
+            "dashboard": "Vezérlőpult",
+            "events": "Események",
+            "registrations": "Nevezések",
+            "users": "Felhasználók",
+            "partners": "Partnerek",
+            "features": "Jellemzők",
+            "gallery": "Galéria",
+            "sponsors": "Támogatók",
+            "products": "Butik",
+            "orders": "Rendelések",
+            "about": "Rólunk",
+            "contact": "Kapcsolat",
+            "status": "RENDSZER ÁLLAPOT",
+            "uptime": "ÜZEMIDŐ",
+            "db": "ADATBÁZIS",
+            "settings": "Beállítások",
+            "memberships": "Tagságok",
+            "backup": "Biztonsági Mentés"
+        },
+        "EventForm": {
+            "title": "Űrlap testreszabása",
+            "subtitle": "Nevezési űrlap egyedi mezőinek kezelése"
+        },
+        "Settings": {
+            "title": "Beállítások",
+            "loadError": "Nem sikerült betölteni a beállításokat.",
+            "updateSuccess": "Beállítások frissítve!",
+            "updateError": "Hiba történt a frissítés során.",
+            "shopStatus": "Webshop Állapota",
+            "shopEnabledDesc": "A webshop jelenleg aktív, a vásárlás engedélyezett.",
+            "shopDisabledDesc": "A webshop katalógus módban van, a vásárlás letiltva."
+        }
+    },
+    "Event": {
+        "details": "Részletek",
+        "date": "Dátum",
+        "location": "Helyszín",
+        "organizer": "Szervező"
+    },
+    "HomePage": {
+        "heroTitle": "Fuss velünk a győzelemért",
+        "heroSubtitle": "Csatlakozz a Runion közösséghez és nevezz a legjobb versenyekre.",
+        "cta": "Böngészd a versenyeket",
+        "feature1Title": "Prémium Versenyek",
+        "feature1Desc": "Csúcsszínvonalú szervezés és felejthetetlen élmények.",
+        "feature2Title": "Profi Időmérés",
+        "feature2Desc": "Pontos chipes időmérés, azonnali eredményekkel.",
+        "feature3Title": "Szuper Közösség",
+        "feature3Desc": "Csatlakozz több ezer futóhoz az ország minden pontjáról.",
+        "upcomingTitle": "Közelgő Versenyek",
+        "upcomingSubtitle": "Találd meg a következő kihívásodat.",
+        "viewAll": "Összes verseny",
+        "sponsorsTitle": "TÁMOGATÓINK",
+        "sponsorsSubtitle": "CSATLAKOZZ TE IS HOZZÁNK",
+        "statsTitle": "RÓLUNK SZÁMOKBAN",
+        "statsSubtitle": "EREDMÉNYEINK ÉS KÖZÖSSÉGÜNK",
+        "stat1Value": "50+",
+        "stat1Label": "Rendezvény",
+        "stat2Value": "10k+",
+        "stat2Label": "Futó",
+        "stat3Value": "100k+",
+        "stat3Label": "Megtett km",
+        "stat4Value": "100%",
+        "stat4Label": "Élmény",
+        "galleryTitle": "PILLANATKÉPEK",
+        "gallerySubtitle": "NÉZZ BE A KULISSZÁK MÖGÉ",
+        "partnersTitle": "Stratégiai Együttműködő Partnereink",
+        "countdown": {
+            "days": "Nap",
+            "hours": "Óra",
+            "minutes": "Perc",
+            "seconds": "Másodperc",
+            "nextEvent": "KÖVETKEZŐ VERSENYIG:"
+        },
+        "newsletterTitle": "NE MARADJ LE SEMMIRŐL",
+        "newsletterSubtitle": "Iratkozz fel hírlevelünkre a legfrissebb versenyekért!",
+        "newsletterPlaceholder": "Email címed",
+        "newsletterFirstName": "Keresztnév",
+        "newsletterLastName": "Vezetéknév",
+        "newsletterCTA": "Feliratkozás",
+        "newsletterSuccessTitle": "Sikeres feliratkozás!",
+        "newsletterSuccessDesc": "Hamarosan értesítünk a legújabb versenyeinkről.",
+        "newsletterErrorProvider": "A feliratkozás jelenleg nem elérhető. Próbáld meg később!",
+        "featured": {
+            "title": "KIEMELT ESEMÉNY",
+            "nextEvent": "SORON KÖVETKEZŐ VERSENYÜNK",
+            "eventLive": "AZ ESEMÉNY ZAJLIK!",
+            "timeLeft": "MÉG ENNYI IDŐD MARADT A RAJTIG:",
+            "days": "Nap",
+            "hours": "Óra",
+            "minutes": "Perc",
+            "seconds": "Másodperc",
+            "registerNow": "NEVEZÉS MOST",
+            "details": "Tudj meg többet"
+        }
+    },
+    "Footer": {
+        "tagline": "A te prémium futóverseny platformod",
+        "quickLinks": "Gyorslinkek",
+        "races": "Versenyek",
+        "boutique": "Webshop",
+        "about": "Rólunk",
+        "contact": "Kapcsolat",
+        "legal": "Jogi Információk",
+        "connect": "Kövess minket",
+        "rights": "Minden jog fenntartva.",
+        "privacy": "Adatvédelem",
+        "terms": "ÁSZF"
+    },
+    "Auth": {
+        "Register": {
+            "title": "Regisztráció",
+            "subtitle": "Hozz létre egy új fiókot",
+            "firstName": "Keresztnév",
+            "lastName": "Vezetéknév",
+            "email": "Email",
+            "password": "Jelszó",
+            "terms": "Elfogadom az <link>Általános Szerződési Feltételeket</link>",
+            "submit": "Regisztráció",
+            "hasAccount": "Van már fiókod?",
+            "loginLink": "Lépj be itt"
+        },
+        "Login": {
+            "title": "Belépés",
+            "subtitle": "Lépj be a fiókodba a folytatáshoz",
+            "email": "Email",
+            "password": "Jelszó",
+            "submit": "Belépés",
+            "noAccount": "Nincs még fiókod?",
+            "registerLink": "Regisztrálj itt"
+        }
+    },
+    "Races": {
+        "title": "Aktuális <accent>Versenyek</accent>",
+        "subtitle": "Találd meg a következő kihívást! Böngéssz a legjobb futóversenyek között.",
+        "searchPlaceholder": "Keresés verseny neve vagy helyszín alapján...",
+        "searchButton": "Keresés",
+        "empty": "Hamarosan érkeznek a versenyek..."
+    },
+    "EventCard": {
+        "details": "Részletek",
+        "from": "Ft-tól",
+        "free": "Ingyenes",
+        "noImage": "Nincs kép"
+    },
+    "EventDetails": {
+        "backToRaces": "Vissza a versenyekhez",
+        "date": "Időpont",
+        "location": "Helyszín",
+        "tabOverview": "Áttekintés",
+        "tabMap": "Térkép",
+        "tabDistances": "Versenyszámok",
+        "distances": "Választható Távok",
+        "description": "Leírás",
+        "aboutTitle": "A versenyről",
+        "ctaTitle": "Ne maradj le!",
+        "deadline": "Nevezési határidő:",
+        "startRegistration": "Nevezés indítása",
+        "openRegistration": "Nyitott nevezés",
+        "closedRegistration": "Lezárva",
+        "register": "Nevezés",
+        "capacityLabel": "Kapacitás",
+        "start": "Rajt",
+        "organizer": "Szervező",
+        "locationMap": "Helyszín",
+        "openInMaps": "Megnyitás térképen",
+        "status": {
+            "soldOut": "Telt ház",
+            "almostFull": "Majdnem tele",
+            "fillingFast": "Gyorsan fogy",
+            "available": "Elérhető"
+        },
+        "capacity": {
+            "registered": "{count} nevezett",
+            "available": "{count} hely maradt"
+        },
+        "pricing": {
+            "validUntil": "Érvényes eddig"
+        },
+        "cta": {
+            "soldOut": "Telt ház",
+            "register": "Nevezés most"
+        },
+        "socialProof": {
+            "totalRegistrations": "nevezés",
+            "recentActivity": "Legutóbbi nevezések",
+            "registeredFor": "nevezett:",
+            "verified": "Ellenőrzött esemény"
+        }
+    },
+    "CookieConsent": {
+        "title": "Sütiket használunk",
+        "description": "A weboldalunk sütiket (cookie-kat) használ a jobb felhasználói élmény és a forgalom elemzése érdekében. A weboldal böngészésével elfogadja a sütik használatát.",
+        "accept": "Elfogadom",
+        "decline": "Elutasítom",
+        "policy": "Adatkezelési tájékoztató"
+    },
+    "AboutPage": {
+        "title": "Rólunk",
+        "description": "A RUNION oldalt azért hoztuk létre, hogy barátaink /egyesületek és egyéni versenyszervezők/ rendezvényeit összegyűjtsük, rendszerezzük, ajánljuk és egymást segítve megvalósítsuk Nektek, Futóknak! Köszönjük, hogy velünk tartotok és részvételetekkel, sportteljesítményetekkel emelitek rendezvényeink színvonalát!",
+        "founder": "Baranyai Máté",
+        "founderRole": "a RUNION alapítója",
+        "mission": "Küldetésünk"
+    },
+    "ContactPage": {
+        "title": "Kapcsolat",
+        "subtitle": "Kérdésed van? Keress minket bizalommal!",
+        "faq": {
+            "title": "Gyakran Ismételt Kérdések"
+        },
+        "emailLabel": "Email cím",
+        "phoneLabel": "Telefonszám",
+        "addressLabel": "Cím",
+        "taxLabel": "Adószám",
+        "representativeLabel": "Képviselő",
+        "ibanLabel": "HUF Bankszámlaszám (IBAN)",
+        "companies": {
+            "bac": {
+                "name": "Balatonfüredi Atlétikai Club",
+                "address": "8230 Balatonfüred, Vörösmarty u. 3.",
+                "tax": "19225067-1-19",
+                "phone": "+36 70 323 0662",
+                "email": "bhebalaton@gmail.com",
+                "rep": "Baranyai Máté",
+                "iban": "HU16 1174 8069 2551 2412 0000 0000"
+            },
+            "kahu": {
+                "name": "KAHU Természet- és Állatvédő, Ifjúsági-, és Sportegyesület /KAHU/",
+                "address": "8452 Szőc, Kossuth u. 83.",
+                "tax": "",
+                "phone": "+36 70 323 0662",
+                "email": "kahu2022@gmail.com",
+                "rep": "Baranyai Máté",
+                "iban": "HU19 1174 8038 2482 6190 0000 0000"
+            },
+            "bbe": {
+                "name": "BakonyOrszág Balcsipart Kulturális és Sportegyesület /BBE/",
+                "address": "8230 Nemesvámos, Rózsa u. 6.",
+                "tax": "",
+                "phone": "+36 70 323 0662",
+                "email": "bakonyorszagbalcsipart@gmail.com",
+                "rep": "Baranyai Máté",
+                "iban": "HU67 1174 8007 2483 0210 0000 0000"
+            }
+        },
+        "form": {
+            "name": "Neved",
+            "email": "Email címed",
+            "subject": "Tárgy",
+            "message": "Üzenet",
+            "submit": "Küldés"
+        }
+    },
+    "BoutiquePage": {
+        "title": "Butik",
+        "subtitle": "Válogass hivatalos RUNION kiegészítőink közül! Rendelj kényelmesen online.",
+        "premium": "Prémium Minőség",
+        "premiumDesc": "Minden termékünket futók tesztelték, hogy a legjobb élményt nyújtsák.",
+        "invoice": "PDF Díjbekérő",
+        "invoiceDesc": "Rendelés után azonnal megkapod a fizetéshez szükséges adatokat.",
+        "support": "Közösség Támogatása",
+        "supportDesc": "Vásárlásoddal a hazai futósport fejlődését segíted."
+    },
+    "CheckoutPage": {
+        "title": "Pénztár",
+        "subtitle": "Biztonságos rendelés",
+        "shipping": "Szállítási Adatok",
+        "billing": "Számlázási Adatok",
+        "billingMatch": "Azonos a szállításival, ha nem módosítod",
+        "note": "Megjegyzés",
+        "summary": "Összesítés",
+        "total": "Fizetendő",
+        "subtotal": "Részösszeg",
+        "delivery": "Szállítás",
+        "free": "Ingyenes",
+        "paymentMethod": "Választott fizetési mód",
+        "bankTransfer": "Banki Átutalás",
+        "bankTransferDesc": "Díjbekérő PDF emailben",
+        "placeOrder": "Rendelés Leadása"
+    },
+    "CartDrawer": {
+        "title": "Kosár",
+        "empty": "A kosarad üres.",
+        "continue": "Vásárlás folytatása",
+        "size": "Méret",
+        "total": "Összesen",
+        "checkout": "Pénztár"
+    },
+    "ProductCard": {
+        "size": "Méret",
+        "added": "Hozzáadva",
+        "addToCart": "Kosárba"
+    },
+    "ProductList": {
+        "searchPlaceholder": "Keresés a termékek között...",
+        "noResults": "Nincs találat."
+    },
+    "SuccessPage": {
+        "thanks": "Köszönjük a Rendelést!",
+        "orderNumber": "Rendelésszám",
+        "paymentInfo": "Fizetési Információk",
+        "transferDesc": "Kérjük, az alábbi adatokkal indítsd el az utalást:",
+        "beneficiary": "Kedvezményezett",
+        "accountNumber": "Számlaszám (HUF)",
+        "amount": "Összeg",
+        "reference": "Közlemény",
+        "important": "Fontos!",
+        "emailSent": "A rendelésedről visszaigazoló emailt és díjbekérőt küldtünk a {email} címre. Az utalás beérkezése után indítjuk a csomagot.",
+        "orderedProducts": "Rendelt termékek",
+        "backToBoutique": "Vissza a Butikba",
+        "home": "Kezdőlap"
+    },
+    "NotFoundPage": {
+        "title": "404 - Eltévedtél?",
+        "description": "Úgy tűnik, letértél a kijelölt pályáról. Ne aggódj, minden futóval megesik néha!",
+        "button": "Vissza a főoldalra"
+    },
+    "Profile": {
+        "title": "Profilom",
+        "subtitle": "Személyes adatok és beállítások",
+        "edit": {
+            "title": "Profil szerkesztése",
+            "button": "Adatok szerkesztése",
+            "personal": "Személyes Adatok",
+            "address": "Lakcím",
+            "other": "Egyéb Adatok",
+            "emergency": "Vészhelyzeti Kapcsolat",
+            "image": "Profilkép",
+            "imageLabel": "Tölts fel egy profilképet",
+            "imageDesc": "Megengedett formátumok: JPG, PNG, WEBP. Max méret: 5MB.",
+            "save": "Mentés",
+            "saving": "Mentés...",
+            "cancel": "Mégse",
+            "success": "Sikeres mentés",
+            "error": "Hiba történt a mentés során",
+            "extras": "Extra Adatok",
+            "team": "Csapat Információk",
+            "addMember": "Tag Hozzáadása",
+            "billing": "Számlázási Adatok",
+            "copyAddress": "Lakcím másolása"
+        },
+        "profile": {
+            "title": "Profil Beállítások",
+            "subtitle": "Személyes adatok és fiók kezelése",
+            "avatar": "Profilkép",
+            "imageDesc": "Megengedett formátumok: JPG, PNG, WEBP. Max méret: 5MB.",
+            "save": "Mentés",
+            "saving": "Mentés...",
+            "cancel": "Mégse",
+            "success": "Sikeres mentés",
+            "error": "Hiba történt a mentés során"
+        },
+        "dangerZone": {
+            "title": "Veszélyzóna",
+            "description": "A fiók törlése végleges és nem visszavonható művelet. Minden adatod elveszik.",
+            "text": "A fiók törlése végleges és nem visszavonható művelet. Minden adatod elveszik.",
+            "button": "Fiók törlése",
+            "confirmTitle": "Biztosan törlöd?",
+            "confirmMessage": "A fiókod és minden személyes adatod inaktiválásra kerül. A rendszerből kiléptetünk.",
+            "confirmButton": "Igen, Törlöm"
+        },
+        "fields": {
+            "lastName": "Vezetéknév",
+            "firstName": "Keresztnév",
+            "email": "Email cím",
+            "phone": "Telefonszám",
+            "birthDate": "Születési dátum",
+            "zip": "Irányítószám",
+            "city": "Város",
+            "street": "Utca, házszám",
+            "contactName": "Kapcsolattartó neve",
+            "contactPhone": "Kapcsolattartó száma",
+            "gender": "Neme",
+            "genderPlaceholder": "Válassz nemet",
+            "genderMale": "Férfi",
+            "genderFemale": "Nő",
+            "registrationDate": "Regisztráció dátuma",
+            "club": "Egyesület / Klub",
+            "tshirt": "Póló méret",
+            "isVegetarian": "Vegetáriánus étrendet követek",
+            "fiveTrialsId": "Olimpiai Ötpróba Azonosító",
+            "fiveTrialsIdPlaceholder": "pl. 12345-67890",
+            "fiveTrialsIdDesc": "Ha részt veszel az Olimpi Ötpróba programban, itt add meg az azonosítódat.",
+            "teamName": "Csapatnév",
+            "teamNamePlaceholder": "pl. Villám Futók",
+            "teamMembers": "Csapattagok",
+            "teamMember": "Csapattag",
+            "noTeamMembers": "Még nem adtál hozzá csapattagokat.",
+            "billingName": "Számlázási Név",
+            "billingNamePlaceholder": "pl. Gipsz Jakab vagy Cég Kft.",
+            "taxNumber": "Adószám",
+            "taxNumberPlaceholder": "pl. 12345678-1-42 (csak cég esetén)"
+        },
+        "roles": {
+            "admin": "👑 Admin",
+            "staff": "⭐ Staff",
+            "runner": "🏃 Futó"
+        },
+        "status": {
+            "active": "✅ Aktív"
+        }
+    },
+    "Registration": {
+        "pageTitle": "Nevezés: {eventName}",
+        "fillDetails": "Töltsd ki az adataidat a regisztrációhoz.",
+        "form": {
+            "name": {
+                "label": "Versenyző neve",
+                "placeholder": "pl. Gipsz Jakab"
+            },
+            "club": {
+                "label": "Egyesület / Klub",
+                "placeholder": "pl. Runion SE"
+            },
+            "firstName": {
+                "label": "Keresztnév",
+                "placeholder": "pl. István"
+            },
+            "lastName": {
+                "label": "Vezetéknév",
+                "placeholder": "pl. Kovács"
+            },
+            "email": {
+                "label": "Email cím",
+                "placeholder": "pelda@email.hu"
+            },
+            "phone": {
+                "label": "Telefonszám",
+                "placeholder": "+36 30 123 4567"
+            },
+            "birthDate": {
+                "label": "Születési dátum",
+                "placeholder": "ÉÉÉÉ.HH.NN"
+            },
+            "gender": {
+                "label": "Neme",
+                "placeholder": "Válassz..."
+            },
+            "city": {
+                "label": "Település",
+                "placeholder": "pl. Budapest"
+            },
+            "zip": {
+                "label": "Irányítószám",
+                "placeholder": "1234"
+            },
+            "address": {
+                "label": "Cím (Utca, házszám)",
+                "placeholder": "pl. Fő utca 1."
+            },
+            "tshirtSize": {
+                "label": "Póló méret",
+                "placeholder": "Válassz..."
+            }
+        },
+        "steps": {
+            "distance": "Táv",
+            "extras": "Extra",
+            "data": "Adatok",
+            "billing": "Számlázás",
+            "summary": "Összegzés"
+        },
+        "distance": {
+            "title": "Válassz Távot",
+            "spots": "Szabad helyek: {count}"
+        },
+        "extras": {
+            "title": "Extra Termékek",
+            "subtitle": "Szeretnél valamilyen emléktárgyat vagy plusz szolgáltatást?",
+            "empty": "Ehhez a versenyhez jelenleg nincsenek extra termékek.",
+            "oneTime": "Egyszeri díj"
+        },
+        "personal": {
+            "title": "Személyes Adatok",
+            "subtitle": "Kérjük válaszolj az alábbi kérdésekre a nevezéshez.",
+            "required": "Kötelező mezők *"
+        },
+        "billing": {
+            "title": "Számlázási Adatok",
+            "name": "Számlázási Név *",
+            "zip": "Irányítószám *",
+            "city": "Város *",
+            "address": "Utca, házszám *",
+            "taxNumber": "Adószám (opcionális)"
+        },
+        "summary": {
+            "title": "Összegzés és Fizetés",
+            "distanceLabel": "Táv:",
+            "priceLabel": "Táv ára:",
+            "totalLabel": "Összesen:",
+            "paymentMethod": "Fizetési mód:",
+            "bankTransfer": "Banki Átutalás",
+            "liability": "Az eseményen a saját felelősségemre veszek részt",
+            "terms": "Elolvastam és elfogadom az <link1>Adatvédelmi nyilatkozatot</link1> és az <link2>ÁSZF</link2>-et",
+            "warning": "Figyelem! A nevezésed csak a díj beérkezése után válik véglegessé. Az átutaláshoz szükséges adatokat a sikeres nevezés után és emailben küldjük el."
+        },
+        "actions": {
+            "back": "Vissza",
+            "next": "Tovább",
+            "processing": "Feldolgozás...",
+            "finish": "Nevezés Véglegesítése"
+        },
+        "errors": {
+            "selectDistance": "Válassz távot!",
+            "missingBilling": "Kérjük töltsd ki a kötelező számlázási adatokat!",
+            "acceptTerms": "A nevezéshez el kell fogadnod a feltételeket!"
+        }
+    },
+    "FormBuilder": {
+        "title": "Nevezési Űrlap Szerkesztő",
+        "save": "Mentés",
+        "saving": "Mentés...",
+        "saved": "Űrlap mentve!",
+        "newField": "Új Mező Hozzáadása",
+        "defaultLabel": "Új kérdés",
+        "field": {
+            "label": "Kérdés Szövege",
+            "type": "Típus",
+            "options": "Opciók (vesszővel elválasztva)",
+            "optionsPlaceholder": "Pl. Piros, Kék, Zöld",
+            "required": "Kötelező mező"
+        },
+        "types": {
+            "text": "Szöveg",
+            "email": "Email",
+            "tel": "Telefonszám",
+            "zip": "Irányítószám",
+            "number": "Szám",
+            "date": "Dátum",
+            "checkbox": "Jelölőnégyzet (Igen/Nem)",
+            "select": "Legördülő Lista",
+            "gender": "Neme (Automatikusan kitöltődik)",
+            "radio": "Radio Gombok",
+            "textarea": "Hosszú Szöveg"
+        }
+    },
+    "RegistrationSuccess": {
+        "title": "Sikeres Előnevezés!",
+        "subtitle": "Köszönjük a nevezésedet a(z) {event} versenyre. Kérjük utald át a nevezési díjat a foglalás véglegesítéséhez.",
+        "transferInfo": "Átutalási Információk",
+        "beneficiary": "Kedvezményezett",
+        "beneficiaryName": "Runion Sportegyesület",
+        "bank": "Bank",
+        "bankName": "OTP Bank",
+        "accountNumber": "Számlaszám",
+        "amount": "Összeg",
+        "reference": "Közlemény (FONTOS!)",
+        "emailNotice": "A számlázási információkat és a visszaigazolást elküldtük emailben erre a címre: {email}",
+        "dashboardCta": "Tovább a Profilomhoz"
+    },
+    "ChangeRequest": {
+        "title": "Kérelem Beküldése",
+        "successTitle": "Köszönjük!",
+        "successMessage": "Hamarosan felvesszük a kapcsolatot a megadott e-mail címen.",
+        "newRequest": "Új kérelem",
+        "submitting": "Küldés folyamatban...",
+        "submit": "Kérelem Beküldése",
+        "typeLabel": "Kérelem Típusa",
+        "types": {
+            "transfer": {
+                "title": "Átnevezés",
+                "desc": "Másik versenyre/távra"
+            },
+            "cancellation": {
+                "title": "Adatmódosítás",
+                "desc": "Adatok javítása"
+            },
+            "modification": {
+                "title": "Egyéb",
+                "desc": "Egyéb kérés"
+            }
+        },
+        "fields": {
+            "name": "Név *",
+            "namePlaceholder": "Teljes név",
+            "phone": "Telefonszám *",
+            "email": "Email Cím *",
+            "birthDate": "Születési Idő *",
+            "address": "Cím *",
+            "addressPlaceholder": "Utca, házszám",
+            "city": "Város *",
+            "zipCode": "Irányítószám *",
+            "fromEvent": "Melyik versenyről kéri a nevezés átvitelét? *",
+            "fromEventPlaceholder": "Pl. X. Schiller Szerelmes Füred 10km",
+            "toEvent": "Erre a versenyre kéri a nevezés átvitelét (Átnevezés esetén)",
+            "toEventPlaceholder": "Pl. Másik táv vagy jövő évi verseny",
+            "comment": "Megjegyzés / Indoklás",
+            "commentPlaceholder": "Egyéb közlemény...",
+            "terms": "Az eseményen a saját felelősségemre veszek részt, és elfogadom a <link>Versenyszabályzatot</link>.",
+            "privacy": "Elolvastam és elfogadom az <link>Adatvédelmi nyilatkozatot</link>."
+        },
+        "errors": {
+            "required": "Kötelező mező"
+        }
+    },
+    "Transfer": {
+        "title": "Átnevezés / Adatmódosítás",
+        "subtitle": "Kérjük töltse ki az alábbi űrlapot a módosításhoz.",
+        "backToHome": "Vissza a főoldalra",
+        "infoHeading": "Tájékoztató",
+        "dearAthletes": "Tisztelt Sportolók!",
+        "beneficiaryTextPrefix": "A runion.eu versenyein az átnevezési díjak a",
+        "beneficiaryTextSuffix": "részére – állateledel vásárlására kerülnek felajánlásra, mi így kívánjuk segíteni munkájukat!",
+        "referenceText": "Utaláskor tehát a megjegyzés rovatba ezt kérjük beírni:",
+        "thankYou": "Köszönjük!"
+    }
+}

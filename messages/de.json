@@ -1,0 +1,655 @@
+{
+    "Navbar": {
+        "races": "Wettkämpfe",
+        "results": "Ergebnisse",
+        "about": "Über Uns",
+        "contact": "Kontakt",
+        "login": "Anmelden",
+        "register": "Registrieren",
+        "welcome": "Willkommen",
+        "transfer": "Ummeldung"
+    },
+    "Dashboard": {
+        "Home": {
+            "hello": "Hallo, <accent>{name}</accent>!",
+            "subtitle": "Hier findest du deine Anmeldungen und kannst dein Profil einrichten.",
+            "myRegistrations": "Meine Wettkampfanmeldungen",
+            "stats": "Statistik",
+            "races": "Wettkämpfe",
+            "kmRun": "KM gelaufen",
+            "logout": "Abmelden",
+            "admin": "Admin"
+        },
+        "Registrations": {
+            "title": "Meine Anmeldungen",
+            "total": "Gesamte Anmeldungen:",
+            "balanceTitle": "Saldo",
+            "paid": "Bezahlt",
+            "unpaid": "Unbezahlt",
+            "emptyTitle": "Noch keine Anmeldungen",
+            "emptyDesc": "Entdecken Sie kommende Rennen und melden Sie sich an!",
+            "viewEvents": "Rennen ansehen",
+            "paymentInfo": "Zahlungsinformationen",
+            "paymentInstruction": "Bitte überweisen Sie den folgenden Betrag, um Ihre Anmeldung abzuschließen:",
+            "beneficiary": "Begünstigter",
+            "bank": "Bank",
+            "account": "Kontonummer",
+            "amount": "Betrag",
+            "reference": "Verwendungszweck",
+            "close": "Schließen",
+            "transferBtn": "Überweisen",
+            "confirmed": "Erfolgreiche Anmeldung",
+            "status": {
+                "pending": "Zahlung ausstehend",
+                "confirmed": "Angemeldet"
+            }
+        },
+        "Orders": {
+            "title": "Meine Bestellungen",
+            "subtitle": "Deine bisherigen Einkäufe und herunterladbare Dokumente.",
+            "empty": "Du hast noch nichts gekauft.",
+            "goToStore": "Zum Shop",
+            "table": {
+                "orderNumber": "Bestellung #",
+                "date": "Datum",
+                "items": "Produkte",
+                "amount": "Betrag",
+                "status": "Status",
+                "actions": "Aktionen"
+            },
+            "itemCount": "{count} Artikel",
+            "invoice": "Rechnung",
+            "status": {
+                "pending": "Ausstehend",
+                "paid": "Bezahlt",
+                "shipped": "Versendet",
+                "cancelled": "Storniert"
+            }
+        },
+        "Documents": {
+            "title": "Dokumente",
+            "total": "Gesamte Dokumente:",
+            "searchPlaceholder": "Dokumente suchen...",
+            "types": {
+                "Nyugta": "Quittung",
+                "Számla": "Rechnung",
+                "Díjbekérő": "Proforma-Rechnung"
+            },
+            "eventLabel": "Wettkampf:",
+            "noDate": "Kein Datum",
+            "emptyTitle": "Sie haben noch keine Dokumente",
+            "emptyDesc": "Quittungen und Rechnungen werden nach der Zahlung automatisch erstellt.",
+            "allMonths": "Alle Monate",
+            "allYears": "Alle Jahre",
+            "months": {
+                "january": "Januar",
+                "february": "Februar",
+                "march": "März",
+                "april": "April",
+                "may": "Mai",
+                "june": "Juni",
+                "july": "Juli",
+                "august": "August",
+                "september": "September",
+                "october": "Oktober",
+                "november": "November",
+                "december": "Dezember"
+            }
+        },
+        "Notifications": {
+            "title": "Benachrichtigungen",
+            "unreadCount": "{count} ungelesene Benachrichtigungen",
+            "noNew": "Keine neuen Benachrichtigungen",
+            "markAllRead": "Alle als gelesen markieren",
+            "emptyTitle": "Keine Benachrichtigungen",
+            "emptyDesc": "Neue Benachrichtigungen werden hier erscheinen.",
+            "mock": {
+                "paymentSuccess": {
+                    "title": "Zahlung erfolgreich",
+                    "message": "Die Startgebühr für den Budapest Halbmarathon ist eingegangen. Die Quittung können Sie von der Seite Dokumente herunterladen."
+                },
+                "raceNear": {
+                    "title": "Wettkampf steht bevor",
+                    "message": "Der Budapest Halbmarathon beginnt in 7 Tagen! Vergessen Sie nicht, Ihr Startpaket abzuholen."
+                },
+                "proformaWaiting": {
+                    "title": "Proforma-Rechnung wartet",
+                    "message": "Ihre Ultrabalaton Proforma-Rechnung ist fertig. Bitte begleichen Sie die Rechnung innerhalb von 5 Tagen."
+                }
+            }
+        },
+        "Sidebar": {
+            "overview": "Übersicht",
+            "registrations": "Meine Anmeldungen",
+            "orders": "Meine Bestellungen",
+            "documents": "Dokumente",
+            "profile": "Profil",
+            "notifications": "Benachrichtigungen",
+            "backToHome": "Zurück zur Startseite",
+            "membership": "Mitgliedschaft",
+            "memberType": "Standard",
+            "expires": "Gültig bis",
+            "admin": "Verwaltung"
+        },
+        "Membership": {
+            "title": "Mitgliedschaftsverwaltung",
+            "currentStatus": "Aktueller Status",
+            "noMembership": "Keine aktive Mitgliedschaft",
+            "activeUntil": "Gültig bis:",
+            "availablePlans": "Verfügbare Pläne",
+            "buy": "Jetzt kaufen",
+            "renew": "Erneuern",
+            "month": "Monat",
+            "billingDetails": "Rechnungsdaten",
+            "confirmPurchase": "Kauf bestätigen",
+            "successTitle": "Bestellung erfolgreich!",
+            "successMessage": "Die Proforma-Rechnung wurde per E-Mail gesendet. Bitte überweisen Sie den Betrag, um Ihre Mitgliedschaft zu aktivieren.",
+            "back": "Zurück",
+            "processing": "Verarbeitung...",
+            "cancel": "Mitgliedschaft Kündigen",
+            "confirmCancel": "Möchten Sie Ihre Mitgliedschaft wirklich kündigen?",
+            "discount": "Rabatt auf Anmeldungen",
+            "Success": {
+                "title": "Vielen Dank für Ihre Bestellung!",
+                "message": "Die Rechnung wurde an Ihre E-Mail-Adresse gesendet. Bitte überprüfen Sie Ihren Posteingang (und Spam-Ordner) und überweisen Sie den Betrag zur Aktivierung.",
+                "documents": "Dokumente",
+                "dashboard": "Dashboard"
+            }
+        }
+    },
+    "Admin": {
+        "Sidebar": {
+            "dashboard": "Dashboard",
+            "events": "Wettkämpfe",
+            "registrations": "Anmeldungen",
+            "users": "Benutzer",
+            "partners": "Partner",
+            "features": "Funktionen",
+            "gallery": "Galerie",
+            "sponsors": "Sponsoren",
+            "products": "Boutique",
+            "orders": "Bestellungen",
+            "about": "Über Uns",
+            "contact": "Kontakt",
+            "status": "SYSTEMSTATUS",
+            "uptime": "LAUFZEIT",
+            "db": "DATENBANK",
+            "settings": "Einstellungen",
+            "memberships": "Mitgliedschaften"
+        },
+        "EventForm": {
+            "title": "Formular anpassen",
+            "subtitle": "Benutzerdefinierte Felder für das Anmeldeformular verwalten"
+        },
+        "Settings": {
+            "title": "Einstellungen",
+            "loadError": "Einstellungen konnten nicht geladen werden.",
+            "updateSuccess": "Einstellungen aktualisiert!",
+            "updateError": "Fehler beim Aktualisieren der Einstellungen.",
+            "shopStatus": "Shop-Status",
+            "shopEnabledDesc": "Der Shop ist derzeit aktiv, Einkaufen ist möglich.",
+            "shopDisabledDesc": "Der Shop ist im Katalogmodus, Einkaufen ist deaktiviert."
+        }
+    },
+    "HomePage": {
+        "heroTitle": "Lauf mit uns zum Sieg",
+        "heroSubtitle": "Tritt der Runion-Community bei und melde dich für die besten Rennen an.",
+        "cta": "Rennen durchsuchen",
+        "feature1Title": "Premium-Events",
+        "feature1Desc": "Erstklassige Organisation und unvergessliche Erlebnisse.",
+        "feature2Title": "Professionelle Zeitmessung",
+        "feature2Desc": "Präzise Chip-Zeitmessung mit sofortigen Ergebnissen.",
+        "feature3Title": "Tolle Gemeinschaft",
+        "feature3Desc": "Schließe dich tausenden Läufern im ganzen Land an.",
+        "upcomingTitle": "Kommende Rennen",
+        "upcomingSubtitle": "Finde deine nächste Herausforderung.",
+        "viewAll": "Alle ansehen",
+        "sponsorsTitle": "UNSERE SPONSOREN",
+        "sponsorsSubtitle": "MACH MIT BEI UNS",
+        "statsTitle": "UNSERE ERFOLGE",
+        "statsSubtitle": "DIE COMMUNITY IN ZAHLEN",
+        "stat1Value": "50+",
+        "stat1Label": "Events",
+        "stat2Value": "10k+",
+        "stat2Label": "Läufer",
+        "stat3Value": "100k+",
+        "stat3Label": "Gelaufene KM",
+        "stat4Value": "100%",
+        "stat4Label": "Erlebnis",
+        "galleryTitle": "GALERIE",
+        "gallerySubtitle": "MOMENTE UNSERER RENNEN",
+        "partnersTitle": "Strategische Kooperationspartner",
+        "countdown": {
+            "days": "Tage",
+            "hours": "Stunden",
+            "minutes": "Minuten",
+            "seconds": "Sekunden",
+            "nextEvent": "BIS ZUM NÄCHSTEN RENNEN:"
+        },
+        "newsletterTitle": "BLEIB AUF DEM LAUFENDEN",
+        "newsletterSubtitle": "Abonnieren Sie unseren Newsletter für aktuelle Renn-Updates!",
+        "newsletterPlaceholder": "Ihre E-Mail-Adresse",
+        "newsletterFirstName": "Vorname",
+        "newsletterLastName": "Nachname",
+        "newsletterCTA": "Abonnieren",
+        "newsletterSuccessTitle": "Anmeldung erfolgreich!",
+        "newsletterSuccessDesc": "Wir werden Sie bald über unsere neuesten Rennen informieren.",
+        "newsletterErrorProvider": "Die Anmeldung ist derzeit nicht verfügbar. Bitte versuchen Sie es später noch einmal!",
+        "featured": {
+            "title": "HIGHLIGHT-EVENT",
+            "nextEvent": "UNSER NÄCHSTES RENNEN",
+            "eventLive": "EVENT LÄUFT!",
+            "timeLeft": "VERBLEIBENDE ZEIT BIS ZUM START:",
+            "days": "Tage",
+            "hours": "Stunden",
+            "minutes": "Minuten",
+            "seconds": "Sekunden",
+            "registerNow": "JETZT ANMELDEN",
+            "details": "Mehr erfahren"
+        }
+    },
+    "Footer": {
+        "tagline": "Ihre Premium-Laufveranstaltungsplattform",
+        "quickLinks": "Schnellzugriff",
+        "races": "Wettkämpfe",
+        "boutique": "Shop",
+        "about": "Über Uns",
+        "contact": "Kontakt",
+        "legal": "Rechtliches",
+        "connect": "Folgen Sie uns",
+        "rights": "Alle Rechte vorbehalten.",
+        "privacy": "Datenschutz",
+        "terms": "AGB"
+    },
+    "Auth": {
+        "Register": {
+            "title": "Registrieren",
+            "subtitle": "Erstellen Sie ein neues Konto",
+            "firstName": "Vorname",
+            "lastName": "Nachname",
+            "email": "Email",
+            "password": "Passwort",
+            "terms": "Ich akzeptiere die <link>AGB</link>",
+            "submit": "Registrieren",
+            "hasAccount": "Haben Sie bereits ein Konto?",
+            "loginLink": "Hier anmelden"
+        },
+        "Login": {
+            "title": "Anmelden",
+            "subtitle": "Melden Sie sich an",
+            "email": "Email",
+            "password": "Passwort",
+            "submit": "Anmelden",
+            "noAccount": "Haben Sie noch kein Konto?",
+            "registerLink": "Hier registrieren"
+        }
+    },
+    "Races": {
+        "title": "Aktuelle <accent>Wettkämpfe</accent>",
+        "subtitle": "Finde deine nächste Herausforderung! Durchsuche die besten Laufveranstaltungen.",
+        "searchPlaceholder": "Suche nach Wettkampf oder Ort...",
+        "searchButton": "Suchen",
+        "empty": "Demnächst keine Wettkämpfe..."
+    },
+    "EventCard": {
+        "details": "Details",
+        "from": "ab",
+        "free": "Kostenlos",
+        "noImage": "Kein Bild"
+    },
+    "EventDetails": {
+        "backToRaces": "Zurück zu den Wettkämpfen",
+        "date": "Datum",
+        "location": "Ort",
+        "tabOverview": "Übersicht",
+        "tabMap": "Karte",
+        "tabDistances": "Distanzen",
+        "distances": "Wählbare Distanzen",
+        "description": "Beschreibung",
+        "aboutTitle": "Über das Rennen",
+        "ctaTitle": "Nichts verpassen!",
+        "deadline": "Anmeldeschluss:",
+        "startRegistration": "Anmeldung starten",
+        "openRegistration": "Anmeldung möglich",
+        "closedRegistration": "Geschlossen",
+        "register": "Registrieren",
+        "capacity": "Kapazität",
+        "start": "Start",
+        "organizer": "Veranstalter"
+    },
+    "AboutPage": {
+        "title": "Über Uns",
+        "description": "Wir haben RUNION ins Leben gerufen, um die Veranstaltungen unserer Freunde (Vereine und individuelle Wettkampforganisatoren) zu sammeln, zu organisieren, zu empfehlen und sie gemeinsam für Euch, die Läufer, zu verwirklichen! Danke, dass ihr bei uns seid und mit eurer Teilnahme und sportlichen Leistung das Niveau unserer Veranstaltungen hebt!",
+        "founder": "Máté Baranyai",
+        "founderRole": "Gründer von RUNION",
+        "mission": "Unsere Mission"
+    },
+    "ContactPage": {
+        "title": "Kontakt",
+        "subtitle": "Haben Sie Fragen? Kontaktieren Sie uns!",
+        "faq": {
+            "title": "Häufig gestellte Fragen"
+        },
+        "emailLabel": "E-Mail-Adresse",
+        "phoneLabel": "Telefonnummer",
+        "addressLabel": "Adresse",
+        "taxLabel": "Steuernummer",
+        "representativeLabel": "Vertreter",
+        "ibanLabel": "HUF Bankverbindung (IBAN)",
+        "companies": {
+            "bac": {
+                "name": "Balatonfüredi Atlétikai Club",
+                "address": "8230 Balatonfüred, Vörösmarty u. 3. Ungarn",
+                "tax": "19225067-1-19",
+                "phone": "+36 70 323 0662",
+                "email": "bhebalaton@gmail.com",
+                "rep": "Máté Baranyai",
+                "iban": "HU16 1174 8069 2551 2412 0000 0000"
+            },
+            "kahu": {
+                "name": "KAHU Natur- und Tierschutz-, Jugend- und Sportverein /KAHU/",
+                "address": "8452 Szőc, Kossuth u. 83. Ungarn",
+                "tax": "",
+                "phone": "+36 70 323 0662",
+                "email": "kahu2022@gmail.com",
+                "rep": "Máté Baranyai",
+                "iban": "HU19 1174 8038 2482 6190 0000 0000"
+            },
+            "bbe": {
+                "name": "BakonyOrszág Balcsipart Kultur- und Sportverein /BBE/",
+                "address": "8230 Nemesvámos, Rózsa u. 6. Ungarn",
+                "tax": "",
+                "phone": "+36 70 323 0662",
+                "email": "bakonyorszagbalcsipart@gmail.com",
+                "rep": "Máté Baranyai",
+                "iban": "HU67 1174 8007 2483 0210 0000 0000"
+            }
+        },
+        "form": {
+            "name": "Ihr Name",
+            "email": "Ihre E-Mail",
+            "subject": "Betreff",
+            "message": "Nachricht",
+            "submit": "Nachricht senden"
+        }
+    },
+    "BoutiquePage": {
+        "title": "Boutique",
+        "subtitle": "Wählen Sie aus unserem offiziellen RUNION-Zubehör! Bestellen Sie bequem online.",
+        "premium": "Premium-Qualität",
+        "premiumDesc": "Alle unsere Produkte wurden von Läufern getestet, um das beste Erlebnis zu bieten.",
+        "invoice": "PDF-Proforma",
+        "invoiceDesc": "Nach der Bestellung erhalten Sie sofort die für die Zahlung erforderlichen Daten.",
+        "support": "Unterstützung der Community",
+        "supportDesc": "Mit Ihrem Kauf helfen Sie der Entwicklung des heimischen Laufsports."
+    },
+    "CheckoutPage": {
+        "title": "Kasse",
+        "subtitle": "Sichere Bestellung",
+        "shipping": "Versandinformationen",
+        "billing": "Rechnungsdaten",
+        "billingMatch": "Identisch mit Versand, wenn nicht anders angegeben",
+        "note": "Anmerkung",
+        "summary": "Zusammenfassung",
+        "total": "Zu zahlen",
+        "subtotal": "Zwischensumme",
+        "delivery": "Versand",
+        "free": "Kostenlos",
+        "paymentMethod": "Gewählte Zahlungsmethode",
+        "bankTransfer": "Banküberweisung",
+        "bankTransferDesc": "Proforma-PDF per E-Mail",
+        "placeOrder": "Bestellung aufgeben"
+    },
+    "CartDrawer": {
+        "title": "Warenkorb",
+        "empty": "Ihr Warenkorb ist leer.",
+        "continue": "Einkauf fortsetzen",
+        "size": "Größe",
+        "total": "Gesamt",
+        "checkout": "Kasse"
+    },
+    "ProductCard": {
+        "size": "Größe",
+        "added": "Hinzugefügt",
+        "addToCart": "In den Warenkorb"
+    },
+    "ProductList": {
+        "searchPlaceholder": "Produkte suchen...",
+        "noResults": "Keine Ergebnisse."
+    },
+    "SuccessPage": {
+        "thanks": "Vielen Dank für Ihre Bestellung!",
+        "orderNumber": "Bestellnummer",
+        "paymentInfo": "Zahlungsinformationen",
+        "transferDesc": "Bitte leiten Sie die Überweisung mit folgenden Daten ein:",
+        "beneficiary": "Begünstigter",
+        "accountNumber": "Kontonummer (HUF)",
+        "amount": "Betrag",
+        "reference": "Verwendungszweck",
+        "important": "Wichtig!",
+        "emailSent": "Eine Bestätigungs-E-Mail és Proforma-Rechnung wurden an {email} gesendet. Wir versenden das Paket nach Erhalt der Zahlung.",
+        "orderedProducts": "Bestellte Produkte",
+        "backToBoutique": "Zurück zur Boutique",
+        "home": "Startseite"
+    },
+    "NotFoundPage": {
+        "title": "404 - Verloren auf der Strecke?",
+        "description": "Es scheint, als wären Sie vom markierten Kurs abgekommen. Keine Sorge, das passiert jedem Läufer mal!",
+        "button": "Zurück zur Startseite"
+    },
+    "Profile": {
+        "title": "Mein Profil",
+        "subtitle": "Persönliche Daten und Einstellungen",
+        "edit": {
+            "title": "Profil bearbeiten",
+            "button": "Daten bearbeiten",
+            "personal": "Persönliche Daten",
+            "address": "Adresse",
+            "other": "Sonstige Daten",
+            "emergency": "Notfallkontakt",
+            "image": "Profilbild",
+            "imageLabel": "Profilbild hochladen",
+            "imageDesc": "Erlaubte Formate: JPG, PNG, WEBP. Max. Größe: 5MB.",
+            "save": "Speichern",
+            "saving": "Speichern...",
+            "cancel": "Abbrechen",
+            "success": "Erfolgreich gespeichert",
+            "error": "Fehler beim Speichern",
+            "extras": "Zusätzliche Informationen",
+            "team": "Team-Informationen",
+            "addMember": "Mitglied hinzufügen",
+            "billing": "Rechnungsdaten",
+            "copyAddress": "Adresse kopieren"
+        },
+        "fields": {
+            "lastName": "Nachname",
+            "firstName": "Vorname",
+            "email": "E-Mail-Adresse",
+            "phone": "Telefonnummer",
+            "birthDate": "Geburtsdatum",
+            "zip": "Postleitzahl",
+            "city": "Stadt",
+            "street": "Straße, Hausnummer",
+            "contactName": "Name der Kontaktperson",
+            "genderMale": "Männlich",
+            "genderFemale": "Weiblich",
+            "registrationDate": "Registrierungsdatum",
+            "club": "Verein / Club",
+            "tshirt": "T-Shirt Größe",
+            "isVegetarian": "Ich folge einer vegetarischen Ernährung",
+            "fiveTrialsId": "Fünf Prüfungen der Olympiade ID",
+            "fiveTrialsIdPlaceholder": "z.B. 12345-67890",
+            "fiveTrialsIdDesc": "Falls Sie am Fünf-Prüfungen-Programm teilnehmen, geben Sie hier Ihre ID ein.",
+            "teamName": "Teamname",
+            "teamNamePlaceholder": "z.B. Blitzläufer",
+            "teamMembers": "Teammitglieder",
+            "teamMember": "Teammitglied",
+            "noTeamMembers": "Noch keine Teammitglieder hinzugefügt.",
+            "billingName": "Rechnungsname",
+            "billingNamePlaceholder": "z.B. Max Mustermann oder Firma GmbH",
+            "taxNumber": "Steuernummer",
+            "taxNumberPlaceholder": "z.B. 12345678-1-42 (für Firmen)"
+        },
+        "roles": {
+            "admin": "👑 Admin",
+            "staff": "⭐ Staff",
+            "runner": "🏃 Läufer"
+        },
+        "status": {
+            "active": "✅ Aktiv"
+        }
+    },
+    "Registration": {
+        "pageTitle": "Anmeldung: {eventName}",
+        "fillDetails": "Bitte füllen Sie Ihre Daten aus, um sich zu registrieren.",
+        "steps": {
+            "distance": "Distanz",
+            "extras": "Extra",
+            "data": "Daten",
+            "billing": "Rechnung",
+            "summary": "Zusammenfassung"
+        },
+        "distance": {
+            "title": "Distanz wählen",
+            "spots": "Freie Plätze: {count}"
+        },
+        "extras": {
+            "title": "Zusatztickets/Produkte",
+            "subtitle": "Möchten Sie Souvenirs oder Zusatzleistungen?",
+            "empty": "Für dieses Rennen gibt es zurzeit keine Zusatzprodukte.",
+            "oneTime": "Einmalige Gebühr"
+        },
+        "personal": {
+            "title": "Persönliche Daten",
+            "subtitle": "Bitte beantworten Sie die folgenden Fragen zur Anmeldung.",
+            "required": "Pflichtfelder *"
+        },
+        "billing": {
+            "title": "Rechnungsdaten",
+            "name": "Rechnungsname *",
+            "zip": "Postleitzahl *",
+            "city": "Stadt *",
+            "address": "Straße, Hausnummer *",
+            "taxNumber": "Steuernummer (optional)"
+        },
+        "summary": {
+            "title": "Zusammenfassung und Zahlung",
+            "distanceLabel": "Distanz:",
+            "priceLabel": "Distanzpreis:",
+            "totalLabel": "Gesamt:",
+            "paymentMethod": "Zahlungsmethode:",
+            "bankTransfer": "Banküberweisung",
+            "liability": "Ich nehme auf eigene Gefahr an der Veranstaltung teil",
+            "terms": "Ich habe die <link1>Datenschutzerklärung</link1> und die <link2>AGB</link2> gelesen und akzeptiere sie",
+            "warning": "Achtung! Ihre Anmeldung wird erst nach Erhalt der Gebühr endgültig. Die Überweisungsdaten senden wir Ihnen nach erfolgreicher Anmeldung und per E-Mail zu."
+        },
+        "actions": {
+            "back": "Zurück",
+            "next": "Weiter",
+            "processing": "Verarbeitung...",
+            "finish": "Anmeldung abschließen"
+        },
+        "errors": {
+            "selectDistance": "Wählen Sie eine Distanz!",
+            "missingBilling": "Bitte füllen Sie die erforderlichen Rechnungsdaten aus!",
+            "acceptTerms": "Sie müssen die Bedingungen akzeptieren, um sich anzumelden!"
+        }
+    },
+    "FormBuilder": {
+        "title": "Anmeldeformular-Editor",
+        "save": "Speichern",
+        "saving": "Speichern...",
+        "saved": "Formular gespeichert!",
+        "newField": "Neues Feld hinzufügen",
+        "defaultLabel": "Neue Frage",
+        "field": {
+            "label": "Fragentext",
+            "type": "Typ",
+            "options": "Optionen (durch Komma getrennt)",
+            "optionsPlaceholder": "z.B. Rot, Blau, Grün",
+            "required": "Pflichtfeld"
+        },
+        "types": {
+            "text": "Text",
+            "email": "Email",
+            "tel": "Telefonnummer",
+            "zip": "Postleitzahl",
+            "number": "Nummer",
+            "date": "Datum",
+            "checkbox": "Checkbox (Ja/Nein)",
+            "select": "Dropdown-Liste",
+            "radio": "Radio-Buttons",
+            "textarea": "Langtext"
+        }
+    },
+    "RegistrationSuccess": {
+        "title": "Erfolgreiche Voranmeldung!",
+        "subtitle": "Vielen Dank für Ihre Anmeldung zum {event} Rennen. Bitte überweisen Sie die Anmeldegebühr, um Ihre Buchung abzuschließen.",
+        "transferInfo": "Bankverbindung",
+        "beneficiary": "Begünstigter",
+        "beneficiaryName": "Runion Sportverein",
+        "bank": "Bank",
+        "bankName": "OTP Bank",
+        "accountNumber": "Kontonummer",
+        "amount": "Betrag",
+        "reference": "Verwendungszweck (WICHTIG!)",
+        "emailNotice": "Rechnungsinformationen und Bestätigung wurden an diese E-Mail gesendet: {email}",
+        "dashboardCta": "Zum Profil"
+    },
+    "ChangeRequest": {
+        "title": "Anfrage Senden",
+        "successTitle": "Danke!",
+        "successMessage": "Wir werden Sie in Kürze unter der angegebenen E-Mail-Adresse kontaktieren.",
+        "newRequest": "Neue Anfrage",
+        "submitting": "Senden...",
+        "submit": "Anfrage Senden",
+        "typeLabel": "Anfragetyp",
+        "types": {
+            "transfer": {
+                "title": "Ummeldung",
+                "desc": "Auf ein anderes Rennen/Distanz"
+            },
+            "cancellation": {
+                "title": "Datenänderung",
+                "desc": "Korrektur von Daten"
+            },
+            "modification": {
+                "title": "Sonstiges",
+                "desc": "Sonstige Anfrage"
+            }
+        },
+        "fields": {
+            "name": "Name *",
+            "namePlaceholder": "Vollständiger Name",
+            "phone": "Telefonnummer *",
+            "email": "E-Mail-Adresse *",
+            "birthDate": "Geburtsdatum *",
+            "address": "Adresse *",
+            "addressPlaceholder": "Straße, Hausnummer",
+            "city": "Stadt *",
+            "zipCode": "PLZ *",
+            "fromEvent": "Von welchem Rennen möchten Sie umbuchen? *",
+            "fromEventPlaceholder": "z.B. X. Schiller Love Füred 10km",
+            "toEvent": "Auf welches Rennen möchten Sie umbuchen (falls zutreffend)",
+            "toEventPlaceholder": "z.B. Eine andere Distanz oder das Rennen im nächsten Jahr",
+            "comment": "Kommentar / Grund",
+            "commentPlaceholder": "Sonstige Anmerkungen...",
+            "terms": "Ich nehme auf eigene Gefahr an der Veranstaltung teil und akzeptiere die <link>Wettkampfregeln</link>.",
+            "privacy": "Ich habe die <link>Datenschutzerklärung</link> gelesen und akzeptiere sie."
+        },
+        "errors": {
+            "required": "Pflichtfeld"
+        }
+    },
+    "Transfer": {
+        "title": "Ummeldung / Datenänderung",
+        "subtitle": "Bitte füllen Sie das folgende Formular für die Änderung aus.",
+        "backToHome": "Zurück zur Startseite",
+        "infoHeading": "Information",
+        "dearAthletes": "Sehr geehrte Sportler!",
+        "beneficiaryTextPrefix": "Bei runion.eu werden die Ummeldegebühren an",
+        "beneficiaryTextSuffix": "für den Kauf von Tierfutter gespendet – so möchten wir deren Arbeit unterstützen!",
+        "referenceText": "Geben Sie daher bei der Überweisung folgendes in das Feld Verwendungszweck ein:",
+        "thankYou": "Vielen Dank!"
+    }
+}

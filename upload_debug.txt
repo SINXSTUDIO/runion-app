@@ -1,0 +1,391 @@
+[2026-01-29T13:36:37.282Z] [uploadImage] Action started
+[2026-01-29T13:36:37.299Z] [uploadImage] Auth check: Authorized
+[2026-01-29T13:36:37.300Z] [uploadImage] File received: 767915939_Preview.jpg, size: 1157082, type: image/jpeg
+[2026-01-29T13:36:37.301Z] [uploadImage] Converting to buffer...
+[2026-01-29T13:36:37.303Z] [uploadImage] Buffer created, size: 1157082
+[2026-01-29T13:36:37.304Z] [uploadImage] Using preset: avatar
+[2026-01-29T13:36:37.305Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\bb52de6f522bfb3d.webp
+[2026-01-29T13:36:37.401Z] [uploadImage] Sharp processing finished
+[2026-01-29T13:36:37.402Z] [uploadImage] Success, url: /uploads/bb52de6f522bfb3d.webp
+[2026-01-29T13:37:03.367Z] [uploadImage] Action started
+[2026-01-29T13:37:03.375Z] [uploadImage] Auth check: Authorized
+[2026-01-29T13:37:03.376Z] [uploadImage] File received: 767915939_Preview.jpg, size: 1157082, type: image/jpeg
+[2026-01-29T13:37:03.377Z] [uploadImage] Converting to buffer...
+[2026-01-29T13:37:03.378Z] [uploadImage] Buffer created, size: 1157082
+[2026-01-29T13:37:03.379Z] [uploadImage] Using preset: avatar
+[2026-01-29T13:37:03.380Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\b9c546a018ecc1a1.webp
+[2026-01-29T13:37:03.470Z] [uploadImage] Sharp processing finished
+[2026-01-29T13:37:03.472Z] [uploadImage] Success, url: /uploads/b9c546a018ecc1a1.webp
+[2026-01-29T13:39:16.320Z] [uploadImage] Action started
+[2026-01-29T13:39:16.340Z] [uploadImage] Auth check: Authorized
+[2026-01-29T13:39:16.341Z] [uploadImage] File received: 767915939_Preview.jpg, size: 1157082, type: image/jpeg
+[2026-01-29T13:39:16.342Z] [uploadImage] Converting to buffer...
+[2026-01-29T13:39:16.344Z] [uploadImage] Buffer created, size: 1157082
+[2026-01-29T13:39:16.344Z] [uploadImage] Using preset: avatar
+[2026-01-29T13:39:16.345Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\eb503f705107c75b.webp
+[2026-01-29T13:39:16.439Z] [uploadImage] Sharp processing finished
+[2026-01-29T13:39:16.440Z] [uploadImage] Success, url: /uploads/eb503f705107c75b.webp
+[2026-01-29T13:54:39.647Z] [uploadImage] Action started
+[2026-01-29T13:54:39.654Z] [uploadImage] Auth check: Authorized
+[2026-01-29T13:54:39.655Z] [uploadImage] File received: 767915939_Preview.jpg, size: 1157082, type: image/jpeg
+[2026-01-29T13:54:39.656Z] [uploadImage] Converting to buffer...
+[2026-01-29T13:54:39.658Z] [uploadImage] Buffer created, size: 1157082
+[2026-01-29T13:54:39.658Z] [uploadImage] Using preset: avatar
+[2026-01-29T13:54:39.660Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\a9667856cab012b4.webp
+[2026-01-29T13:54:39.753Z] [uploadImage] Sharp processing finished
+[2026-01-29T13:54:39.755Z] [uploadImage] Success, url: /uploads/a9667856cab012b4.webp
+[2026-01-29T14:59:24.897Z] [uploadImage] Action started
+[2026-01-29T14:59:24.905Z] [uploadImage] Auth check: Authorized
+[2026-01-29T14:59:24.907Z] [uploadImage] File received: 4743272cb7fbed0082f76c3815b3e90e.jpg, size: 116479, type: image/jpeg
+[2026-01-29T14:59:24.908Z] [uploadImage] Converting to buffer...
+[2026-01-29T14:59:24.909Z] [uploadImage] Buffer created, size: 116479
+[2026-01-29T14:59:24.910Z] [uploadImage] Using preset: avatar
+[2026-01-29T14:59:24.912Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\9580111cce9dadc0.webp
+[2026-01-29T14:59:24.950Z] [uploadImage] Sharp processing finished
+[2026-01-29T14:59:24.952Z] [uploadImage] Success, url: /uploads/9580111cce9dadc0.webp
+[2026-01-30T08:30:51.015Z] [uploadImage] Action started
+[2026-01-30T08:30:51.034Z] [uploadImage] Auth check: Authorized
+[2026-01-30T08:30:51.035Z] [uploadImage] File received: buff2026.jpg, size: 836505, type: image/jpeg
+[2026-01-30T08:30:51.036Z] [uploadImage] Converting to buffer...
+[2026-01-30T08:30:51.038Z] [uploadImage] Buffer created, size: 836505
+[2026-01-30T08:30:51.039Z] [uploadImage] Using preset: standard
+[2026-01-30T08:30:51.040Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\8fc07a14b82358d3.webp
+[2026-01-30T08:30:51.391Z] [uploadImage] Sharp processing finished
+[2026-01-30T08:30:51.392Z] [uploadImage] Success, url: /uploads/8fc07a14b82358d3.webp
+[2026-01-30T08:31:18.856Z] [uploadImage] Action started
+[2026-01-30T08:31:18.878Z] [uploadImage] Auth check: Authorized
+[2026-01-30T08:31:18.879Z] [uploadImage] File received: buff2026facebook.jpg, size: 340662, type: image/jpeg
+[2026-01-30T08:31:18.879Z] [uploadImage] Converting to buffer...
+[2026-01-30T08:31:18.881Z] [uploadImage] Buffer created, size: 340662
+[2026-01-30T08:31:18.882Z] [uploadImage] Using preset: standard
+[2026-01-30T08:31:18.883Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\f50f110ec23f0773.webp
+[2026-01-30T08:31:18.915Z] [uploadImage] Sharp processing finished
+[2026-01-30T08:31:18.917Z] [uploadImage] Success, url: /uploads/f50f110ec23f0773.webp
+[2026-02-02T08:10:22.045Z] [uploadImage] Action started
+[2026-02-02T08:10:22.056Z] [uploadImage] Auth check: Passed
+[2026-02-02T08:10:22.057Z] [uploadImage] File received: Szerelmes Fured 2026.jpg, size: 654046, type: image/jpeg
+[2026-02-02T08:10:22.058Z] [uploadImage] Converting to buffer...
+[2026-02-02T08:10:22.059Z] [uploadImage] Buffer created, size: 654046
+[2026-02-02T08:10:22.060Z] [uploadImage] Using preset: standard
+[2026-02-02T08:10:22.061Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\f5c401459a7c97f6.webp
+[2026-02-02T08:10:22.150Z] [uploadImage] Sharp processing finished
+[2026-02-02T08:10:22.151Z] [uploadImage] Success, url: /uploads/f5c401459a7c97f6.webp
+[2026-02-02T09:44:29.393Z] [uploadImage] Action started
+[2026-02-02T09:44:29.406Z] [uploadImage] Auth check: Passed
+[2026-02-02T09:44:29.407Z] [uploadImage] File received: BGA.png, size: 84082, type: image/png
+[2026-02-02T09:44:29.408Z] [uploadImage] Converting to buffer...
+[2026-02-02T09:44:29.409Z] [uploadImage] Buffer created, size: 84082
+[2026-02-02T09:44:29.410Z] [uploadImage] Using preset: standard
+[2026-02-02T09:44:29.412Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\632af9a9d909a21b.webp
+[2026-02-02T09:44:29.484Z] [uploadImage] Sharp processing finished
+[2026-02-02T09:44:29.486Z] [uploadImage] Success, url: /uploads/632af9a9d909a21b.webp
+[2026-02-02T09:44:43.313Z] [uploadImage] Action started
+[2026-02-02T09:44:43.322Z] [uploadImage] Auth check: Passed
+[2026-02-02T09:44:43.324Z] [uploadImage] File received: ME.png, size: 74536, type: image/png
+[2026-02-02T09:44:43.325Z] [uploadImage] Converting to buffer...
+[2026-02-02T09:44:43.326Z] [uploadImage] Buffer created, size: 74536
+[2026-02-02T09:44:43.327Z] [uploadImage] Using preset: standard
+[2026-02-02T09:44:43.329Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\311768eb67c83252.webp
+[2026-02-02T09:44:43.405Z] [uploadImage] Sharp processing finished
+[2026-02-02T09:44:43.407Z] [uploadImage] Success, url: /uploads/311768eb67c83252.webp
+[2026-02-02T09:45:16.878Z] [uploadImage] Action started
+[2026-02-02T09:45:16.899Z] [uploadImage] Auth check: Passed
+[2026-02-02T09:45:16.900Z] [uploadImage] File received: NEA.png, size: 75723, type: image/png
+[2026-02-02T09:45:16.901Z] [uploadImage] Converting to buffer...
+[2026-02-02T09:45:16.902Z] [uploadImage] Buffer created, size: 75723
+[2026-02-02T09:45:16.903Z] [uploadImage] Using preset: standard
+[2026-02-02T09:45:16.904Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\5f21441ab6a626cd.webp
+[2026-02-02T09:45:16.970Z] [uploadImage] Sharp processing finished
+[2026-02-02T09:45:16.971Z] [uploadImage] Success, url: /uploads/5f21441ab6a626cd.webp
+[2026-02-02T09:45:30.156Z] [uploadImage] Action started
+[2026-02-02T09:45:30.173Z] [uploadImage] Auth check: Passed
+[2026-02-02T09:45:30.175Z] [uploadImage] File received: NSU-feher.png, size: 11935, type: image/png
+[2026-02-02T09:45:30.176Z] [uploadImage] Converting to buffer...
+[2026-02-02T09:45:30.176Z] [uploadImage] Buffer created, size: 11935
+[2026-02-02T09:45:30.178Z] [uploadImage] Using preset: standard
+[2026-02-02T09:45:30.179Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\95889a4afcac0720.webp
+[2026-02-02T09:45:30.199Z] [uploadImage] Sharp processing finished
+[2026-02-02T09:45:30.200Z] [uploadImage] Success, url: /uploads/95889a4afcac0720.webp
+[2026-02-02T09:45:44.946Z] [uploadImage] Action started
+[2026-02-02T09:45:44.967Z] [uploadImage] Auth check: Passed
+[2026-02-02T09:45:44.968Z] [uploadImage] File received: SPORTeT-FELELoS-aLLAMTITKaRSaG-feher.png, size: 15362, type: image/png
+[2026-02-02T09:45:44.969Z] [uploadImage] Converting to buffer...
+[2026-02-02T09:45:44.970Z] [uploadImage] Buffer created, size: 15362
+[2026-02-02T09:45:44.970Z] [uploadImage] Using preset: standard
+[2026-02-02T09:45:44.972Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\cb6dd88a1c4f89e2.webp
+[2026-02-02T09:45:44.989Z] [uploadImage] Sharp processing finished
+[2026-02-02T09:45:44.991Z] [uploadImage] Success, url: /uploads/cb6dd88a1c4f89e2.webp
+[2026-02-02T14:10:00.889Z] [uploadImage] Action started
+[2026-02-02T14:10:00.911Z] [uploadImage] Auth check: Passed
+[2026-02-02T14:10:00.912Z] [uploadImage] File received: Szerelmes Fured 2026.jpg, size: 654046, type: image/jpeg
+[2026-02-02T14:10:00.913Z] [uploadImage] Converting to buffer...
+[2026-02-02T14:10:00.914Z] [uploadImage] Buffer created, size: 654046
+[2026-02-02T14:10:00.915Z] [uploadImage] Using preset: standard
+[2026-02-02T14:10:00.916Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\ecd87b94ce897213.webp
+[2026-02-02T14:10:00.994Z] [uploadImage] Sharp processing finished
+[2026-02-02T14:10:00.996Z] [uploadImage] Success, url: /uploads/ecd87b94ce897213.webp
+[2026-02-03T09:06:03.896Z] [uploadImage] Action started
+[2026-02-03T09:06:03.917Z] [uploadImage] ERROR: Error: Unauthorized: Insufficient permissions
+[2026-02-03T09:06:18.142Z] [uploadImage] Action started
+[2026-02-03T09:06:18.160Z] [uploadImage] ERROR: Error: Unauthorized: Insufficient permissions
+[2026-02-03T09:13:48.042Z] [uploadImage] Action started
+[2026-02-03T09:13:48.059Z] [uploadImage] Auth check: Passed for user gate75@freemail.hu
+[2026-02-03T09:13:48.060Z] [uploadImage] File received: 4743272cb7fbed0082f76c3815b3e90e.jpg, size: 116479, type: image/jpeg
+[2026-02-03T09:13:48.061Z] [uploadImage] Converting to buffer...
+[2026-02-03T09:13:48.062Z] [uploadImage] Buffer created, size: 116479
+[2026-02-03T09:13:48.063Z] [uploadImage] Using preset: avatar
+[2026-02-03T09:13:48.064Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\10b66a166cc092bf.webp
+[2026-02-03T09:13:48.095Z] [uploadImage] Sharp processing finished
+[2026-02-03T09:13:48.096Z] [uploadImage] Success, url: /uploads/10b66a166cc092bf.webp
+[2026-02-03T09:26:54.320Z] [uploadImage] Action started
+[2026-02-03T09:26:54.326Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-03T09:26:54.326Z] [uploadImage] File received: facebookbuff202672h.jpg, size: 801881, type: image/jpeg
+[2026-02-03T09:26:54.327Z] [uploadImage] Converting to buffer...
+[2026-02-03T09:26:54.328Z] [uploadImage] Buffer created, size: 801881
+[2026-02-03T09:26:54.330Z] [uploadImage] Using preset: standard
+[2026-02-03T09:26:54.331Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\9193693cc7768505.webp
+[2026-02-03T09:26:54.430Z] [uploadImage] Sharp processing finished
+[2026-02-03T09:26:54.432Z] [uploadImage] Success, url: /uploads/9193693cc7768505.webp
+[2026-02-03T09:27:11.159Z] [uploadImage] Action started
+[2026-02-03T09:27:11.165Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-03T09:27:11.166Z] [uploadImage] File received: facebookbuff202672h.jpg, size: 801881, type: image/jpeg
+[2026-02-03T09:27:11.167Z] [uploadImage] Converting to buffer...
+[2026-02-03T09:27:11.168Z] [uploadImage] Buffer created, size: 801881
+[2026-02-03T09:27:11.169Z] [uploadImage] Using preset: standard
+[2026-02-03T09:27:11.170Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\d01cb7b0058507dc.webp
+[2026-02-03T09:27:11.267Z] [uploadImage] Sharp processing finished
+[2026-02-03T09:27:11.269Z] [uploadImage] Success, url: /uploads/d01cb7b0058507dc.webp
+[2026-02-03T15:11:40.726Z] [uploadImage] Action started
+[2026-02-03T15:11:40.747Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-03T15:11:40.748Z] [uploadImage] File received: Szerelmes Fured 2026.jpg, size: 654046, type: image/jpeg
+[2026-02-03T15:11:40.749Z] [uploadImage] Converting to buffer...
+[2026-02-03T15:11:40.751Z] [uploadImage] Buffer created, size: 654046
+[2026-02-03T15:11:40.752Z] [uploadImage] Using preset: standard
+[2026-02-03T15:11:40.754Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\b78c550f24522cad.webp
+[2026-02-03T15:11:40.835Z] [uploadImage] Sharp processing finished
+[2026-02-03T15:11:40.836Z] [uploadImage] Success, url: /uploads/b78c550f24522cad.webp
+[2026-02-03T15:19:27.170Z] [uploadImage] Action started
+[2026-02-03T15:19:27.190Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-03T15:19:27.190Z] [uploadImage] File received: stock-vector-gorilla-biker-vintage-logo-line-art-concept-black-white-color.jpg, size: 40854, type: image/jpeg
+[2026-02-03T15:19:27.191Z] [uploadImage] Converting to buffer...
+[2026-02-03T15:19:27.192Z] [uploadImage] Buffer created, size: 40854
+[2026-02-03T15:19:27.193Z] [uploadImage] Using preset: avatar
+[2026-02-03T15:19:27.194Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\b66c0552d6ba5cd0.webp
+[2026-02-03T15:19:27.221Z] [uploadImage] Sharp processing finished
+[2026-02-03T15:19:27.223Z] [uploadImage] Success, url: /uploads/b66c0552d6ba5cd0.webp
+[2026-02-04T12:07:07.144Z] [uploadImage] Action started
+[2026-02-04T12:07:07.153Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T12:07:07.154Z] [uploadImage] File received: XIIIszoloskor.jpg, size: 383422, type: image/jpeg
+[2026-02-04T12:07:07.155Z] [uploadImage] Converting to buffer...
+[2026-02-04T12:07:07.156Z] [uploadImage] Buffer created, size: 383422
+[2026-02-04T12:07:07.157Z] [uploadImage] Using preset: standard
+[2026-02-04T12:07:07.158Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\568abc85862e70cc.webp
+[2026-02-04T12:07:07.192Z] [uploadImage] Sharp processing finished
+[2026-02-04T12:07:07.194Z] [uploadImage] Success, url: /uploads/568abc85862e70cc.webp
+[2026-02-04T12:07:13.939Z] [uploadImage] Action started
+[2026-02-04T12:07:13.958Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T12:07:13.959Z] [uploadImage] File received: XIIIszoloskor.jpg, size: 383422, type: image/jpeg
+[2026-02-04T12:07:13.960Z] [uploadImage] Converting to buffer...
+[2026-02-04T12:07:13.960Z] [uploadImage] Buffer created, size: 383422
+[2026-02-04T12:07:13.961Z] [uploadImage] Using preset: standard
+[2026-02-04T12:07:13.962Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\4acf5d1c18ce8a46.webp
+[2026-02-04T12:07:13.991Z] [uploadImage] Sharp processing finished
+[2026-02-04T12:07:13.993Z] [uploadImage] Success, url: /uploads/4acf5d1c18ce8a46.webp
+[2026-02-04T13:26:59.736Z] [uploadImage] Action started
+[2026-02-04T13:26:59.748Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:26:59.749Z] [uploadImage] File received: aktivmagyarorszag.png, size: 315553, type: image/png
+[2026-02-04T13:26:59.750Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:26:59.751Z] [uploadImage] Buffer created, size: 315553
+[2026-02-04T13:26:59.752Z] [uploadImage] Using preset: standard
+[2026-02-04T13:26:59.753Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\2998bb86029daa0b.webp
+[2026-02-04T13:27:00.294Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:27:00.295Z] [uploadImage] Success, url: /uploads/2998bb86029daa0b.webp
+[2026-02-04T13:27:11.293Z] [uploadImage] Action started
+[2026-02-04T13:27:11.298Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:27:11.299Z] [uploadImage] File received: bac.png, size: 323436, type: image/png
+[2026-02-04T13:27:11.300Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:27:11.301Z] [uploadImage] Buffer created, size: 323436
+[2026-02-04T13:27:11.302Z] [uploadImage] Using preset: standard
+[2026-02-04T13:27:11.303Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\b4df76d2f9aa785d.webp
+[2026-02-04T13:27:11.859Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:27:11.860Z] [uploadImage] Success, url: /uploads/b4df76d2f9aa785d.webp
+[2026-02-04T13:27:22.032Z] [uploadImage] Action started
+[2026-02-04T13:27:22.043Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:27:22.044Z] [uploadImage] File received: balatonfured.png, size: 1223465, type: image/png
+[2026-02-04T13:27:22.045Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:27:22.048Z] [uploadImage] Buffer created, size: 1223465
+[2026-02-04T13:27:22.049Z] [uploadImage] Using preset: standard
+[2026-02-04T13:27:22.050Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\8f2e663cab524db9.webp
+[2026-02-04T13:27:22.603Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:27:22.604Z] [uploadImage] Success, url: /uploads/8f2e663cab524db9.webp
+[2026-02-04T13:27:36.436Z] [uploadImage] Action started
+[2026-02-04T13:27:36.450Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:27:36.451Z] [uploadImage] File received: bbe.png, size: 278749, type: image/png
+[2026-02-04T13:27:36.451Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:27:36.452Z] [uploadImage] Buffer created, size: 278749
+[2026-02-04T13:27:36.453Z] [uploadImage] Using preset: standard
+[2026-02-04T13:27:36.454Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\88f5bb3e9b4fcfbb.webp
+[2026-02-04T13:27:37.003Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:27:37.005Z] [uploadImage] Success, url: /uploads/88f5bb3e9b4fcfbb.webp
+[2026-02-04T13:27:53.186Z] [uploadImage] Action started
+[2026-02-04T13:27:53.191Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:27:53.192Z] [uploadImage] File received: buff.png, size: 658673, type: image/png
+[2026-02-04T13:27:53.193Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:27:53.194Z] [uploadImage] Buffer created, size: 658673
+[2026-02-04T13:27:53.195Z] [uploadImage] Using preset: standard
+[2026-02-04T13:27:53.196Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\ace81f01ac36b97b.webp
+[2026-02-04T13:27:53.748Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:27:53.749Z] [uploadImage] Success, url: /uploads/ace81f01ac36b97b.webp
+[2026-02-04T13:28:08.910Z] [uploadImage] Action started
+[2026-02-04T13:28:08.926Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:28:08.927Z] [uploadImage] File received: danubius hotels.png, size: 261691, type: image/png
+[2026-02-04T13:28:08.928Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:28:08.929Z] [uploadImage] Buffer created, size: 261691
+[2026-02-04T13:28:08.930Z] [uploadImage] Using preset: standard
+[2026-02-04T13:28:08.931Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\0bd1cefe9fef41b2.webp
+[2026-02-04T13:28:09.480Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:28:09.481Z] [uploadImage] Success, url: /uploads/0bd1cefe9fef41b2.webp
+[2026-02-04T13:29:17.489Z] [uploadImage] Action started
+[2026-02-04T13:29:17.504Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:29:17.505Z] [uploadImage] File received: dreher.png, size: 702999, type: image/png
+[2026-02-04T13:29:17.508Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:29:17.509Z] [uploadImage] Buffer created, size: 702999
+[2026-02-04T13:29:17.510Z] [uploadImage] Using preset: standard
+[2026-02-04T13:29:17.511Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\551ffc1a68330a54.webp
+[2026-02-04T13:29:18.071Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:29:18.072Z] [uploadImage] Success, url: /uploads/551ffc1a68330a54.webp
+[2026-02-04T13:29:27.457Z] [uploadImage] Action started
+[2026-02-04T13:29:27.475Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:29:27.477Z] [uploadImage] File received: fokuszgeodesia.png, size: 966106, type: image/png
+[2026-02-04T13:29:27.478Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:29:27.480Z] [uploadImage] Buffer created, size: 966106
+[2026-02-04T13:29:27.481Z] [uploadImage] Using preset: standard
+[2026-02-04T13:29:27.482Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\d869e2a7efcbb481.webp
+[2026-02-04T13:29:28.044Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:29:28.046Z] [uploadImage] Success, url: /uploads/d869e2a7efcbb481.webp
+[2026-02-04T13:29:37.935Z] [uploadImage] Action started
+[2026-02-04T13:29:37.949Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:29:37.950Z] [uploadImage] File received: futokaland.png, size: 230854, type: image/png
+[2026-02-04T13:29:37.950Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:29:37.951Z] [uploadImage] Buffer created, size: 230854
+[2026-02-04T13:29:37.952Z] [uploadImage] Using preset: standard
+[2026-02-04T13:29:37.953Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\05e6c1028a45e53b.webp
+[2026-02-04T13:29:38.496Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:29:38.497Z] [uploadImage] Success, url: /uploads/05e6c1028a45e53b.webp
+[2026-02-04T13:29:48.394Z] [uploadImage] Action started
+[2026-02-04T13:29:48.411Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:29:48.412Z] [uploadImage] File received: hammer.png, size: 422870, type: image/png
+[2026-02-04T13:29:48.412Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:29:48.413Z] [uploadImage] Buffer created, size: 422870
+[2026-02-04T13:29:48.414Z] [uploadImage] Using preset: standard
+[2026-02-04T13:29:48.415Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\691a0ff53e29b886.webp
+[2026-02-04T13:29:48.978Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:29:48.979Z] [uploadImage] Success, url: /uploads/691a0ff53e29b886.webp
+[2026-02-04T13:29:59.218Z] [uploadImage] Action started
+[2026-02-04T13:29:59.234Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:29:59.236Z] [uploadImage] File received: isopol.png, size: 313343, type: image/png
+[2026-02-04T13:29:59.237Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:29:59.239Z] [uploadImage] Buffer created, size: 313343
+[2026-02-04T13:29:59.240Z] [uploadImage] Using preset: standard
+[2026-02-04T13:29:59.241Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\91415b0e6a5c8332.webp
+[2026-02-04T13:29:59.787Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:29:59.788Z] [uploadImage] Success, url: /uploads/91415b0e6a5c8332.webp
+[2026-02-04T13:30:19.722Z] [uploadImage] Action started
+[2026-02-04T13:30:19.741Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:30:19.742Z] [uploadImage] File received: kronoszgym.png, size: 301342, type: image/png
+[2026-02-04T13:30:19.743Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:30:19.744Z] [uploadImage] Buffer created, size: 301342
+[2026-02-04T13:30:19.745Z] [uploadImage] Using preset: standard
+[2026-02-04T13:30:19.746Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\59dbe3ee99aabdee.webp
+[2026-02-04T13:30:20.300Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:30:20.301Z] [uploadImage] Success, url: /uploads/59dbe3ee99aabdee.webp
+[2026-02-04T13:30:29.801Z] [uploadImage] Action started
+[2026-02-04T13:30:29.810Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:30:29.811Z] [uploadImage] File received: kronoszmozgasstudio.png, size: 566338, type: image/png
+[2026-02-04T13:30:29.812Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:30:29.814Z] [uploadImage] Buffer created, size: 566338
+[2026-02-04T13:30:29.814Z] [uploadImage] Using preset: standard
+[2026-02-04T13:30:29.816Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\873fd5d27968b43e.webp
+[2026-02-04T13:30:30.368Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:30:30.370Z] [uploadImage] Success, url: /uploads/873fd5d27968b43e.webp
+[2026-02-04T13:30:39.483Z] [uploadImage] Action started
+[2026-02-04T13:30:39.490Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:30:39.491Z] [uploadImage] File received: lazar.png, size: 170258, type: image/png
+[2026-02-04T13:30:39.492Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:30:39.493Z] [uploadImage] Buffer created, size: 170258
+[2026-02-04T13:30:39.493Z] [uploadImage] Using preset: standard
+[2026-02-04T13:30:39.494Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\020153fd56458146.webp
+[2026-02-04T13:30:40.051Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:30:40.052Z] [uploadImage] Success, url: /uploads/020153fd56458146.webp
+[2026-02-04T13:30:48.888Z] [uploadImage] Action started
+[2026-02-04T13:30:48.916Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:30:48.917Z] [uploadImage] File received: matteo.png, size: 183513, type: image/png
+[2026-02-04T13:30:48.918Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:30:48.919Z] [uploadImage] Buffer created, size: 183513
+[2026-02-04T13:30:48.919Z] [uploadImage] Using preset: standard
+[2026-02-04T13:30:48.921Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\b94263cfcf55ccfd.webp
+[2026-02-04T13:30:49.473Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:30:49.474Z] [uploadImage] Success, url: /uploads/b94263cfcf55ccfd.webp
+[2026-02-04T13:31:00.808Z] [uploadImage] Action started
+[2026-02-04T13:31:00.825Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:31:00.826Z] [uploadImage] File received: mul.png, size: 261116, type: image/png
+[2026-02-04T13:31:00.827Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:31:00.828Z] [uploadImage] Buffer created, size: 261116
+[2026-02-04T13:31:00.829Z] [uploadImage] Using preset: standard
+[2026-02-04T13:31:00.830Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\232e2fa7217e1ebb.webp
+[2026-02-04T13:31:01.386Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:31:01.388Z] [uploadImage] Success, url: /uploads/232e2fa7217e1ebb.webp
+[2026-02-04T13:31:11.903Z] [uploadImage] Action started
+[2026-02-04T13:31:11.920Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:31:11.921Z] [uploadImage] File received: pesowood.png, size: 422044, type: image/png
+[2026-02-04T13:31:11.922Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:31:11.923Z] [uploadImage] Buffer created, size: 422044
+[2026-02-04T13:31:11.924Z] [uploadImage] Using preset: standard
+[2026-02-04T13:31:11.925Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\ebca3d2a20bc4283.webp
+[2026-02-04T13:31:12.474Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:31:12.476Z] [uploadImage] Success, url: /uploads/ebca3d2a20bc4283.webp
+[2026-02-04T13:31:23.428Z] [uploadImage] Action started
+[2026-02-04T13:31:23.444Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:31:23.445Z] [uploadImage] File received: pezocell.png, size: 255154, type: image/png
+[2026-02-04T13:31:23.446Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:31:23.447Z] [uploadImage] Buffer created, size: 255154
+[2026-02-04T13:31:23.448Z] [uploadImage] Using preset: standard
+[2026-02-04T13:31:23.449Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\a1e7220ba613fb90.webp
+[2026-02-04T13:31:23.979Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:31:23.980Z] [uploadImage] Success, url: /uploads/a1e7220ba613fb90.webp
+[2026-02-04T13:31:36.252Z] [uploadImage] Action started
+[2026-02-04T13:31:36.267Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:31:36.268Z] [uploadImage] File received: pezoshop.png, size: 235347, type: image/png
+[2026-02-04T13:31:36.268Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:31:36.269Z] [uploadImage] Buffer created, size: 235347
+[2026-02-04T13:31:36.270Z] [uploadImage] Using preset: standard
+[2026-02-04T13:31:36.271Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\8800504eef9dfbbf.webp
+[2026-02-04T13:31:36.810Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:31:36.811Z] [uploadImage] Success, url: /uploads/8800504eef9dfbbf.webp
+[2026-02-04T13:31:48.312Z] [uploadImage] Action started
+[2026-02-04T13:31:48.324Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:31:48.324Z] [uploadImage] File received: runion.png, size: 218777, type: image/png
+[2026-02-04T13:31:48.325Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:31:48.329Z] [uploadImage] Buffer created, size: 218777
+[2026-02-04T13:31:48.330Z] [uploadImage] Using preset: standard
+[2026-02-04T13:31:48.330Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\ff54d56a1053eef6.webp
+[2026-02-04T13:31:48.856Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:31:48.858Z] [uploadImage] Success, url: /uploads/ff54d56a1053eef6.webp
+[2026-02-04T13:32:00.000Z] [uploadImage] Action started
+[2026-02-04T13:32:00.023Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:32:00.024Z] [uploadImage] File received: shiller.png, size: 254521, type: image/png
+[2026-02-04T13:32:00.024Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:32:00.025Z] [uploadImage] Buffer created, size: 254521
+[2026-02-04T13:32:00.026Z] [uploadImage] Using preset: standard
+[2026-02-04T13:32:00.027Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\ebc8a450b5e6864e.webp
+[2026-02-04T13:32:00.582Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:32:00.584Z] [uploadImage] Success, url: /uploads/ebc8a450b5e6864e.webp
+[2026-02-04T13:32:16.815Z] [uploadImage] Action started
+[2026-02-04T13:32:16.824Z] [uploadImage] Auth check: Passed for user szkami75@gmail.com
+[2026-02-04T13:32:16.825Z] [uploadImage] File received: simx szoftversudió.png, size: 466042, type: image/png
+[2026-02-04T13:32:16.826Z] [uploadImage] Converting to buffer...
+[2026-02-04T13:32:16.827Z] [uploadImage] Buffer created, size: 466042
+[2026-02-04T13:32:16.828Z] [uploadImage] Using preset: standard
+[2026-02-04T13:32:16.829Z] [uploadImage] Starting sharp processing to: F:\RUNION\runion\public\uploads\330ba5d8e0643e28.webp
+[2026-02-04T13:32:17.360Z] [uploadImage] Sharp processing finished
+[2026-02-04T13:32:17.361Z] [uploadImage] Success, url: /uploads/330ba5d8e0643e28.webp

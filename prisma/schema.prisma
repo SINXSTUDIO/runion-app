@@ -1,0 +1,646 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  passwordHash  String?
+  emailVerified DateTime?
+  image         String?
+  firstName     String
+  lastName      String
+  birthDate     DateTime?
+  gender        Gender?
+  clubName      String?
+  phoneNumber   String?
+  tshirtSize    String?
+  city          String?
+  zipCode       String?
+  address       String?
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  emergencyContactName  String?
+  emergencyContactPhone String?
+  isVegetarian          Boolean         @default(false)
+  fiveTrialsId          String?
+  teamName              String?
+  teamMembers           Json?
+  billingName           String?
+  taxNumber             String?
+  billingZipCode        String?
+  billingCity           String?
+  billingAddress        String?
+  accounts              Account[]
+  events                Event[]
+  orders                Order[]
+  registrations         Registration[]
+  sessions              Session[]
+  notifications         Notification[]
+  feedbacks             Feedback[]
+  membershipTierId      String?
+  membershipExpiresAt   DateTime?
+  membershipTier        MembershipTier? @relation(fields: [membershipTierId], references: [id])
+  membershipStart       DateTime?
+  membershipEnd         DateTime?
+  deletedAt             DateTime?
+  tokenVersion          Int             @default(0)
+
+  @@index([createdAt])
+  @@index([updatedAt])
+  @@index([role])
+  @@index([deletedAt])
+  @@index([membershipTierId])
+}
+
+model MembershipTier {
+  id                 String   @id @default(uuid())
+  name               String   @unique
+  nameEn             String?
+  nameDe             String?
+  discountPercentage Decimal  @db.Decimal(5, 2)
+  discountAmount     Decimal  @default(0) @db.Decimal(10, 2)
+  price              Decimal  @default(0) @db.Decimal(10, 2)
+  description        String?
+  descriptionEn      String?
+  descriptionDe      String?
+  features           String?
+  featuresEn         String?
+  featuresDe         String?
+  durationMonths     Int      @default(12)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  users              User[]
+}
+
+model Event {
+  id                     String      @id @default(uuid())
+  title                  String
+  description            String
+  location               String
+  eventDate              DateTime
+  regDeadline            DateTime
+  createdAt              DateTime    @default(now())
+  updatedAt              DateTime    @updatedAt
+  coverImage             String?
+  descriptionDe          String?
+  descriptionEn          String?
+  endDate                DateTime?
+  extraOrganizers        String?
+  googleMapsUrl          String?
+  organizerId            String
+  organizerName          String?
+  showCountdown          Boolean     @default(true)
+  slug                   String      @unique
+  status                 EventStatus @default(DRAFT)
+  titleDe                String?
+  titleEn                String?
+  websiteUrl             String?
+  ogDescription          String?
+  ogImage                String?
+  extraLocations         Json?
+  extraOrganizersJson    Json?
+  extras                 Json?
+  formConfig             Json?
+  notificationEmail      String?
+  sellerId               String?
+  sortOrder              Int         @default(0)
+  confirmationEmailText  String?
+  paymentReminderEnabled Boolean     @default(true)
+  infopack               Json?
+  distances              Distance[]
+  organizer              User        @relation(fields: [organizerId], references: [id])
+  seller                 Seller?     @relation(fields: [sellerId], references: [id])
+  featuredInSettings     GlobalSettings[] @relation("FeaturedEvent")
+
+  @@index([organizerId])
+  @@index([sellerId])
+  @@index([status])
+  @@index([eventDate])
+  @@index([slug])
+  @@index([createdAt])
+}
+
+model Seller {
+  id                    String           @id @default(uuid())
+  key                   String?          @unique
+  name                  String
+  address               String
+  phone                 String?
+  email                 String?
+  taxNumber             String?
+  regNumber             String?
+  representative        String?
+  bankName              String?
+  bankAccountNumber     String?
+  iban                  String?
+  order                 Int              @default(0)
+  active                Boolean          @default(true)
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @updatedAt
+  bankAccountNumberEuro String?
+  ibanEuro              String?
+  events                Event[]
+  membershipSettings    GlobalSettings[] @relation("MembershipSeller")
+  transferSettings      GlobalSettings[] @relation("TransferSeller")
+}
+
+model Distance {
+  id            String         @id @default(uuid())
+  name          String
+  price         Decimal        @db.Decimal(10, 2)
+  capacityLimit Int
+  startTime     DateTime
+  eventId       String
+  description   String?
+  nameDe        String?
+  nameEn        String?
+  priceEur      Decimal?       @db.Decimal(10, 2)
+  crewPricing   Json?
+  event         Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  priceTiers    PriceTier[]
+  registrations Registration[]
+
+  @@index([eventId])
+  @@index([startTime])
+}
+
+model PriceTier {
+  id         String   @id @default(uuid())
+  name       String
+  price      Decimal  @db.Decimal(10, 2)
+  priceEur   Decimal? @db.Decimal(10, 2)
+  validFrom  DateTime
+  validTo    DateTime
+  distanceId String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  distance   Distance @relation(fields: [distanceId], references: [id], onDelete: Cascade)
+
+  @@index([distanceId])
+}
+
+model Registration {
+  id                  String             @id @default(uuid())
+  bibNumber           String?
+  bibSent             Boolean            @default(false)
+  paymentId           String?
+  paidAt              DateTime?
+  userId              String
+  distanceId          String
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+  barionPaymentId     String?            @unique
+  barionPaymentState  String?
+  invoiceGeneratedAt  DateTime?
+  invoiceNumber       String?            @unique
+  invoiceUrl          String?
+  paymentMethod       PaymentMethod      @default(CARD)
+  paymentStatus       PaymentStatus      @default(UNPAID)
+  proformaGeneratedAt DateTime?
+  proformaNumber      String?            @unique
+  proformaUrl         String?
+  receiptGeneratedAt  DateTime?
+  receiptNumber       String?            @unique
+  receiptUrl          String?
+  registrationStatus  RegistrationStatus @default(PENDING)
+  extras              Json?
+  formData            Json?
+  crewSize            Int?
+  finalPrice          Decimal?           @db.Decimal(10, 2)
+  distance            Distance           @relation(fields: [distanceId], references: [id], onDelete: Cascade)
+  user                User               @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([distanceId])
+  @@index([barionPaymentId])
+  @@index([registrationStatus])
+  @@index([paymentStatus])
+  @@index([createdAt])
+  @@index([paymentMethod])
+}
+
+model Product {
+  id             String          @id @default(uuid())
+  name           String
+  description    String?
+  price          Decimal         @db.Decimal(10, 2)
+  stock          Int             @default(0)
+  category       ProductCategory @default(MERCHANDISE)
+  imageUrl       String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  active         Boolean         @default(true)
+  descriptionDe  String?
+  descriptionEn  String?
+  nameDe         String?
+  nameEn         String?
+  sizes          String?
+  slug           String?         @unique
+  stockBreakdown Json? // e.g. {"S": 5, "M": 3, "L": 0}
+  orderItems     OrderItem[]
+
+  @@index([active])
+  @@index([category])
+  @@index([createdAt])
+}
+
+model Order {
+  id               String        @id @default(uuid())
+  orderNumber      String        @unique
+  status           OrderStatus   @default(PENDING)
+  paymentMethod    PaymentMethod @default(BANK_TRANSFER)
+  totalAmount      Decimal       @db.Decimal(10, 2)
+  billingName      String
+  billingZip       String
+  billingCity      String
+  billingAddress   String
+  billingTaxNumber String?
+  shippingName     String
+  shippingZip      String
+  shippingCity     String
+  shippingAddress  String
+  shippingPhone    String
+  shippingEmail    String
+  note             String?
+  userId           String
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  user             User          @relation(fields: [userId], references: [id])
+  items            OrderItem[]
+
+  termsAccepted   Boolean @default(false)
+  privacyAccepted Boolean @default(false)
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  quantity  Int
+  price     Decimal @db.Decimal(10, 2)
+  size      String?
+  orderId   String
+  productId String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model InstantTrack {
+  id               String   @id @default(uuid())
+  title            String
+  description      String?
+  gpxFileUrl       String
+  rewardMedalImage String?
+  active           Boolean  @default(true)
+  createdAt        DateTime @default(now())
+}
+
+model Account {
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Partner {
+  id        String   @id @default(uuid())
+  name      String
+  logoUrl   String
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HomepageFeature {
+  id            String   @id @default(uuid())
+  iconName      String
+  title         String
+  titleEn       String?
+  titleDe       String?
+  description   String
+  descriptionEn String?
+  descriptionDe String?
+  order         Int      @default(0)
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model GalleryImage {
+  id        String   @id @default(uuid())
+  imageUrl  String
+  caption   String?
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Sponsor {
+  id        String   @id @default(uuid())
+  name      String
+  logoUrl   String
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AboutPage {
+  id            String   @id @default(uuid())
+  title         String
+  titleEn       String?
+  titleDe       String?
+  description   String
+  descriptionEn String?
+  descriptionDe String?
+  founderName   String
+  founderRole   String
+  founderRoleEn String?
+  founderRoleDe String?
+  image1Url     String?
+  image2Url     String?
+  updatedAt     DateTime @updatedAt
+}
+
+model FAQ {
+  id         String   @id @default(uuid())
+  question   String
+  questionEn String?
+  questionDe String?
+  answer     String
+  answerEn   String?
+  answerDe   String?
+  order      Int      @default(0)
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model GlobalSettings {
+  id                        String   @id @default(uuid())
+  maintenanceMode           Boolean  @default(false)
+  updatedAt                 DateTime @updatedAt
+  shopEnabled               Boolean  @default(true)
+  shopEmail                 String?
+  shopBeneficiaryName       String?
+  shopBankName              String?
+  shopBankAccountNumber     String?
+  shopShippingCost          Int?     @default(0)
+  shopFreeShippingThreshold Int?     @default(20000)
+  shopNote                  String?  @db.Text
+  shopTaxNumber             String?
+  shopAddress               String?
+  shopLogoUrl               String?
+
+  feature1Title   String?
+  feature1TitleEn String?
+  feature1TitleDe String?
+  feature1Desc    String?
+  feature1DescEn  String?
+  feature1DescDe  String?
+  feature1Icon    String?
+
+  feature2Title   String?
+  feature2TitleEn String?
+  feature2TitleDe String?
+  feature2Desc    String?
+  feature2DescEn  String?
+  feature2DescDe  String?
+  feature2Icon    String?
+
+  feature3Title   String?
+  feature3TitleEn String?
+  feature3TitleDe String?
+  feature3Desc    String?
+  feature3DescEn  String?
+  feature3DescDe  String?
+  feature3Icon    String?
+
+  membershipSellerId          String?
+  membershipSeller            Seller? @relation("MembershipSeller", fields: [membershipSellerId], references: [id])
+  membershipNotificationEmail String?
+
+  cancellationEnabled         Boolean  @default(false)
+
+  // Transfer Page Settings
+  transferInfoHu             String?  @db.Text
+  transferInfoEn             String?  @db.Text
+  transferInfoDe             String?  @db.Text
+  transferBeneficiary        String?
+  transferBankName           String?
+  transferBankAccountNumber  String?
+  transferNote               String?
+  transferEmail              String?
+  transferSellerId           String?
+  transferSeller             Seller? @relation("TransferSeller", fields: [transferSellerId], references: [id])
+
+  // Featured Event for Homepage
+  featuredEventId            String?
+  featuredEventActive        Boolean @default(false)
+  featuredEvent              Event?  @relation("FeaturedEvent", fields: [featuredEventId], references: [id])
+  
+  featuredEventTitleHU       String?
+  featuredEventTitleEN       String?
+  featuredEventTitleDE       String?
+  featuredEventDescriptionHU String?
+  featuredEventDescriptionEN String?
+  featuredEventDescriptionDE String?
+  featuredEventButtonHU      String?
+  featuredEventButtonEN      String?
+  featuredEventButtonDE      String?
+}
+
+model ChangeRequest {
+  id        String              @id @default(uuid())
+  type      ChangeRequestType
+  status    ChangeRequestStatus @default(PENDING)
+  name      String
+  email     String
+  phone     String
+  birthDate DateTime?
+  address   String?
+  city      String?
+  zipCode   String?
+  fromEvent String
+  toEvent   String?
+  comment   String?
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+  STAFF
+}
+
+enum RegistrationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PARTIALLY_PAID
+  PAID
+  REFUNDED
+}
+
+enum PaymentMethod {
+  CARD
+  BANK_TRANSFER
+  CASH
+}
+
+enum ProductCategory {
+  MERCHANDISE
+  EQUIPMENT
+  SERVICE
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum EventStatus {
+  DRAFT
+  PUBLISHED
+  COMPLETED
+  CANCELLED
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  COMPLETED
+  CANCELLED
+}
+
+enum ChangeRequestType {
+  TRANSFER
+  CANCELLATION
+  MODIFICATION
+}
+
+enum ChangeRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  message   String
+  type      String   @default("info")
+  read      Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Feedback {
+  id            String         @id @default(uuid())
+  userId        String
+  user          User           @relation(fields: [userId], references: [id])
+  type          FeedbackType
+  subject       String
+  message       String
+  status        FeedbackStatus @default(PENDING)
+  adminResponse String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}
+
+enum FeedbackType {
+  BUG
+  FEATURE
+  OTHER
+}
+
+enum FeedbackStatus {
+  PENDING
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+model AuditLog {
+  id         String      @id @default(uuid())
+  userId     String
+  userName   String
+  action     AuditAction
+  entityType String      // "Event", "Registration", "User", etc.
+  entityId   String
+  entityData Json?       // Snapshot before deletion/change
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime    @default(now())
+
+  @@index([userId])
+  @@index([entityType])
+  @@index([entityId])
+  @@index([createdAt])
+  @@index([action])
+}
+
+enum AuditAction {
+  CREATE
+  UPDATE
+  DELETE
+  RESTORE
+  SOFT_DELETE
+  FORCE_DELETE
+}
+

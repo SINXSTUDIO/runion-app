@@ -1,0 +1,748 @@
+{
+    "Common": {
+        "save": "Save",
+        "saving": "Saving..."
+    },
+    "Navbar": {
+        "races": "Races",
+        "results": "Results",
+        "about": "About Us",
+        "contact": "Contact",
+        "login": "Login",
+        "register": "Register",
+        "welcome": "Welcome",
+        "transfer": "Transfer"
+    },
+    "AboutPage": {
+        "title": "About Us",
+        "description": "We created RUNION to collect, organize, and recommend the events of our friends (associations and individual race organizers) and to realize them for You, Runners, by helping each other! Thank you for being with us and raising the standard of our events with your participation and sports performance!",
+        "founder": "Máté Baranyai",
+        "founderRole": "Founder of RUNION",
+        "mission": "Our Mission"
+    },
+    "Dashboard": {
+        "Home": {
+            "hello": "Hi, <accent>{name}</accent>!",
+            "subtitle": "Here you can see your registrations and set up your profile.",
+            "myRegistrations": "My Race Registrations",
+            "stats": "Statistics",
+            "races": "Races",
+            "kmRun": "KM Run",
+            "logout": "Logout",
+            "admin": "Admin"
+        },
+        "Registrations": {
+            "title": "My Registrations",
+            "total": "Total registrations:",
+            "balanceTitle": "Balance",
+            "paid": "Paid",
+            "unpaid": "Unpaid",
+            "emptyTitle": "No registrations yet",
+            "emptyDesc": "Discover upcoming races and register!",
+            "viewEvents": "View Races",
+            "paymentInfo": "Payment Information",
+            "paymentInstruction": "Please transfer the following amount to finalize your registration:",
+            "beneficiary": "Beneficiary",
+            "bank": "Bank",
+            "account": "Account Number",
+            "amount": "Amount",
+            "reference": "Reference",
+            "close": "Close",
+            "transferBtn": "Transfer",
+            "confirmed": "Successful Registration",
+            "status": {
+                "pending": "Payment Pending",
+                "confirmed": "Registered"
+            }
+        },
+        "Orders": {
+            "title": "My Orders",
+            "subtitle": "Your previous purchases and downloadable documents.",
+            "empty": "You haven't bought anything yet.",
+            "goToStore": "Go to Store",
+            "table": {
+                "orderNumber": "Order #",
+                "date": "Date",
+                "items": "Products",
+                "amount": "Amount",
+                "status": "Status",
+                "actions": "Actions"
+            },
+            "itemCount": "{count} items",
+            "invoice": "Invoice",
+            "status": {
+                "pending": "Pending",
+                "paid": "Paid",
+                "shipped": "Shipped",
+                "cancelled": "Cancelled"
+            }
+        },
+        "Documents": {
+            "title": "Documents",
+            "total": "Total documents:",
+            "searchPlaceholder": "Search documents...",
+            "types": {
+                "Nyugta": "Receipt",
+                "Számla": "Invoice",
+                "Díjbekérő": "Proforma"
+            },
+            "eventLabel": "Event:",
+            "noDate": "No date",
+            "emptyTitle": "You have no documents yet",
+            "emptyDesc": "Receipts and invoices are generated automatically after payment.",
+            "allMonths": "All months",
+            "allYears": "All years",
+            "months": {
+                "january": "January",
+                "february": "February",
+                "march": "March",
+                "april": "April",
+                "may": "May",
+                "june": "June",
+                "july": "July",
+                "august": "August",
+                "september": "September",
+                "october": "October",
+                "november": "November",
+                "december": "December"
+            }
+        },
+        "Notifications": {
+            "title": "Notifications",
+            "unreadCount": "{count} unread notifications",
+            "noNew": "No new notifications",
+            "markAllRead": "Mark all as read",
+            "emptyTitle": "You have no notifications",
+            "emptyDesc": "New notifications will appear here.",
+            "mock": {
+                "paymentSuccess": {
+                    "title": "Payment Successful",
+                    "message": "We received your entry fee for Budapest Half Marathon. You can download your receipt from the Documents page."
+                },
+                "raceNear": {
+                    "title": "Race Approaching",
+                    "message": "Budapest Half Marathon starts in 7 days! Don't forget to pick up your race packet."
+                },
+                "proformaWaiting": {
+                    "title": "Proforma Invoice Waiting",
+                    "message": "Your Ultrabalaton proforma invoice is ready. Please settle the invoice within 5 days."
+                }
+            }
+        },
+        "Sidebar": {
+            "overview": "Overview",
+            "registrations": "My Registrations",
+            "orders": "My Orders",
+            "documents": "Documents",
+            "profile": "Profile",
+            "notifications": "Notifications",
+            "backToHome": "Back to Home",
+            "membership": "Membership",
+            "memberType": "Standard",
+            "expires": "Expires",
+            "admin": "Administration"
+        },
+        "Membership": {
+            "title": "Membership Management",
+            "currentStatus": "Current Status",
+            "noMembership": "No active membership",
+            "activeUntil": "Valid until:",
+            "availablePlans": "Available Plans",
+            "buy": "Buy Now",
+            "renew": "Renew",
+            "month": "month",
+            "billingDetails": "Billing Details",
+            "confirmPurchase": "Confirm Purchase",
+            "successTitle": "Order Successful!",
+            "successMessage": "The proforma invoice has been sent via email. Please transfer the amount to activate your membership.",
+            "back": "Back",
+            "processing": "Processing...",
+            "cancel": "Cancel Membership",
+            "confirmCancel": "Are you sure you want to cancel your membership?",
+            "discount": "discount on registrations",
+            "Success": {
+                "title": "Thank you for your order!",
+                "message": "The invoice has been sent to your email address. Please check your inbox (and spam folder) and transfer the amount to activate.",
+                "documents": "Documents",
+                "dashboard": "Dashboard"
+            }
+        }
+    },
+    "Admin": {
+        "Sidebar": {
+            "dashboard": "Dashboard",
+            "events": "Events",
+            "registrations": "Registrations",
+            "users": "Users",
+            "partners": "Partners",
+            "features": "Features",
+            "gallery": "Gallery",
+            "sponsors": "Sponsors",
+            "products": "Boutique",
+            "orders": "Orders",
+            "about": "About Us",
+            "contact": "Contact",
+            "status": "SYSTEM STATUS",
+            "uptime": "UPTIME",
+            "db": "DATABASE",
+            "settings": "Settings",
+            "memberships": "Memberships"
+        },
+        "EventForm": {
+            "title": "Customize Form",
+            "subtitle": "Manage custom fields for the registration form"
+        },
+        "Settings": {
+            "title": "Settings",
+            "loadError": "Failed to load settings.",
+            "updateSuccess": "Settings updated!",
+            "updateError": "Error updating settings.",
+            "shopStatus": "Shop Status",
+            "shopEnabledDesc": "The shop is currently active, purchasing is enabled.",
+            "shopDisabledDesc": "The shop is in catalog mode, purchasing is disabled."
+        }
+    },
+    "HomePage": {
+        "heroTitle": "Run with us to victory",
+        "heroSubtitle": "Join the Runion community and register for the best races.",
+        "cta": "Browse Races",
+        "feature1Title": "Premium Events",
+        "feature1Desc": "Top-tier organization and unforgettable race experiences.",
+        "feature2Title": "Professional Timing",
+        "feature2Desc": "Accurate chip timing with instant results for every runner.",
+        "feature3Title": "Amazing Community",
+        "feature3Desc": "Join thousands of passionate runners across the country.",
+        "upcomingTitle": "Upcoming Races",
+        "upcomingSubtitle": "Find your next challenge.",
+        "viewAll": "View All",
+        "sponsorsTitle": "OUR SPONSORS",
+        "sponsorsSubtitle": "JOIN US TODAY",
+        "statsTitle": "OUR ACHIEVEMENTS",
+        "statsSubtitle": "GROWING COMMUNITY IN NUMBERS",
+        "stat1Value": "50+",
+        "stat1Label": "Events",
+        "stat2Value": "10k+",
+        "stat2Label": "Runners",
+        "stat3Value": "100k+",
+        "stat3Label": "KM Run",
+        "stat4Value": "100%",
+        "stat4Label": "Experience",
+        "galleryTitle": "GALLERY",
+        "gallerySubtitle": "MOMENTS FROM OUR RACES",
+        "partnersTitle": "Strategic Cooperation Partners",
+        "countdown": {
+            "days": "Days",
+            "hours": "Hours",
+            "minutes": "Minutes",
+            "seconds": "Seconds",
+            "nextEvent": "UNTIL THE NEXT RACE:"
+        },
+        "newsletterTitle": "STAY TUNED",
+        "newsletterSubtitle": "Subscribe to our newsletter for the latest race updates!",
+        "newsletterPlaceholder": "Your email address",
+        "newsletterFirstName": "First Name",
+        "newsletterLastName": "Last Name",
+        "newsletterCTA": "Subscribe",
+        "newsletterSuccessTitle": "Subscription successful!",
+        "newsletterSuccessDesc": "We will notify you about our latest races soon.",
+        "newsletterErrorProvider": "Subscription is currently unavailable. Please try again later!",
+        "featured": {
+            "title": "FEATURED EVENT",
+            "nextEvent": "OUR NEXT RACE",
+            "eventLive": "EVENT IS LIVE!",
+            "timeLeft": "TIME LEFT UNTIL START:",
+            "days": "Days",
+            "hours": "Hours",
+            "minutes": "Minutes",
+            "seconds": "Seconds",
+            "registerNow": "REGISTER NOW",
+            "details": "Read more"
+        }
+    },
+    "Footer": {
+        "tagline": "Your premier running events platform",
+        "quickLinks": "Quick Links",
+        "races": "Events",
+        "boutique": "Shop",
+        "about": "About Us",
+        "contact": "Contact",
+        "legal": "Legal",
+        "connect": "Follow Us",
+        "rights": "All rights reserved.",
+        "privacy": "Privacy Policy",
+        "terms": "Terms & Conditions"
+    },
+    "Auth": {
+        "Register": {
+            "title": "Register",
+            "subtitle": "Create a new account",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email",
+            "password": "Password",
+            "terms": "I accept the <link>Terms & Conditions</link>",
+            "submit": "Register",
+            "hasAccount": "Already have an account?",
+            "loginLink": "Login here"
+        },
+        "Login": {
+            "title": "Login",
+            "subtitle": "Sign in to your account",
+            "email": "Email",
+            "password": "Password",
+            "submit": "Login",
+            "noAccount": "Don't have an account?",
+            "registerLink": "Register here"
+        }
+    },
+    "Races": {
+        "title": "Current <accent>Races</accent>",
+        "subtitle": "Find your next challenge! Browse the best running events.",
+        "searchPlaceholder": "Search by race name or location...",
+        "searchButton": "Search",
+        "empty": "No races coming soon..."
+    },
+    "EventCard": {
+        "details": "Details",
+        "from": "from",
+        "free": "Free",
+        "noImage": "No Image"
+    },
+    "Event": {
+        "details": "Details",
+        "organizer": "Organizer",
+        "date": "Date",
+        "location": "Location",
+        "tabOverview": "Overview",
+        "tabMap": "Map",
+        "tabDistances": "Distances"
+    },
+    "EventDetails": {
+        "backToRaces": "Back to Races",
+        "distances": "Selectable Distances",
+        "description": "Description",
+        "aboutTitle": "About the Race",
+        "ctaTitle": "Don't Miss Out!",
+        "deadline": "Entry deadline:",
+        "startRegistration": "Start Registration",
+        "openRegistration": "Open for Registration",
+        "closedRegistration": "Closed",
+        "register": "Register",
+        "capacityLabel": "Capacity",
+        "start": "Start",
+        "organizer": "Organizer",
+        "locationMap": "Location",
+        "openInMaps": "Open in Maps",
+        "status": {
+            "soldOut": "Sold Out",
+            "almostFull": "Almost Full",
+            "fillingFast": "Filling Fast",
+            "available": "Available"
+        },
+        "capacity": {
+            "registered": "{count} registered",
+            "available": "{count} spots left"
+        },
+        "pricing": {
+            "validUntil": "Valid until"
+        },
+        "cta": {
+            "soldOut": "Sold Out",
+            "register": "Register Now"
+        },
+        "socialProof": {
+            "totalRegistrations": "registrations",
+            "recentActivity": "Recent Activity",
+            "registeredFor": "registered for",
+            "verified": "Verified Event"
+        }
+    },
+    "ContactPage": {
+        "title": "Contact",
+        "subtitle": "Have a question? Feel free to reach out!",
+        "faq": {
+            "title": "Frequently Asked Questions"
+        },
+        "emailLabel": "Email Address",
+        "phoneLabel": "Phone Number",
+        "addressLabel": "Address",
+        "taxLabel": "Tax Number",
+        "representativeLabel": "Representative",
+        "ibanLabel": "HUF Bank Account (IBAN)",
+        "companies": {
+            "bac": {
+                "name": "Balatonfüredi Atlétikai Club",
+                "address": "8230 Balatonfüred, Vörösmarty u. 3. Hungary",
+                "tax": "19225067-1-19",
+                "phone": "+36 70 323 0662",
+                "email": "bhebalaton@gmail.com",
+                "rep": "Máté Baranyai",
+                "iban": "HU16 1174 8069 2551 2412 0000 0000"
+            },
+            "kahu": {
+                "name": "KAHU Nature and Animal Protection, Youth, and Sports Association /KAHU/",
+                "address": "8452 Szőc, Kossuth u. 83. Hungary",
+                "tax": "",
+                "phone": "+36 70 323 0662",
+                "email": "kahu2022@gmail.com",
+                "rep": "Máté Baranyai",
+                "iban": "HU19 1174 8038 2482 6190 0000 0000"
+            },
+            "bbe": {
+                "name": "BakonyOrszág Balcsipart Cultural and Sports Association /BBE/",
+                "address": "8230 Nemesvámos, Rózsa u. 6. Hungary",
+                "tax": "",
+                "phone": "+36 70 323 0662",
+                "email": "bakonyorszagbalcsipart@gmail.com",
+                "rep": "Máté Baranyai",
+                "iban": "HU67 1174 8007 2483 0210 0000 0000"
+            }
+        },
+        "form": {
+            "name": "Your Name",
+            "email": "Your Email",
+            "subject": "Subject",
+            "message": "Message",
+            "submit": "Send Message"
+        }
+    },
+    "BoutiquePage": {
+        "title": "Boutique",
+        "subtitle": "Choose from our official RUNION accessories! Order conveniently online.",
+        "premium": "Premium Quality",
+        "premiumDesc": "All our products are tested by runners to provide the best experience.",
+        "invoice": "PDF Proforma",
+        "invoiceDesc": "Receive payment details immediately after ordering.",
+        "support": "Support the Community",
+        "supportDesc": "Your purchase helps develop local running sports."
+    },
+    "CheckoutPage": {
+        "title": "Checkout",
+        "subtitle": "Secure ordering",
+        "shipping": "Shipping Details",
+        "billing": "Billing Details",
+        "billingMatch": "Same as shipping if not modified",
+        "note": "Note",
+        "summary": "Summary",
+        "total": "Total to pay",
+        "subtotal": "Subtotal",
+        "delivery": "Delivery",
+        "free": "Free",
+        "paymentMethod": "Selected payment method",
+        "bankTransfer": "Bank Transfer",
+        "bankTransferDesc": "Proforma PDF via email",
+        "placeOrder": "Place Order"
+    },
+    "CartDrawer": {
+        "title": "Cart",
+        "empty": "Your cart is empty.",
+        "continue": "Continue shopping",
+        "size": "Size",
+        "total": "Total",
+        "checkout": "Checkout"
+    },
+    "ProductCard": {
+        "size": "Size",
+        "added": "Added",
+        "addToCart": "Add to Cart"
+    },
+    "ProductList": {
+        "searchPlaceholder": "Search products...",
+        "noResults": "No results."
+    },
+    "SuccessPage": {
+        "thanks": "Thank You for Your Order!",
+        "orderNumber": "Order Number",
+        "paymentInfo": "Payment Information",
+        "transferDesc": "Please initiate the transfer with the following details:",
+        "beneficiary": "Beneficiary",
+        "accountNumber": "Account Number (HUF)",
+        "amount": "Amount",
+        "reference": "Reference",
+        "important": "Important!",
+        "emailSent": "A confirmation email and proforma invoice have been sent to {email}. We will ship the package after receiving the payment.",
+        "orderedProducts": "Ordered Products",
+        "backToBoutique": "Back to Boutique",
+        "home": "Home"
+    },
+    "NotFoundPage": {
+        "title": "404 - Lost on the Track?",
+        "description": "It seems you've strayed from the designated course. Don't worry, it happens to every runner!",
+        "button": "Back to Home"
+    },
+    "Profile": {
+        "title": "My Profile",
+        "subtitle": "Personal information and settings",
+        "edit": {
+            "title": "Edit Profile",
+            "button": "Edit Data",
+            "personal": "Personal Information",
+            "address": "Address",
+            "other": "Other Information",
+            "emergency": "Emergency Contact",
+            "image": "Profile Picture",
+            "imageLabel": "Upload a profile picture",
+            "imageDesc": "Allowed formats: JPG, PNG, WEBP. Max size: 5MB.",
+            "save": "Save",
+            "saving": "Saving...",
+            "cancel": "Cancel",
+            "success": "Save successful",
+            "error": "Error during save",
+            "extras": "Extra Information",
+            "team": "Team Information",
+            "addMember": "Add Member",
+            "billing": "Billing Information",
+            "copyAddress": "Copy Address"
+        },
+        "profile": {
+            "title": "Profile Settings",
+            "subtitle": "Manage your personal data and account",
+            "avatar": "Profile Picture",
+            "imageDesc": "Allowed formats: JPG, PNG, WEBP. Max size: 5MB.",
+            "save": "Save",
+            "saving": "Saving...",
+            "cancel": "Cancel",
+            "success": "Save successful",
+            "error": "Error occurred during saving"
+        },
+        "fields": {
+            "lastName": "Last Name",
+            "firstName": "First Name",
+            "email": "Email Address",
+            "phone": "Phone Number",
+            "birthDate": "Birth Date",
+            "club": "Association / Club",
+            "tshirt": "T-shirt Size",
+            "zip": "Zip Code",
+            "city": "City",
+            "street": "Street, Number",
+            "contactName": "Contact Name",
+            "contactPhone": "Contact Phone",
+            "registrationDate": "Registration Date",
+            "isVegetarian": "I follow a vegetarian diet",
+            "fiveTrialsId": "Five Trials of the Olympics ID",
+            "fiveTrialsIdPlaceholder": "e.g. 12345-67890",
+            "fiveTrialsIdDesc": "If you participate in the Five Trials program, enter your ID here.",
+            "teamName": "Team Name",
+            "teamNamePlaceholder": "e.g. Lightning Runners",
+            "teamMembers": "Team Members",
+            "teamMember": "Team Member",
+            "noTeamMembers": "No team members added yet.",
+            "billingName": "Billing Name",
+            "billingNamePlaceholder": "e.g. John Doe or Company Ltd.",
+            "taxNumber": "Tax Number",
+            "taxNumberPlaceholder": "e.g. 12345678-1-42 (for companies)"
+        },
+        "roles": {
+            "admin": "👑 Admin",
+            "staff": "⭐ Staff",
+            "runner": "🏃 Runner"
+        },
+        "status": {
+            "active": "✅ Active"
+        }
+    },
+    "Registration": {
+        "steps": {
+            "distance": "Distance",
+            "extras": "Extra",
+            "data": "Details",
+            "billing": "Billing",
+            "summary": "Summary"
+        },
+        "distance": {
+            "title": "Select Distance",
+            "spots": "Free spots: {count}"
+        },
+        "extras": {
+            "title": "Extra Products",
+            "subtitle": "Would you like some souvenirs or extra services?",
+            "empty": "There are no extra products for this race at the moment.",
+            "oneTime": "One-time fee"
+        },
+        "personal": {
+            "title": "Personal Details",
+            "subtitle": "Please answer the following questions to register.",
+            "required": "Required fields *"
+        },
+        "billing": {
+            "title": "Billing Details",
+            "name": "Billing Name *",
+            "zip": "Zip Code *",
+            "city": "City *",
+            "address": "Street, number *",
+            "taxNumber": "Tax Number (optional)"
+        },
+        "summary": {
+            "title": "Summary and Payment",
+            "distanceLabel": "Distance:",
+            "priceLabel": "Distance price:",
+            "totalLabel": "Total:",
+            "paymentMethod": "Payment method:",
+            "bankTransfer": "Bank Transfer",
+            "liability": "I participate in the event at my own risk",
+            "terms": "I have read and accept the <link1>Privacy Policy</link1> and the <link2>Terms & Conditions</link2>",
+            "warning": "Warning! Your registration only becomes final after the fee is received. We will send the transfer details after successful registration and by email."
+        },
+        "actions": {
+            "back": "Back",
+            "next": "Next",
+            "processing": "Processing...",
+            "finish": "Finalize Registration"
+        },
+        "errors": {
+            "selectDistance": "Select a distance!",
+            "missingBilling": "Please fill in the required billing details!",
+            "acceptTerms": "You must accept the terms to register!"
+        },
+        "pageTitle": "Registration: {eventName}",
+        "fillDetails": "Please fill out your details to register.",
+        "form": {
+            "name": {
+                "label": "Competitor Name",
+                "placeholder": "e.g. John Doe"
+            },
+            "club": {
+                "label": "Club / Association",
+                "placeholder": "e.g. Runion Racing"
+            },
+            "firstName": {
+                "label": "First Name",
+                "placeholder": "e.g. John"
+            },
+            "lastName": {
+                "label": "Last Name",
+                "placeholder": "e.g. Doe"
+            },
+            "email": {
+                "label": "Email Address",
+                "placeholder": "example@email.com"
+            },
+            "phone": {
+                "label": "Phone Number",
+                "placeholder": "+36 30 123 4567"
+            },
+            "birthDate": {
+                "label": "Date of Birth",
+                "placeholder": "YYYY.MM.DD"
+            },
+            "gender": {
+                "label": "Gender",
+                "placeholder": "Select..."
+            },
+            "city": {
+                "label": "City",
+                "placeholder": "e.g. Budapest"
+            },
+            "zip": {
+                "label": "ZIP Code",
+                "placeholder": "1234"
+            },
+            "address": {
+                "label": "Address (Street, House No.)",
+                "placeholder": "e.g. Main street 1."
+            },
+            "tshirtSize": {
+                "label": "T-shirt Size",
+                "placeholder": "Select..."
+            }
+        }
+    },
+    "FormBuilder": {
+        "title": "Registration Form Editor",
+        "save": "Save",
+        "saving": "Saving...",
+        "saved": "Form saved!",
+        "newField": "Add New Field",
+        "defaultLabel": "New question",
+        "field": {
+            "label": "Question Label",
+            "type": "Type",
+            "options": "Options (comma separated)",
+            "optionsPlaceholder": "e.g. Red, Blue, Green",
+            "required": "Required field"
+        },
+        "types": {
+            "text": "Text",
+            "email": "Email",
+            "tel": "Phone Number",
+            "zip": "Zip Code",
+            "number": "Number",
+            "date": "Date",
+            "checkbox": "Checkbox (Yes/No)",
+            "select": "Dropdown List",
+            "radio": "Radio Buttons",
+            "textarea": "Long Text"
+        }
+    },
+    "RegistrationSuccess": {
+        "title": "Successful Pre-Registration!",
+        "subtitle": "Thank you for registering for the {event} race. Please transfer the entry fee to finalize your booking.",
+        "transferInfo": "Bank Transfer Information",
+        "beneficiary": "Beneficiary",
+        "beneficiaryName": "Runion Sports Association",
+        "bank": "Bank",
+        "bankName": "OTP Bank",
+        "accountNumber": "Account Number",
+        "amount": "Amount",
+        "reference": "Reference (IMPORTANT!)",
+        "emailNotice": "Billing information and confirmation have been sent to this email: {email}",
+        "dashboardCta": "Go to My Profile"
+    },
+    "ChangeRequest": {
+        "title": "Submit Request",
+        "successTitle": "Thank you!",
+        "successMessage": "We will contact you shortly at the provided email address.",
+        "newRequest": "New Request",
+        "submitting": "Sending...",
+        "submit": "Submit Request",
+        "typeLabel": "Request Type",
+        "types": {
+            "transfer": {
+                "title": "Transfer",
+                "desc": "To another race/distance"
+            },
+            "cancellation": {
+                "title": "Data Modification",
+                "desc": "Correction of data"
+            },
+            "modification": {
+                "title": "Other",
+                "desc": "Other request"
+            }
+        },
+        "fields": {
+            "name": "Name *",
+            "namePlaceholder": "Full Name",
+            "phone": "Phone Number *",
+            "email": "Email Address *",
+            "birthDate": "Date of Birth *",
+            "address": "Address *",
+            "addressPlaceholder": "Street, House No.",
+            "city": "City *",
+            "zipCode": "Zip Code *",
+            "fromEvent": "From which race would you like to transfer? *",
+            "fromEventPlaceholder": "e.g. X. Schiller Love Füred 10km",
+            "toEvent": "To which race would you like to transfer (if applicable)",
+            "toEventPlaceholder": "e.g. Another distance or next year's race",
+            "comment": "Comment / Reason",
+            "commentPlaceholder": "Other notes...",
+            "terms": "I participate in the event at my own risk and accept the <link>Competition Rules</link>.",
+            "privacy": "I have read and accept the <link>Privacy Policy</link>."
+        },
+        "errors": {
+            "required": "Required field"
+        }
+    },
+    "Transfer": {
+        "title": "Transfer / Data Modification",
+        "subtitle": "Please fill out the form below for the modification.",
+        "backToHome": "Back to Home",
+        "infoHeading": "Information",
+        "dearAthletes": "Dear Athletes!",
+        "beneficiaryTextPrefix": "On runion.eu, transfer fees are donated to",
+        "beneficiaryTextSuffix": "for the purchase of animal food – this is how we wish to support their work!",
+        "referenceText": "When transferring, please enter this in the reference field:",
+        "thankYou": "Thank you!"
+    }
+}

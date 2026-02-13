@@ -1,0 +1,108 @@
+[Route Error] 2026-02-02T13:35:08.008Z: TypeError: Cannot read properties of undefined (reading 'widths')
+TypeError: Cannot read properties of undefined (reading 'widths')
+    at Mt.getCharWidthsArray (F:\RUNION\runion\.next\dev\server\chunks\node_modules_jspdf_dist_jspdf_node_min_2f7aa471.js:15390:207)
+    at Mt.getStringUnitWidth (F:\RUNION\runion\.next\dev\server\chunks\node_modules_jspdf_dist_jspdf_node_min_2f7aa471.js:15395:150)
+    at t.getTextWidth (F:\RUNION\runion\.next\dev\server\chunks\node_modules_jspdf_dist_jspdf_node_min_2f7aa471.js:4507:21)
+    at generateProformaPDF (F:\RUNION\runion\.next\dev\server\chunks\[root-of-the-server]__124dfcce._.js:133:26)
+    at GET (F:\RUNION\runion\.next\dev\server\chunks\[root-of-the-server]__124dfcce._.js:418:189)
+    at AsyncLocalStorage.run (node:async_hooks:335:14)
+    at AppRouteRouteModule.do (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:37945)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:47941
+    at F:\RUNION\runion\node_modules\next\dist\server\lib\trace\tracer.js:185:36
+    at NoopContextManager.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7062)
+    at ContextAPI.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:518)
+    at NoopTracer.startActiveSpan (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18093)
+    at ProxyTracer.startActiveSpan (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18854)
+    at F:\RUNION\runion\node_modules\next\dist\server\lib\trace\tracer.js:154:103
+    at NoopContextManager.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7062)
+    at ContextAPI.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:518)
+    at NextTracerImpl.trace (F:\RUNION\runion\node_modules\next\dist\server\lib\trace\tracer.js:154:28)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:47780
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45275
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45232
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at AppRouteRouteModule.handle (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45186)
+----------------
+[Route Error] 2026-02-02T13:35:08.798Z: TypeError: Cannot read properties of undefined (reading 'widths')
+TypeError: Cannot read properties of undefined (reading 'widths')
+    at Mt.getCharWidthsArray (F:\RUNION\runion\.next\dev\server\chunks\node_modules_jspdf_dist_jspdf_node_min_2f7aa471.js:15390:207)
+    at Mt.getStringUnitWidth (F:\RUNION\runion\.next\dev\server\chunks\node_modules_jspdf_dist_jspdf_node_min_2f7aa471.js:15395:150)
+    at t.getTextWidth (F:\RUNION\runion\.next\dev\server\chunks\node_modules_jspdf_dist_jspdf_node_min_2f7aa471.js:4507:21)
+    at generateProformaPDF (F:\RUNION\runion\.next\dev\server\chunks\[root-of-the-server]__124dfcce._.js:133:26)
+    at GET (F:\RUNION\runion\.next\dev\server\chunks\[root-of-the-server]__124dfcce._.js:418:189)
+    at AsyncLocalStorage.run (node:async_hooks:335:14)
+    at AppRouteRouteModule.do (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:37945)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:47941
+    at F:\RUNION\runion\node_modules\next\dist\server\lib\trace\tracer.js:185:36
+    at NoopContextManager.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7062)
+    at ContextAPI.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:518)
+    at NoopTracer.startActiveSpan (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18093)
+    at ProxyTracer.startActiveSpan (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18854)
+    at F:\RUNION\runion\node_modules\next\dist\server\lib\trace\tracer.js:154:103
+    at NoopContextManager.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7062)
+    at ContextAPI.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:518)
+    at NextTracerImpl.trace (F:\RUNION\runion\node_modules\next\dist\server\lib\trace\tracer.js:154:28)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:47780
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45275
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45232
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at AppRouteRouteModule.handle (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45186)
+----------------
+[Route Error] 2026-02-02T13:35:29.066Z: TypeError: Cannot read properties of undefined (reading 'widths')
+TypeError: Cannot read properties of undefined (reading 'widths')
+    at Mt.getCharWidthsArray (F:\RUNION\runion\.next\dev\server\chunks\node_modules_jspdf_dist_jspdf_node_min_2f7aa471.js:15390:207)
+    at Mt.getStringUnitWidth (F:\RUNION\runion\.next\dev\server\chunks\node_modules_jspdf_dist_jspdf_node_min_2f7aa471.js:15395:150)
+    at t.getTextWidth (F:\RUNION\runion\.next\dev\server\chunks\node_modules_jspdf_dist_jspdf_node_min_2f7aa471.js:4507:21)
+    at generateProformaPDF (F:\RUNION\runion\.next\dev\server\chunks\[root-of-the-server]__124dfcce._.js:133:26)
+    at GET (F:\RUNION\runion\.next\dev\server\chunks\[root-of-the-server]__124dfcce._.js:418:189)
+    at AsyncLocalStorage.run (node:async_hooks:335:14)
+    at AppRouteRouteModule.do (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:37945)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:47941
+    at F:\RUNION\runion\node_modules\next\dist\server\lib\trace\tracer.js:185:36
+    at NoopContextManager.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7062)
+    at ContextAPI.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:518)
+    at NoopTracer.startActiveSpan (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18093)
+    at ProxyTracer.startActiveSpan (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18854)
+    at F:\RUNION\runion\node_modules\next\dist\server\lib\trace\tracer.js:154:103
+    at NoopContextManager.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7062)
+    at ContextAPI.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:518)
+    at NextTracerImpl.trace (F:\RUNION\runion\node_modules\next\dist\server\lib\trace\tracer.js:154:28)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:47780
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45275
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45232
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at AppRouteRouteModule.handle (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45186)
+----------------
+[Route Error] 2026-02-02T13:35:29.903Z: TypeError: Cannot read properties of undefined (reading 'widths')
+TypeError: Cannot read properties of undefined (reading 'widths')
+    at Mt.getCharWidthsArray (F:\RUNION\runion\.next\dev\server\chunks\node_modules_jspdf_dist_jspdf_node_min_2f7aa471.js:15390:207)
+    at Mt.getStringUnitWidth (F:\RUNION\runion\.next\dev\server\chunks\node_modules_jspdf_dist_jspdf_node_min_2f7aa471.js:15395:150)
+    at t.getTextWidth (F:\RUNION\runion\.next\dev\server\chunks\node_modules_jspdf_dist_jspdf_node_min_2f7aa471.js:4507:21)
+    at generateProformaPDF (F:\RUNION\runion\.next\dev\server\chunks\[root-of-the-server]__124dfcce._.js:133:26)
+    at GET (F:\RUNION\runion\.next\dev\server\chunks\[root-of-the-server]__124dfcce._.js:418:189)
+    at AsyncLocalStorage.run (node:async_hooks:335:14)
+    at AppRouteRouteModule.do (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:37945)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:47941
+    at F:\RUNION\runion\node_modules\next\dist\server\lib\trace\tracer.js:185:36
+    at NoopContextManager.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7062)
+    at ContextAPI.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:518)
+    at NoopTracer.startActiveSpan (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18093)
+    at ProxyTracer.startActiveSpan (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18854)
+    at F:\RUNION\runion\node_modules\next\dist\server\lib\trace\tracer.js:154:103
+    at NoopContextManager.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7062)
+    at ContextAPI.with (F:\RUNION\runion\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:518)
+    at NextTracerImpl.trace (F:\RUNION\runion\node_modules\next\dist\server\lib\trace\tracer.js:154:28)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:47780
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45275
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45232
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+    at AppRouteRouteModule.handle (F:\RUNION\runion\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js:5:45186)
+----------------

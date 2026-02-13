@@ -1,0 +1,2541 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "timestamp": "2026-02-09T13:15:40.982Z",
+    "source": "runion-system"
+  },
+  "data": {
+    "users": [
+      {
+        "id": "58dcecf0-2305-453a-b858-19adc229e546",
+        "email": "gate75@freemail.hu",
+        "passwordHash": "$2b$10$K7duMPX5LhZ4zfl26GI8vOZJj4xjvs8LzN7kjlP8F5zN8eM20wN.S",
+        "emailVerified": null,
+        "image": "/uploads/10b66a166cc092bf.webp",
+        "firstName": "Tamás",
+        "lastName": "Kovács",
+        "birthDate": "1989-12-05T00:00:00.000Z",
+        "gender": "MALE",
+        "clubName": "BAC",
+        "phoneNumber": "+36708945632",
+        "tshirtSize": "L",
+        "city": "Tesztelegerszeg",
+        "zipCode": "2451",
+        "address": "Ady utca 16.",
+        "role": "USER",
+        "createdAt": "2026-02-02T14:08:17.951Z",
+        "updatedAt": "2026-02-06T14:14:08.968Z",
+        "emergencyContactName": "Emil Teszt",
+        "emergencyContactPhone": "06708945632",
+        "isVegetarian": false,
+        "fiveTrialsId": "p1258-k5",
+        "teamName": "Vagányok",
+        "teamMembers": [
+          "EgyVegyész",
+          "Kettő Három"
+        ],
+        "billingName": "Kovács Tamás e.v.",
+        "taxNumber": "123456789-1-39",
+        "billingZipCode": "2451",
+        "billingCity": "Tesztelegerszeg",
+        "billingAddress": "Ady utca 16.",
+        "membershipTierId": "134312a6-a300-4d22-a849-d21dee604060",
+        "membershipExpiresAt": "2027-02-05T09:41:40.371Z",
+        "membershipStart": null,
+        "membershipEnd": null
+      },
+      {
+        "id": "93303cc8-52f9-4266-a428-a21d7551c135",
+        "email": "klokkidopontfoglalo@gmail.com",
+        "passwordHash": "$2b$10$35hG/27VXk7kvtoNvMJWwu06fSMVO/bUM2NxmNUeSERTd2t4W0CRO",
+        "emailVerified": "2026-02-09T12:39:19.000Z",
+        "image": "/uploads/fdc8be67d3625f15.webp",
+        "firstName": "Gábor",
+        "lastName": "Fodor",
+        "birthDate": "1993-07-21T00:00:00.000Z",
+        "gender": "MALE",
+        "clubName": "Villám Team",
+        "phoneNumber": "+36 705 984 257",
+        "tshirtSize": "Male / Férfi XL",
+        "city": "Veszprém",
+        "zipCode": "8200",
+        "address": "Haszkovó út 12.",
+        "role": "USER",
+        "createdAt": "2026-02-09T12:38:51.257Z",
+        "updatedAt": "2026-02-09T13:09:03.222Z",
+        "emergencyContactName": "Fodor István",
+        "emergencyContactPhone": "+36 302 547 895",
+        "isVegetarian": false,
+        "fiveTrialsId": "p125524",
+        "teamName": "Villámgyorsak",
+        "teamMembers": [
+          "Sütő Erik",
+          "Kovács Eliza",
+          "Wágner Szabolcs",
+          "Kiss Virág",
+          "Zöldi Péter Tamás"
+        ],
+        "billingName": "Fodor Gábor E.V.",
+        "taxNumber": "125686778-1-39",
+        "billingZipCode": "8200",
+        "billingCity": "Veszprém",
+        "billingAddress": "Haszkovó út 12.",
+        "membershipTierId": "33c41210-3061-4fb2-82cf-cdc705a0a734",
+        "membershipExpiresAt": null,
+        "membershipStart": "2026-02-09T12:39:19.011Z",
+        "membershipEnd": "2027-02-09T12:39:19.011Z"
+      },
+      {
+        "id": "8c4f2dde-2f02-4cd5-aa56-6bc5e83c533d",
+        "email": "szkami75@gmail.com",
+        "passwordHash": "$2b$10$7qp/saxTPteG3L76MoDFQOrxANlwAt6A9RCouvVrurataPhLQ2rx6",
+        "emailVerified": null,
+        "image": "/uploads/b66c0552d6ba5cd0.webp",
+        "firstName": "SYNTAX",
+        "lastName": "ADMIN",
+        "birthDate": "1975-03-14T00:00:00.000Z",
+        "gender": "MALE",
+        "clubName": "",
+        "phoneNumber": "+36703877843",
+        "tshirtSize": "Male / Férfi L",
+        "city": "Pétfürdő",
+        "zipCode": "8105",
+        "address": "Móricz Zsigmond utca 17",
+        "role": "ADMIN",
+        "createdAt": "2026-01-31T07:54:35.462Z",
+        "updatedAt": "2026-02-03T15:19:40.909Z",
+        "emergencyContactName": null,
+        "emergencyContactPhone": "",
+        "isVegetarian": false,
+        "fiveTrialsId": null,
+        "teamName": null,
+        "teamMembers": [],
+        "billingName": null,
+        "taxNumber": null,
+        "billingZipCode": null,
+        "billingCity": null,
+        "billingAddress": null,
+        "membershipTierId": null,
+        "membershipExpiresAt": null,
+        "membershipStart": null,
+        "membershipEnd": null
+      }
+    ],
+    "events": [
+      {
+        "id": "a832552b-9770-4d46-8b0f-b9a4386e6c50",
+        "title": "RunPunch 2026",
+        "description": "Kedves Sportolók!\r\n\r\nSzeretettel várunk minden érdeklődőt a V. RUNPUNCH Balatonfüred futóeseményre 2026.12.06-án vasárnap.\r\n\r\nE családias hangulatú puncsos, forróteás futórendezvénnyel zárjuk /immár hagyományosan/ 2026. évi sportszezonunkat!\r\n\r\n🦺Rendezők:\r\n\r\n- Balatonfüredi Atlétikai Club🪅\r\n\r\n- Balatonfüredi Sport Club👕\r\n- Bakonyország Balcsipart Egyesület🧸\r\n\r\n🛣Távok:\r\n\r\n✅️- Félmaraton 21.097 km👟\r\n✅️- Kismaraton 10.549 km👟\r\n✅️- Minimaraton 5.275 km👟\r\n✅️- Junior maraton 666 m👟\r\n👢- Cliff Young gumicsizmás futás 875 m🥾\r\n\r\n↘️↗️↖️⬇️Útvonal:\r\n\r\nKisfaludy galéria - Dock Bistro - Tagore st. - Aranyhíd st. - Germering u.🔄\r\n\r\n🏟Pálya:\r\n\r\nJól futható, aszfalt, - sétány és kerékpárút\r\n\r\n🍌🍏🍎🥤Frissítő:\r\n\r\nRajt, Cél, illetve 5 km-enként /víz, iso, banán/\r\nFrissítés: saját kulacsból☝️🧃🍼\r\n\r\nNevezési díjak:\r\n\r\n✅️- Félmaraton👟\r\n\r\n9.900 ft /2025.12.31-ig/\r\n\r\n10.900 ft /2026.12.01-ig/\r\n\r\n✅️- Kismaraton👟\r\n\r\n8.900 ft /2025.12.31-ig/\r\n\r\n9.900 ft /2026.12.01-ig/\r\n\r\n✅️- Minimaraton👟\r\n\r\n7.900 ft /2025.12.31-ig/\r\n\r\n8.900 ft /2026.12.01-ig/\r\n\r\n✅️- Junior maraton👟\r\n\r\n❗️ELŐNEVEZETTEKNEK INGYENES🆓️\r\n\r\nA Junior maratonra kérjük a regisztrációt, hogy a Télapó is tudja, kik voltak az ügyes gyermekek😉☝️🎅\r\n\r\n👢- Cliff Young gumicsizmás futás🥾\r\n\r\n❗️KÜLÖN NEVEZÉSI DÍJ NINCS - egy másik versenyszámmal együtt lehet regisztrálni e futamra, amely a versenyt lezáró bulifutás🎉\r\n\r\n💰Nevezési díj tartalmazza:\r\n\r\n✴️- versenyen való részvétel🏃🏃‍♀️\r\n🔰- fűtött versenyközpont🚰🚾♨️\r\n✳️- díjazás /nemenként, korosztályonként🪁🃏\r\n✴️- frissítés🍌\r\n✳️- befutóérem🏅\r\n✴️- egészségügyi felügyelet🚑\r\n✴️- puncs, tea🍷🫖\r\n\r\n✴️- ingyenes fotók\r\n\r\n🎅- találkozás a mikulással🫣\r\n\r\n👑Korcsoportok:\r\n\r\n❎️Félmaraton\r\n/18-39/ /40-54/ 55+\r\n\r\n❎️Kismaraton\r\n/16-39/ /40-54/ 55+\r\n\r\n❎️Minimaraton\r\n/12-39/ /40-54/ 55+\r\n\r\n🆗️Online regisztráció:\r\n\r\nhttps://runion.eu/runpunch-2025/\r\n\r\n🆑️Regisztráció, helyszíni nevezés a versenyközpontban /Kisfaludy Galéria/:\r\n\r\nfelnőtt futamokra:\r\n07:15-09:15\r\n\r\ngyermekfutamra:\r\n11:00-12:00\r\n\r\n🟩Rajt:\r\n\r\n10:00\r\n\r\n🟩Gyermekverseny:\r\n\r\n12:30\r\n\r\n🟩Gumicsizmás futam:\r\n\r\n13:00\r\n\r\n🟧Eredményhirdetés:\r\n\r\n13:30\r\n\r\n🅿️Parkolás:\r\n\r\nKisfaludy strand parkoló /INGYENES/\r\n\r\n🚾Illemhely:\r\n\r\nA versenyközpontban\r\n\r\nAz eseményre minden érdeklődőt szeretettel várunk!",
+        "location": "Balatonfüred",
+        "eventDate": "2026-12-05T16:00:00.000Z",
+        "regDeadline": "2026-12-04T04:00:00.000Z",
+        "createdAt": "2026-02-07T09:13:03.290Z",
+        "updatedAt": "2026-02-07T09:50:23.292Z",
+        "coverImage": "/uploads/91693e6311506987.webp",
+        "descriptionDe": "Liebe Sportlerinnen und Sportler!\r\n\r\nWir freuen uns, euch alle am Sonntag, den 6. Dezember 2026, zum 5. RUNPUNCH Balatonfüred Lauf-Event begrüßen zu dürfen.\r\n\r\nWir beenden unsere Sportsaison 2026 ganz traditionell mit diesem familienfreundlichen Lauf-Event inklusive Punsch und heißem Tee!\r\n\r\n🦺Organisatoren:\r\n\r\n- Balatonfüred Athletic Club🪅\r\n\r\n- Balatonfüred Sport Club👕\r\n- Verein Bakonyorzág Balcsipart🧸\r\n\r\n🛣Entfernungen:\r\n\r\n✅️- Halbmarathon 21,097 km👟\r\n✅️- Minimarathon 10,549 km👟\r\n✅️- Minimarathon 5,275 km👟\r\n✅️- Juniorenmarathon 666 m👟\r\n👢- Cliff Young Gummistiefellauf 875 m🥾\r\n\r\n↘️↗️↖️⬇️Route:\r\n\r\nKisfaludy-Galerie – Dock Bistro – Tagore st. - Aranyhíd Str. Germering u.🔄\r\n\r\n🏟Strecke:\r\n\r\nGut zum Laufen geeignet, Asphalt, Promenade und Radweg\r\n\r\n🍌🍏🍎🥤Verpflegung:\r\n\r\nStart, Ziel und alle 5 km: Wasser, Iso, Banane/\r\nGetränke: aus eigener Flasche☝️🧃🍼\r\n\r\nAnmeldegebühren:\r\n\r\n✅️ Halbmarathon👟\r\n\r\n3.023 m /bis 31.12.2025/\r\n\r\n3.323 m /bis 01.12.2026/\r\n\r\n✅️ Minimarathon👟\r\n\r\n2.713 m /bis 31.12.2025/\r\n\r\n3.023 m /bis 01.12.2026/\r\n\r\n✅️ Mini Marathon 👟\r\n\r\n2408 m / bis 31.12.2025 /\r\n\r\n2713 m / bis 01.12.2026\r\n\r\n✅️ - Juniorenmarathon 👟\r\n\r\n❗️ KOSTENLOS FÜR ALLE, DIE SICH VORAB ANMELDEN 🆓️\r\n\r\nMeldet euch bitte für den Juniorenmarathon an, damit der Weihnachtsmann weiß, wer die schlauen Kinder waren 😉☝️🎅\r\n\r\n👢 - Cliff Young Gummistiefellauf 🥾\r\n\r\n❗️ KEINE SEPARATE ANMELDEGEBÜHR – Ihr könnt euch für diesen Lauf zusammen mit dem Partylauf anmelden, der den Marathon abschließt 🎉\r\n\r\n💰 Die Anmeldegebühr beinhaltet:\r\n\r\n✴️ - Teilnahme am Lauf 🏃🏃‍♀️\r\n🔰 - Beheizter Lauf Zentrum 🚰🚾♨️\r\n✳️ – Siegerehrung (nach Geschlecht und Altersgruppe) 🪁🃏\r\n✴️ – Erfrischungen 🍌\r\n✳️ – Finisher-Medaille 🏅\r\n✴️ – Gesundheitsüberwachung 🚑\r\n✴️ – Punsch, Tee 🍷🫖\r\n\r\n✴️ – Kostenlose Fotos\r\n\r\n🎅 – Treffen mit dem Weihnachtsmann 🫣\r\n\r\n👑 Altersgruppen:\r\n\r\n❎️ Halbmarathon\r\n/18–39/ /40–54/ 55+\r\n\r\n❎️ Kleiner Marathon\r\n/16–39/ /40–54/ 55+\r\n\r\n❎️ Mini-Marathon\r\n/12–39/ /40–54/ 55+\r\n\r\n🆗️ Online Anmeldung:\r\n\r\nhttps://runion.eu/runpunch-2025/\r\n\r\n🆑️Anmeldung vor Ort im Rennzentrum (Galerie Kisfaludy):\r\n\r\nFür Erwachsene:\r\n07:15–09:15 Uhr\r\n\r\nFür Kinder:\r\n11:00–12:00 Uhr\r\n\r\n🟩Start:\r\n\r\n10:00 Uhr\r\n\r\n🟩Kinderlauf:\r\n\r\n12:30 Uhr\r\n\r\n🟩Rennen mit Gummistiefeln:\r\n\r\n13:00 Uhr\r\n\r\n🟧Ergebnisbekanntgabe:\r\n\r\n13:30 Uhr\r\n\r\n🅿️Parken:\r\n\r\nParkplatz am Strand von Kisfaludy (kostenlos)\r\n\r\n🚾Ort:\r\n\r\nIm Wettkampfzentrum\r\n\r\nWir freuen uns auf alle Interessierten!",
+        "descriptionEn": "Dear Athletes!\r\n\r\nWe look forward to welcoming everyone to the 5th RUNPUNCH Balatonfüred running event on Sunday, December 6, 2026.\r\n\r\nWe will close our 2026 sports season /traditionally/ with this family-friendly running event with punch and hot tea!\r\n\r\n🦺Organizers:\r\n\r\n- Balatonfüred Athletic Club🪅\r\n\r\n- Balatonfüred Sport Club👕\r\n- Bakonyorzág Balcsipart Association🧸\r\n\r\n🛣Distances:\r\n\r\n✅️- Half marathon 21.097 km👟\r\n✅️- Mini marathon 10.549 km👟\r\n✅️- Mini marathon 5.275 km👟\r\n✅️- Junior marathon 666 m👟\r\n👢- Cliff Young rubber boot run 875 m🥾\r\n\r\n↘️↗️↖️⬇️Route:\r\n\r\nKisfaludy gallery - Dock Bistro - Tagore st. - Aranyhíd st. - Germering u.🔄\r\n\r\n🏟Course:\r\n\r\nGood for running, asphalt, - promenade and bike path\r\n\r\n🍌🍏🍎🥤Refreshment:\r\n\r\nStart, Finish, and every 5 km /water, iso, banana/\r\nRefreshment: from your own bottle☝️🧃🍼\r\n\r\nRegistration fees:\r\n\r\n✅️- Half marathon👟\r\n\r\n9,900 ft /until 2025.12.31/\r\n\r\n10,900 ft /until 2026.12.01/\r\n\r\n✅️- Mini marathon👟\r\n\r\n8,900 ft /until 2025.12.31/\r\n\r\n9,900 ft /until 2026.12.01/\r\n\r\n✅️- Mini marathon👟\r\n\r\n7,900 ft /until 2025.12.31/\r\n\r\n8,900 ft /until 12/01/2026\r\n\r\n✅️- Junior marathon👟\r\n\r\n❗️FREE FOR THOSE WHO REGISTERED IN ADVANCE🆓️\r\n\r\nWe ask you to register for the Junior marathon so that Santa Claus knows who the clever children were😉☝️🎅\r\n\r\n👢- Cliff Young rubber boot run🥾\r\n\r\n❗️NO SEPARATE REGISTRATION FEE - you can register for this race together with another race, which is the party run that ends the race🎉\r\n\r\n💰Registration fee includes:\r\n\r\n✴️- participation in the race🏃🏃‍♀️\r\n🔰- heated race center🚰🚾♨️\r\n✳️- awards /by gender, by age group🪁🃏\r\n✴️- refreshment🍌\r\n✳️- finisher medal🏅\r\n✴️- health supervision🚑\r\n✴️- punch, tea🍷🫖\r\n\r\n✴️- free photos\r\n\r\n🎅- meeting at with Santa Claus🫣\r\n\r\n👑Age groups:\r\n\r\n❎️Half marathon\r\n/18-39/ /40-54/ 55+\r\n\r\n❎️Small marathon\r\n/16-39/ /40-54/ 55+\r\n\r\n❎️Mini marathon\r\n/12-39/ /40-54/ 55+\r\n\r\n🆗️Online registration:\r\n\r\nhttps://runion.eu/runpunch-2025/\r\n\r\n🆑️Registration, on-site entry at the race center /Kisfaludy Gallery/:\r\n\r\nfor adult races:\r\n07:15-09:15\r\n\r\nfor children's race:\r\n11:00-12:00\r\n\r\n🟩Start:\r\n\r\n10:00\r\n\r\n🟩Children's race:\r\n\r\n12:30\r\n\r\n🟩Rubber boots race:\r\n\r\n13:00\r\n\r\n🟧Results announcement:\r\n\r\n13:30\r\n\r\n🅿️Parking:\r\n\r\nKisfaludy beach parking lot /FREE/\r\n\r\n🚾Location:\r\n\r\nAt the competition center\r\n\r\nWe welcome everyone interested in the event!",
+        "endDate": "2026-12-06T06:00:00.000Z",
+        "extraOrganizers": null,
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Balatonf%C3%BCred",
+        "organizerId": "8c4f2dde-2f02-4cd5-aa56-6bc5e83c533d",
+        "organizerName": "Balatonfüredi Atlétikai Club",
+        "showCountdown": true,
+        "slug": "runpunch-2026",
+        "status": "PUBLISHED",
+        "titleDe": "RunPunch 2026",
+        "titleEn": "RunPunch 2026",
+        "websiteUrl": null,
+        "ogDescription": "RunPunch 2026 - Balatonfüred | Futóverseny・Running Event・Laufevent | Nevezés online az RUNION platformon",
+        "ogImage": "/uploads/7ee8f3a6a9327f50.webp",
+        "extraLocations": [],
+        "extraOrganizersJson": [],
+        "extras": [
+          {
+            "id": "1770456421909",
+            "name": "Cliff Young gumicsizmás futás -KÜLÖN NEVEZÉSI DÍJ NINCS - egy másik versenyszámmal együtt lehet regisztrálni e futamra, amely a versenyt lezáró bulifutásCliff Young gumicsizmás futás / KÜLÖN NEVEZÉSI DÍJ NINCS - egy másik versenyszámmal együtt lehet regisztrálni e futamra, amely a versenyt lezáró bulifutás\n\nRÉSZT VESZEK",
+            "price": 0,
+            "nameDe": "Cliff Young Gummistiefellauf – KEINE SEPARATE STARTGEBÜHR – Sie können sich für diesen Lauf zusammen mit einem anderen Lauf anmelden, dem Partylauf am Ende des Rennens.\n\nICH NEHME TEIL",
+            "nameEn": "Cliff Young rubber boot run - NO SEPARATE ENTRY FEE - you can register for this race together with another race, which is the party run that ends the raceCliff Young rubber boot run / NO SEPARATE ENTRY FEE - you can register for this race together with another race, which is the party run that ends the race\n\nI AM PARTICIPATING",
+            "priceEur": 0
+          },
+          {
+            "id": "1770457694517",
+            "name": "BAC tagság  kedvezmény",
+            "price": -3000,
+            "nameDe": "BAC-Mitgliedschaftsrabatt",
+            "nameEn": "BAC membership discount",
+            "priceEur": 0
+          }
+        ],
+        "formConfig": {
+          "fields": [
+            {
+              "id": "field_1770041812592",
+              "type": "text",
+              "label": "Versenyző Neve",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041823760",
+              "type": "email",
+              "label": "E-mail cím",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041956503",
+              "type": "text",
+              "label": "Irányítószám",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041925007",
+              "type": "text",
+              "label": "Település",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041941056",
+              "type": "text",
+              "label": "Cím - utca, hsz.",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042032376",
+              "type": "gender",
+              "label": "Nemed",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042055376",
+              "type": "tel",
+              "label": "Telefonszám pl. 06304407933",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042100233",
+              "type": "date",
+              "label": "Születési idő",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042148040",
+              "type": "text",
+              "label": "Klub",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042153015",
+              "type": "text",
+              "label": "Olimpiai Ötpróba azonosító",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042212359",
+              "type": "text",
+              "label": "Számlázási adatok (Név, cím, adószám (jogi személy esetén kötelező):",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042240160",
+              "type": "text",
+              "label": "Baleset esetén értesítendő (Név, telefonszám) ",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042270088",
+              "type": "text",
+              "label": "Megjegyzés (ide írhatod a kuponkódod, vagy itt tudod jelezni, hogy nyerted a nevezést.)",
+              "options": [],
+              "required": false
+            }
+          ]
+        },
+        "notificationEmail": "info@pcdokk.hu",
+        "sellerId": "265ae45d-a1c8-4470-a79b-9808e9f2a08b",
+        "sortOrder": 3,
+        "confirmationEmailText": "A regisztrációdat rögzítettük RunPunch 2026 futóversenyünkre.\r\n<br>\r\nVÉGLEGESÍTÉSHEZ SZÜKSÉGES ADATOK! KÉRJÜK OLVASD EL!\r\n------------------------------------------------------------------------------------------------------<br>\r\nNevezés véglegesítésére/nevezési díj utalására: 24 óra áll rendelkezésedre - ezután a regisztrációd törlődik!\r\n------------------------------------------------------------------------------------------------------<br>\r\nKérjük, hogy a nevezési díjat a következő számlaszámra teljesítsd:\r\n<br>\r\nBelföldi fizetés esetén: BALATONFÜREDI ATLÉTIKAI CLUB<br>\r\nSzámlaszám: 11748069-25512412<br>\r\n<br><br>\r\nNAGYON FONTOS, hogy utaláskor a közlemény rovatban tüntesd fel az alábbi adatokat:<br>\r\nPROFORM azonosítód + táv + neved <br>\r\n<br>\r\nNevezési díjak:<br>\r\n<br>\r\n✅️- Félmaraton👟<br>\r\n9.900 ft /2025.12.31-ig/<br>\r\n10.900 ft /2026.12.01-ig/<br>\r\n<br>\r\n✅️- Kismaraton👟<br>\r\n8.900 ft /2025.12.31-ig/<br>\r\n9.900 ft /2026.12.01-ig/<br>\r\n<br>\r\n✅️- Minimaraton👟<br>\r\n7.900 ft /2025.12.31-ig/<br>\r\n8.900 ft /2026.12.01-ig/<br>\r\n<br>\r\n✅️- Junior maraton👟<br>\r\n❗️ELŐNEVEZETTEKNEK INGYENES🆓️<br>\r\nA Junior maratonra kérjük a regisztrációt, hogy a Télapó is tudja, kik voltak az ügyes gyermekek😉☝️🎅<br><br>\r\n\r\n👢- Cliff Young gumicsizmás futás🥾<br>\r\n❗️KÜLÖN NEVEZÉSI DÍJ NINCS - egy másik versenyszámmal együtt lehet regisztrálni e futamra, amely a versenyt lezáró bulifutás🎉<br><br>\r\n\r\n\r\nAz eseményre szóló kedvezmények csak a 2026.05.15-ig leadott érvényes nevezéseknél felhasználhatók!\r\n<br><br>\r\nA nevezési díj beérkezése után 24 órán belül véglegesítjük nevezésed. A nevezési díjról 8 munkanapon belül számlát állítunk ki, ami egyben a visszaigazolás. \r\n<br>\r\nA nevezés kizárólag a nevezési díjak a fogyasztó által a szolgáltatónak történt megfizetése után válik érvényessé. A fogyasztó a nevezési díjaknak a visszafizetésére akkor tarthat igényt, ha a versenyek kiírásának fő pontjaiban lényeges változás következik be, és ezek valamelyike miatt a fogyasztó eláll a versenyen való részvételtől. Ilyen változásnak számít:<br>\r\n– az adott versenyszám törlése;<br>\r\n– a verseny más városba történő áthelyezése;<br>\r\n– a nevezési díjnak az előre meghirdetetthez képest történt emelése;<br>\r\n<br>\r\nÜdvözlettel:<br>\r\nBalatonfüredi Atlétikai Club<br>\r\n<br>\r\nKöszönjük, hogy a RunPunch 2026 futóversenyt választottad, szeretettel várunk a helyszínen!\r\n<br>\r\nHa kérdésed lenne, akkor az info@runion.eu e-mail címen szívesen megválaszoljuk!",
+        "paymentReminderEnabled": true
+      },
+      {
+        "id": "15ca7278-ce1a-4f24-a292-a2e2a12ff33b",
+        "title": "X. SCHILLER SZERELMES FÜRED",
+        "description": "A hagyományokhoz híven, 2026-ban is megrendezzük a Szerelmes Füred futóversenyt, immáron 10. alkalommal!\r\n\r\n⏰ IDŐPONT: 2026. Február 14. – szombat\r\n\r\n📍 HELYSZÍN: Balatonfüred, Vitorlás tér\r\n\r\n📅 PROGRAM:\r\n09:00 – ULTRA GRANDE AMORE 50K (Helyszíni regisztráció: 07:15-től)\r\n09:50 – „KORTALAN SZERELEM” Séta 3.5 km (Helyszíni regisztráció: 08:15-től)\r\n10:30 – SZERELMÜNK GYÜMÖLCSE gyermekfutam 600m\r\n10:50 – RAPID RANDI 3.57k\r\n11:30 – A FÉLMARATON SZERELMESEI 21k\r\n11:30 – SZERELEMRŐL SZÓ SEM VOLT & SZINGLI futam 7k\r\n12:30 – EGYÜTT FUTUNK 7k & PÁROS VÁLTÓ 2x7k\r\n14:30 – MEGLEPETÉSFUTAM\r\n15:00 – EREDMÉNYHIRDETÉS 🏆\r\n\r\nℹ️ RÉSZLETEK:\r\n- Ultra Grande Amore 50k: 14 kör (50.008 km)\r\n- Félmaraton 21k: 6 kör (21.195 km)\r\n- 7k távok: 2 kör (7.144 km)\r\n- Rapid Randi: 1 kör (3.57 km)\r\n- Páros Váltó: 2+2 kör (Első 2 kört a fiúk futják!)\r\n\r\n🏅 A nevezési díj tartalmazza: Befutóérem, Frissítés, Egy szál rózsa hölgyeknek, Forralt bor, Rajtcsomag, Szerencsekerék, Ingyenes fotók.\r\nNevezés: www.runion.eu",
+        "location": "Balatonfüred, Vitorlás tér",
+        "eventDate": "2026-02-13T22:00:00.000Z",
+        "regDeadline": "2026-02-10T12:59:00.000Z",
+        "createdAt": "2026-01-31T07:54:35.472Z",
+        "updatedAt": "2026-02-06T08:15:10.180Z",
+        "coverImage": "/schiller-cover.jpg",
+        "descriptionDe": null,
+        "descriptionEn": null,
+        "endDate": null,
+        "extraOrganizers": "BakonyOrszág & BalcsiPart Egyesület",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Balatonf%C3%BCred%2C%20Vitorl%C3%A1s%20t%C3%A9r",
+        "organizerId": "8c4f2dde-2f02-4cd5-aa56-6bc5e83c533d",
+        "organizerName": "Balatonfüredi Atlétikai Club",
+        "showCountdown": true,
+        "slug": "schiller-szerelmes-fured-2026",
+        "status": "PUBLISHED",
+        "titleDe": null,
+        "titleEn": null,
+        "websiteUrl": null,
+        "ogDescription": "X. SCHILLER SZERELMES FÜRED - Balatonfüred, Vitorlás tér | Futóverseny・Running Event・Laufevent | Nevezés online az RUNION platformon",
+        "ogImage": "/uploads/b78c550f24522cad.webp",
+        "extraLocations": [],
+        "extraOrganizersJson": [],
+        "extras": [
+          {
+            "id": "1770041421592",
+            "name": "Bögre",
+            "price": 2900,
+            "nameDe": "",
+            "nameEn": "",
+            "priceEur": 0
+          }
+        ],
+        "formConfig": {
+          "fields": [
+            {
+              "id": "field_1770041812592",
+              "type": "text",
+              "label": "Versenyző Neve",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041823760",
+              "type": "email",
+              "label": "E-mail cím",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041956503",
+              "type": "text",
+              "label": "Irányítószám",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041925007",
+              "type": "text",
+              "label": "Település",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041941056",
+              "type": "text",
+              "label": "Cím - utca, hsz.",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042032376",
+              "type": "gender",
+              "label": "Nemed",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042055376",
+              "type": "tel",
+              "label": "Telefonszám pl. 06304407933",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042100233",
+              "type": "date",
+              "label": "Születési idő",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042148040",
+              "type": "text",
+              "label": "Klub",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042153015",
+              "type": "text",
+              "label": "Olimpiai Ötpróba azonosító",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042177719",
+              "type": "text",
+              "label": "Ha párban futsz: Párod neve",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042212359",
+              "type": "text",
+              "label": "Számlázási adatok (Név, cím, adószám (jogi személy esetén kötelező):",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042240160",
+              "type": "text",
+              "label": "Baleset esetén értesítendő (Név, telefonszám) ",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042270088",
+              "type": "text",
+              "label": "Megjegyzés (ide írhatod a kuponkódod, vagy itt tudod jelezni, hogy nyerted a nevezést.)",
+              "options": [],
+              "required": false
+            }
+          ]
+        },
+        "notificationEmail": "info@pcdokk.hu",
+        "sellerId": "265ae45d-a1c8-4470-a79b-9808e9f2a08b",
+        "sortOrder": 0,
+        "confirmationEmailText": "Kedves Futó!\n\nKöszönjük nevezésedet a X. SCHILLER SZERELMES FÜRED versenyre!\n\nFONTOS INFORMÁCIÓK:\nA versenyközpont a Balatonfüredi Vitorlás téren található.\nRajtcsomag átvétel: 8:00 - 9:30 között.\n\nKérjük, hogy a parkoláshoz használd a kijelölt parkolókat.\n\nVárunk szeretettel!\nSzervezők",
+        "paymentReminderEnabled": true
+      },
+      {
+        "id": "85c7c44e-a03f-4f83-800a-0a82ea59f197",
+        "title": "Buff-Ceus Crew",
+        "description": "Buff-Ceus Crew",
+        "location": "Balatonfüred, Füred Kemping Keleti oldal",
+        "eventDate": "2026-05-27T04:00:00.000Z",
+        "regDeadline": "2026-05-25T15:59:00.000Z",
+        "createdAt": "2026-02-03T13:03:53.752Z",
+        "updatedAt": "2026-02-05T14:40:54.188Z",
+        "coverImage": "/uploads/9193693cc7768505.webp",
+        "descriptionDe": null,
+        "descriptionEn": "Buff-Ceus Crew",
+        "endDate": "2026-05-29T16:00:00.000Z",
+        "extraOrganizers": "Balatonfüredi Atlétikai Club",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Balatonf%C3%BCred%2C%20F%C3%BCred%20Kemping%20Keleti%20oldal",
+        "organizerId": "8c4f2dde-2f02-4cd5-aa56-6bc5e83c533d",
+        "organizerName": "Balatonfüred Város Önkormányzata",
+        "showCountdown": true,
+        "slug": "buff-ceus-crew",
+        "status": "PUBLISHED",
+        "titleDe": "Buff-Ceus Crew",
+        "titleEn": "Buff-Ceus Crew",
+        "websiteUrl": null,
+        "ogDescription": "Buff-Ceus Crew - Balatonfüred, Füred Kemping Keleti oldal | Futóverseny・Running Event・Laufevent | Nevezés online az RUNION platformon",
+        "ogImage": "/uploads/d01cb7b0058507dc.webp",
+        "extraLocations": [],
+        "extraOrganizersJson": [],
+        "extras": [],
+        "formConfig": {
+          "fields": [
+            {
+              "id": "field_1770119249532",
+              "type": "text",
+              "label": "Name / Név ",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119320444",
+              "type": "email",
+              "label": "Email / Email cím",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119341628",
+              "type": "text",
+              "label": "Address / Cím - utca, hsz",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119377381",
+              "type": "text",
+              "label": "City / Település",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119395372",
+              "type": "zip",
+              "label": "Postal code / Irányítószám",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119424444",
+              "type": "tel",
+              "label": "Phone / Telefonszám",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119453021",
+              "type": "text",
+              "label": "Name of my runner / Versenyzőm neve",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119485157",
+              "type": "text",
+              "label": "Crew's name / Segítő(im) neve",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119518708",
+              "type": "text",
+              "label": "Billing information / Számlázási adatok / Név, cím /",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770119648604",
+              "type": "text",
+              "label": "Comment / Megjegyzés",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770124764052",
+              "type": "checkbox",
+              "label": "I accept the rules of my participation in the competition, I accept the accreditation before the competition /after identification - ID card, passport/, I comply with the conditions contained therein.  / A versenyen való részvételem szabályait elfogadom, az akkreditációt a verseny előtt /személyazonosítást követően - igazolvány, útlevél/ átveszem, az abban szereplő kitételeket betartom.",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770124830604",
+              "type": "checkbox",
+              "label": "I take part in the event at my own risk, and in the event of an accident, I have no claims against the organisers. / Az eseményen saját felelősségemre veszek részt, balesetem esetén a rendezőkkel szemben semmiféle követelest nem tartok fenn.",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770124883748",
+              "type": "checkbox",
+              "label": "I support my athlete with good sportsmanship throughout the competition. / Sportolómat sportszerű magatartással segítem a verseny folyamán.",
+              "options": [],
+              "required": true
+            }
+          ]
+        },
+        "notificationEmail": "info@pcdokk.hu",
+        "sellerId": "1ca84f52-2999-4b30-a568-1ab721f30062",
+        "sortOrder": 2,
+        "confirmationEmailText": null,
+        "paymentReminderEnabled": true
+      },
+      {
+        "id": "80e33fdd-3b62-4ae0-a493-e0b72cc4cac1",
+        "title": "BUFF-CEUS 72H World Cup",
+        "description": "BUFF-CEUS 72H World Cup\r\n\r\n2026.05.28-2026.05.31.\r\n\r\nBalatonfüred, Füred Kemping és Üdülőfalu\r\n\r\n🛠Rendezők:\r\nCentral European Ultra Series /CEUS/\r\nBalatonfüredi Atlétikai Club\r\nBalatonfüredi Sport Club\r\nMagyar Ultrafutó Liga /KAHU Egyesület/\r\nBakonyország&Balcsipart Egyesület\r\nBalatonfüred Város Önkormányzata\r\n\r\n📢Versenyigazgató:\r\nBaranyai Máté\r\n\r\n📝Pályahitelesítés:\r\nKovács Soma\r\n\r\n👱‍♀️Regisztráció:\r\nVégh Anita\r\n\r\n💁‍♀️Versenytitkár:\r\nMolnárné Magócs Noémi\r\n\r\n⏰️Időmérésért felel:\r\nSzabó Zoltán\r\n\r\n↩️↗️⬅️Pályafelelős:\r\nLovasi Gábor\r\n\r\n⚒️🔧Technikai felelős:\r\nKondrik István\r\n\r\n🌍Nemzetközi kapcsolattartó:\r\nLengyel Ákos\r\n\r\n🎊Marketing:\r\nPócsik Zoltán\r\n\r\n🍴🌯🍲Étkezés:\r\nFábri László, Gaál Szabolcs\r\n\r\n🎤🔊Műsorvezetők:\r\nMarton Zsolt, Kaiser Tamás\r\n\r\n⏳️Időmérés:\r\nkorido.hu\r\n\r\n🏟Pálya:\r\n• 898 méter, 1 méter szintemelkedés/kör\r\n\r\n🏡Versenyközpont:\r\nFüred Kemping Keleti oldal\r\n\r\n✳️Időrend:\r\n2026.05.27. 17:00-18:30✅️\r\nÜnnepélyes megnyitó és technikai értekezlet a versenyközpontban\r\n\r\n✳️Rajtszámfelvétel:\r\n2026.05.27. 16:00-20:00 /72&48H/✅️\r\n2026.05.28. 08:00-10:00 /72&48H/✅️\r\n2026.05.29. 16:00-20:00 /24&12H/✅️\r\n2026.05.30. 06:00-07:00 /12H/✅️\r\n2026.05.30. 08:00-10:00 /24H/✅️\r\n2026.05.30. 18:00-20:00 /6H/✅️\r\n2026.05.31. 04:30-05:30 /6H/✅️\r\n\r\nRajt:\r\n✳️72H World Cup\r\n✳️48H European Cup\r\n2026.05.28. 12:00\r\n\r\n✳️24H European Cup\r\n2026.05.30. 12:00\r\n\r\n✳️12H European Cup\r\n2026.05.30. 08:00\r\n\r\n✳️6H European Cup\r\n2026.05.31. 06:00\r\n\r\n✳️Záróünnepség, díjkiosztó:\r\n2026.05.31. 16:00\r\n\r\n🏆🥇🥈🥉Díjazás:\r\nMinden résztvevő a verseny emlékérmét veheti át.🏅\r\n\r\nA 72H World Cup versenyszámban korosztályos, nemenkénti díjazás az alábbi korosztályokban:\r\n-23, 23+, 35+, 40+, 45+, 50+, 55+, 60+, 65+, 70+, 75+, 80+\r\nAz egyéb versenyszámokban nemenkénti díjazás, abszolút I-III. helyezettek részére.\r\n72H WC TEAM díjazás:\r\n- férfi páros\r\n- női páros\r\n- mix /2 férfi + 2 női eredmény országonként/\r\n\r\n⚠️Versenyszámok:\r\n\r\n🏆72H World Cup🥇🥈🥉\r\nrajt:\r\n⏰️2026.05.28.12:00\r\n\r\n🏆48H European Cup🥇🥈🥉\r\nrajt:\r\n⏰️2026.05.28. 12:00\r\n\r\n🏆24H European Cup🥇🥈🥉\r\nrajt:\r\n⏰️2026.05.30. 12:00\r\n\r\n🏆12H European Cup🥇🥈🥉\r\nrajt:\r\n⏰️2026.05.30. 08:00\r\n\r\n🏆6H European Cup🥇🥈🥉\r\nrajt:\r\n⏰️2026.05.31. 06:00\r\n\r\n✳️Szállás és parkolóhelyek elfoglalása, egyéni frissítőasztalok kihelyezése:\r\n2026.05.27. 12:00 – 2026.05.28. 10:00 között\r\n/Aki a szállás mellett helyezi el a gépjárművét, az 2026.05.28.10:00 és 2026.05.31.14:00 között azt nem indíthatja be és nem változtathatja a helyét‼️\r\n\r\nEgyéb ingyenes parkolóhely a kemping melletti parkolóban, a bejárattól 70 méterre található.☝️\r\n\r\n✳️Központi frissítőasztal:\r\n- víz,\r\n- tea /meleg/,\r\n- iso/Hammer/,\r\n- szörp,\r\n- kávé\r\n\r\n🍝Meleg étkezések /szállásnál kihelyezve/:\r\n2026.05.29. 12:00 - tészta /húsos és vegán/\r\n2026.05.30. 12:00 - tészta /húsos és vegán/\r\n\r\n🍌🍎🍞🍜Minden egyéb frissítést és étkezést a versenyzők egy rajtdobozban kapnak meg a rajtszámfelvételkor! /gyümölcs, csokoládé, péksütemény, kávé, leves, stb./ Ezt a szállásukon tudják elhelyezni és felhasználni.\r\n\r\n🏃‍♀️🏃‍♂️A verseny:\r\n©️Central European Ultra Series\r\nesemény\r\n\r\nVerseny közben rögzített, hivatalos eredmények:\r\n🏆7️⃣2️⃣H World Cup\r\n/48h, 24h, 100mi, 12h, 100k, 6h, 50k split/\r\n🏁\r\n🏆4️⃣8️⃣H European Cup\r\n/24h, 100mi, 12h, 100k, 6h, 50k split/\r\n🏁\r\n🏆2️⃣4️⃣H European Cup\r\n/100mi, 12h, 100k, 6h, 50k split/\r\n🏁\r\n🏆1️⃣2️⃣H European Cup\r\n/100k, 6h, 50k split/\r\n🏁\r\n🏆6️⃣H European Cup\r\n/50K split/\r\n🏁\r\n\r\n🆔️Korosztályok a 72H World Cup-on:\r\nAge Group\r\n➖️2️⃣3️⃣🏆🥇🥈🥉\r\n2️⃣3️⃣➕️🏆🥇🥈🥉\r\n3️⃣5️⃣➕️🏆🥇🥈🥉\r\n4️⃣0️⃣➕️🏆🥇🥈🥉\r\n4️⃣5️⃣➕️🏆🥇🥈🥉\r\n5️⃣0️⃣➕️🏆🥇🥈🥉\r\n5️⃣5️⃣➕️🏆🥇🥈🥉\r\n6️⃣0️⃣➕️🏆🥇🥈🥉\r\n6️⃣5️⃣➕️🏆🥇🥈🥉\r\n7️⃣0️⃣➕️🏆🥇🥈🥉\r\n7️⃣5️⃣➕️🏆🥇🥈🥉\r\n8️⃣0️⃣➕️🏆🥇🥈🥉\r\n8️⃣5️⃣➕️🏆🥇🥈🥉\r\n\r\n👟A résztvevő a következő szolgáltatásokra jogosult:\r\n\r\n- versenyen való részvétel✅️\r\n- chipes időmérés✅️\r\n- online eredmények✅️\r\n- hideg és meleg étkezés✅️\r\n- frissítőzóna használata✅️\r\n- egészségügyi felügyelet✅️\r\n- szállás /72, 48, 24H/✅️\r\n- parkolás✅️\r\n- egyéni frissítőasztal /12H, 6H/✅️\r\n- a verseny hivatalos pólója✅️\r\n- emlékérem✅️\r\n- díjazás✅️\r\n- World Cup /korosztályos díjazás/✅️\r\n- rajtcsomag, rajtdoboz/gyümölcsökkel/✅️\r\n- szponzorok ajándékai✅️\r\n- segítőt, saját személyzetet regisztrálni✅️\r\n\r\nAmennyiben a 72H World Cup létszám betelt, a rendező egyedi elbírálás alapján, az egyéb versenyszámok terhére, vagy pályaszállás nélkül is fogadhat regisztrációt☝️\r\n\r\nPályarendszabályok:\r\n1️⃣Tilos a folyamatos párhuzamos futás vagy gyaloglás: Tekintettel a nagyszámú indulóra és a pálya adottságaira, a versenyzőknek tilos folyamatosan egymás mellett futni vagy gyalogolni. Ez a szabály a verseny zavartalan lebonyolítását és a versenyzők biztonságát szolgálja.\r\n\r\n2️⃣Tilos a pálya belső ívén való gyaloglás: A versenyzőknek tilos a pálya belső ívén gyalogolni, beleértve a szűk ívben történő kanyarodást is. Ez a szabály a verseny fair jellegét hivatott biztosítani, mivel a belső ív gyalogos használata nagyban akadályozhatja a többi futót.\r\n/Az ívek az aszfalton jelölve lesznek./\r\n\r\n3️⃣Zenehallgatás a verseny folyamán, csak az egyik fülön elhelyezett eszköz használatával lehetséges /a többi sportoló megzavarása nélkül/.\r\n\r\n4️⃣Fejlámpa használata lehetséges /más sportolók megzavarása nélkül/\r\n\r\n🏥Egészségügyi szabályzat:\r\nA versenyen való részvétel feltétele egy 60 napnál nem régebbi, orvosi igazolás a verseny hivatalos egészségügyi dokumentumával.\r\nMagyar versenyzők MASZ ranglista eredményekre csak akkor jogosultak, ha érvényes MASZ versenyengedéllyel /tehát sportorvosi igazolással is/ rendelkeznek a verseny idején!\r\n\r\n🕰Eredmények kiértékelése:\r\n\r\nA verseny eredményei felkerülnek a DUV oldalra és a CEUS, illetve a GOMU ranglistáira is!\r\n\r\nA korosztályos eredményeknél a verseny végidőpontja a viszonyítási alap a korosztályos besorolásnál.\r\n\r\nFutók létszámától függően a szervezők a változtatás jogát fenntartják!\r\n\r\nMinden versenyző a rajtszám felvételekor megkapja a segítő karszalagját is! – ezt a verseny ideje alatt kötelező viselni! A többi segítő az egyéni frissítőasztalnál illetve a szurkolói zónában tartózkodhat. Segítség csak a frissítő zónában adható! Kisérni a futót a pályán nem engedélyezett!\r\n\r\nA világbajnokság résztvevői számára országonként kerülnek kiosztásra a pályaszállások.\r\n\r\nA versenypálya központi frissítő zónájában, futónként 1 segítő közreműködhet a verseny teljes ideje alatt! Minden versenyző a rajtszám felvételekor megkapja a segítő karszalagját is! – ezt a verseny ideje alatt kötelező viselni!\r\n\r\nTisztelt Sportoló!\r\n\r\nLemondás esetén a befizetett nevezési díj visszatérítésére az alábbiak szerint van mód:\r\n\r\n2025.12.31-ig \r\n\r\nTELJES ÖSSZEG\r\n\r\n2026.01.01-től\r\n\r\nA BEFIZETETT ÖSSZEG 70%-a\r\n\r\n2026.03.01-től\r\n\r\nA BEFIZETETT ÖSSZEG 50%-a\r\n\r\n2026.05.01-től \r\n\r\nNINCS MÓD visszafizetésre! \r\n\r\nA nevezés lemondás esetén /visszatérítés nélkül/ teljes értékben felhasználható 2027.12.31-ig bármely esemenyünkön!",
+        "location": "Balatonfüred, Füred Kemping Keleti oldal",
+        "eventDate": "2026-05-27T18:00:00.000Z",
+        "regDeadline": "2026-05-26T05:59:00.000Z",
+        "createdAt": "2026-02-02T09:33:18.402Z",
+        "updatedAt": "2026-02-05T14:40:54.188Z",
+        "coverImage": "/uploads/9193693cc7768505.webp",
+        "descriptionDe": null,
+        "descriptionEn": "BUFF-CEUS 72H World Cup\r\n\r\nMay 28-31, 2026\r\n\r\nBalatonfüred, Füred Camping and Holiday Village\r\n\r\n🛠Organizers:\r\nCentral European Ultra Series /CEUS/\r\nBalatonfüred Athletics Club\r\nBalatonfüred Sports Club\r\nHungarian Ultra Running League /KAHU Association/\r\nBakonyország&Balcsipart Association\r\nBalatonfüred City Council\r\n\r\n📢Race director:\r\nMáté Baranyai\r\n\r\n📝Course certification:\r\nSoma Kovács\r\n\r\n👱‍♀️Registration:\r\nAnita Végh\r\n\r\n💁‍♀️Race Secretary:\r\nNoémi Molnárné Magócs\r\n\r\n⏰️Timekeeper:\r\nZoltán Szabó\r\n\r\n↩️↗️⬅️Course Manager:\r\nGábor Lovasi\r\n\r\n⚒️🔧Technical Manager:\r\nIstván Kondrik\r\n\r\n🌍International liaison:\r\nÁkos Lengyel\r\n\r\n🎊Marketing:\r\nZoltán Pócsik\r\n\r\n🍴🌯🍲Catering:\r\nLászló Fábri, Szabolcs Gaál\r\n\r\n🎤🔊Presenters:\r\nZsolt Marton, Tamás Kaiser\r\n\r\n⏳️Timekeeping:\r\nkorido.hu\r\n\r\n🏟Track:\r\n• 898 meters, 1 meter elevation gain/lap\r\n\r\n🏡Race center:\r\nFüred Campground East Side\r\n\r\n✳️Schedule:\r\nMay 27, 2026, 5:00 p.m. to 6:30 p.m.✅️\r\nCeremonial opening and technical meeting at the competition center\r\n\r\n✳️Race number pickup:\r\nMay 27, 2026, 4:00 p.m. to 8:00 p.m. /72&48H/✅️\r\nMay 28, 2026, 8:00 a.m. to 10:00 a.m. /72&48H/✅️\r\nMay 29, 2026, 4:00 p.m. to 8:00 p.m. /24&12H/✅️\r\nMay 30, 2026, 6:00 a.m. to 7:00 a.m. /12H/ ✅️\r\nMay 30, 2026, 8:00 a.m. to 10:00 a.m. /24H/✅️\r\nMay 30, 2026, 6:00 p.m. to 8:00 p.m. /6H/✅️\r\nMay 31, 2026, 4:30 a.m. to 5:30 a.m. /6H/ ✅️\r\n\r\nStart:\r\n✳️72H World Cup\r\n✳️48H European Cup\r\nMay 28, 2026, 12:00 p.m.\r\n\r\n✳️24H European Cup\r\nMay 30, 2026, 12:00 p.m.\r\n\r\n✳️12H European Cup\r\nMay 30, 2026, 8:00 a.m.\r\n\r\n✳️6H European Cup\r\nMay 31, 2026, 6:00 a.m.\r\n\r\n✳️Closing ceremony, award ceremony:\r\nMay 31, 2026, 4:00 p.m.\r\n\r\n✳️Accommodation and parking space reservation, individual refreshment tables:\r\nMay 27, 2026, 12:00 p.m. – May 28, 2026, 10:00 a.m.\r\n/Those who park their vehicles next to their accommodation may not start them or change their location between May 28, 2026, 10:00 a.m. and May 31, 2026, 2:00 p.m.‼️\r\n\r\nOther free parking spaces are available in the car park next to the campsite, 70 meters from the entrance.☝️\r\n\r\n✳️Central refreshment table:\r\n- water,\r\n- tea /hot/,\r\n- iso/Hammer/,\r\n- syrup,\r\n- coffee\r\n\r\n🍝Hot meals (served at the accommodation):\r\nMay 29, 2026, 12:00 p.m. - pasta (meat and vegan)\r\nMay 30, 2026, 12:00 p.m. - pasta (meat and vegan)\r\n\r\n🍌🍎🍞🍜All other refreshments and meals will be provided to competitors in a starter box when they pick up their race numbers! /fruit, chocolate, pastries, coffee, soup, etc./ These can be stored and consumed at their accommodation.\r\n🏃‍♀️🏃‍♂️The race:\r\n©️Central European Ultra Series\r\nevent\r\n\r\nOfficial results recorded during the race:\r\n🏆7️⃣2️⃣H World Cup\r\n/48h, 24h, 100mi, 12h, 100k, 6h, 50k split/\r\n🏁\r\n🏆4️⃣8️⃣H European Cup\r\n/24h, 100mi, 12h, 100k, 6h, 50k split/\r\n🏁\r\n🏆2️⃣4️⃣H European Cup\r\n/100mi, 12h, 100k, 6h, 50k split/\r\n🏁\r\n🏆1️⃣2️⃣H European Cup\r\n/100k, 6h, 50k split/\r\n🏁\r\n🏆6️⃣H European Cup\r\n/50K split/\r\n🏁\r\n\r\n🆔️Age groups at the 72H World Cup:\r\nAge Group\r\n➖️2️⃣3️⃣🏆🥇🥈🥉\r\n2️⃣3️⃣➕️🏆🥇🥈🥉\r\n3️⃣5️⃣➕️🏆🥇🥈🥉\r\n4️⃣0️⃣➕️🏆🥇🥈🥉\r\n4️⃣5️⃣➕️🏆🥇🥈🥉\r\n5️⃣0️⃣➕️🏆🥇🥈🥉\r\n5️⃣5️⃣➕️🏆🥇🥈🥉\r\n6️⃣0️⃣➕️🏆🥇🥈🥉\r\n6️⃣5️⃣➕️🏆🥇🥈🥉\r\n7️⃣0️⃣➕️🏆🥇🥈🥉\r\n7️⃣5️⃣➕️🏆🥇🥈🥉\r\n8️⃣0️⃣➕️🏆🥇🥈🥉\r\n8️⃣5️⃣➕️🏆🥇🥈🥉\r\n\r\n👟Participants are entitled to the following services:\r\n\r\n- participation in the race✅️\r\n- chip timing✅️\r\n- online results✅️\r\n- cold and hot meals✅️\r\n- use of the refreshment zone✅️\r\n- medical supervision✅️\r\n- accommodation /72, 48, 24H/ ✅️\r\n- parking✅️\r\n- individual refreshment table /12H, 6H/✅️\r\n- official competition T-shirt✅️\r\n- commemorative medal✅️\r\n- prize money✅️\r\n- World Cup /age group prize money/ ✅️\r\n- starter pack, starter box/with fruit/✅️\r\n- gifts from sponsors✅️\r\n- registration of assistants and personal staff✅️\r\n\r\nIf the 72H World Cup is full, the organizer may, at their sole discretion, accept registrations at the expense of other events or without track accommodation☝️\r\n\r\nTrack rules:\r\n1️⃣Continuous parallel running or walking is prohibited: Due to the large number of participants and the characteristics of the track, competitors are prohibited from running or walking continuously side by side. This rule is intended to ensure the smooth running of the race and the safety of the competitors.\r\n\r\n2️⃣Walking on the inside curve of the track is prohibited: Competitors are prohibited from walking on the inside curve of the track, including turning in a tight curve. This rule is intended to ensure the fairness of the race, as walking on the inside curve can greatly hinder other runners.\r\n/The curves will be marked on the asphalt./\r\n\r\n3️⃣Listening to music during the race is only permitted with a device placed in one ear /without disturbing other athletes/.\r\n\r\n4️⃣Headlamps may be used /without disturbing other athletes/.\r\n\r\n🏥Health regulations:\r\nParticipation in the race is subject to a medical certificate not older than 60 days, along with the official health document of the race.\r\nHungarian competitors are only eligible for MASZ ranking results if they have a valid MASZ competition license (i.e., a sports medical certificate) at the time of the race!\r\n\r\n🕰Evaluation of results:\r\n\r\nThe results of the competition will be posted on the DUV website and in the CEUS and GOMU rankings!\r\n\r\nFor age group results, the end time of the competition is the basis for age group classification.\r\n\r\nDepending on the number of runners, the organizers reserve the right to make changes!\r\n\r\nAll competitors will receive an assistant armband when they pick up their race number! – This must be worn during the competition! Other assistants may stay at the individual refreshment table or in the cheering zone. Assistance may only be provided in the refreshment zone! Accompanying runners on the course is not permitted!\r\n\r\nCourse accommodations will be allocated to World Championship participants on a country-by-country basis.\r\n\r\nIn the central refreshment zone of the race course, one helper per runner may assist throughout the entire race! All competitors will receive a helper armband when they pick up their race number! – This must be worn at all times during the race!\r\n\r\nDear Athlete!\r\n\r\nIn case of cancellation, the entry fee paid will be refunded as follows:\r\n\r\nUntil December 31, 2025 \r\n\r\nFULL AMOUNT\r\n\r\nFrom January 1, 2026\r\n\r\n70% OF THE AMOUNT PAID\r\n\r\nFrom March 1, 2026\r\n\r\n50% of the AMOUNT PAID\r\n\r\nFrom May 1, 2026 \r\n\r\nNO REFUND! \r\n\r\nIn case of cancellation (without refund), the entry fee can be used in full until December 31, 2027 at any of our events!",
+        "endDate": "2026-05-30T06:00:00.000Z",
+        "extraOrganizers": "Balatonfüredi Atlétikai Club",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Balatonf%C3%BCred%2C%20F%C3%BCred%20Kemping%20Keleti%20oldal",
+        "organizerId": "8c4f2dde-2f02-4cd5-aa56-6bc5e83c533d",
+        "organizerName": "Balatonfüred Város Önkormányzata",
+        "showCountdown": true,
+        "slug": "buff-ceus-72h-world-cup",
+        "status": "PUBLISHED",
+        "titleDe": "BUFF-CEUS 72H World Cup",
+        "titleEn": "BUFF-CEUS 72H World Cup",
+        "websiteUrl": null,
+        "ogDescription": "BUFF-CEUS 72H World Cup - Balatonfüred, Füred Kemping Keleti oldal | Futóverseny・Running Event・Laufevent | Nevezés online az RUNION platformon",
+        "ogImage": "/uploads/d01cb7b0058507dc.webp",
+        "extraLocations": [],
+        "extraOrganizersJson": [],
+        "extras": [
+          {
+            "id": "1770113059485",
+            "name": "Póló FINISHER",
+            "price": 0,
+            "nameDe": "",
+            "nameEn": "T-shirt FINISHER",
+            "priceEur": 0
+          },
+          {
+            "id": "1770113134228",
+            "name": "Meleg étkezések",
+            "price": 0,
+            "nameDe": "",
+            "nameEn": "Hot meals",
+            "priceEur": 0
+          }
+        ],
+        "formConfig": {
+          "fields": [
+            {
+              "id": "field_1770119249532",
+              "type": "text",
+              "label": "Name / Név ",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119320444",
+              "type": "email",
+              "label": "Email / Email cím",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119341628",
+              "type": "text",
+              "label": "Address / Cím - utca, hsz",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119377381",
+              "type": "text",
+              "label": "City / Település",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119395372",
+              "type": "zip",
+              "label": "Postal code / Irányítószám",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119424444",
+              "type": "tel",
+              "label": "Phone / Telefonszám",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119444980",
+              "type": "date",
+              "label": "Date of birth / Születési idő",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119453021",
+              "type": "text",
+              "label": "Nationality / Nemzetiség ",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119485157",
+              "type": "text",
+              "label": "Club / Klub",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770119490588",
+              "type": "gender",
+              "label": "Your gender / Nemed",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119518708",
+              "type": "text",
+              "label": "Billing information / Számlázási adatok / Név, cím /",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770119588164",
+              "type": "text",
+              "label": "To be notified in case of an accident / Baleset esetén értesítendő / Név, telefonszám /",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770119648604",
+              "type": "text",
+              "label": "Comment / Megjegyzés",
+              "options": [],
+              "required": false
+            }
+          ]
+        },
+        "notificationEmail": "info@pcdokk.hu",
+        "sellerId": "1ca84f52-2999-4b30-a568-1ab721f30062",
+        "sortOrder": 1,
+        "confirmationEmailText": null,
+        "paymentReminderEnabled": true
+      },
+      {
+        "id": "61a36f69-0627-4133-b6a3-635042b499ab",
+        "title": "ISOPOL SUPER 6/12/24 ULTRAMARATHON 2026",
+        "description": "Az ISOPOL SUPER6 története folytatódik 2026-ban! Az ultrafutás szerelmesei 6-12-24 órás versenyszámokban állhatnak rajthoz, ki-ki kedve és felkészültsége szerint. Válaszd ki a kihívást, ami a leginkább passzol hozzád!\r\n\r\nRendezők\r\n\r\nBakonyOrszág & BalcsiPart Egyesület\r\nVEDAC\r\nRajtok\r\n\r\n24H: 2026. október 24. 12:00\r\n12H: 2026. október 24. 12:00\r\n6H: 2026. október 25. 06:00\r\nPálya\r\n\r\n24H: 400m-es rekortán pálya\r\n12H/6H: 414m-es rekortán pálya\r\nSplitek\r\n\r\n6H / 12H / 50K / 100K / 50 mérföld / 100 mérföld\r\nIdőmérés\r\n\r\nDupla chipes időmérés a korido.hu rendszerével.\r\nNevezési Díjak\r\n\r\njanuár 15-ig, vagy a nevezés beteltéig:\r\n24H: 32.000 HUF\r\n12H: 24.000 HUF\r\n6H: 16.000 HUF\r\n6H/3 fős váltó: 14.000 HUF/fő (Limit: 10 váltó)\r\n12H/4 fős váltó: 14.000 HUF/fő (Limit: 10 váltó)\r\njanuár 16-tól:\r\n24H: 38.000 HUF\r\n12H: 30.000 HUF\r\n6H: 22.000 HUF\r\n6H/3 fős váltó: 18.000 HUF/fő (Limit: 10 váltó)\r\n12H/4 fős váltó: 18.000 HUF/fő (Limit: 10 váltó)\r\nA Nevezési Díj Tartalmazza\r\n\r\nRészvétel a versenyen\r\nTeljesen zárt, rekortán pálya\r\nIngyenes parkolás\r\nEgészségügyi felügyelet\r\nDupla chipes időmérés\r\nÉlő közvetítés és online eredmények\r\nRajtdoboz frissítéssel\r\nDíjazás\r\nDUV és CEUS eredménylista\r\nFinisher mez (opcionális)\r\nA verseny hivatalos pólója\r\nSzponzorok ajándékai\r\nFém emlékérem\r\nLetölthető oklevél\r\nRészvétel a versenyt követő banketten\r\nFűtött versenyközpont öltözővel, ruhatárral és tisztálkodási lehetőséggel\r\nDíjazás\r\n\r\nMinden versenyszámban díjazásban részesülnek a korosztályos bajnokok és nemenként az abszolút I-II-III. helyezettek.\r\n\r\nFontos Információk\r\n\r\nA verseny nyílt, bárki nevezhet a létszám beteltéig.\r\nMAGYAR RANGLISTA: A magyar ranglistára csak azon versenyzők eredményei kerülnek fel, akik MASZ versenyengedéllyel rendelkeznek. Ehhez kötelező a MIR rendszerben való nevezés is a klubok által.\r\nLétszámlimit (Egyéni Futók)\r\n\r\n24H: 60 fő\r\n12H: 60 fő\r\n6H: 60 fő\r\nA rendezők a beérkező nevezések függvényében kis mértékben eltérhetnek a létszámlimitektől.\r\nMinden érdeklődőt szeretettel várunk!",
+        "location": "Veszprém",
+        "eventDate": "2026-10-24T02:00:00.000Z",
+        "regDeadline": "2026-10-21T14:00:00.000Z",
+        "createdAt": "2026-02-05T14:41:05.854Z",
+        "updatedAt": "2026-02-05T15:25:25.705Z",
+        "coverImage": "/uploads/7a12d9d70abb1dbd.webp",
+        "descriptionDe": null,
+        "descriptionEn": null,
+        "endDate": "2026-10-25T12:00:00.000Z",
+        "extraOrganizers": "VEDAC",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Veszpr%C3%A9m",
+        "organizerId": "8c4f2dde-2f02-4cd5-aa56-6bc5e83c533d",
+        "organizerName": "BakonyOrszág & BalcsiPart Egyesület",
+        "showCountdown": true,
+        "slug": "isopol-super-61224-ultramarathon-2026",
+        "status": "PUBLISHED",
+        "titleDe": null,
+        "titleEn": null,
+        "websiteUrl": null,
+        "ogDescription": "ISOPOL SUPER 6/12/24 ULTRAMARATHON 2026 - Veszprém | Futóverseny・Running Event・Laufevent | Nevezés online az RUNION platformon",
+        "ogImage": "/uploads/45258a27c87a8d36.webp",
+        "extraLocations": [],
+        "extraOrganizersJson": [],
+        "extras": [],
+        "formConfig": {
+          "fields": [
+            {
+              "id": "field_1770041812592",
+              "type": "text",
+              "label": "Versenyző Neve",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041823760",
+              "type": "email",
+              "label": "E-mail cím",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041956503",
+              "type": "text",
+              "label": "Irányítószám",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041925007",
+              "type": "text",
+              "label": "Település",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041941056",
+              "type": "text",
+              "label": "Cím - utca, hsz.",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042032376",
+              "type": "gender",
+              "label": "Nemed",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042055376",
+              "type": "tel",
+              "label": "Telefonszám pl. 06304407933",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042100233",
+              "type": "date",
+              "label": "Születési idő",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042148040",
+              "type": "text",
+              "label": "Klub",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042153015",
+              "type": "text",
+              "label": "Olimpiai Ötpróba azonosító",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042212359",
+              "type": "text",
+              "label": "Számlázási adatok (Név, cím, adószám (jogi személy esetén kötelező):",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042240160",
+              "type": "text",
+              "label": "Baleset esetén értesítendő (Név, telefonszám) ",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042270088",
+              "type": "text",
+              "label": "Megjegyzés (ide írhatod a kuponkódod, vagy itt tudod jelezni, hogy nyerted a nevezést.)",
+              "options": [],
+              "required": false
+            }
+          ]
+        },
+        "notificationEmail": "info@pcdokk.hu",
+        "sellerId": "19f1ed4d-a6c1-4327-a4d5-87a7f28afdd6",
+        "sortOrder": 3,
+        "confirmationEmailText": "A regisztrációdat rögzítettük ISOPOL SUPER 6/12/24 ULTRAMARATHON 2026 futóversenyünkre\r\n<br>\r\nVÉGLEGESÍTÉSHEZ SZÜKSÉGES ADATOK! KÉRJÜK OLVASD EL!<br>\r\n------------------------------------------------------------------------------------------------------\r\nNevezés véglegesítésére/nevezési díj utalására: 24 óra áll rendelkezésedre - ezután a regisztrációd törlődik!<br>\r\n------------------------------------------------------------------------------------------------------\r\nKérjük, hogy a nevezési díjat a következő számlaszámra teljesítsd:<br>\r\n\r\nBakonyOrszág-BalcsiPart\r\nKulturális és Sport Egyesület\r\n<br>\r\nSzámlaszám, ahová a nevezési díjat utalhatod:\r\n11748007-24830210-00000000\r\n<br>\r\nNAGYON FONTOS, hogy utaláskor a közlemény rovatban tüntesd fel az alábbi adatokat:\r\nPROFORM számod + neved \r\n<br>\r\nNevezési Díjak\r\n<br>\r\n2026. január 15-ig, vagy a nevezés beteltéig:<br>\r\n•\t24H: 32.000 HUF<br>\r\n•\t12H: 24.000 HUF<br>\r\n•\t6H: 16.000 HUF<br>\r\n•\t6H/3 fős váltó: 14.000 HUF/fő (Limit: 10 váltó)<br>\r\n•\t12H/4 fős váltó: 14.000 HUF/fő (Limit: 10 váltó)<br>\r\n\r\n2026. január 16-tól:<br>\r\n•\t24H: 38.000 HUF<br>\r\n•\t12H: 30.000 HUF<br>\r\n•\t6H: 22.000 HUF<br>\r\n•\t6H/3 fős váltó: 18.000 HUF/fő (Limit: 10 váltó)<br>\r\n•\t12H/4 fős váltó: 18.000 HUF/fő (Limit: 10 váltó)<br>\r\n\r\nA Nevezési Díj Tartalmazza<br>\r\n•\tRészvétel a versenyen<br>\r\n•\tTeljesen zárt, rekortán pálya<br>\r\n•\tIngyenes parkolás<br>\r\n•\tEgészségügyi felügyelet<br>\r\n•\tDupla chipes időmérés<br>\r\n•\tÉlő közvetítés és online eredmények<br>\r\n•\tRajtdoboz frissítéssel<br>\r\n•\tDíjazás<br>\r\n•\tDUV és CEUS eredménylista<br>\r\n•\tFinisher mez (opcionális)<br>\r\n•\tA verseny hivatalos pólója<br>\r\n•\tSzponzorok ajándékai<br>\r\n•\tFém emlékérem<br>\r\n•\tLetölthető oklevél<br>\r\n•\tRészvétel a versenyt követő banketten<br>\r\n•\tFűtött versenyközpont öltözővel, ruhatárral és tisztálkodási lehetőséggel<br>\r\n<br>\r\nA nevezési díj beérkezése után 24 órán belül véglegesítjük nevezésed. A nevezési díjról 8 munkanapon belül számlát állítunk ki, ami egyben a visszaigazolás. \r\n<br>\r\nA nevezés kizárólag a nevezési díjak a fogyasztó által a szolgáltatónak történt megfizetése után válik érvényessé. A fogyasztó a nevezési díjaknak a visszafizetésére akkor tarthat igényt, ha a versenyek kiírásának fő pontjaiban lényeges változás következik be, és ezek valamelyike miatt a fogyasztó eláll a versenyen való részvételtől. Ilyen változásnak számít:<br>\r\n– az adott versenyszám törlése;<br>\r\n– a verseny más városba történő áthelyezése;<br>\r\n<br>\r\nÜdvözlettel:<br>\r\nBakonyOrszág-BalcsiPart<br>\r\nKulturális és Sport Egyesület<br>\r\n<br><br>\r\nHa kérdésed lenne, akkor az s6ultramaraton@gmail.com e-mail címen szívesen megválaszoljuk!\r\n",
+        "paymentReminderEnabled": true
+      },
+      {
+        "id": "93150b05-252c-4519-85eb-b4226e3a0062",
+        "title": "13. PEZOWOOD SZŐLŐSKÖR",
+        "description": "13. PEZOWOOD SZŐLŐSKÖR",
+        "location": "Balatonszőlős",
+        "eventDate": "2026-09-11T18:00:00.000Z",
+        "regDeadline": "2026-09-10T00:00:00.000Z",
+        "createdAt": "2026-02-04T11:49:11.835Z",
+        "updatedAt": "2026-02-06T08:17:55.037Z",
+        "coverImage": "/uploads/24fe1f53688c0a40.webp",
+        "descriptionDe": null,
+        "descriptionEn": null,
+        "endDate": "2026-09-12T08:00:00.000Z",
+        "extraOrganizers": "Balatonfüredi Atlétikai Club",
+        "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Balatonsz%C5%91l%C5%91s",
+        "organizerId": "8c4f2dde-2f02-4cd5-aa56-6bc5e83c533d",
+        "organizerName": "Balatonszőlős Község Önkormányzata",
+        "showCountdown": true,
+        "slug": "13-pezowood-szlskr",
+        "status": "PUBLISHED",
+        "titleDe": null,
+        "titleEn": null,
+        "websiteUrl": null,
+        "ogDescription": "13. PEZOWOOD SZŐLŐSKÖR - Balatonszőlős | Futóverseny・Running Event・Laufevent | Nevezés online az RUNION platformon",
+        "ogImage": "/uploads/6aca0a90fe584cb7.webp",
+        "extraLocations": [],
+        "extraOrganizersJson": [],
+        "extras": [
+          {
+            "id": "1770041421592",
+            "name": "Korábbi SzőlősKör ultra távú teljesítőknek 4000 Ft kedvezmény jár",
+            "price": -4000,
+            "nameDe": "",
+            "nameEn": "",
+            "priceEur": 0
+          },
+          {
+            "id": "1770206363838",
+            "name": "Étkezés",
+            "price": 600,
+            "nameDe": "",
+            "nameEn": "",
+            "priceEur": 0
+          }
+        ],
+        "formConfig": {
+          "fields": [
+            {
+              "id": "field_1770041812592",
+              "type": "text",
+              "label": "Versenyző Neve",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041823760",
+              "type": "email",
+              "label": "E-mail cím",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041956503",
+              "type": "text",
+              "label": "Irányítószám",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041925007",
+              "type": "text",
+              "label": "Település",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770041941056",
+              "type": "text",
+              "label": "Cím - utca, hsz.",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042032376",
+              "type": "gender",
+              "label": "Nemed",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042055376",
+              "type": "tel",
+              "label": "Telefonszám pl. 06304407933",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042100233",
+              "type": "date",
+              "label": "Születési idő",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042148040",
+              "type": "text",
+              "label": "Klub",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042153015",
+              "type": "text",
+              "label": "Olimpiai Ötpróba azonosító",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042212359",
+              "type": "text",
+              "label": "Számlázási adatok (Név, cím, adószám (jogi személy esetén kötelező):",
+              "options": [],
+              "required": false
+            },
+            {
+              "id": "field_1770042240160",
+              "type": "text",
+              "label": "Baleset esetén értesítendő (Név, telefonszám) ",
+              "options": [],
+              "required": true
+            },
+            {
+              "id": "field_1770042270088",
+              "type": "text",
+              "label": "Megjegyzés (ide írhatod a kuponkódod, vagy itt tudod jelezni, hogy nyerted a nevezést.)",
+              "options": [],
+              "required": false
+            }
+          ]
+        },
+        "notificationEmail": "info@pcdokk.hu",
+        "sellerId": "265ae45d-a1c8-4470-a79b-9808e9f2a08b",
+        "sortOrder": 3,
+        "confirmationEmailText": "A regisztrációdat rögzítettük XIII Pezowood SzőlősKör futóversenyünkre\r\n\r\nVÉGLEGESÍTÉSHEZ SZÜKSÉGES ADATOK! KÉRJÜK OLVASD EL!\r\n----------------------------------------------------------------------------------------------------------------------------\r\nNevezés véglegesítésére/nevezési díj utalására: 24 óra áll rendelkezésedre - ezután a regisztrációd törlődik!\r\n----------------------------------------------------------------------------------------------------------------------------\r\nKérjük, hogy a nevezési díjat a következő számlaszámra teljesítsd:\r\n\r\nBelföldi fizetés esetén: BALATONFÜREDI ATLÉTIKAI CLUB\r\nSzámlaszám: 11748069-25512412\r\n\r\nNAGYON FONTOS, hogy utaláskor a közlemény rovatban tüntesd fel az alábbi adatokat:\r\nXIII SzőlősKör + táv + neved \r\n\r\nKérlek, ha egyéb rendelésed is volt azt számold bele az utalandó összegbe ezt az email alján megtalálod!\r\n\r\n💳💶Nevezési díjak 2025.10.15-ig: \r\n\r\nFUT A FALU 6k  7900 Ft\r\nMATTEO 11k  8900 Ft\r\nRUNION 19k  9900 Ft \r\nSCHILLER 36k  19900 Ft\r\nHAMMER 50k  26900 Ft\r\nISOPOL 80k  32900 Ft\r\nBBE 50k bringatúra  5900 Ft\r\nFÓKUSZ GEODÉZIA 80k bringatúra  6900 Ft\r\nMOOORE GYERMEKFUTAM ingyenes\r\nkedvezmények: \r\n❎️– Korábbi SzőlősKör ultra távú teljesítő:\r\n4000 forint kedvezmény \r\n\r\n☝️Chip letéti díj minden felnőtt versenyszámban: 2000 ft\r\n/letéti díjad felajánlásával kisgyermekek jövő évi táborozását segítheted! - Köszönjük!/🤝🙏\r\n\r\nA nevezési díj beérkezése után 24 órán belül véglegesítjük nevezésed. A nevezési díjról 8 munkanapon belül számlát állítunk ki, ami egyben a visszaigazolás. \r\nA nevezés kizárólag a nevezési díjak a fogyasztó által a szolgáltatónak történt megfizetése után válik érvényessé. A fogyasztó a nevezési díjaknak a visszafizetésére akkor tarthat igényt, ha a versenyek kiírásának fő pontjaiban lényeges változás következik be, és ezek valamelyike miatt a fogyasztó eláll a versenyen való részvételtől. Ilyen változásnak számít:\r\n– az adott versenyszám törlése;\r\n– a verseny más városba történő áthelyezése;\r\n\r\nÜdvözlettel:\r\nBALATONFÜREDI ATLÉTIKAI CLUB\r\n\r\nHa kérdésed lenne, akkor az info@runion.eu e-mail címen szívesen megválaszoljuk!\r\n",
+        "paymentReminderEnabled": true
+      }
+    ],
+    "distances": [
+      {
+        "id": "43a26379-d00a-4c24-9a90-d1ae0886b544",
+        "name": "Ultra Grande Amore 50k",
+        "price": "15000",
+        "capacityLimit": 100,
+        "startTime": "2026-02-14T09:00:00.000Z",
+        "eventId": "15ca7278-ce1a-4f24-a292-a2e2a12ff33b",
+        "description": null,
+        "nameDe": null,
+        "nameEn": null,
+        "priceEur": null,
+        "crewPricing": null
+      },
+      {
+        "id": "ca5f05b7-721b-4e79-a317-dd1fca4d9c0a",
+        "name": "Kortalan Szerelem Séta (3.5 km)",
+        "price": "5000",
+        "capacityLimit": 200,
+        "startTime": "2026-02-14T09:50:00.000Z",
+        "eventId": "15ca7278-ce1a-4f24-a292-a2e2a12ff33b",
+        "description": null,
+        "nameDe": null,
+        "nameEn": null,
+        "priceEur": null,
+        "crewPricing": null
+      },
+      {
+        "id": "0c8eed40-859a-4cfc-b380-02c428634de2",
+        "name": "Gyermekfutam (600m)",
+        "price": "2000",
+        "capacityLimit": 100,
+        "startTime": "2026-02-14T10:30:00.000Z",
+        "eventId": "15ca7278-ce1a-4f24-a292-a2e2a12ff33b",
+        "description": null,
+        "nameDe": null,
+        "nameEn": null,
+        "priceEur": null,
+        "crewPricing": null
+      },
+      {
+        "id": "f40acb51-6b56-4c01-9b52-96e44acd0cf6",
+        "name": "Rapid Randi (3.57k)",
+        "price": "6000",
+        "capacityLimit": 200,
+        "startTime": "2026-02-14T10:50:00.000Z",
+        "eventId": "15ca7278-ce1a-4f24-a292-a2e2a12ff33b",
+        "description": null,
+        "nameDe": null,
+        "nameEn": null,
+        "priceEur": null,
+        "crewPricing": null
+      },
+      {
+        "id": "ac86a4c1-a0f6-4f05-9e6f-7e8770dcb97e",
+        "name": "Félmaraton Szerelmesei (21k)",
+        "price": "10000",
+        "capacityLimit": 500,
+        "startTime": "2026-02-14T11:30:00.000Z",
+        "eventId": "15ca7278-ce1a-4f24-a292-a2e2a12ff33b",
+        "description": null,
+        "nameDe": null,
+        "nameEn": null,
+        "priceEur": null,
+        "crewPricing": null
+      },
+      {
+        "id": "2c0d4428-d8ec-4e18-a6af-966ac4e3420e",
+        "name": "Szerelemről szó sem volt / Szingli (7k)",
+        "price": "8000",
+        "capacityLimit": 300,
+        "startTime": "2026-02-14T11:30:00.000Z",
+        "eventId": "15ca7278-ce1a-4f24-a292-a2e2a12ff33b",
+        "description": null,
+        "nameDe": null,
+        "nameEn": null,
+        "priceEur": null,
+        "crewPricing": null
+      },
+      {
+        "id": "971540f4-7f71-458b-a10c-9f0a31cc68c6",
+        "name": "Együtt Futunk (7k)",
+        "price": "8000",
+        "capacityLimit": 300,
+        "startTime": "2026-02-14T12:30:00.000Z",
+        "eventId": "15ca7278-ce1a-4f24-a292-a2e2a12ff33b",
+        "description": null,
+        "nameDe": null,
+        "nameEn": null,
+        "priceEur": null,
+        "crewPricing": null
+      },
+      {
+        "id": "b4386891-5927-4a88-b1c7-8ab8c3353d8d",
+        "name": "Páros Váltó (2x7k)",
+        "price": "14000",
+        "capacityLimit": 150,
+        "startTime": "2026-02-14T12:30:00.000Z",
+        "eventId": "15ca7278-ce1a-4f24-a292-a2e2a12ff33b",
+        "description": null,
+        "nameDe": null,
+        "nameEn": null,
+        "priceEur": null,
+        "crewPricing": null
+      },
+      {
+        "id": "64925a13-95af-437b-8b98-8ad783611a2f",
+        "name": "72H World Cup + Masters World Cup + /with accommodation next to the track 2026.05.27-31.",
+        "price": "0",
+        "capacityLimit": 110,
+        "startTime": "2026-01-15T23:00:00.000Z",
+        "eventId": "80e33fdd-3b62-4ae0-a493-e0b72cc4cac1",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "500",
+        "crewPricing": null
+      },
+      {
+        "id": "5c8d91de-7d10-443f-a9a0-d6da1c4d286c",
+        "name": "48H European Cup + /with accommodation next to the track 2026.05.27-30.",
+        "price": "0",
+        "capacityLimit": 45,
+        "startTime": "2026-01-15T22:00:00.000Z",
+        "eventId": "80e33fdd-3b62-4ae0-a493-e0b72cc4cac1",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "400",
+        "crewPricing": null
+      },
+      {
+        "id": "735b964d-85d1-4a65-b32e-d9ac64c8d689",
+        "name": "24H European Cup + /accomodation 2026.05.29-31.",
+        "price": "0",
+        "capacityLimit": 45,
+        "startTime": "2026-01-15T21:00:00.000Z",
+        "eventId": "80e33fdd-3b62-4ae0-a493-e0b72cc4cac1",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "290",
+        "crewPricing": null
+      },
+      {
+        "id": "b5b6b8cb-cd09-4e77-9762-c1af81431cc9",
+        "name": "12H European Cup + /individual refreshing table/",
+        "price": "0",
+        "capacityLimit": 45,
+        "startTime": "2026-01-15T20:00:00.000Z",
+        "eventId": "80e33fdd-3b62-4ae0-a493-e0b72cc4cac1",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "140",
+        "crewPricing": null
+      },
+      {
+        "id": "90435b57-e94e-422e-84a7-b604df50fab7",
+        "name": "6H European Cup + /individual refreshing table/",
+        "price": "0",
+        "capacityLimit": 45,
+        "startTime": "2026-01-15T19:00:00.000Z",
+        "eventId": "80e33fdd-3b62-4ae0-a493-e0b72cc4cac1",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "90",
+        "crewPricing": null
+      },
+      {
+        "id": "8c6d5a4e-de8f-40bb-b838-f242b1d24ad3",
+        "name": "72H - Crew",
+        "price": "0",
+        "capacityLimit": 100,
+        "startTime": "2026-02-01T14:18:00.000Z",
+        "eventId": "85c7c44e-a03f-4f83-800a-0a82ea59f197",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": {
+          "1": 130,
+          "2": 200,
+          "3": 270,
+          "4": 340,
+          "5": 410
+        }
+      },
+      {
+        "id": "a3f57fc5-6771-4c35-acca-640826a90ac3",
+        "name": "48H - Crew",
+        "price": "0",
+        "capacityLimit": 100,
+        "startTime": "2026-02-01T13:18:00.000Z",
+        "eventId": "85c7c44e-a03f-4f83-800a-0a82ea59f197",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": {
+          "1": 130,
+          "2": 200,
+          "3": 270,
+          "4": 340,
+          "5": 410
+        }
+      },
+      {
+        "id": "285eb081-2c31-4072-8ae8-66b73988d9a1",
+        "name": "24H - Crew",
+        "price": "0",
+        "capacityLimit": 100,
+        "startTime": "2026-02-01T12:18:00.000Z",
+        "eventId": "85c7c44e-a03f-4f83-800a-0a82ea59f197",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": {
+          "1": 60,
+          "2": 90,
+          "3": 120,
+          "4": 150,
+          "5": 180
+        }
+      },
+      {
+        "id": "0c29e672-ea40-4062-a24d-07f6485207b5",
+        "name": "12H - Crew",
+        "price": "0",
+        "capacityLimit": 100,
+        "startTime": "2026-02-01T11:18:00.000Z",
+        "eventId": "85c7c44e-a03f-4f83-800a-0a82ea59f197",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": {
+          "1": 60,
+          "2": 90,
+          "3": 120,
+          "4": 150,
+          "5": 180
+        }
+      },
+      {
+        "id": "b5439d1c-8ce0-4b2a-9fe0-93d8e578e825",
+        "name": "6H - Crew",
+        "price": "0",
+        "capacityLimit": 100,
+        "startTime": "2026-02-01T10:18:00.000Z",
+        "eventId": "85c7c44e-a03f-4f83-800a-0a82ea59f197",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": {
+          "1": 40,
+          "2": 60,
+          "3": 80,
+          "4": 100,
+          "5": 120
+        }
+      },
+      {
+        "id": "d4d38b34-9594-4ed8-83d2-fedd1554a789",
+        "name": "MOOORE GYERMEKFUTAM ingyenes",
+        "price": "0",
+        "capacityLimit": 500,
+        "startTime": "2026-09-12T06:00:00.000Z",
+        "eventId": "93150b05-252c-4519-85eb-b4226e3a0062",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "87eaba24-e709-4afe-80e9-4d7c9d3df78f",
+        "name": "FUT A FALU 6k  ",
+        "price": "7900",
+        "capacityLimit": 500,
+        "startTime": "2026-09-12T04:00:00.000Z",
+        "eventId": "93150b05-252c-4519-85eb-b4226e3a0062",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "eabd9402-a1a9-4bbf-ab77-af6742600a01",
+        "name": "MATTEO 11k  ",
+        "price": "8900",
+        "capacityLimit": 500,
+        "startTime": "2026-09-12T02:00:00.000Z",
+        "eventId": "93150b05-252c-4519-85eb-b4226e3a0062",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "f371481a-1fa4-438e-a608-e4292bc61453",
+        "name": "RUNION 19k ",
+        "price": "9900",
+        "capacityLimit": 500,
+        "startTime": "2026-09-12T00:00:00.000Z",
+        "eventId": "93150b05-252c-4519-85eb-b4226e3a0062",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "afd484cd-0c44-4082-9c80-b9a4e90d1c28",
+        "name": "SCHILLER 36k  ",
+        "price": "19900",
+        "capacityLimit": 500,
+        "startTime": "2026-09-11T22:00:00.000Z",
+        "eventId": "93150b05-252c-4519-85eb-b4226e3a0062",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "099276a7-d3c9-443a-8758-6a1f25048faf",
+        "name": "HAMMER 50k  26900 ",
+        "price": "26900",
+        "capacityLimit": 500,
+        "startTime": "2026-09-11T20:00:00.000Z",
+        "eventId": "93150b05-252c-4519-85eb-b4226e3a0062",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "f9abb250-5f27-4667-9e12-610d2a35fca0",
+        "name": "ISOPOL 80k",
+        "price": "32900",
+        "capacityLimit": 500,
+        "startTime": "2026-09-11T18:00:00.000Z",
+        "eventId": "93150b05-252c-4519-85eb-b4226e3a0062",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "5f103573-ec9f-4324-8907-bb9d2f7265bf",
+        "name": "BBE 50k bringatúra",
+        "price": "5900",
+        "capacityLimit": 500,
+        "startTime": "2026-09-11T16:00:00.000Z",
+        "eventId": "93150b05-252c-4519-85eb-b4226e3a0062",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "9b5a4191-75ea-4de4-9391-3f4c5003a811",
+        "name": "FÓKUSZ GEODÉZIA 80k bringatúra  ",
+        "price": "6900",
+        "capacityLimit": 500,
+        "startTime": "2026-09-11T14:00:00.000Z",
+        "eventId": "93150b05-252c-4519-85eb-b4226e3a0062",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "33710a46-1372-443f-86c1-a1e429a2b5c7",
+        "name": "24H",
+        "price": "38000",
+        "capacityLimit": 1000,
+        "startTime": "2026-01-15T23:00:00.000Z",
+        "eventId": "61a36f69-0627-4133-b6a3-635042b499ab",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "8893fb1c-e4ed-415c-8449-b327b71e7541",
+        "name": "12H ",
+        "price": "30000",
+        "capacityLimit": 1000,
+        "startTime": "2026-01-15T22:00:00.000Z",
+        "eventId": "61a36f69-0627-4133-b6a3-635042b499ab",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "4993953f-dbce-4d99-9b22-92e68aecda45",
+        "name": "6H ",
+        "price": "22000",
+        "capacityLimit": 1000,
+        "startTime": "2026-01-15T22:00:00.000Z",
+        "eventId": "61a36f69-0627-4133-b6a3-635042b499ab",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "c4ca59dd-7757-4b16-98e4-e7fe68189e92",
+        "name": "6H/3 fős váltó",
+        "price": "18000",
+        "capacityLimit": 10,
+        "startTime": "2026-01-15T21:00:00.000Z",
+        "eventId": "61a36f69-0627-4133-b6a3-635042b499ab",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "bd3232ce-af72-4447-b85f-34e9ba01ba9b",
+        "name": "12H/4 fős váltó",
+        "price": "18000",
+        "capacityLimit": 10,
+        "startTime": "2026-01-15T20:00:00.000Z",
+        "eventId": "61a36f69-0627-4133-b6a3-635042b499ab",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "c63ead22-12c7-49c8-940d-c4febd6af159",
+        "name": "Félmaraton",
+        "price": "10900",
+        "capacityLimit": 1000,
+        "startTime": "2025-12-31T23:00:00.000Z",
+        "eventId": "a832552b-9770-4d46-8b0f-b9a4386e6c50",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "3606ba25-b72f-45b7-ad64-937ddadc3161",
+        "name": "Kismaraton",
+        "price": "9900",
+        "capacityLimit": 1000,
+        "startTime": "2025-12-31T22:00:00.000Z",
+        "eventId": "a832552b-9770-4d46-8b0f-b9a4386e6c50",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "ace75d9d-1864-431d-a6ee-bc89418d5019",
+        "name": "Minimaraton",
+        "price": "8900",
+        "capacityLimit": 1000,
+        "startTime": "2025-12-31T22:00:00.000Z",
+        "eventId": "a832552b-9770-4d46-8b0f-b9a4386e6c50",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      },
+      {
+        "id": "0678c4de-9421-4d9e-97aa-0696e59d2315",
+        "name": "Junior maraton",
+        "price": "0",
+        "capacityLimit": 1000,
+        "startTime": "2025-12-31T20:00:00.000Z",
+        "eventId": "a832552b-9770-4d46-8b0f-b9a4386e6c50",
+        "description": "",
+        "nameDe": "",
+        "nameEn": "",
+        "priceEur": "0",
+        "crewPricing": null
+      }
+    ],
+    "products": [
+      {
+        "id": "e61d5d73-0f85-4cbf-95fc-1b99b8c58be3",
+        "name": "RUNION Hoodie",
+        "description": "\r\n\r\n### Férfi Mérettáblázat\r\n\r\n| Méret | Hossz (cm) | Szélesség (cm) |\r\n|---|---|---|\r\n| XXS | 64 | 44 |\r\n| XS | 66 | 46 |\r\n| S | 68 | 48 |\r\n| M | 70 | 50 |\r\n| L | 72 | 53 |\r\n| XL | 74 | 56 |\r\n| XXL | 76 | 58 |\r\n\r\n### Női Mérettáblázat\r\n\r\n| Méret | Hossz (cm) | Szélesség (cm) |\r\n|---|---|---|\r\n| XXS | 60 | 40 |\r\n| XS | 62 | 42 |\r\n| S | 64 | 44 |\r\n| M | 66 | 46 |\r\n| L | 68 | 49 |\r\n| XL | 70 | 52 |\r\n| XXL | 72 | 55 |",
+        "price": "12000",
+        "stock": 6,
+        "category": "MERCHANDISE",
+        "imageUrl": "/uploads/hoodie.webp",
+        "createdAt": "2026-01-31T08:09:24.178Z",
+        "updatedAt": "2026-02-07T09:10:22.402Z",
+        "active": true,
+        "descriptionDe": "\r\n\r\n### Herren Größentabelle\r\n\r\n| Größe | Länge (cm) | Breite (cm) |\r\n|---|---|---|\r\n| XXS | 64 | 44 |\r\n| XS | 66 | 46 |\r\n| S | 68 | 48 |\r\n| M | 70 | 50 |\r\n| L | 72 | 53 |\r\n| XL | 74 | 56 |\r\n| XXL | 76 | 58 |\r\n\r\n### Damen Größentabelle\r\n\r\n| Größe | Länge (cm) | Breite (cm) |\r\n|---|---|---|\r\n| XXS | 60 | 40 |\r\n| XS | 62 | 42 |\r\n| S | 64 | 44 |\r\n| M | 66 | 46 |\r\n| L | 68 | 49 |\r\n| XL | 70 | 52 |\r\n| XXL | 72 | 55 |",
+        "descriptionEn": "\r\n\r\n### Men's Size Chart\r\n\r\n| Size | Length (cm) | Width (cm) |\r\n|---|---|---|\r\n| XXS | 64 | 44 |\r\n| XS | 66 | 46 |\r\n| S | 68 | 48 |\r\n| M | 70 | 50 |\r\n| L | 72 | 53 |\r\n| XL | 74 | 56 |\r\n| XXL | 76 | 58 |\r\n\r\n### Women's Size Chart\r\n\r\n| Size | Length (cm) | Width (cm) |\r\n|---|---|---|\r\n| XXS | 60 | 40 |\r\n| XS | 62 | 42 |\r\n| S | 64 | 44 |\r\n| M | 66 | 46 |\r\n| L | 68 | 49 |\r\n| XL | 70 | 52 |\r\n| XXL | 72 | 55 |",
+        "nameDe": "",
+        "nameEn": "",
+        "sizes": "S, M, L, XL, XXL",
+        "slug": null,
+        "stockBreakdown": {
+          "L": 2,
+          "M": 2,
+          "S": 1,
+          "XL": 1
+        }
+      },
+      {
+        "id": "53130fc7-4894-4317-b420-d36c0aa65207",
+        "name": "RUNION Futósapka",
+        "description": null,
+        "price": "4500",
+        "stock": 1,
+        "category": "MERCHANDISE",
+        "imageUrl": "/uploads/cap.webp",
+        "createdAt": "2026-01-31T08:09:24.175Z",
+        "updatedAt": "2026-02-06T14:49:10.658Z",
+        "active": true,
+        "descriptionDe": null,
+        "descriptionEn": null,
+        "nameDe": null,
+        "nameEn": null,
+        "sizes": "ONE SIZE",
+        "slug": null,
+        "stockBreakdown": null
+      },
+      {
+        "id": "e9a1753d-9bd0-41d1-b4fd-60ed17b7ff89",
+        "name": "RUNION Sport Kulacs",
+        "description": null,
+        "price": "3500",
+        "stock": 1,
+        "category": "EQUIPMENT",
+        "imageUrl": "/uploads/water-bottle.webp",
+        "createdAt": "2026-01-31T08:09:24.173Z",
+        "updatedAt": "2026-02-06T14:49:10.661Z",
+        "active": true,
+        "descriptionDe": null,
+        "descriptionEn": null,
+        "nameDe": null,
+        "nameEn": null,
+        "sizes": "750ml",
+        "slug": null,
+        "stockBreakdown": null
+      },
+      {
+        "id": "7f2bb5a7-0b50-405c-aa64-e48928889fe1",
+        "name": "RUNION Technikai Zokni",
+        "description": null,
+        "price": "3500",
+        "stock": 6,
+        "category": "MERCHANDISE",
+        "imageUrl": "/uploads/socks.webp",
+        "createdAt": "2026-01-31T08:09:24.171Z",
+        "updatedAt": "2026-02-06T14:49:10.662Z",
+        "active": true,
+        "descriptionDe": null,
+        "descriptionEn": null,
+        "nameDe": null,
+        "nameEn": null,
+        "sizes": "35-38, 39-42, 43-46",
+        "slug": null,
+        "stockBreakdown": {
+          "35-38": 2,
+          "39-42": 3,
+          "43-46": 1
+        }
+      },
+      {
+        "id": "477af7dc-c0f5-490b-aa0a-4488ccdf3891",
+        "name": "RUNION Éremtartó",
+        "description": null,
+        "price": "7500",
+        "stock": 1,
+        "category": "MERCHANDISE",
+        "imageUrl": "/uploads/medal-holder.webp",
+        "createdAt": "2026-01-31T08:09:24.168Z",
+        "updatedAt": "2026-02-06T14:49:10.664Z",
+        "active": true,
+        "descriptionDe": null,
+        "descriptionEn": null,
+        "nameDe": null,
+        "nameEn": null,
+        "sizes": "STANDARD",
+        "slug": null,
+        "stockBreakdown": null
+      },
+      {
+        "id": "ef5e3a4f-f56c-4e02-9944-e833b90985c5",
+        "name": "RUNION Technikai Póló",
+        "description": "\r\n\r\n### Férfi Mérettáblázat\r\n\r\n| Méret | Hossz (cm) | Szélesség (cm) |\r\n|---|---|---|\r\n| XXS | 64 | 44 |\r\n| XS | 66 | 46 |\r\n| S | 68 | 48 |\r\n| M | 70 | 50 |\r\n| L | 72 | 53 |\r\n| XL | 74 | 56 |\r\n| XXL | 76 | 58 |\r\n\r\n### Női Mérettáblázat\r\n\r\n| Méret | Hossz (cm) | Szélesség (cm) |\r\n|---|---|---|\r\n| XXS | 60 | 40 |\r\n| XS | 62 | 42 |\r\n| S | 64 | 44 |\r\n| M | 66 | 46 |\r\n| L | 68 | 49 |\r\n| XL | 70 | 52 |\r\n| XXL | 72 | 55 |",
+        "price": "6500",
+        "stock": 13,
+        "category": "MERCHANDISE",
+        "imageUrl": "/uploads/tech-tshirt.webp",
+        "createdAt": "2026-01-31T08:12:29.206Z",
+        "updatedAt": "2026-02-07T08:48:44.158Z",
+        "active": true,
+        "descriptionDe": "\r\n\r\n### Herren Größentabelle\r\n\r\n| Größe | Länge (cm) | Breite (cm) |\r\n|---|---|---|\r\n| XXS | 64 | 44 |\r\n| XS | 66 | 46 |\r\n| S | 68 | 48 |\r\n| M | 70 | 50 |\r\n| L | 72 | 53 |\r\n| XL | 74 | 56 |\r\n| XXL | 76 | 58 |\r\n\r\n### Damen Größentabelle\r\n\r\n| Größe | Länge (cm) | Breite (cm) |\r\n|---|---|---|\r\n| XXS | 60 | 40 |\r\n| XS | 62 | 42 |\r\n| S | 64 | 44 |\r\n| M | 66 | 46 |\r\n| L | 68 | 49 |\r\n| XL | 70 | 52 |\r\n| XXL | 72 | 55 |",
+        "descriptionEn": "\r\n\r\n### Men's Size Chart\r\n\r\n| Size | Length (cm) | Width (cm) |\r\n|---|---|---|\r\n| XXS | 64 | 44 |\r\n| XS | 66 | 46 |\r\n| S | 68 | 48 |\r\n| M | 70 | 50 |\r\n| L | 72 | 53 |\r\n| XL | 74 | 56 |\r\n| XXL | 76 | 58 |\r\n\r\n### Women's Size Chart\r\n\r\n| Size | Length (cm) | Width (cm) |\r\n|---|---|---|\r\n| XXS | 60 | 40 |\r\n| XS | 62 | 42 |\r\n| S | 64 | 44 |\r\n| M | 66 | 46 |\r\n| L | 68 | 49 |\r\n| XL | 70 | 52 |\r\n| XXL | 72 | 55 |",
+        "nameDe": "RUNION Funktions-T-Shirt",
+        "nameEn": "RUNION Technical T-Shirt",
+        "sizes": "S, M, L, XL, XXL",
+        "slug": null,
+        "stockBreakdown": {
+          "L": 4,
+          "M": 3,
+          "S": 4,
+          "XL": 2
+        }
+      },
+      {
+        "id": "f390c0e9-99b8-4a5e-ad7f-726cef6503e7",
+        "name": "Tagság: VIP",
+        "description": "Automata tagság termék: VIP",
+        "price": "50000",
+        "stock": 0,
+        "category": "SERVICE",
+        "imageUrl": null,
+        "createdAt": "2026-02-09T13:09:03.218Z",
+        "updatedAt": "2026-02-09T13:09:03.218Z",
+        "active": false,
+        "descriptionDe": null,
+        "descriptionEn": null,
+        "nameDe": null,
+        "nameEn": null,
+        "sizes": null,
+        "slug": "membership-134312a6-a300-4d22-a849-d21dee604060",
+        "stockBreakdown": null
+      }
+    ],
+    "partners": [
+      {
+        "id": "9d7633ea-b04f-4044-b8ec-933ca472f4eb",
+        "name": "Miniszterelnökség",
+        "logoUrl": "/uploads/311768eb67c83252.webp",
+        "order": 1,
+        "active": true,
+        "createdAt": "2026-02-02T09:44:51.596Z",
+        "updatedAt": "2026-02-02T09:45:56.152Z"
+      },
+      {
+        "id": "5c331b4c-8cff-42ce-9218-145dc5f28583",
+        "name": "BG",
+        "logoUrl": "/uploads/632af9a9d909a21b.webp",
+        "order": 2,
+        "active": true,
+        "createdAt": "2026-02-02T09:44:35.347Z",
+        "updatedAt": "2026-02-02T09:45:56.152Z"
+      },
+      {
+        "id": "f8374f34-01d3-48ce-a4dd-bc97ef512c13",
+        "name": "NAE",
+        "logoUrl": "/uploads/5f21441ab6a626cd.webp",
+        "order": 3,
+        "active": true,
+        "createdAt": "2026-02-02T09:45:23.324Z",
+        "updatedAt": "2026-02-02T09:45:56.152Z"
+      },
+      {
+        "id": "7717a421-3f41-4cbb-80d1-2f877582bbf4",
+        "name": "NSÜ",
+        "logoUrl": "/uploads/95889a4afcac0720.webp",
+        "order": 4,
+        "active": true,
+        "createdAt": "2026-02-02T09:45:35.781Z",
+        "updatedAt": "2026-02-02T09:45:56.152Z"
+      },
+      {
+        "id": "c5916599-e421-4c07-bf17-97c40ccc5fdb",
+        "name": "HM Spotért Felelős Államtitkárság",
+        "logoUrl": "/uploads/cb6dd88a1c4f89e2.webp",
+        "order": 5,
+        "active": true,
+        "createdAt": "2026-02-02T09:45:51.126Z",
+        "updatedAt": "2026-02-02T09:45:56.152Z"
+      }
+    ],
+    "sponsors": [
+      {
+        "id": "0a7cde41-a54c-4bcd-8430-8c62fa9885f6",
+        "name": "AKTÍV MAGYARORSZÁG",
+        "logoUrl": "/uploads/2998bb86029daa0b.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:27:06.037Z",
+        "updatedAt": "2026-02-04T13:27:06.037Z"
+      },
+      {
+        "id": "4674c78f-befc-4e53-aa62-379ff17b781f",
+        "name": "BAC",
+        "logoUrl": "/uploads/b4df76d2f9aa785d.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:27:16.518Z",
+        "updatedAt": "2026-02-04T13:27:16.518Z"
+      },
+      {
+        "id": "3681397c-3599-47a2-8a56-7146a3271391",
+        "name": "BALATONFÜRED",
+        "logoUrl": "/uploads/8f2e663cab524db9.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:27:29.621Z",
+        "updatedAt": "2026-02-04T13:27:29.621Z"
+      },
+      {
+        "id": "706bfe62-7a32-4537-98e2-7a0120184d14",
+        "name": "BAKONYORSZÁG BALCSIPART",
+        "logoUrl": "/uploads/88f5bb3e9b4fcfbb.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:27:46.954Z",
+        "updatedAt": "2026-02-04T13:27:46.954Z"
+      },
+      {
+        "id": "0a780663-0bde-4017-b351-0f86ef3b08ac",
+        "name": "BALATONI ULTRAFUTÓ FESZTIVÁL",
+        "logoUrl": "/uploads/ace81f01ac36b97b.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:27:59.282Z",
+        "updatedAt": "2026-02-04T13:27:59.282Z"
+      },
+      {
+        "id": "14033520-b693-4cd7-baa6-a36583f880d5",
+        "name": "DANUBIUS HOTELS",
+        "logoUrl": "/uploads/0bd1cefe9fef41b2.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:28:16.718Z",
+        "updatedAt": "2026-02-04T13:28:16.718Z"
+      },
+      {
+        "id": "6652d578-1466-402b-a573-319b5a5c7192",
+        "name": "DREHER",
+        "logoUrl": "/uploads/551ffc1a68330a54.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:29:21.886Z",
+        "updatedAt": "2026-02-04T13:29:21.886Z"
+      },
+      {
+        "id": "c6bf706a-a841-48d9-a050-9269028e5b5c",
+        "name": "Fókusz Geodézia",
+        "logoUrl": "/uploads/d869e2a7efcbb481.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:29:32.560Z",
+        "updatedAt": "2026-02-04T13:29:32.560Z"
+      },
+      {
+        "id": "ad1d3c4b-125b-43d9-8eb6-99a593d5dff3",
+        "name": "FUTÓ KALAND",
+        "logoUrl": "/uploads/05e6c1028a45e53b.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:29:42.959Z",
+        "updatedAt": "2026-02-04T13:29:42.959Z"
+      },
+      {
+        "id": "eed3116f-a2fd-4478-88ac-1ad06a581a76",
+        "name": "Hammer",
+        "logoUrl": "/uploads/691a0ff53e29b886.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:29:52.933Z",
+        "updatedAt": "2026-02-04T13:29:52.933Z"
+      },
+      {
+        "id": "cf44a5dc-7fb7-42a5-a370-27eb2d8ac69b",
+        "name": "Isopol",
+        "logoUrl": "/uploads/91415b0e6a5c8332.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:30:13.651Z",
+        "updatedAt": "2026-02-04T13:30:13.651Z"
+      },
+      {
+        "id": "41e61f0f-aaeb-4283-b07e-c00645e549cf",
+        "name": "KRONOSZ GYM",
+        "logoUrl": "/uploads/59dbe3ee99aabdee.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:30:24.939Z",
+        "updatedAt": "2026-02-04T13:30:24.939Z"
+      },
+      {
+        "id": "3df949d9-ff7b-4d54-8134-70e05e50883a",
+        "name": "Kronosz Mozgásstúdió",
+        "logoUrl": "/uploads/873fd5d27968b43e.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:30:33.961Z",
+        "updatedAt": "2026-02-04T13:30:33.961Z"
+      },
+      {
+        "id": "e62de501-f93f-4c5d-828c-e0504c276248",
+        "name": "Lázár",
+        "logoUrl": "/uploads/020153fd56458146.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:30:43.742Z",
+        "updatedAt": "2026-02-04T13:30:43.742Z"
+      },
+      {
+        "id": "96ec7fd2-f2e3-4be6-ba4e-74e69da2a8b5",
+        "name": "Matteo",
+        "logoUrl": "/uploads/b94263cfcf55ccfd.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:30:54.924Z",
+        "updatedAt": "2026-02-04T13:30:54.924Z"
+      },
+      {
+        "id": "1dc8d294-c344-417d-a71e-bb39a42e79a3",
+        "name": "MUL",
+        "logoUrl": "/uploads/232e2fa7217e1ebb.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:31:05.177Z",
+        "updatedAt": "2026-02-04T13:31:05.177Z"
+      },
+      {
+        "id": "6301eba3-d43c-481e-b647-49dc2aec414a",
+        "name": "Pezowood",
+        "logoUrl": "/uploads/ebca3d2a20bc4283.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:31:18.163Z",
+        "updatedAt": "2026-02-04T13:31:18.163Z"
+      },
+      {
+        "id": "0d50d39c-6041-4f3f-8cdb-291424bc5b3c",
+        "name": "Pezocell",
+        "logoUrl": "/uploads/a1e7220ba613fb90.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:31:31.043Z",
+        "updatedAt": "2026-02-04T13:31:31.043Z"
+      },
+      {
+        "id": "45de9ea6-8532-4193-b528-20061ac424d1",
+        "name": "Pezoshop",
+        "logoUrl": "/uploads/8800504eef9dfbbf.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:31:41.432Z",
+        "updatedAt": "2026-02-04T13:31:41.432Z"
+      },
+      {
+        "id": "905b9b44-fd22-4cdf-89de-2380a833a62e",
+        "name": "RUNION",
+        "logoUrl": "/uploads/ff54d56a1053eef6.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:31:54.446Z",
+        "updatedAt": "2026-02-04T13:31:54.446Z"
+      },
+      {
+        "id": "1133e978-d195-41ee-86b6-eeacc4d4a527",
+        "name": "Schiller",
+        "logoUrl": "/uploads/ebc8a450b5e6864e.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:32:11.281Z",
+        "updatedAt": "2026-02-04T13:32:11.281Z"
+      },
+      {
+        "id": "9fba972d-01ab-4f4f-ab63-6148195cdfc9",
+        "name": "SINX SZOFTVERSTÚDIÓ",
+        "logoUrl": "/uploads/330ba5d8e0643e28.webp",
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-04T13:32:22.261Z",
+        "updatedAt": "2026-02-04T13:32:22.261Z"
+      }
+    ],
+    "features": [
+      {
+        "id": "a5b0dee1-7adb-4f6c-b4d1-63586dd2f83c",
+        "iconName": "Trophy",
+        "title": "Prémium Versenyek",
+        "titleEn": null,
+        "titleDe": null,
+        "description": "Hivatalos MKSZ versenyek, profi szervezés és felejthetetlen élmények várnak minden indulót.",
+        "descriptionEn": null,
+        "descriptionDe": null,
+        "order": 1,
+        "active": true,
+        "createdAt": "2026-02-02T09:32:53.817Z",
+        "updatedAt": "2026-02-02T09:32:53.817Z"
+      },
+      {
+        "id": "3b3c4b12-7108-4771-b2c7-97f0cb3df7f7",
+        "iconName": "Timer",
+        "title": "Profi Időmérés",
+        "titleEn": null,
+        "titleDe": null,
+        "description": "A legmodernebb chip-es időmérés, azonnali eredmények és részletes statisztikák.",
+        "descriptionEn": null,
+        "descriptionDe": null,
+        "order": 2,
+        "active": true,
+        "createdAt": "2026-02-02T09:32:53.817Z",
+        "updatedAt": "2026-02-02T09:32:53.817Z"
+      },
+      {
+        "id": "d3f006e8-9247-4d65-8e85-00737744338b",
+        "iconName": "Users",
+        "title": "Szuper Közösség",
+        "titleEn": null,
+        "titleDe": null,
+        "description": "Csatlakozz több ezer futóhoz az ország minden pontjáról. Közös edzések és programok.",
+        "descriptionEn": null,
+        "descriptionDe": null,
+        "order": 3,
+        "active": true,
+        "createdAt": "2026-02-02T09:32:53.817Z",
+        "updatedAt": "2026-02-02T09:32:53.817Z"
+      }
+    ],
+    "registrations": [
+      {
+        "id": "301a7733-3cee-4ff6-8a0a-6243f303545f",
+        "bibNumber": null,
+        "bibSent": false,
+        "paymentId": null,
+        "paidAt": null,
+        "userId": "58dcecf0-2305-453a-b858-19adc229e546",
+        "distanceId": "ace75d9d-1864-431d-a6ee-bc89418d5019",
+        "createdAt": "2026-02-07T09:52:14.632Z",
+        "updatedAt": "2026-02-07T09:52:14.663Z",
+        "barionPaymentId": null,
+        "barionPaymentState": null,
+        "invoiceGeneratedAt": null,
+        "invoiceNumber": null,
+        "invoiceUrl": null,
+        "paymentMethod": "CARD",
+        "paymentStatus": "UNPAID",
+        "proformaGeneratedAt": "2026-02-07T09:52:14.661Z",
+        "proformaNumber": "RUNPUNCH202-PRO-301A7733",
+        "proformaUrl": "/api/documents/proforma/301a7733-3cee-4ff6-8a0a-6243f303545f",
+        "receiptGeneratedAt": null,
+        "receiptNumber": null,
+        "receiptUrl": null,
+        "registrationStatus": "PENDING",
+        "extras": [
+          {
+            "id": "1770456421909",
+            "name": "Cliff Young gumicsizmás futás -KÜLÖN NEVEZÉSI DÍJ NINCS - egy másik versenyszámmal együtt lehet regisztrálni e futamra, amely a versenyt lezáró bulifutásCliff Young gumicsizmás futás / KÜLÖN NEVEZÉSI DÍJ NINCS - egy másik versenyszámmal együtt lehet regisztrálni e futamra, amely a versenyt lezáró bulifutás\n\nRÉSZT VESZEK",
+            "price": 0,
+            "nameDe": "Cliff Young Gummistiefellauf – KEINE SEPARATE STARTGEBÜHR – Sie können sich für diesen Lauf zusammen mit einem anderen Lauf anmelden, dem Partylauf am Ende des Rennens.\n\nICH NEHME TEIL",
+            "nameEn": "Cliff Young rubber boot run - NO SEPARATE ENTRY FEE - you can register for this race together with another race, which is the party run that ends the raceCliff Young rubber boot run / NO SEPARATE ENTRY FEE - you can register for this race together with another race, which is the party run that ends the race\n\nI AM PARTICIPATING",
+            "priceEur": 0
+          }
+        ],
+        "formData": {
+          "billingDetails": {
+            "billingZip": "2451",
+            "billingCity": "Tesztelegerszeg",
+            "billingName": "Kovács Tamás e.v.",
+            "billingAddress": "Ady utca 16.",
+            "billingTaxNumber": "123456789-1-39"
+          },
+          "field_1770041812592": "Kovács Tamás",
+          "field_1770041823760": "gate75@freemail.hu",
+          "field_1770041925007": "Tesztelegerszeg",
+          "field_1770041941056": "Ady utca 16.",
+          "field_1770041956503": "2451",
+          "field_1770042032376": "Férfi",
+          "field_1770042055376": "+36708945632",
+          "field_1770042100233": "1989-12-05",
+          "field_1770042148040": "BAC",
+          "field_1770042153015": "p1258-k5",
+          "field_1770042212359": "Kovács Tamás",
+          "field_1770042240160": "06708945632"
+        },
+        "crewSize": 1,
+        "finalPrice": "7120"
+      },
+      {
+        "id": "fb71c55b-99b0-411b-a154-d288c6f421c6",
+        "bibNumber": null,
+        "bibSent": false,
+        "paymentId": null,
+        "paidAt": null,
+        "userId": "58dcecf0-2305-453a-b858-19adc229e546",
+        "distanceId": "3606ba25-b72f-45b7-ad64-937ddadc3161",
+        "createdAt": "2026-02-07T10:19:19.197Z",
+        "updatedAt": "2026-02-07T10:19:19.230Z",
+        "barionPaymentId": null,
+        "barionPaymentState": null,
+        "invoiceGeneratedAt": null,
+        "invoiceNumber": null,
+        "invoiceUrl": null,
+        "paymentMethod": "CARD",
+        "paymentStatus": "UNPAID",
+        "proformaGeneratedAt": "2026-02-07T10:19:19.228Z",
+        "proformaNumber": "RUNP2026KOVTAMKISM-PRO-FB71C55B",
+        "proformaUrl": "/api/documents/proforma/fb71c55b-99b0-411b-a154-d288c6f421c6",
+        "receiptGeneratedAt": null,
+        "receiptNumber": null,
+        "receiptUrl": null,
+        "registrationStatus": "PENDING",
+        "extras": [
+          {
+            "id": "1770456421909",
+            "name": "Cliff Young gumicsizmás futás -KÜLÖN NEVEZÉSI DÍJ NINCS - egy másik versenyszámmal együtt lehet regisztrálni e futamra, amely a versenyt lezáró bulifutásCliff Young gumicsizmás futás / KÜLÖN NEVEZÉSI DÍJ NINCS - egy másik versenyszámmal együtt lehet regisztrálni e futamra, amely a versenyt lezáró bulifutás\n\nRÉSZT VESZEK",
+            "price": 0,
+            "nameDe": "Cliff Young Gummistiefellauf – KEINE SEPARATE STARTGEBÜHR – Sie können sich für diesen Lauf zusammen mit einem anderen Lauf anmelden, dem Partylauf am Ende des Rennens.\n\nICH NEHME TEIL",
+            "nameEn": "Cliff Young rubber boot run - NO SEPARATE ENTRY FEE - you can register for this race together with another race, which is the party run that ends the raceCliff Young rubber boot run / NO SEPARATE ENTRY FEE - you can register for this race together with another race, which is the party run that ends the race\n\nI AM PARTICIPATING",
+            "priceEur": 0
+          }
+        ],
+        "formData": {
+          "billingDetails": {
+            "billingZip": "2451",
+            "billingCity": "Tesztelegerszeg",
+            "billingName": "Kovács Tamás e.v.",
+            "billingAddress": "Ady utca 16.",
+            "billingTaxNumber": "123456789-1-39"
+          },
+          "field_1770041812592": "Kovács Tamás",
+          "field_1770041823760": "gate75@freemail.hu",
+          "field_1770041925007": "Tesztelegerszeg",
+          "field_1770041941056": "Ady utca 16.",
+          "field_1770041956503": "2451",
+          "field_1770042032376": "Férfi",
+          "field_1770042055376": "+36708945632",
+          "field_1770042100233": "1989-12-05",
+          "field_1770042148040": "BAC",
+          "field_1770042153015": "p1258-k5",
+          "field_1770042212359": "Kovács Tamás",
+          "field_1770042240160": "06708945632"
+        },
+        "crewSize": 1,
+        "finalPrice": "7920"
+      },
+      {
+        "id": "1e982da4-54f4-4e01-a4e6-75f970fab6c7",
+        "bibNumber": null,
+        "bibSent": false,
+        "paymentId": null,
+        "paidAt": null,
+        "userId": "58dcecf0-2305-453a-b858-19adc229e546",
+        "distanceId": "c63ead22-12c7-49c8-940d-c4febd6af159",
+        "createdAt": "2026-02-07T10:24:08.898Z",
+        "updatedAt": "2026-02-07T10:24:08.929Z",
+        "barionPaymentId": null,
+        "barionPaymentState": null,
+        "invoiceGeneratedAt": null,
+        "invoiceNumber": null,
+        "invoiceUrl": null,
+        "paymentMethod": "CARD",
+        "paymentStatus": "UNPAID",
+        "proformaGeneratedAt": "2026-02-07T10:24:08.928Z",
+        "proformaNumber": "RUNP2026KOVTAMFLMA-PRO-1E982DA4",
+        "proformaUrl": "/api/documents/proforma/1e982da4-54f4-4e01-a4e6-75f970fab6c7",
+        "receiptGeneratedAt": null,
+        "receiptNumber": null,
+        "receiptUrl": null,
+        "registrationStatus": "PENDING",
+        "extras": [
+          {
+            "id": "1770456421909",
+            "name": "Cliff Young gumicsizmás futás -KÜLÖN NEVEZÉSI DÍJ NINCS - egy másik versenyszámmal együtt lehet regisztrálni e futamra, amely a versenyt lezáró bulifutásCliff Young gumicsizmás futás / KÜLÖN NEVEZÉSI DÍJ NINCS - egy másik versenyszámmal együtt lehet regisztrálni e futamra, amely a versenyt lezáró bulifutás\n\nRÉSZT VESZEK",
+            "price": 0,
+            "nameDe": "Cliff Young Gummistiefellauf – KEINE SEPARATE STARTGEBÜHR – Sie können sich für diesen Lauf zusammen mit einem anderen Lauf anmelden, dem Partylauf am Ende des Rennens.\n\nICH NEHME TEIL",
+            "nameEn": "Cliff Young rubber boot run - NO SEPARATE ENTRY FEE - you can register for this race together with another race, which is the party run that ends the raceCliff Young rubber boot run / NO SEPARATE ENTRY FEE - you can register for this race together with another race, which is the party run that ends the race\n\nI AM PARTICIPATING",
+            "priceEur": 0
+          }
+        ],
+        "formData": {
+          "billingDetails": {
+            "billingZip": "2451",
+            "billingCity": "Tesztelegerszeg",
+            "billingName": "Kovács Tamás e.v.",
+            "billingAddress": "Ady utca 16.",
+            "billingTaxNumber": "123456789-1-39"
+          },
+          "field_1770041812592": "Kovács Tamás",
+          "field_1770041823760": "gate75@freemail.hu",
+          "field_1770041925007": "Tesztelegerszeg",
+          "field_1770041941056": "Ady utca 16.",
+          "field_1770041956503": "2451",
+          "field_1770042032376": "Férfi",
+          "field_1770042055376": "+36708945632",
+          "field_1770042100233": "1989-12-05",
+          "field_1770042148040": "BAC",
+          "field_1770042153015": "p1258-k5",
+          "field_1770042212359": "Kovács Tamás",
+          "field_1770042240160": "06708945632"
+        },
+        "crewSize": 1,
+        "finalPrice": "8720"
+      },
+      {
+        "id": "d02515c7-41b6-44fd-ac01-b1512f421635",
+        "bibNumber": null,
+        "bibSent": false,
+        "paymentId": null,
+        "paidAt": null,
+        "userId": "58dcecf0-2305-453a-b858-19adc229e546",
+        "distanceId": "ac86a4c1-a0f6-4f05-9e6f-7e8770dcb97e",
+        "createdAt": "2026-02-07T10:28:29.254Z",
+        "updatedAt": "2026-02-07T10:28:29.282Z",
+        "barionPaymentId": null,
+        "barionPaymentState": null,
+        "invoiceGeneratedAt": null,
+        "invoiceNumber": null,
+        "invoiceUrl": null,
+        "paymentMethod": "CARD",
+        "paymentStatus": "UNPAID",
+        "proformaGeneratedAt": "2026-02-07T10:28:29.280Z",
+        "proformaNumber": "SCHI2026KOVTAMFLMA-PRO-D02515C7",
+        "proformaUrl": "/api/documents/proforma/d02515c7-41b6-44fd-ac01-b1512f421635",
+        "receiptGeneratedAt": null,
+        "receiptNumber": null,
+        "receiptUrl": null,
+        "registrationStatus": "PENDING",
+        "extras": [
+          {
+            "id": "1770041421592",
+            "name": "Bögre",
+            "price": 2900,
+            "nameDe": "",
+            "nameEn": "",
+            "priceEur": 0
+          }
+        ],
+        "formData": {
+          "billingDetails": {
+            "billingZip": "2451",
+            "billingCity": "Tesztelegerszeg",
+            "billingName": "Kovács Tamás e.v.",
+            "billingAddress": "Ady utca 16.",
+            "billingTaxNumber": "123456789-1-39"
+          },
+          "field_1770041812592": "Kovács Tamás",
+          "field_1770041823760": "gate75@freemail.hu",
+          "field_1770041925007": "Tesztelegerszeg",
+          "field_1770041941056": "Ady utca 16.",
+          "field_1770041956503": "2451",
+          "field_1770042032376": "Férfi",
+          "field_1770042055376": "+36708945632",
+          "field_1770042100233": "1989-12-05",
+          "field_1770042148040": "BAC",
+          "field_1770042153015": "p1258-k5",
+          "field_1770042212359": "Kovács Tamás",
+          "field_1770042240160": "06708945632"
+        },
+        "crewSize": 1,
+        "finalPrice": "8000"
+      }
+    ],
+    "orders": [
+      {
+        "id": "8afbf1ff-dcf3-4310-9986-2c8e3690a3e7",
+        "orderNumber": "MEM-2026-7QVI4SLC",
+        "status": "PENDING",
+        "paymentMethod": "BANK_TRANSFER",
+        "totalAmount": "50000",
+        "billingName": "Fodor Gábor E.V.",
+        "billingZip": "8200",
+        "billingCity": "Veszprém",
+        "billingAddress": "Haszkovó út 12.",
+        "billingTaxNumber": "125686778-1-39",
+        "shippingName": "Fodor Gábor E.V.",
+        "shippingZip": "8200",
+        "shippingCity": "Veszprém",
+        "shippingAddress": "Haszkovó út 12.",
+        "shippingPhone": "+36 705 984 257",
+        "shippingEmail": "klokkidopontfoglalo@gmail.com",
+        "note": null,
+        "userId": "93303cc8-52f9-4266-a428-a21d7551c135",
+        "createdAt": "2026-02-09T13:09:03.225Z",
+        "updatedAt": "2026-02-09T13:09:03.225Z",
+        "termsAccepted": false,
+        "privacyAccepted": false
+      }
+    ],
+    "faqs": [
+      {
+        "id": "a954eadf-58f7-46da-90c3-58aec312a522",
+        "question": "Ki szervezi a futóversenyeket?",
+        "questionEn": "Who organizes the running races?",
+        "questionDe": "Wer organisiert die Laufwettbewerbe?",
+        "answer": "A runion.eu oldal futóversenyeit a Balatonfüredi Atlétikai Klub szervezi, melynek vezetőségi tagja Baranyai Máté ultrafutó, aki a futóversenyeink megálmodója és versenyigazgatója és 10 éve foglakozik futóversenyek szervezésével.\n\nMunkatársaink több, mint 10 éves tapasztalattal rendelkeznek rendezvényszervezés terén, és a frissítő pontjainkon olyan segítőink vannak, akik az ország legnagyobb futóversenyein is rendszeresen dolgoznak (pl. Ultrabalaton, Balatonman).",
+        "answerEn": "The running races on runion.eu are organized by the Balatonfüred Athletics Club. Its board member, Máté Baranyai, an ultra-runner, is the visionary and race director of our events, with 10 years of experience in organizing running races.\n\nOur staff has over 10 years of experience in event organization, and at our refreshment points, we have helpers who regularly work at the country's largest running races (e.g., Ultrabalaton, Balatonman).",
+        "answerDe": "Die Laufwettbewerbe auf runion.eu werden vom Balatonfüred Athletics Club organisiert. Dessen Vorstandsmitglied, Máté Baranyai, ein Ultrafan, ist der Visionär und Rennleiter unserer Veranstaltungen und verfügt über 10 Jahre Erfahrung in der Organisation von Laufwettbewerben.\n\nUnsere Mitarbeiter haben über 10 Jahre Erfahrung in der Veranstaltungsorganisation, und an unseren Verpflegungspunkten haben wir Helfer, die regelmäßig bei den größten Laufwettbewerben des Landes arbeiten (z.B. Ultrabalaton, Balatonman).",
+        "order": 1,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.328Z",
+        "updatedAt": "2026-02-05T13:34:49.328Z"
+      },
+      {
+        "id": "05ca441b-a1e6-45df-9305-df2356cb0735",
+        "question": "Hogyan tudok nevezni?",
+        "questionEn": "How can I register?",
+        "questionDe": "Wie kann ich mich anmelden?",
+        "answer": "A nevezéshez először **regisztrálnod kell az oldalra** (jobb felül \"Regisztráció\"), vagy ha már van fiókod, akkor **be kell jelentkezned**.\n\nEzután a felső menüsorban válaszd a **\"Versenyeink\"** menüpontot, kattints a kiválasztott versenyre, és ott találod a **\"Nevezés\"** gombot. Kérünk, hogy nevezés előtt tájékozódj a versenykiírásban a feltételekről.",
+        "answerEn": "To register, you must first **register on the site** (top right \"Register\"), or if you already have an account, you must **log in**.\n\nThen, select the **\"Races\"** menu item in the top menu bar, click on the selected race, and there you will find the **\"Register\"** button. Please check the race conditions in the race description before registering.",
+        "answerDe": "Um sich anzumelden, müssen Sie sich zuerst **auf der Seite registrieren** (oben rechts \"Registrieren\"), oder wenn Sie bereits ein Konto haben, müssen Sie sich **anmelden**.\n\nWählen Sie dann im oberen Menü den Menüpunkt **\"Wettbewerbe\"**, klicken Sie auf das ausgewählte Rennen, und dort finden Sie den Button **\"Anmelden\"**. Bitte informieren Sie sich vor der Anmeldung in der Ausschreibung über die Bedingungen.",
+        "order": 2,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.331Z",
+        "updatedAt": "2026-02-05T13:34:49.331Z"
+      },
+      {
+        "id": "e7c704d5-ff03-48ad-aad7-f8de8a2d2162",
+        "question": "Neveztem, mit tegyek?",
+        "questionEn": "I registered, what should I do now?",
+        "questionDe": "Ich habe mich angemeldet, was soll ich tun?",
+        "answer": "A nevezési űrlapon a rendszer automatikusan kitölti az adataidat a felhasználói profilod alapján, így gyorsan tudsz haladni. Ha mást szeretnél nevezni (pl. családtagot), akkor egyszerűen írd át az adatokat az űrlapon.\n\nA sikeres nevezés után e-mailben kapod meg a visszaigazolást és a fizetési tudnivalókat. A nevezéseidet és azok fizetési státuszát bármikor nyomon követheted a **Profilod** alatt, a **\"Verseny Nevezéseim\"** menüpontban.",
+        "answerEn": "The system automatically fills in your data on the registration form based on your user profile, so you can proceed quickly. If you want to register someone else (e.g., a family member), simply overwrite the data on the form.\n\nAfter successful registration, you will receive confirmation and payment instructions via email. You can track your registrations and their payment status at any time under your **Profile**, in the **\"My Race Registrations\"** menu item.",
+        "answerDe": "Das System füllt Ihre Daten im Anmeldeformular automatisch basierend auf Ihrem Benutzerprofil aus, damit Sie schnell vorankommen. Wenn Sie jemand anderen anmelden möchten (z. B. ein Familienmitglied), überschreiben Sie einfach die Daten im Formular.\n\nNach erfolgreicher Anmeldung erhalten Sie eine Bestätigung und Zahlungsinformationen per E-Mail. Sie können Ihre Anmeldungen und deren Zahlungsstatus jederzeit unter Ihrem **Profil**, im Menüpunkt **\"Meine Wettkampfanmeldungen\"** verfolgen.",
+        "order": 3,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.332Z",
+        "updatedAt": "2026-02-05T13:34:49.332Z"
+      },
+      {
+        "id": "426e45c8-09f7-43ff-8489-9f368397f454",
+        "question": "Hol találom a versenyadatokat?",
+        "questionEn": "Where can I find race details?",
+        "questionDe": "Wo finde ich die Wettkampfdetails?",
+        "answer": "A felső menüsorban kattints a **\"Versenyeink\"** menüpontra. Itt listázzuk az összes aktuális eseményt. Egy versenyre kattintva minden részletet (távok, útvonal, kiírás) megtalálsz az adott esemény oldalán.",
+        "answerEn": "Click on the **\"Races\"** menu item in the top menu bar. Here we list all current events. Clicking on a race will show you all details (distances, route, description) on the event page.",
+        "answerDe": "Klicken Sie im oberen Menü auf den Menüpunkt **\"Wettbewerbe\"**. Hier Listen wir alle aktuellen Veranstaltungen auf. Wenn Sie auf einen Wettbewerb klicken, finden Sie alle Details (Distanzen, Route, Beschreibung) auf der Veranstaltungsseite.",
+        "order": 4,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.334Z",
+        "updatedAt": "2026-02-05T13:34:49.334Z"
+      },
+      {
+        "id": "b770499e-ecd8-465b-ba49-900033e24fd3",
+        "question": "Hogyan tudom kifizetni a nevezési díjat?",
+        "questionEn": "How can I pay the entry fee?",
+        "questionDe": "Wie kann ich die Startgebühr bezahlen?",
+        "answer": "A nevezési díjat kiegyenlítheted **banki átutalással**. A nevezés leadása után e-mailben megkapod a szükséges banki adatokat (számlaszám, közlemény), illetve a Profilodban a \"Verseny Nevezéseim\" alatt is megtalálod a \"Fizetésre vár\" státuszú nevezéseknél az utalási infókat.\n\nKérjük, hogy a közlemény rovatba mindig írd be a kapott **Azonosítót** és a **Versenyző nevét**!",
+        "answerEn": "You can pay the entry fee by **bank transfer**. After submitting your registration, you will receive the necessary bank details (account number, reference) via email, and you can also find transfer info under \"My Race Registrations\" in your Profile for registrations with \"Pending Payment\" status.\n\nPlease always include the received **Identifier** and the **Competitor's Name** in the reference field!",
+        "answerDe": "Sie können die Startgebühr per **Banküberweisung** bezahlen. Nach Absenden Ihrer Anmeldung erhalten Sie die notwendigen Bankdaten (Kontonummer, Verwendungszweck) per E-Mail, und Sie finden Überweisungsinformationen auch unter \"Meine Wettkampfanmeldungen\" in Ihrem Profil für Anmeldungen mit dem Status \"Zahlung ausstehend\".\n\nBitte geben Sie im Verwendungszweck immer die erhaltene **Kennung** und den **Namen des Teilnehmers** an!",
+        "order": 5,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.335Z",
+        "updatedAt": "2026-02-05T13:34:49.335Z"
+      },
+      {
+        "id": "f1e9c508-0979-47d3-a602-7969bdc556ae",
+        "question": "Hová utaljam a nevezési díjat?",
+        "questionEn": "Where should I transfer the entry fee?",
+        "questionDe": "Wohin soll ich die Startgebühr überweisen?",
+        "answer": "Az utalási adatok versenyenként eltérhetnek (mindig az adott esemény szervezőjének kell utalni). A pontos számlaszámot és a Kedvezményezett nevét a nevezés után kiküldött e-mailben, valamint a Profilod \"Verseny Nevezéseim\" menüpontjában találod meg a konkrét nevezésed mellett.",
+        "answerEn": "Transfer details may vary by race (you must always transfer to the organizer of the specific event). You will find the exact account number and Beneficiary name in the email sent after registration, and next to your specific registration in the \"My Race Registrations\" menu of your Profile.",
+        "answerDe": "Die Überweisungsdaten können je nach Wettbewerb variieren (Sie müssen immer an den Organisator der jeweiligen Veranstaltung überweisen). Die genaue Kontonummer und den Namen des Begünstigten finden Sie in der E-Mail nach der Anmeldung sowie neben Ihrer konkreten Anmeldung im Menü \"Meine Wettkampfanmeldungen\" Ihres Profils.",
+        "order": 6,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.336Z",
+        "updatedAt": "2026-02-05T13:34:49.336Z"
+      },
+      {
+        "id": "063586b1-156e-4fae-9525-0c9adedb4de5",
+        "question": "Lesérültem, milyen lehetőségeim vannak?",
+        "questionEn": "I got injured, what are my options?",
+        "questionDe": "Ich habe mich verletzt, welche Möglichkeiten habe ich?",
+        "answer": "Amennyiben neveztél és befizetted a nevezési díjat, ám az egészségi állapotod nem teszi lehetővé a versenyen való részvételt, akkor a nevezési díjadat beszámítjuk bármelyik abban az évben vagy a követező évben megrendezésre kerülő futóversenyünk nevezési díjába. Kérjük, hogy jelezd a helyzetet az info@runion.eu email címre!",
+        "answerEn": "If you registered and paid the entry fee, but your health condition does not allow you to participate in the race, we will credit your entry fee towards the entry fee of any of our running races organized in that year or the following year. Please report the situation to info@runion.eu!",
+        "answerDe": "Wenn Sie sich angemeldet und die Startgebühr bezahlt haben, Ihr Gesundheitszustand jedoch die Teilnahme am Wettbewerb nicht zulässt, schreiben wir Ihre Startgebühr der Startgebühr eines unserer Laufwettbewerbe gut, die in diesem oder im folgenden Jahr stattfinden. Bitte melden Sie die Situation an info@runion.eu!",
+        "order": 7,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.338Z",
+        "updatedAt": "2026-02-05T13:34:49.338Z"
+      },
+      {
+        "id": "39784eba-d87e-4d31-8132-2e7152044643",
+        "question": "Hány éves kortól lehet részt venni egy adott távon?",
+        "questionEn": "From what age can one participate in a given distance?",
+        "questionDe": "Ab welchem Alter kann man an einer bestimmten Distanz teilnehmen?",
+        "answer": "Hamarosan érkezik a válasz!",
+        "answerEn": "Answer coming soon!",
+        "answerDe": "Antwort kommt bald!",
+        "order": 8,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.339Z",
+        "updatedAt": "2026-02-05T13:34:49.339Z"
+      },
+      {
+        "id": "aff426b9-08dd-4c50-8b3a-22eced38a438",
+        "question": "Tudok nevezni a helyszínen?",
+        "questionEn": "Can I register on-site?",
+        "questionDe": "Kann ich mich vor Ort anmelden?",
+        "answer": "A legtöbb versenyünkről van erre lehetőség (kivétel a One Way Ticket Run), de azért érdemes megnézni a friss híreinket vagy az adott esemény facebook oldalát, mert ha megtelt a létszám, akkor lezárjuk a verseny nevezését és ebben az esetben a helyszínen sem lehet már nevezni.\n\nA Szőlőskör versenyünkön a helyszíni nevezőknek nem jár póló és étkezési jegyet is csak felár ellenében tudnak váltani.",
+        "answerEn": "For most of our races, this is possible (except for the One Way Ticket Run), but it is worth checking our latest news or the facebook page of the specific event, because if the limit is full, we close registration for the race and in this case, on-site registration is not possible either.\n\nAt our Vineyard Circle race, on-site registrants do not receive a t-shirt and can only purchase meal tickets for an extra charge.",
+        "answerDe": "Bei den meisten unserer Rennen ist dies möglich (außer beim One Way Ticket Run), aber es lohnt sich, unsere aktuellen Nachrichten oder die Facebook-Seite der jeweiligen Veranstaltung zu überprüfen, da wir die Anmeldung für das Rennen schließen, wenn das Limit erreicht ist, und in diesem Fall auch keine Anmeldung vor Ort möglich ist.\n\nBei unserem Weinberg-Runden-Rennen erhalten Vor-Ort-Anmelder kein T-Shirt und können Essensmarken nur gegen Aufpreis erwerben.",
+        "order": 9,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.341Z",
+        "updatedAt": "2026-02-05T13:34:49.341Z"
+      },
+      {
+        "id": "1178c0cd-87fc-4eff-aca7-3de4ab0d8e01",
+        "question": "Más futóversenyen nyertem egy nevezést az egyik versenyetekre. Hogyan tudom érvényesíteni?",
+        "questionEn": "I won an entry to one of your races at another running race. How can I validate it?",
+        "questionDe": "Ich habe bei einem anderen Laufwettbewerb einen Startplatz für eines Ihrer Rennen gewonnen. Wie kann ich ihn einlösen?",
+        "answer": "Írj Nekünk az info@runion.eu e-mail címre és küld el a nyereményről szóló kupon vagy levél beszkennelt vagy fotózott példányát. Majd nevezz az adott verseny nevezési felületén, és utána aktiváljuk a nevezésedet.",
+        "answerEn": "Write to us at info@runion.eu and send a scanned or photographed copy of the coupon or letter about the prize. Then register on the registration interface of the given race, and after that we will activate your registration.",
+        "answerDe": "Schreiben Sie uns an info@runion.eu und senden Sie eine gescannte oder fotografierte Kopie des Gutscheins oder Briefes über den Gewinn. Melden Sie sich dann auf der Anmeldeseite des jeweiligen Rennens an, und danach aktivieren wir Ihre Anmeldung.",
+        "order": 10,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.342Z",
+        "updatedAt": "2026-02-05T13:34:49.342Z"
+      },
+      {
+        "id": "a0fbc79a-559f-45a6-b5c7-6e068f19c023",
+        "question": "Neveztem, de elfelejtettem utalni, él még a nevezésem?",
+        "questionEn": "I registered but forgot to transfer, is my registration still valid?",
+        "questionDe": "Ich habe mich angemeldet, aber vergessen zu überweisen, ist meine Anmeldung noch gültig?",
+        "answer": "Igen. A nevezések nem törlődnek a versenyig. Írni fogunk egy emlékeztető e-mailt a következő nevezési díj sáv váltás előtt. Ha akkor úgy döntesz, hogy mégsem veszel részt, akkor töröljük a nevezésedet. Arra is van lehetőség, hogy később utalj, de akkor már az a nevezési díj lép életbe, amelyik azon a napon aktuális.",
+        "answerEn": "Yes. Registrations are not deleted until the race. We will write a reminder email before the next entry fee tier change. If you decide not to participate then, we will delete your registration. It is also possible to transfer later, but then the entry fee current on that day will apply.",
+        "answerDe": "Ja. Anmeldungen werden bis zum Rennen nicht gelöscht. Wir schreiben eine Erinnerungs-E-Mail vor dem nächsten Wechsel der Startgebühr-Stufe. Wenn Sie sich dann entscheiden, doch nicht teilzunehmen, löschen wir Ihre Anmeldung. Es ist auch möglich, später zu überweisen, aber dann gilt die an diesem Tag aktuelle Startgebühr.",
+        "order": 11,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.343Z",
+        "updatedAt": "2026-02-05T13:34:49.343Z"
+      },
+      {
+        "id": "201de5be-f2ef-4bbe-8739-f121b953476b",
+        "question": "Szeretnék módosítani a távon, megtehetem?",
+        "questionEn": "I would like to change the distance, can I do that?",
+        "questionDe": "Ich möchte die Distanz ändern, kann ich das tun?",
+        "answer": "Igen. Az utolsó online fizetési határidőig megteheted, ám ha alacsonyabb árú versenyre módosítasz, nem áll módunkban pénzt visszautalni. Ha drágább versenyszámra módosítasz, akkor a különbözetet utalnod kell.",
+        "answerEn": "Yes. You can do this until the last online payment deadline, however, if you change to a lower-priced race, we are unable to refund money. If you change to a more expensive race number, you must transfer the difference.",
+        "answerDe": "Ja. Sie können dies bis zum letzten Online-Zahlungstermin tun, wenn Sie jedoch zu einem günstigeren Rennen wechseln, können wir leider kein Geld zurückerstatten. Wenn Sie zu einer teureren Startnummer wechseln, müssen Sie die Differenz überweisen.",
+        "order": 12,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.345Z",
+        "updatedAt": "2026-02-05T13:34:49.345Z"
+      },
+      {
+        "id": "4e2aaee2-f64d-4207-aa20-40a9bbed2877",
+        "question": "Kapok számlát a nevezési díjról?",
+        "questionEn": "Will I receive an invoice for the entry fee?",
+        "questionDe": "Erhalte ich eine Rechnung über die Startgebühr?",
+        "answer": "Igen. Mindenképpen kapsz, akkor is, ha nem kérsz céges számlát. Ha céges számlára van szükséged, a nevezési űrlapon töltsd ki a Számlázási Adatok részt (jelöld be a \"Cégként vásárolok\" opciót).",
+        "answerEn": "Yes. You will definitely receive one, even if you do not request a company invoice. If you need a company invoice, fill in the Billing Details section on the registration form (check the \"Buying as a company\" option).",
+        "answerDe": "Ja. Sie erhalten auf jeden Fall eine, auch wenn Sie keine Firmenrechnung anfordern. Wenn Sie eine Firmenrechnung benötigen, füllen Sie den Abschnitt Rechnungsdaten im Anmeldeformular aus (wählen Sie die Option \"Als Firma kaufen\").",
+        "order": 13,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.346Z",
+        "updatedAt": "2026-02-05T13:34:49.346Z"
+      },
+      {
+        "id": "9ea17944-a86b-4a16-bbe2-3df9c54bd43b",
+        "question": "A futóverseny esőben is meg lesz tartva?",
+        "questionEn": "Will the running race be held in rain too?",
+        "questionDe": "Findet der Laufwettbewerb auch bei Regen statt?",
+        "answer": "Természetesen, hiszen akkor kell futni, ha jól esik :)\n\nBár tudjuk, hogy a helyzet nem ideális olyankor, sem a futóknak, sem a segítőknek, de a rendezvények eső vagy havazás esetén sem maradnak el.",
+        "answerEn": "Of course, because you have to run when it falls well (pun intended - 'esik' means rains/falls well) :)\n\nJoking aside, although we know the situation is not ideal then, neither for runners nor for helpers, events are not cancelled in case of rain or snow.",
+        "answerDe": "Natürlich, denn man muss laufen, wenn es gut fällt (Wortspiel - 'esik' bedeutet regnet/fällt gut) :)\n\nSpaß beiseite, obwohl wir wissen, dass die Situation dann nicht ideal ist, weder für Läufer noch für Helfer, fallen Veranstaltungen bei Regen oder Schnee nicht aus.",
+        "order": 14,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.348Z",
+        "updatedAt": "2026-02-05T13:34:49.348Z"
+      },
+      {
+        "id": "583d4136-9f86-419b-8092-e972efbc4b42",
+        "question": "Átadhatom a nevezésemet másnak?",
+        "questionEn": "Can I transfer my registration to someone else?",
+        "questionDe": "Kann ich meine Anmeldung auf jemand anderen übertragen?",
+        "answer": "Igen, erre van lehetőség az \"Átnevezés\" menüpont alatt, vagy jelezd felénk e-mailben. Bizonyos versenyeknél ez gondot okozhat, ha túl közeli a dátum (pl. egyedi feliratos ajándéktárgyak miatt), de igyekszünk megoldani.",
+        "answerEn": "Yes, this is possible under the \"Transfer\" menu item, or let us know via email. For certain races, this might be an issue if the date is too close (e.g., due to custom inscribed souvenirs), but we try to solve it.",
+        "answerDe": "Ja, dies ist unter dem Menüpunkt \"Übertragung\" möglich, oder teilen Sie es uns per E-Mail mit. Bei bestimmten Rennen kann dies ein Problem sein, wenn das Datum zu nah ist (z. B. wegen individuell beschrifteter Souvenirs), aber wir versuchen, es zu lösen.",
+        "order": 15,
+        "active": true,
+        "createdAt": "2026-02-05T13:34:49.349Z",
+        "updatedAt": "2026-02-05T13:34:49.349Z"
+      }
+    ],
+    "galleryImages": [
+      {
+        "id": "ccd0b65d-3e47-4597-8846-c64cb7ef9880",
+        "imageUrl": "/uploads/865a13769fdef768.webp",
+        "caption": null,
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-05T12:30:40.062Z",
+        "updatedAt": "2026-02-05T12:30:40.062Z"
+      },
+      {
+        "id": "d2e4908a-4a39-46aa-a037-c8e4e14bfc02",
+        "imageUrl": "/uploads/a7d709c6a304b230.webp",
+        "caption": null,
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-05T12:30:50.936Z",
+        "updatedAt": "2026-02-05T12:30:50.936Z"
+      },
+      {
+        "id": "db246d14-e5d2-4243-94a3-37e726a0cc7c",
+        "imageUrl": "/uploads/2ae094819bd69b45.webp",
+        "caption": null,
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-05T12:30:59.119Z",
+        "updatedAt": "2026-02-05T12:30:59.119Z"
+      },
+      {
+        "id": "8fa24306-4d3d-430c-be46-27d8d90e7212",
+        "imageUrl": "/uploads/fb9294da7a1d5558.webp",
+        "caption": null,
+        "order": 0,
+        "active": true,
+        "createdAt": "2026-02-05T12:31:06.151Z",
+        "updatedAt": "2026-02-05T12:31:06.151Z"
+      }
+    ],
+    "globalSettings": [
+      {
+        "id": "f2b67f74-4ab1-49ac-aa05-b89a6bec2e75",
+        "maintenanceMode": false,
+        "updatedAt": "2026-02-06T15:48:04.728Z",
+        "shopEnabled": true,
+        "shopEmail": "info@pcdokk.hu",
+        "shopBeneficiaryName": "KAHU Természet- és Állatvédő, Ifjúsági-, és Sportegyesület",
+        "shopBankName": "OTP Bank",
+        "shopBankAccountNumber": "11748038-24826190",
+        "shopShippingCost": 2500,
+        "shopFreeShippingThreshold": 20000,
+        "shopNote": "Ez most csak egy sablon lesz!",
+        "shopTaxNumber": "19316815-1-19",
+        "shopAddress": " 8452, Szőc, Kossuth u. 83.",
+        "shopLogoUrl": "",
+        "feature1Title": "GARANTÁLT MINŐSÉG ",
+        "feature1TitleEn": "GUARANTEED QUALITY",
+        "feature1TitleDe": "GARANTIERTE QUALITÄT",
+        "feature1Desc": "Válogatott, technikai anyagokból készült felszerelések, amelyeket futók teszteltek élesben. Csak a legjobbat, hogy Te a céljaidra fókuszálhass.",
+        "feature1DescEn": "Carefully selected technical gear tested by runners. Only the best, so you can focus on your goals.",
+        "feature1DescDe": "Sorgfältig ausgewählte, von Läufern getestete technische Ausrüstung. Nur das Beste, damit du dich auf deine Ziele konzentrieren kannst.",
+        "feature1Icon": "Award",
+        "feature2Title": "AZONNALI DÍJBEKÉRŐ ",
+        "feature2TitleEn": "INSTANT INVOICE",
+        "feature2TitleDe": "SOFORTIGE RECHNUNG",
+        "feature2Desc": "Nincs várakozás! Rendelésed leadása után rendszerünk automatikusan küldi a PDF díjbekérőt, így percek alatt, egyszerűen intézheted a fizetést.",
+        "feature2DescEn": "No waiting! Our system automatically sends the PDF invoice after your order, so you can settle payment in minutes.",
+        "feature2DescDe": "Keine Wartezeit! Unser System sendet die Rechnung automatisch als PDF nach deiner Bestellung, damit du die Zahlung in Minuten erledigen kannst.",
+        "feature2Icon": "FileText",
+        "feature3Title": "A KÖZÖSSÉG EREJE ",
+        "feature3TitleEn": "SUPPORT RUNNING",
+        "feature3TitleDe": "LAUFEN UNTERSTÜTZEN",
+        "feature3Desc": "Vásárlásod jó helyre kerül! A bevételeink jelentős részét visszaforgatjuk a magyar futósport és a közösségi élmények támogatására",
+        "feature3DescEn": "Runion is more than a shop. With every purchase, you directly support the local running community and the development of the sport.",
+        "feature3DescDe": "Runion ist mehr als ein Shop. Mit jedem Kauf unterstützt du direkt die lokale Laufgemeinschaft und die Entwicklung des Sports.",
+        "feature3Icon": "Users"
+      },
+      {
+        "id": "f2594329-2af4-4b2a-acf4-cce14bc20f0d",
+        "maintenanceMode": false,
+        "updatedAt": "2026-02-06T15:37:56.857Z",
+        "shopEnabled": true,
+        "shopEmail": "info@pcdokk.hu",
+        "shopBeneficiaryName": "KAHU Természet- és Állatvédő, Ifjúsági-, és Sportegyesület",
+        "shopBankName": "OTP Bank",
+        "shopBankAccountNumber": "11748038-24826190",
+        "shopShippingCost": 2500,
+        "shopFreeShippingThreshold": 20000,
+        "shopNote": "Ez most csak egy sablon lesz!",
+        "shopTaxNumber": "19316815-1-19",
+        "shopAddress": " 8452, Szőc, Kossuth u. 83.",
+        "shopLogoUrl": "",
+        "feature1Title": "GARANTÁLT MINŐSÉG ",
+        "feature1TitleEn": null,
+        "feature1TitleDe": null,
+        "feature1Desc": "Válogatott, technikai anyagokból készült felszerelések, amelyeket futók teszteltek élesben. Csak a legjobbat, hogy Te a céljaidra fókuszálhass.",
+        "feature1DescEn": null,
+        "feature1DescDe": null,
+        "feature1Icon": "Award",
+        "feature2Title": "AZONNALI DÍJBEKÉRŐ ",
+        "feature2TitleEn": null,
+        "feature2TitleDe": null,
+        "feature2Desc": "Nincs várakozás! Rendelésed leadása után rendszerünk automatikusan küldi a PDF díjbekérőt, így percek alatt, egyszerűen intézheted a fizetést.",
+        "feature2DescEn": null,
+        "feature2DescDe": null,
+        "feature2Icon": "FileText",
+        "feature3Title": "A KÖZÖSSÉG EREJE ",
+        "feature3TitleEn": null,
+        "feature3TitleDe": null,
+        "feature3Desc": "Vásárlásod jó helyre kerül! A bevételeink jelentős részét visszaforgatjuk a magyar futósport és a közösségi élmények támogatására",
+        "feature3DescEn": null,
+        "feature3DescDe": null,
+        "feature3Icon": "Users"
+      }
+    ],
+    "sellers": [
+      {
+        "id": "1ca84f52-2999-4b30-a568-1ab721f30062",
+        "key": "kahu",
+        "name": "KAHU Természet- és Állatvédő, Ifjúsági-, és Sportegyesület",
+        "address": " 8452, Szőc, Kossuth u. 83.",
+        "phone": "+36 70 3230662",
+        "email": "kahu2022@gmail.com",
+        "taxNumber": "19316815-1-19",
+        "regNumber": null,
+        "representative": "Baranyai Máté",
+        "bankName": "OTP Bank",
+        "bankAccountNumber": "11748038-24826190",
+        "iban": "HU19117480382482619000000000",
+        "order": 1,
+        "active": true,
+        "createdAt": "2026-02-03T15:04:19.569Z",
+        "updatedAt": "2026-02-05T13:09:29.167Z",
+        "bankAccountNumberEuro": null,
+        "ibanEuro": "HU33117634885870488200000000"
+      },
+      {
+        "id": "265ae45d-a1c8-4470-a79b-9808e9f2a08b",
+        "key": "bac",
+        "name": "Balatonfüredi Atlétikai Club",
+        "address": "8230 Balatonfüred, Vörösmsrty u. 3.",
+        "phone": "+36 703 230 662",
+        "email": "bhebalaton@gmail.com",
+        "taxNumber": "19225067-1-19",
+        "regNumber": "19-02-0003889",
+        "representative": "Baranyai Máté",
+        "bankName": "OTP Bank",
+        "bankAccountNumber": "11748069-25512412",
+        "iban": "HU16117480692551241200000000",
+        "order": 2,
+        "active": true,
+        "createdAt": "2026-02-03T15:04:19.572Z",
+        "updatedAt": "2026-02-05T13:14:19.550Z",
+        "bankAccountNumberEuro": null,
+        "ibanEuro": null
+      },
+      {
+        "id": "19f1ed4d-a6c1-4327-a4d5-87a7f28afdd6",
+        "key": "bbe",
+        "name": "BakonyOrszág Balcsipart Kulturális és Sportegyesület",
+        "address": "8230 Nemesvámos, Rózsa u. 6.",
+        "phone": "+36 70 3230662",
+        "email": "bakonyorszagbalcsipart@gmail.com",
+        "taxNumber": " 19316815-1-19",
+        "regNumber": "19-02-0004010",
+        "representative": "Baranyai Máté",
+        "bankName": "OTP Bank",
+        "bankAccountNumber": "11748007-24830210-00000000",
+        "iban": "HU67117480072483021000000000",
+        "order": 3,
+        "active": true,
+        "createdAt": "2026-02-03T15:04:19.575Z",
+        "updatedAt": "2026-02-05T13:19:14.026Z",
+        "bankAccountNumberEuro": null,
+        "ibanEuro": null
+      }
+    ]
+  }
+}

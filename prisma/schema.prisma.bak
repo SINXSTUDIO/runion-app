@@ -1,0 +1,505 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+  STAFF
+}
+
+enum RegistrationStatus {
+  PENDING // Függőben
+  CONFIRMED // Visszaigazolva
+  CANCELLED // Törölve
+  COMPLETED // Teljesítve (verseny után)
+}
+
+enum PaymentStatus {
+  UNPAID // Fizetetlen
+  PARTIALLY_PAID // Részben fizetve
+  PAID // Kifizetve
+  REFUNDED // Visszatérítve
+}
+
+enum PaymentMethod {
+  CARD // Bankkártya (Barion)
+  BANK_TRANSFER // Banki átutalás
+  CASH // Készpénz (helyszíni)
+}
+
+enum ProductCategory {
+  MERCHANDISE
+  EQUIPMENT
+  SERVICE
+}
+
+model User {
+  id           String  @id @default(uuid())
+  email        String  @unique
+  passwordHash String?
+
+  emailVerified DateTime?
+  image         String?
+
+  // Personal Info
+  firstName   String
+  lastName    String
+  birthDate   DateTime?
+  gender      Gender?
+  clubName    String?
+  phoneNumber String?
+  tshirtSize  String? // 'S', 'M', 'L', 'XL' etc.
+
+  emergencyContactName  String?
+  emergencyContactPhone String?
+
+  // Address (Optional but often needed for billing)
+  city    String?
+  zipCode String?
+  address String?
+
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  registrations Registration[]
+  events        Event[]
+  orders        Order[]
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum EventStatus {
+  DRAFT
+  PUBLISHED
+  COMPLETED
+  CANCELLED
+}
+
+model Event {
+  id              String      @id @default(uuid())
+  slug            String      @unique
+  title           String
+  titleEn         String?
+  titleDe         String?
+  description     String      @db.Text
+  descriptionEn   String?     @db.Text
+  descriptionDe   String?     @db.Text
+  location        String
+  eventDate       DateTime
+  endDate         DateTime? // For multi-day events
+  regDeadline     DateTime
+  googleMapsUrl   String?     @db.Text
+  websiteUrl      String?     @db.Text
+  organizerName   String? // Primary organizer name (if different from relation)
+  extraOrganizers String?     @db.Text // Comma separated list (legacy)
+  showCountdown   Boolean     @default(true)
+  coverImage      String?
+  ogImage         String? // Custom image for social sharing (1200x630 recommended)
+  ogDescription   String?     @db.Text // Custom description for social sharing
+  confirmationEmailText String?   @db.Text // Custom text for registration email
+  paymentReminderEnabled Boolean  @default(true)
+  status          EventStatus @default(DRAFT)
+  sortOrder       Int         @default(0) // For drag and drop ordering
+
+  // Dynamic Content
+  formConfig          Json? // Stores the array of fields: { type, label, options, etc. }
+  extras              Json? // Stores event add-ons: [{ id, name, price, image }]
+  extraLocations      Json? // [{ name, googleMapsUrl }]
+  extraOrganizersJson Json? // [{ name, logo }] or similar if needed, keeping simple for now
+
+  // Bank Info
+  notificationEmail String? // Email address to receive registration notifications
+
+  // Relations
+  organizerId String
+  organizer   User   @relation(fields: [organizerId], references: [id])
+
+  sellerId String?
+  seller   Seller? @relation(fields: [sellerId], references: [id])
+
+  distances Distance[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([organizerId])
+  @@index([sellerId])
+}
+
+// ... Distance model ...
+
+model Seller {
+  id                String  @id @default(uuid())
+  key               String? @unique // e.g. 'bac', 'kahu', 'bbe'
+  name              String
+  address           String
+  phone             String?
+  email             String?
+  taxNumber         String?
+  regNumber         String? // Cégjegyzékszám / Nyilvántartási szám
+  representative    String?
+  bankName          String?
+  bankAccountNumber String?
+  iban              String?
+  bankAccountNumberEuro String? // EUR account for international payments
+  ibanEuro          String?     // EUR IBAN
+  order             Int     @default(0)
+  active            Boolean @default(true)
+
+  events Event[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Distance {
+  id            String   @id @default(uuid())
+  name          String // e.g. "10 km", "Half Marathon"
+  nameEn        String?
+  nameDe        String?
+  description   String?  @db.Text
+  price         Decimal  @db.Decimal(10, 2)
+  priceEur      Decimal? @db.Decimal(10, 2)
+  capacityLimit Int
+  startTime     DateTime // Start time of this specific distance
+  
+  // Crew Pricing (optional) - JSON format: {"1": 130, "2": 200, "3": 270, "4": 340, "5": 410}
+  crewPricing   Json?
+
+  // Relations
+  eventId       String
+  event         Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  registrations Registration[]
+  priceTiers    PriceTier[]
+}
+
+model PriceTier {
+  id        String   @id @default(uuid())
+  name      String // e.g. "Early Bird"
+  price     Decimal  @db.Decimal(10, 2)
+  priceEur  Decimal? @db.Decimal(10, 2)
+  validFrom DateTime
+  validTo   DateTime
+
+  distanceId String
+  distance   Distance @relation(fields: [distanceId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([distanceId])
+}
+
+model Registration {
+  id String @id @default(uuid())
+
+  // Status tracking
+  registrationStatus RegistrationStatus @default(PENDING)
+  paymentStatus      PaymentStatus      @default(UNPAID)
+  paymentMethod      PaymentMethod      @default(CARD)
+
+  // Race logistics
+  bibNumber String? // Rajtszám (fizetés után)
+  bibSent   Boolean @default(false)
+
+  // Barion Payment Integration
+  barionPaymentId    String?   @unique // Barion tranzakció ID
+  barionPaymentState String? // Prepared, Started, InProgress, Succeeded, Failed
+  paymentId          String? // Legacy, általános payment ID
+  paidAt             DateTime? // Fizetés időpontja
+
+  // Custom Form Data
+  formData Json? // Kitöltött űrlap adatok
+  extras   Json? // Választott kiegészítők
+
+  // Document Generation
+  invoiceNumber  String? @unique // Számla szám (INV-2024-XXXXX)
+  receiptNumber  String? @unique // Nyugta szám (REC-2024-XXXXX)
+  proformaNumber String? @unique // Díjbekérő szám (PRO-2024-XXXXX)
+
+  invoiceUrl  String? // Számla PDF URL
+  receiptUrl  String? // Nyugta PDF URL
+  proformaUrl String? // Díjbekérő PDF URL
+
+  invoiceGeneratedAt  DateTime? // Számla generálás időpontja
+  receiptGeneratedAt  DateTime? // Nyugta generálás időpontja
+  proformaGeneratedAt DateTime? // Díjbekérő generálás időpontja
+  
+  // Crew Support (optional) - for races with crew/support teams
+  crewSize    Int?     // Number of crew members (1-5)
+  finalPrice  Decimal? @db.Decimal(10, 2) // Calculated final price based on crew size
+
+  // Relations
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  distanceId String
+  distance   Distance @relation(fields: [distanceId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([distanceId])
+  @@index([barionPaymentId])
+  @@index([registrationStatus])
+  @@index([paymentStatus])
+}
+
+model Product {
+  id            String          @id @default(uuid())
+  slug          String?         @unique
+  name          String
+  nameEn        String?
+  nameDe        String?
+  description   String?         @db.Text
+  descriptionEn String?         @db.Text
+  descriptionDe String?         @db.Text
+  price         Decimal         @db.Decimal(10, 2)
+  sizes         String? // Comma separated e.g. "S,M,L,XL"
+  stock         Int             @default(0)
+  category      ProductCategory @default(MERCHANDISE)
+  imageUrl      String?
+  active        Boolean         @default(true)
+
+  orderItems OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  COMPLETED
+  CANCELLED
+}
+
+model Order {
+  id          String @id @default(uuid())
+  orderNumber String @unique // e.g. ORD-2024-XXXXX
+
+  status        OrderStatus   @default(PENDING)
+  paymentMethod PaymentMethod @default(BANK_TRANSFER)
+
+  totalAmount Decimal @db.Decimal(10, 2)
+
+  // Billing Address
+  billingName      String
+  billingZip       String
+  billingCity      String
+  billingAddress   String
+  billingTaxNumber String?
+
+  // Shipping Address
+  shippingName    String
+  shippingZip     String
+  shippingCity    String
+  shippingAddress String
+  shippingPhone   String
+  shippingEmail   String
+
+  note String? @db.Text
+
+  // Relations
+  userId String
+  user   User        @relation(fields: [userId], references: [id])
+  items  OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model OrderItem {
+  id       String  @id @default(uuid())
+  quantity Int
+  price    Decimal @db.Decimal(10, 2) // Price at time of purchase
+  size     String? // Selected size
+
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model InstantTrack {
+  id               String  @id @default(uuid())
+  title            String
+  description      String? @db.Text
+  gpxFileUrl       String
+  rewardMedalImage String?
+
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Account {
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Partner {
+  id        String   @id @default(uuid())
+  name      String
+  logoUrl   String
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HomepageFeature {
+  id            String   @id @default(uuid())
+  iconName      String // Lucide icon name, e.g., "Trophy"
+  title         String
+  titleEn       String?
+  titleDe       String?
+  description   String   @db.Text
+  descriptionEn String?  @db.Text
+  descriptionDe String?  @db.Text
+  order         Int      @default(0)
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model GalleryImage {
+  id        String   @id @default(uuid())
+  imageUrl  String
+  caption   String?  @db.Text
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Sponsor {
+  id        String   @id @default(uuid())
+  name      String
+  logoUrl   String
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+model AboutPage {
+  id            String   @id @default(uuid())
+  title         String
+  titleEn       String?
+  titleDe       String?
+  description   String   @db.Text
+  descriptionEn String?  @db.Text
+  descriptionDe String?  @db.Text
+  founderName   String
+  founderRole   String
+  founderRoleEn String?
+  founderRoleDe String?
+  image1Url     String?
+  image2Url     String?
+  updatedAt     DateTime @updatedAt
+}
+
+model FAQ {
+  id         String   @id @default(uuid())
+  question   String
+  questionEn String?
+  questionDe String?
+  answer     String   @db.Text
+  answerEn   String?  @db.Text
+  answerDe   String?  @db.Text
+  order      Int      @default(0)
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model GlobalSettings {
+  id              String   @id @default(uuid())
+  maintenanceMode Boolean  @default(false)
+  shopEnabled     Boolean  @default(true) // Controls if the shop is purchasable
+  updatedAt       DateTime @updatedAt
+}
+
+model ChangeRequest {
+  id        String   @id @default(uuid())
+  type      ChangeRequestType
+  status    ChangeRequestStatus @default(PENDING)
+  
+  // Personal Info
+  name      String
+  email     String
+  phone     String
+  birthDate DateTime?
+  address   String?
+  city      String?
+  zipCode   String?
+  
+  // Request Details
+  fromEvent String
+  toEvent   String?
+  
+  comment   String? @db.Text
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ChangeRequestType {
+  TRANSFER
+  CANCELLATION
+  MODIFICATION
+}
+
+enum ChangeRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
