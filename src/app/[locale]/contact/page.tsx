@@ -39,49 +39,51 @@ export default async function ContactPage(props: {
                     {/* Left Column: Organization Info */}
                     <div className="space-y-8">
                         {companies.map((company) => (
-                            <Card key={company.id} className="bg-zinc-900/50 border-zinc-800 p-8 hover:border-accent/50 transition-colors group">
-                                <div className="flex items-start gap-4">
-                                    <div className="w-12 h-12 rounded-xl bg-zinc-800 flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-black transition-colors">
+                            <Card key={company.id} className="bg-zinc-900/50 border-zinc-800 p-5 md:p-8 hover:border-accent/50 transition-colors group">
+                                <div className="flex flex-col md:flex-row items-start gap-4">
+                                    <div className="w-12 h-12 rounded-xl bg-zinc-800 flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-black transition-colors self-start">
                                         <Building2 className="w-6 h-6" />
                                     </div>
-                                    <div className="space-y-4 w-full">
-                                        <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors">
+                                    <div className="space-y-4 w-full overflow-hidden">
+                                        <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-accent transition-colors break-words">
                                             {company.name}
                                         </h3>
 
-                                        <div className="grid md:grid-cols-2 gap-x-6 gap-y-3 text-sm text-gray-400">
-                                            <div className="flex items-center gap-2">
-                                                <MapPin className="w-4 h-4 text-zinc-500" />
-                                                <span>{company.address}</span>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 text-sm text-gray-400">
+                                            <div className="flex items-start gap-2">
+                                                <MapPin className="w-4 h-4 text-zinc-500 shrink-0 mt-0.5" />
+                                                <span className="break-words">{company.address}</span>
                                             </div>
                                             {company.phone && <div className="flex items-center gap-2">
-                                                <Phone className="w-4 h-4 text-zinc-500" />
-                                                <span>{company.phone}</span>
+                                                <Phone className="w-4 h-4 text-zinc-500 shrink-0" />
+                                                <span className="break-all">{company.phone}</span>
                                             </div>}
                                             {company.email && <div className="flex items-center gap-2">
-                                                <Mail className="w-4 h-4 text-zinc-500" />
-                                                <span>{company.email}</span>
+                                                <Mail className="w-4 h-4 text-zinc-500 shrink-0" />
+                                                <span className="break-all">{company.email}</span>
                                             </div>}
                                             {company.taxNumber && <div className="flex items-center gap-2">
-                                                <span className="font-semibold text-zinc-500">Tax:</span>
-                                                <span>{company.taxNumber}</span>
+                                                <span className="font-semibold text-zinc-500 shrink-0">Tax:</span>
+                                                <span className="break-all">{company.taxNumber}</span>
                                             </div>}
                                             {company.regNumber && <div className="flex items-center gap-2">
-                                                <span className="font-semibold text-zinc-500">Reg:</span>
-                                                <span>{company.regNumber}</span>
+                                                <span className="font-semibold text-zinc-500 shrink-0">Reg:</span>
+                                                <span className="break-all">{company.regNumber}</span>
                                             </div>}
                                             {company.representative && <div className="flex items-center gap-2 col-span-full mt-2 pt-2 border-t border-zinc-800">
-                                                <span className="font-semibold text-zinc-500">{t('representativeLabel')}:</span>
-                                                <span className="font-medium text-white">{company.representative}</span>
+                                                <span className="font-semibold text-zinc-500 shrink-0">{t('representativeLabel')}:</span>
+                                                <span className="font-medium text-white break-words">{company.representative}</span>
                                             </div>}
 
                                             {/* IBAN Section */}
                                             {company.iban && (
-                                                <div className="flex items-center gap-3 col-span-full mt-2 pt-3 border-t border-zinc-800/50 bg-black/20 p-3 rounded-lg border border-white/5 hover:border-accent/20 transition-colors">
+                                                <div className="flex items-center gap-3 col-span-full mt-2 pt-3 border-t border-zinc-800/50 bg-black/20 p-3 rounded-lg border border-white/5 hover:border-accent/20 transition-colors overflow-hidden">
                                                     <CreditCard className="w-6 h-6 text-accent shrink-0" />
-                                                    <div className="flex flex-col">
+                                                    <div className="flex flex-col overflow-hidden">
                                                         <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider mb-0.5">{t('ibanLabel')}</span>
-                                                        <span className="font-mono text-white tracking-wide text-sm md:text-base font-semibold">{company.iban}</span>
+                                                        <span className="font-mono text-white tracking-wide text-[11px] sm:text-xs md:text-sm lg:text-base font-semibold truncate">
+                                                            {company.iban}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             )}

@@ -101,7 +101,7 @@ export default function ProductCard({ product, locale, shopEnabled }: { product:
             </Link>
 
             {/* Content */}
-            <div className="p-6 flex-1 flex flex-col">
+            <div className="p-4 md:p-6 flex-1 flex flex-col">
                 <Link href={`/boutique/${product.id}`} className="hover:text-accent transition-colors">
                     <h3 className="text-xl font-black uppercase italic text-white mb-2 leading-none group-hover:text-accent transition-colors">
                         {name}
