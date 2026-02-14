@@ -19,9 +19,9 @@ export default function LanguageSwitcher() {
                 <button
                     key={l}
                     onClick={() => handleSwitch(l)}
-                    className={`px-2 py-1 text-sm font-medium rounded transition-colors ${locale === l
-                            ? 'bg-white/20 text-white'
-                            : 'text-gray-400 hover:text-white'
+                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all border ${locale === l
+                        ? 'bg-accent text-black border-accent'
+                        : 'bg-zinc-900 text-zinc-400 border-accent/30 hover:border-accent/70 hover:text-white'
                         }`}
                 >
                     {l.toUpperCase()}

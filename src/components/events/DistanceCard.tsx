@@ -99,7 +99,7 @@ export default function DistanceCard({ distance, eventSlug, locale, index }: Dis
             transition={{ duration: 0.3, delay: index * 0.1 }}
             className="group relative"
         >
-            <div className="relative bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 backdrop-blur-sm hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,242,254,0.15)] h-full flex flex-col">
+            <div className="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl md:rounded-3xl p-3 md:p-6 backdrop-blur-sm hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,242,254,0.15)] h-full flex flex-col">
 
                 {/* Status Badge */}
                 {status !== 'AVAILABLE' && (
@@ -121,21 +121,21 @@ export default function DistanceCard({ distance, eventSlug, locale, index }: Dis
                 )}
 
                 {/* Distance Name */}
-                <h3 className="text-2xl font-black font-heading uppercase mb-3 text-white mt-8 group-hover:text-accent transition-colors">
+                <h3 className="text-lg md:text-2xl font-black font-heading uppercase mb-1 md:mb-3 text-white mt-6 md:mt-8 group-hover:text-accent transition-colors leading-tight">
                     {distanceName}
                 </h3>
 
                 {/* Description (if from DB) */}
                 {distance.description && (
-                    <p className="text-zinc-400 text-sm mb-4 line-clamp-2">
+                    <p className="text-zinc-400 text-xs md:text-sm mb-2 md:mb-4 line-clamp-2 md:block hidden">
                         {distance.description}
                     </p>
                 )}
 
                 {/* Start Time */}
-                <div className="flex items-center gap-2 mb-4 text-zinc-400">
-                    <Clock className="w-4 h-4 text-accent" />
-                    <span className="text-sm">
+                <div className="flex items-center gap-2 mb-2 md:mb-4 text-zinc-400">
+                    <Clock className="w-3 h-3 md:w-4 md:h-4 text-accent" />
+                    <span className="text-xs md:text-sm">
                         {format.dateTime(new Date(distance.startTime), {
                             hour: '2-digit',
                             minute: '2-digit',
@@ -161,9 +161,9 @@ export default function DistanceCard({ distance, eventSlug, locale, index }: Dis
                             animate={{ width: `${percentageFull}%` }}
                             transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
                             className={`h-full rounded-full ${status === 'SOLD_OUT' ? 'bg-red-500' :
-                                    status === 'ALMOST_FULL' ? 'bg-orange-500' :
-                                        status === 'FILLING_FAST' ? 'bg-yellow-500' :
-                                            'bg-accent'
+                                status === 'ALMOST_FULL' ? 'bg-orange-500' :
+                                    status === 'FILLING_FAST' ? 'bg-yellow-500' :
+                                        'bg-accent'
                                 }`}
                         />
                     </div>
@@ -178,7 +178,7 @@ export default function DistanceCard({ distance, eventSlug, locale, index }: Dis
                                     {formatPrice(Number(distance.price), distance.priceEur ? Number(distance.priceEur) : undefined)}
                                 </p>
                             )}
-                            <p className="text-2xl font-black text-white font-mono">
+                            <p className="text-xl md:text-2xl font-black text-white font-mono">
                                 {formatPrice(Number(displayPrice), displayPriceEur ? Number(displayPriceEur) : undefined)}
                             </p>
                             {activeTier && (
@@ -206,9 +206,9 @@ export default function DistanceCard({ distance, eventSlug, locale, index }: Dis
                     <Link href={`/races/${eventSlug}/register?distanceId=${distance.id}`}>
                         <Button
                             disabled={status === 'SOLD_OUT'}
-                            className={`w-full font-bold h-12 rounded-xl transition-all ${status === 'SOLD_OUT'
-                                    ? 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
-                                    : 'bg-accent text-black hover:bg-accent/80 hover:scale-[1.02] shadow-[0_4px_20px_rgba(0,242,254,0.3)]'
+                            className={`w-full font-bold h-9 md:h-12 text-sm rounded-xl transition-all ${status === 'SOLD_OUT'
+                                ? 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
+                                : 'bg-accent text-black hover:bg-accent/80 hover:scale-[1.02] shadow-[0_4px_20px_rgba(0,242,254,0.3)]'
                                 }`}
                         >
                             {status === 'SOLD_OUT' ? t('cta.soldOut') : t('cta.register')}
