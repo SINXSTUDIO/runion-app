@@ -11,7 +11,7 @@ const distanceSchema = z.object({
     description: z.string().optional().nullable(),
     price: z.number().min(0),
     priceEur: z.number().optional(),
-    capacityLimit: z.number().int().min(1),
+    capacityLimit: z.number().int().min(0),
     startTime: z.string().optional(), // ISO String
     crewPricing: z.any().optional().nullable(), // {"1": 130, "2": 200, ...}
     tiers: z.array(z.object({
