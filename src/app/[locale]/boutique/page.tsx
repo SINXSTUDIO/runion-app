@@ -28,19 +28,41 @@ export default async function BoutiquePage({
         <div className="min-h-screen pt-24 pb-16">
             <div className="container mx-auto px-4 max-w-7xl">
                 {/* Hero / Header */}
-                <div className="text-center mb-16 relative">
-                    <h1 className="text-5xl md:text-7xl font-black font-heading italic uppercase tracking-tighter mb-4 pr-4 py-4">
-                        <span className="text-white">RUN</span>
-                        <span className="text-accent">ION</span>{' '}
-                        <span className="text-white pr-2">{t('title')}</span>
-                    </h1>
-                    <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                        {t('subtitle')}
-                    </p>
+                <div className="relative w-full min-h-[50vh] flex items-center justify-center rounded-3xl overflow-hidden mb-16 shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 group">
+                    {/* Background Image */}
+                    <div className="absolute inset-0 z-0">
+                        <img
+                            src="/images/brutal-runner.png"
+                            alt="Runion Boutique Hero"
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent"></div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="relative z-10 text-center p-8 max-w-4xl mx-auto">
+                        <h1 className="text-5xl md:text-8xl font-black font-heading italic uppercase tracking-tighter mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
+                            <span className="text-white">RUN</span>
+                            <span className="text-accent">ION</span>
+                            <br className="md:hidden" />
+                            <span className="text-white ml-2 md:ml-4">{t('title')}</span>
+                        </h1>
+
+                        <p className="text-xl md:text-2xl text-zinc-200 font-medium max-w-2xl mx-auto mb-8 drop-shadow-md leading-relaxed">
+                            {t('subtitle')}
+                        </p>
+
+                        <div className="flex justify-center gap-2 mb-8">
+                            <div className="w-16 h-1 bg-accent rounded-full shadow-[0_0_10px_rgba(0,242,254,0.5)]"></div>
+                            <div className="w-4 h-1 bg-white rounded-full opacity-50"></div>
+                            <div className="w-4 h-1 bg-white rounded-full opacity-30"></div>
+                        </div>
+                    </div>
 
                     {/* Decorative Elements */}
-                    <div className="absolute top-1/2 left-0 w-24 h-1 bg-accent hidden md:block opacity-50"></div>
-                    <div className="absolute top-1/2 right-0 w-24 h-1 bg-accent hidden md:block opacity-50"></div>
+                    <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-zinc-900/80 to-transparent pointer-events-none"></div>
+                    <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-zinc-900 to-transparent pointer-events-none"></div>
                 </div>
 
                 {/* Product Grid */}
