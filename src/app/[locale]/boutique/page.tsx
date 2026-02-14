@@ -1,6 +1,7 @@
 import prisma from '@/lib/prisma';
 import { getTranslations } from 'next-intl/server';
 import ProductList from '@/components/shop/ProductList';
+import BoutiqueHeroSlideshow from '@/components/shop/BoutiqueHeroSlideshow';
 import { ShoppingBag, FileText, Users, Heart, Shield, Truck, Star, Award, Gift, Zap, TrendingUp, ThumbsUp, CheckCircle, Info } from 'lucide-react';
 
 export default async function BoutiquePage({
@@ -28,32 +29,23 @@ export default async function BoutiquePage({
         <div className="min-h-screen pt-24 pb-16">
             <div className="container mx-auto px-4 max-w-7xl">
                 {/* Hero / Header */}
-                <div className="relative w-full min-h-[50vh] flex items-center justify-center rounded-3xl overflow-hidden mb-16 shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 group">
-                    {/* Background Image */}
-                    <div className="absolute inset-0 z-0">
-                        <img
-                            src="/images/brutal-runner.png"
-                            alt="Runion Boutique Hero"
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent"></div>
-                    </div>
+                <section className="relative h-[80vh] w-full flex items-center justify-center rounded-3xl overflow-hidden mb-16 shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 group">
+                    <BoutiqueHeroSlideshow />
 
                     {/* Content */}
-                    <div className="relative z-10 text-center p-8 max-w-4xl mx-auto">
-                        <h1 className="text-5xl md:text-8xl font-black font-heading italic uppercase tracking-tighter mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
+                    <div className="relative z-20 text-center p-8 max-w-4xl mx-auto">
+                        <h1 className="text-5xl md:text-8xl font-black font-heading italic uppercase tracking-tighter mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] animate-in fade-in slide-in-from-bottom-4 duration-1000">
                             <span className="text-white">RUN</span>
                             <span className="text-accent">ION</span>
                             <br className="md:hidden" />
                             <span className="text-white ml-2 md:ml-4">{t('title')}</span>
                         </h1>
 
-                        <p className="text-xl md:text-2xl text-zinc-200 font-medium max-w-2xl mx-auto mb-8 drop-shadow-md leading-relaxed">
+                        <p className="text-xl md:text-2xl text-zinc-200 font-medium max-w-2xl mx-auto mb-8 drop-shadow-md leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
                             {t('subtitle')}
                         </p>
 
-                        <div className="flex justify-center gap-2 mb-8">
+                        <div className="flex justify-center gap-2 mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
                             <div className="w-16 h-1 bg-accent rounded-full shadow-[0_0_10px_rgba(0,242,254,0.5)]"></div>
                             <div className="w-4 h-1 bg-white rounded-full opacity-50"></div>
                             <div className="w-4 h-1 bg-white rounded-full opacity-30"></div>
@@ -61,9 +53,9 @@ export default async function BoutiquePage({
                     </div>
 
                     {/* Decorative Elements */}
-                    <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-zinc-900/80 to-transparent pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-zinc-900 to-transparent pointer-events-none"></div>
-                </div>
+                    <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-zinc-900/80 to-transparent pointer-events-none z-10"></div>
+                    <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-zinc-900 to-transparent pointer-events-none z-10"></div>
+                </section>
 
                 {/* Product Grid */}
                 <ProductList products={products} locale={locale} shopEnabled={shopEnabled} />
@@ -144,4 +136,3 @@ function FeatureSection({ t, settings, locale }: { t: any, settings: any, locale
         </div>
     );
 }
-
