@@ -76,10 +76,14 @@ export async function uploadImage(formData: FormData) {
             url: `/uploads/${filename}`,
             filename
         };
-    } catch (error) {
-        console.error('[uploadImage] ERROR:', error);
+    } catch (error: any) {
+        console.error('[uploadImage] ERROR DETAILS:', {
+            message: error.message,
+            stack: error.stack,
+            code: error.code
+        });
         await logError(error, 'Image Upload');
-        return { success: false, error: "Hiba történt a kép feldolgozása közben" };
+        return { success: false, error: `Hiba: ${error.message || "Ismeretlen hiba"}` };
     }
 }
 
