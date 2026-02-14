@@ -1,13 +1,9 @@
 "use server";
 
-import fs from "fs/promises";
-import path from "path";
-import crypto from "crypto";
+import { put, del } from "@vercel/blob";
 import sharp from "sharp";
 import { logError } from "@/lib/logger";
 import { auth } from "@/auth";
-
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
 
 export async function uploadImage(formData: FormData) {
     try {
@@ -16,8 +12,6 @@ export async function uploadImage(formData: FormData) {
         if (!session?.user) {
             return { success: false, error: "Bejelentkezés szükséges." };
         }
-        // Removed requireAdmin() to allow profile uploads
-
 
         const file = formData.get("file") as File;
 
@@ -57,24 +51,34 @@ export async function uploadImage(formData: FormData) {
             };
         }
 
-        // Generate unique filename
-        const uniqueId = crypto.randomBytes(8).toString("hex");
-        const extension = ".webp"; // We convert everything to webp for optimization
-        const filename = `${uniqueId}${extension}`;
-        const filepath = path.join(UPLOAD_DIR, filename);
+        // Check if token exists
+        if (!process.env.BLOB_READ_WRITE_TOKEN) {
+            console.error("BLOB_READ_WRITE_TOKEN is missing!");
+            return {
+                success: false,
+                error: "Konfigurációs hiba: A felhő tárhely nincs beállítva (BLOB_READ_WRITE_TOKEN hiányzik)."
+            };
+        }
 
-        // Ensure directory exists
-        await fs.mkdir(UPLOAD_DIR, { recursive: true });
-
-        await sharp(buffer)
+        // Process image to WebP
+        const optimizedBuffer = await sharp(buffer)
             .resize(resizeOptions)
             .webp({ quality: preset === "avatar" ? 75 : 80 })
-            .toFile(filepath);
+            .toBuffer();
+
+        // Generate filename
+        const filename = `uploads/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}.webp`;
+
+        // Upload to Vercel Blob
+        const blob = await put(filename, optimizedBuffer, {
+            access: 'public',
+            contentType: 'image/webp'
+        });
 
         return {
             success: true,
-            url: `/uploads/${filename}`,
-            filename
+            url: blob.url,
+            filename: blob.pathname
         };
     } catch (error: any) {
         console.error('[uploadImage] ERROR DETAILS:', {
@@ -93,21 +97,22 @@ export async function deleteImage(url: string) {
         const session = await auth();
         if (!session?.user) return { success: false, error: "Unauthorized" };
 
-        if (!url.startsWith("/uploads/")) {
-            return { success: false, error: "Érvénytelen fájl útvonal" };
+        if (!url) return { success: false, error: "Érvénytelen URL" };
+
+        // If it's a Vercel Blob URL (contains public.blob.vercel-storage.com)
+        if (url.includes(".public.blob.vercel-storage.com")) {
+            await del(url);
+            return { success: true };
         }
 
-        const filename = path.basename(url);
-        const filepath = path.join(UPLOAD_DIR, filename);
-
-        await fs.unlink(filepath);
+        // Legacy: Local file deletion (won't work on Vercel but kept for backward compat if migrating)
+        // We just ignore local deletion errors on Vercel as files are ephemeral anyway
         return { success: true };
+
     } catch (error: any) {
-        if (error.code !== 'ENOENT') {
-            await logError(error, 'Image Delete');
-            console.error('[deleteImage] Error:', error);
-        }
-        // We return success true even on error if file doesn't exist, as the goal is achieved
+        await logError(error, 'Image Delete');
+        console.error('[deleteImage] Error:', error);
+        // We return success true even on error
         return { success: true };
     }
 }

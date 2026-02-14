@@ -8,8 +8,6 @@ import {
     Users,
     Star,
     Image as ImageIcon,
-    HeartHandshake,
-    ShoppingBag,
     ShoppingCart,
     Info,
     Phone,
@@ -19,10 +17,13 @@ import {
     Crown,
     Database,
     Package,
+    Handshake,
     MessageSquare,
     CreditCard,
     Settings as SettingsIcon,
-    Shield
+    Shield,
+    ShoppingBag,
+    HeartHandshake
 } from 'lucide-react';
 
 export default function AdminSidebar() {
@@ -37,9 +38,9 @@ export default function AdminSidebar() {
         { href: '/secretroom75/requests', label: 'Átnevezés', icon: ClipboardList }, // Updated label to shorter version
         { href: '/secretroom75/orders', label: t('orders'), icon: Package }, // Icon changed
         { href: '/secretroom75/users', label: t('users'), icon: Users },
-        { href: '/secretroom75/partners', label: t('partners'), icon: Building2 },
-        { href: '/secretroom75/memberships', label: t('memberships'), icon: CreditCard }, // Icon changed
-        { href: '/secretroom75/features', label: t('features'), icon: Star },
+        { href: '/secretroom75/sellers', label: 'Szervezetek (Számlázás)', icon: Building2 },
+        { href: '/secretroom75/partners', label: t('partners'), icon: Handshake }, // Visual partners
+        { href: '/secretroom75/memberships', label: t('memberships'), icon: CreditCard },
         { href: '/secretroom75/gallery', label: t('gallery'), icon: ImageIcon },
         { href: '/secretroom75/sponsors', label: t('sponsors'), icon: HeartHandshake },
         { href: '/secretroom75/shop-settings', label: 'Boutique Beállítások', icon: ShoppingBag },
