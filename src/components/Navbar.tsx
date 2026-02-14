@@ -155,12 +155,12 @@ export default function Navbar({ user }: NavbarProps) {
                     <div className="fixed inset-0 z-[100] md:hidden">
                         {/* Backdrop Blur Overlay */}
                         <div
-                            className="absolute inset-0 bg-black/60 backdrop-blur-xl animate-fade-in"
+                            className="absolute inset-0 bg-black/95 backdrop-blur-xl animate-fade-in"
                             onClick={() => setIsOpen(false)}
                         />
 
                         {/* Floating Menu Card */}
-                        <div className="absolute top-20 right-4 left-4 bg-zinc-900/95 border border-white/10 rounded-[2rem] shadow-2xl flex flex-col overflow-hidden animate-slide-in-top">
+                        <div className="absolute top-20 inset-x-4 bg-zinc-900 border border-zinc-800 rounded-[2rem] shadow-2xl flex flex-col overflow-hidden animate-slide-in-top max-h-[80vh]">
                             {/* Navigation Links */}
                             <div className="flex-1 overflow-y-auto py-8 px-6 space-y-4 relative">
                                 {/* Inner subtle glow for depth */}
@@ -171,14 +171,14 @@ export default function Navbar({ user }: NavbarProps) {
                                         key={link.href}
                                         href={link.href}
                                         onClick={() => setIsOpen(false)}
-                                        className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 hover:bg-accent/10 border border-transparent hover:border-accent/20 transition-all group opacity-0 animate-slide-in-left"
+                                        className="flex items-center gap-4 p-4 rounded-2xl bg-zinc-800/50 hover:bg-zinc-800 border border-white/5 hover:border-accent/30 transition-all group opacity-0 animate-slide-in-left hover:shadow-[0_0_15px_rgba(0,242,254,0.15)]"
                                         style={{ animationDelay: `${index * 100}ms` }}
                                     >
-                                        <div className="w-12 h-12 rounded-xl bg-zinc-800 flex items-center justify-center group-hover:bg-accent group-hover:text-black transition-colors">
-                                            <link.icon className="w-6 h-6" />
+                                        <div className="w-12 h-12 rounded-xl bg-zinc-900 flex items-center justify-center group-hover:bg-accent group-hover:text-black transition-colors border border-white/5 group-hover:border-accent">
+                                            <link.icon className="w-6 h-6 text-accent group-hover:text-black transition-colors" />
                                         </div>
                                         <div>
-                                            <span className="text-lg font-bold text-white block">{link.label}</span>
+                                            <span className="text-lg font-bold text-white block group-hover:text-accent transition-colors">{link.label}</span>
                                             <span className="text-xs text-zinc-500 group-hover:text-accent/70 transition-colors uppercase tracking-widest">
                                                 {link.href.replace('/', '') || 'Home'}
                                             </span>

@@ -140,7 +140,7 @@ export default function FeaturedEvent({ event, locale, customSettings }: Feature
     const formattedDate = format(new Date(event.eventDate), 'PPP', { locale: dateLocale });
 
     return (
-        <section className="relative min-h-[600px] flex items-center justify-center py-20 overflow-hidden">
+        <section className="relative min-h-[500px] md:min-h-[600px] flex items-center justify-center py-10 md:py-20 overflow-hidden">
             {event.coverImage && (
                 <div className="absolute inset-0 z-0">
                     <Image
@@ -162,7 +162,7 @@ export default function FeaturedEvent({ event, locale, customSettings }: Feature
                                 <span className="inline-block px-4 py-1.5 bg-accent/20 border border-accent/30 text-accent text-sm font-bold uppercase tracking-widest rounded-full mb-6">
                                     {isEventStarted ? t('eventLive') : t('nextEvent')}
                                 </span>
-                                <h2 className="text-3xl md:text-4xl font-black italic uppercase tracking-tighter text-white leading-none mb-6">
+                                <h2 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter text-white leading-none mb-4 md:mb-6 truncate max-w-full">
                                     {getDisplayTitle()}
                                 </h2>
                             </div>

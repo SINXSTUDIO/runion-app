@@ -40,7 +40,7 @@ export default function EventCard({ event, locale }: EventCardProps) {
     return (
         <div className="group relative bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,242,254,0.1)] flex flex-col h-full">
             {/* Image Container */}
-            <div className="relative h-64 w-full overflow-hidden">
+            <div className="relative h-40 md:h-64 w-full overflow-hidden">
                 <Image
                     src={event.coverImage || '/images/maintenance-bg-cheer.png'}
                     alt={event.title}
@@ -48,7 +48,7 @@ export default function EventCard({ event, locale }: EventCardProps) {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-all duration-500 grayscale-[20%] group-hover:grayscale-0"
                 />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
+                <div className="absolute inset-0 bg-black/50 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent opacity-80" />
 
                 {/* Date Badge on Image */}
@@ -64,7 +64,7 @@ export default function EventCard({ event, locale }: EventCardProps) {
 
             {/* Content */}
             <div className="p-4 md:p-6 flex flex-col flex-grow -mt-12 relative z-10">
-                <h3 className="text-2xl font-bold text-white mb-4 leading-tight group-hover:text-accent transition-colors drop-shadow-md">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-4 leading-tight group-hover:text-accent transition-colors drop-shadow-md truncate">
                     {event.title}
                 </h3>
 
