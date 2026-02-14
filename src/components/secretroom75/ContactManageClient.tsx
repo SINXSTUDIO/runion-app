@@ -10,10 +10,11 @@ import {
     deleteCompany,
     upsertFAQ,
     deleteFAQ,
-    updateFAQOrder
+    updateFAQOrder,
+    importFAQs
 } from '@/actions/content';
 import { useRouter } from 'next/navigation';
-import { Pencil, Trash2, Plus, Building2, HelpCircle } from 'lucide-react';
+import { Pencil, Trash2, Plus, Building2, HelpCircle, Upload } from 'lucide-react';
 
 interface ContactManageProps {
     companies: any[];
@@ -229,31 +230,103 @@ function FAQManager({ initialFAQs }: { initialFAQs: any[] }) {
         if (res.success) router.refresh();
     };
 
+    const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+            const content = event.target?.result as string;
+            try {
+                // Validate JSON first
+                JSON.parse(content);
+                const res = await importFAQs(content);
+                if (res.success) {
+                    toast.success(res.message);
+                    router.refresh();
+                } else {
+                    toast.error(res.message);
+                }
+            } catch (err) {
+                toast.error('Érvénytelen JSON fájl.');
+            }
+        };
+        reader.readAsText(file);
+
+        // Reset file input
+        e.target.value = '';
+    };
+
     return (
         <div className="space-y-6">
-            {!isCreating && !editingId && (
-                <div className="flex justify-end">
+            <div className="flex justify-end gap-2">
+                <div className="relative">
+                    <input
+                        type="file"
+                        accept=".json"
+                        onChange={handleFileUpload}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    />
+                    <Button variant="outline" className="gap-2 border-white/20 text-zinc-300 hover:text-white hover:bg-white/10">
+                        <Upload className="w-4 h-4" /> JSON Import
+                    </Button>
+                </div>
+
+                {!isCreating && !editingId && (
                     <Button onClick={startCreate} className="bg-accent text-black gap-2">
                         <Plus className="w-4 h-4" /> Új Kérdés
                     </Button>
-                </div>
-            )}
+                )}
+            </div>
 
             {(isCreating || editingId) && (
                 <div className="bg-zinc-900 border border-white/10 rounded-xl p-6 space-y-4">
                     <h3 className="text-lg font-bold text-white">{isCreating ? 'Új kérdés' : 'Kérdés szerkesztése'}</h3>
                     <div className="space-y-4">
-                        <Input
-                            placeholder="Kérdés"
-                            value={formData.question || ''}
-                            onChange={e => setFormData({ ...formData, question: e.target.value })}
-                        />
-                        <Textarea
-                            placeholder="Válasz"
-                            value={formData.answer || ''}
-                            onChange={e => setFormData({ ...formData, answer: e.target.value })}
-                            className="min-h-[100px]"
-                        />
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-zinc-400">MAGYAR (Alapértelmezett)</label>
+                            <Input
+                                placeholder="Kérdés (HU)"
+                                value={formData.question || ''}
+                                onChange={e => setFormData({ ...formData, question: e.target.value })}
+                            />
+                            <Textarea
+                                placeholder="Válasz (HU)"
+                                value={formData.answer || ''}
+                                onChange={e => setFormData({ ...formData, answer: e.target.value })}
+                                className="min-h-[80px]"
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-zinc-400">ANGOL (English)</label>
+                            <Input
+                                placeholder="Question (EN)"
+                                value={formData.questionEn || ''}
+                                onChange={e => setFormData({ ...formData, questionEn: e.target.value })}
+                            />
+                            <Textarea
+                                placeholder="Answer (EN)"
+                                value={formData.answerEn || ''}
+                                onChange={e => setFormData({ ...formData, answerEn: e.target.value })}
+                                className="min-h-[80px]"
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-zinc-400">NÉMET (Deutsch)</label>
+                            <Input
+                                placeholder="Frage (DE)"
+                                value={formData.questionDe || ''}
+                                onChange={e => setFormData({ ...formData, questionDe: e.target.value })}
+                            />
+                            <Textarea
+                                placeholder="Antwort (DE)"
+                                value={formData.answerDe || ''}
+                                onChange={e => setFormData({ ...formData, answerDe: e.target.value })}
+                                className="min-h-[80px]"
+                            />
+                        </div>
                     </div>
                     <div className="flex justify-end gap-2">
                         <Button variant="ghost" onClick={cancelEdit} className="text-zinc-400">Mégse</Button>
