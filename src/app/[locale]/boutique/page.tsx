@@ -26,37 +26,37 @@ export default async function BoutiquePage({
     const shopEnabled = (settings as any)?.shopEnabled ?? true; // Default to true if not set
 
     return (
-        <div className="min-h-screen pt-24 pb-16">
-            <div className="container mx-auto px-4 max-w-7xl">
-                {/* Hero / Header */}
-                <section className="relative h-[80vh] w-full flex items-center justify-center rounded-3xl overflow-hidden mb-16 shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 group">
-                    <BoutiqueHeroSlideshow />
+        <div className="min-h-screen bg-black text-white">
+            {/* Hero / Header - Full Width */}
+            <section className="relative h-[80vh] w-full flex items-center justify-center overflow-hidden mb-16 group">
+                <BoutiqueHeroSlideshow />
 
-                    {/* Content */}
-                    <div className="relative z-20 text-center p-8 max-w-4xl mx-auto">
-                        <h1 className="text-5xl md:text-8xl font-black font-heading italic uppercase tracking-tighter mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] animate-in fade-in slide-in-from-bottom-4 duration-1000">
-                            <span className="text-white">RUN</span>
-                            <span className="text-accent">ION</span>
-                            <br className="md:hidden" />
-                            <span className="text-white ml-2 md:ml-4">{t('title')}</span>
-                        </h1>
+                {/* Content */}
+                <div className="relative z-20 text-center p-8 max-w-4xl mx-auto">
+                    <h1 className="text-5xl md:text-8xl font-black font-heading italic uppercase tracking-tighter mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                        <span className="text-white">RUN</span>
+                        <span className="text-accent">ION</span>
+                        <br className="md:hidden" />
+                        <span className="text-white ml-2 md:ml-4">{t('title')}</span>
+                    </h1>
 
-                        <p className="text-xl md:text-2xl text-zinc-200 font-medium max-w-2xl mx-auto mb-8 drop-shadow-md leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-                            {t('subtitle')}
-                        </p>
+                    <p className="text-xl md:text-2xl text-zinc-200 font-medium max-w-2xl mx-auto mb-8 drop-shadow-md leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+                        {t('subtitle')}
+                    </p>
 
-                        <div className="flex justify-center gap-2 mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-                            <div className="w-16 h-1 bg-accent rounded-full shadow-[0_0_10px_rgba(0,242,254,0.5)]"></div>
-                            <div className="w-4 h-1 bg-white rounded-full opacity-50"></div>
-                            <div className="w-4 h-1 bg-white rounded-full opacity-30"></div>
-                        </div>
+                    <div className="flex justify-center gap-2 mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+                        <div className="w-16 h-1 bg-accent rounded-full shadow-[0_0_10px_rgba(0,242,254,0.5)]"></div>
+                        <div className="w-4 h-1 bg-white rounded-full opacity-50"></div>
+                        <div className="w-4 h-1 bg-white rounded-full opacity-30"></div>
                     </div>
+                </div>
 
-                    {/* Decorative Elements */}
-                    <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-zinc-900/80 to-transparent pointer-events-none z-10"></div>
-                    <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-zinc-900 to-transparent pointer-events-none z-10"></div>
-                </section>
+                {/* Decorative Elements */}
+                <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-zinc-900/80 to-transparent pointer-events-none z-10"></div>
+                <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-zinc-900 to-transparent pointer-events-none z-10"></div>
+            </section>
 
+            <div className="container mx-auto px-4 max-w-7xl pb-16">
                 {/* Product Grid */}
                 <ProductList products={products} locale={locale} shopEnabled={shopEnabled} />
 

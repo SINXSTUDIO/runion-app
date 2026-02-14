@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 
 const IMAGES = [
-    '/images/brutal-runner.png',
-    '/images/maintenance-bg-cheer.png',
-    '/images/maintenance-bg.png'
+    '/images/boutique-hero-1.png',
+    '/images/boutique-hero-2.png',
+    '/images/boutique-hero-3.png',
+    '/images/brutal-runner.png'
 ];
 
 export default function BoutiqueHeroSlideshow() {
