@@ -160,9 +160,9 @@ export default function Navbar({ user }: NavbarProps) {
                         />
 
                         {/* Floating Menu Card */}
-                        <div className="absolute top-20 inset-x-4 bg-zinc-900 border border-zinc-800 rounded-[2rem] shadow-2xl flex flex-col overflow-hidden animate-slide-in-top max-h-[80vh]">
+                        <div className="absolute top-20 inset-x-4 bg-zinc-900 border border-zinc-800 rounded-[2rem] shadow-2xl flex flex-col overflow-hidden animate-slide-in-top max-h-[85vh]">
                             {/* Navigation Links */}
-                            <div className="flex-1 overflow-y-auto py-8 px-6 space-y-4 relative">
+                            <div className="flex-1 overflow-y-auto py-6 px-4 space-y-2 relative">
                                 {/* Inner subtle glow for depth */}
                                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/5 blur-[100px] pointer-events-none" />
 
@@ -171,15 +171,15 @@ export default function Navbar({ user }: NavbarProps) {
                                         key={link.href}
                                         href={link.href}
                                         onClick={() => setIsOpen(false)}
-                                        className="flex items-center gap-4 p-4 rounded-2xl bg-zinc-800/50 hover:bg-zinc-800 border border-white/5 hover:border-accent/30 transition-all group opacity-0 animate-slide-in-left hover:shadow-[0_0_15px_rgba(0,242,254,0.15)]"
+                                        className="flex items-center gap-3 p-3 rounded-xl bg-zinc-800/50 hover:bg-zinc-800 border border-white/5 hover:border-accent/30 transition-all group opacity-0 animate-slide-in-left hover:shadow-[0_0_15px_rgba(0,242,254,0.15)]"
                                         style={{ animationDelay: `${index * 100}ms` }}
                                     >
-                                        <div className="w-12 h-12 rounded-xl bg-zinc-900 flex items-center justify-center group-hover:bg-accent group-hover:text-black transition-colors border border-white/5 group-hover:border-accent">
-                                            <link.icon className="w-6 h-6 text-accent group-hover:text-black transition-colors" />
+                                        <div className="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center group-hover:bg-accent group-hover:text-black transition-colors border border-white/5 group-hover:border-accent">
+                                            <link.icon className="w-5 h-5 text-accent group-hover:text-black transition-colors" />
                                         </div>
                                         <div>
-                                            <span className="text-lg font-bold text-white block group-hover:text-accent transition-colors">{link.label}</span>
-                                            <span className="text-xs text-zinc-500 group-hover:text-accent/70 transition-colors uppercase tracking-widest">
+                                            <span className="text-base font-bold text-white block group-hover:text-accent transition-colors">{link.label}</span>
+                                            <span className="text-[10px] text-zinc-500 group-hover:text-accent/70 transition-colors uppercase tracking-widest">
                                                 {link.href.replace('/', '') || 'Home'}
                                             </span>
                                         </div>

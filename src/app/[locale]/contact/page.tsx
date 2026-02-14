@@ -39,35 +39,35 @@ export default async function ContactPage(props: {
                     {/* Left Column: Organization Info */}
                     <div className="space-y-8">
                         {companies.map((company) => (
-                            <Card key={company.id} className="bg-zinc-900/50 border-zinc-800 p-3 md:p-8 hover:border-accent/50 transition-colors group">
-                                <div className="flex flex-col md:flex-row items-start gap-4">
-                                    <div className="w-12 h-12 rounded-xl bg-zinc-800 flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-black transition-colors self-start border border-white/5 group-hover:border-accent">
-                                        <Building2 className="w-6 h-6 text-accent group-hover:text-black transition-colors" />
+                            <Card key={company.id} className="bg-zinc-900/50 border-zinc-800 p-3 hover:border-accent/50 transition-colors group">
+                                <div className="flex flex-col md:flex-row items-start gap-3">
+                                    <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-zinc-800 flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-black transition-colors self-start border border-white/5 group-hover:border-accent">
+                                        <Building2 className="w-4 h-4 md:w-6 md:h-6 text-accent group-hover:text-black transition-colors" />
                                     </div>
-                                    <div className="space-y-4 w-full overflow-hidden">
-                                        <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-accent transition-colors break-words">
+                                    <div className="space-y-2 w-full overflow-hidden">
+                                        <h3 className="text-sm md:text-xl font-bold text-white group-hover:text-accent transition-colors break-words leading-tight">
                                             {company.name}
                                         </h3>
 
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 text-sm text-gray-400">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1 text-xs md:text-sm text-gray-400">
                                             <div className="flex items-start gap-2">
-                                                <MapPin className="w-4 h-4 text-accent shrink-0 mt-0.5" />
-                                                <span className="break-words">{company.address}</span>
+                                                <MapPin className="w-3 h-3 md:w-4 md:h-4 text-accent shrink-0 mt-0.5" />
+                                                <span className="break-words leading-tight">{company.address}</span>
                                             </div>
                                             {company.phone && <div className="flex items-center gap-2">
-                                                <Phone className="w-4 h-4 text-accent shrink-0" />
+                                                <Phone className="w-3 h-3 md:w-4 md:h-4 text-accent shrink-0" />
                                                 <span className="break-all">{company.phone}</span>
                                             </div>}
                                             {company.email && <div className="flex items-center gap-2">
-                                                <Mail className="w-4 h-4 text-accent shrink-0" />
+                                                <Mail className="w-3 h-3 md:w-4 md:h-4 text-accent shrink-0" />
                                                 <span className="break-all">{company.email}</span>
                                             </div>}
                                             {company.taxNumber && <div className="flex items-center gap-2">
-                                                <span className="font-semibold text-zinc-500 shrink-0">Tax:</span>
+                                                <span className="font-semibold text-zinc-500 shrink-0 text-[10px] md:text-sm">Tax:</span>
                                                 <span className="break-all">{company.taxNumber}</span>
                                             </div>}
                                             {company.regNumber && <div className="flex items-center gap-2">
-                                                <span className="font-semibold text-zinc-500 shrink-0">Reg:</span>
+                                                <span className="font-semibold text-zinc-500 shrink-0 text-[10px] md:text-sm">Reg:</span>
                                                 <span className="break-all">{company.regNumber}</span>
                                             </div>}
                                             {company.representative && <div className="flex items-center gap-2 col-span-full mt-2 pt-2 border-t border-zinc-800">
