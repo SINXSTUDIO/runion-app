@@ -339,3 +339,71 @@ export async function getAllEventsAdmin() {
         return [];
     }
 }
+
+export async function importEvents(jsonContent: string) {
+    try {
+        const user = await requireAdmin();
+
+        const events = JSON.parse(jsonContent);
+        if (!Array.isArray(events)) {
+            return { success: false, message: 'Érvénytelen JSON formátum (nem tömb).' };
+        }
+
+        let count = 0;
+        let errors: string[] = [];
+
+        for (const item of events) {
+            // Basic validation
+            if (!item.title || !item.slug || !item.eventDate || !item.location || !item.description) {
+                errors.push(`Hiányzó adatok: ${item.title || 'Névtelen esemény'}`);
+                continue;
+            }
+
+            try {
+                // Check if slug exists
+                const existing = await prisma.event.findUnique({ where: { slug: item.slug } });
+                if (existing) {
+                    errors.push(`Már létező slug: ${item.slug}`);
+                    continue;
+                }
+
+                await prisma.event.create({
+                    data: {
+                        title: item.title,
+                        titleEn: item.titleEn,
+                        titleDe: item.titleDe,
+                        slug: item.slug,
+                        description: sanitizeHtml(item.description),
+                        descriptionEn: item.descriptionEn,
+                        descriptionDe: item.descriptionDe,
+                        location: item.location,
+                        eventDate: new Date(item.eventDate),
+                        regDeadline: new Date(item.regDeadline || item.eventDate), // Default to event date if missing
+                        status: item.status || 'DRAFT',
+                        organizerId: user.id
+                    }
+                });
+                count++;
+            } catch (err) {
+                console.error(`Error importing event ${item.slug}:`, err);
+                errors.push(`Hiba a mentéskor: ${item.slug}`);
+            }
+        }
+
+        revalidatePath('/[locale]/secretroom75/events', 'page');
+
+        if (count === 0 && errors.length > 0) {
+            return { success: false, message: 'Nem sikerült importálni egyetlen eseményt sem.', errors };
+        }
+
+        return {
+            success: true,
+            message: `${count} esemény sikeresen importálva!`,
+            errors: errors.length > 0 ? errors : undefined
+        };
+
+    } catch (error) {
+        console.error('Import events failed:', error);
+        return { success: false, message: 'Hiba történt az importálás során.' };
+    }
+}

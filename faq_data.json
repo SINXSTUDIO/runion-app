@@ -1,0 +1,128 @@
+[
+    {
+        "question": "Ki szervezi a futóversenyeket?",
+        "questionEn": "Who organizes the races?",
+        "questionDe": "Wer organisiert die Rennen?",
+        "answer": "A runion.eu oldal futóversenyeit a Balatonfüredi Atlétikai Klub szervezi, melynek vezetőségi tagja Baranyai Máté ultrafutó, aki a futóversenyeink megálmodója és versenyigazgatója és 10 éve foglakozik futóversenyek szervezésével. Munkatársaink több, mint 10 éves tapasztalattal rendelkeznek rendezvényszervezés terén, és a frissítő pontjainkon olyan segítőink vannak, akik az ország legnagyobb futóversenyein is rendszeresen dolgoznak (pl. Ultrabalaton, Balatonman).",
+        "answerEn": "The races on runion.eu are organized by the Balatonfüred Athletics Club. Its board member is Máté Baranyai, an ultrarunner, who is the creator and race director of our events and has been organizing races for 10 years. Our colleagues have over 10 years of experience in event organization, and our aid stations are staffed by helpers who regularly work at the country's largest races (e.g., Ultrabalaton, Balatonman).",
+        "answerDe": "Die Rennen auf runion.eu werden vom Balatonfüred Leichtathletik Club organisiert. Vorstandsmitglied ist der Ultraläufer Máté Baranyai, der Schöpfer und Rennleiter unserer Veranstaltungen ist und seit 10 Jahren Rennen organisiert. Unsere Mitarbeiter verfügen über mehr als 10 Jahre Erfahrung in der Veranstaltungsorganisation, und an unseren Verpflegungsstationen arbeiten Helfer, die regelmäßig bei den größten Rennen des Landes (z. B. Ultrabalaton, Balatonman) tätig sind.",
+        "order": 1
+    },
+    {
+        "question": "Hogyan tudok nevezni?",
+        "questionEn": "How can I register?",
+        "questionDe": "Wie kann ich mich anmelden?",
+        "answer": "A felső menüsorban (mobilon rejtve van, a 3 vonalra kattintva tudod előhívni) a “NEVEZÉS” menüpontra kattintva tudsz nevezni. Kérünk, hogy nevezés előtt a Versenyeink menüpontra kattintva tájékozódj a nevezési feltételekről.",
+        "answerEn": "You can register by clicking on the \"REGISTRATION\" (\"NEVEZÉS\") menu item in the top menu bar (hidden on mobile, tap the 3 lines to reveal). Please check the race conditions under the \"Races\" (\"Versenyeink\") menu item before registering.",
+        "answerDe": "Sie können sich anmelden, indem Sie im oberen Menü (auf Mobilgeräten ausgeblendet, tippen Sie auf die 3 Linien) auf den Menüpunkt \"ANMELDUNG\" (\"NEVEZÉS\") klicken. Bitte informieren Sie sich vor der Anmeldung unter dem Menüpunkt \"Rennen\" (\"Versenyeink\") über die Teilnahmebedingungen.",
+        "order": 2
+    },
+    {
+        "question": "Neveztem, mit tegyek?",
+        "questionEn": "I registered, what's next?",
+        "questionDe": "Ich habe mich angemeldet, was nun?",
+        "answer": "A nevezés két lépcsőben zajlik azért, hogy mást is be tudj nevezni, nem csak magadat. Először a nevezés menüpontra kattintva megadod az adataidat vagy pedig annak az adatait, akit nevezni szeretnél. A sikeres nevezést követően pedig átirányításra kerülsz egy oldalra, ahol közöljük veled a további teendőket, azaz ki kell választanod a fizetés módját: átutalás vagy bankkártyás fizetés. Ha más nevezési díját egyenlíted ki bankkártyával, akkor a megjegyzés rovatba írd be a versenyző nevét. Ha az átutalásos fizetési módot választod, akkor kapni fogsz egy díjbekérőt, és a nevezési díj sáv határidejéig van időd kiegyenlíteni a nevezési díjat. ha ez megtörténik, akkor kapni fogsz egy visszaigazoló e-mailt. A feldolgozás hetente történik.",
+        "answerEn": "Registration happens in two steps so you can register others, not just yourself. First, enter your details or the details of the person you want to register. After successful registration, you will be redirected to a page with further instructions to choose a payment method: bank transfer or credit card. If paying for someone else by card, please write the racer's name in the comment section. If you choose transfer, you will receive a proforma invoice and have until the price tier deadline to pay. Once paid, you will receive a confirmation email. Processing happens weekly.",
+        "answerDe": "Die Anmeldung erfolgt in zwei Schritten, damit Sie nicht nur sich selbst, sondern auch andere anmelden können. Geben Sie zunächst Ihre Daten oder die Daten der Person ein, die Sie anmelden möchten. Nach erfolgreicher Anmeldung werden Sie auf eine Seite mit weiteren Anweisungen weitergeleitet, um eine Zahlungsmethode auszuwählen: Überweisung oder Kreditkarte. Wenn Sie für jemand anderen mit Karte bezahlen, geben Sie bitte den Namen des Läufers im Kommentarfeld an. Wenn Sie Überweisung wählen, erhalten Sie eine Pro-forma-Rechnung und haben bis zum Ablauf der Preisstufe Zeit zu zahlen. Nach der Zahlung erhalten Sie eine Bestätigungs-E-Mail. Die Bearbeitung erfolgt wöchentlich.",
+        "order": 3
+    },
+    {
+        "question": "Hol találom a versenyadatokat?",
+        "questionEn": "Where can I find race details?",
+        "questionDe": "Wo finde ich Renndetails?",
+        "answer": "A felső menüsorban (mobilon elrejtve, a vonalakra kattintva előjön) kattints a “VERSENYEINK/RACES” menüpontra és az oldalon minden versenyadatot megtalálsz, az adott verseny leírásánál.",
+        "answerEn": "Click on the \"RACES\" (\"VERSENYEINK\") menu item in the top menu bar (hidden on mobile, tap the lines to reveal), and you will find all race details on the page under the specific race description.",
+        "answerDe": "Klicken Sie im oberen Menü (auf Mobilgeräten ausgeblendet, tippen Sie auf die Linien) auf den Menüpunkt \"RENNEN\" (\"VERSENYEINK\"). Dort finden Sie alle Renndetails unter der jeweiligen Rennbeschreibung.",
+        "order": 4
+    },
+    {
+        "question": "Hogyan tudom kifizetni a nevezési díjat?",
+        "questionEn": "How can I pay the entry fee?",
+        "questionDe": "Wie kann ich das Startgeld bezahlen?",
+        "answer": "A nevezési díjat kiegyenlítheted banki átutalással. A nevezési űrlap kitöltése után átirányításra kerülsz egy oldalra, ahol kiválaszthatod a fizetés módját. Ezt a lépést ne hagyd ki, különben nem fog élni a nevezésed! Bankszámla-adatok az átutalásos fizetéshez: Kedvezményezett: Balatonfüredi Atlétikai Club, Bankszámlaszám: 11748069-25512412. Külföldről utaláskor: IBAN: HU77 1174 8069 2551 2412 0000 0000, BIC (SWIFT): OTPVHUHB. Megjegyzés rovatba feltétlenül kérjük a VERSENY és RÉSZTEVŐ(k) névének a megjelölését!",
+        "answerEn": "You can pay the entry fee via bank transfer. After filling out the registration form, you will be redirected to a page to select your payment method. Do not skip this step, or your registration will not be valid! Bank details for transfer: Beneficiary: Balatonfüredi Atlétikai Club, Account Number: 11748069-25512412. For international transfers: IBAN: HU77 1174 8069 2551 2412 0000 0000, BIC (SWIFT): OTPVHUHB. Please make sure to indicate the RACE and PARTICIPANT(S) NAME in the comment section!",
+        "answerDe": "Sie können das Startgeld per Banküberweisung bezahlen. Nach dem Ausfüllen des Anmeldeformulars werden Sie auf eine Seite zur Auswahl der Zahlungsmethode weitergeleitet. Überspringen Sie diesen Schritt nicht, sonst ist Ihre Anmeldung ungültig! Bankdaten für die Überweisung: Empfänger: Balatonfüredi Atlétikai Club, Kontonummer: 11748069-25512412. Für internationale Überweisungen: IBAN: HU77 1174 8069 2551 2412 0000 0000, BIC (SWIFT): OTPVHUHB. Bitte geben Sie im Kommentarfeld unbedingt das RENNEN und den/die NAMEN des/der TEILNEHMER(S) an!",
+        "order": 5
+    },
+    {
+        "question": "Lesérültem, milyen lehetőségeim vannak?",
+        "questionEn": "I got injured, what are my options?",
+        "questionDe": "Ich habe mich verletzt, welche Möglichkeiten habe ich?",
+        "answer": "Amennyiben neveztél és befizetted a nevezési díjat, ám az egészségi állapotod nem teszi lehetővé a versenyen való részvételt, akkor a nevezési díjadat beszámítjuk bármelyik abban az évben vagy a követező évben megrendezésre kerülő futóversenyünk nevezési díjába. Kérjük, hogy jelezd a helyzetet az info[kukac]runion[pont]eu email címre!",
+        "answerEn": "If you registered and paid the fee but your health condition prevents you from participating, we will credit your entry fee towards any of our races held in the same or the following year. Please report the situation to info[at]runion[dot]eu!",
+        "answerDe": "Wenn Sie sich angemeldet und die Gebühr bezahlt haben, Ihr Gesundheitszustand jedoch eine Teilnahme verhindert, rechnen wir Ihr Startgeld auf eines unserer Rennen im selben oder im folgenden Jahr an. Bitte melden Sie die Situation an info[at]runion[dot]eu!",
+        "order": 6
+    },
+    {
+        "question": "Hány éves kortól lehet részt venni egy adott távon?",
+        "questionEn": "What is the minimum age for a distance?",
+        "questionDe": "Ab welchem Alter kann man an einer Distanz teilnehmen?",
+        "answer": "Hamarosan érkezik a válasz!",
+        "answerEn": "Answer coming soon!",
+        "answerDe": "Antwort folgt bald!",
+        "order": 7
+    },
+    {
+        "question": "Tudok nevezni a helyszínen?",
+        "questionEn": "Can I register on-site?",
+        "questionDe": "Kann ich mich vor Ort anmelden?",
+        "answer": "A legtöbb versenyünkről van erre lehetőség (kivétel a One Way Ticket Run), de azért érdemes megnézni a friss híreinket vagy az adott esemény facebook oldalát, mert ha megtelt a létszám, akkor lezárjuk a verseny nevezését és ebben az esetben a helyszínen sem lehet már nevezni. A Szőlőskör versenyünkön a helyszíni nevezőknek nem jár póló és étkezési jegyet is csak 500 Ft-ért tudnak váltani.",
+        "answerEn": "For most of our races, this is possible (except One Way Ticket Run), but it's worth checking our latest news or the event's Facebook page. If the capacity is full, we close registration, and on-site registration will not be available. For our Szőlőskör race, on-site registrants do not receive a T-shirt and can purchase a meal ticket for 500 HUF.",
+        "answerDe": "Bei den meisten unserer Rennen ist dies möglich (außer One Way Ticket Run), aber es lohnt sich, unsere aktuellen Nachrichten oder die Facebook-Seite der Veranstaltung zu prüfen. Wenn die Kapazität erreicht ist, schließen wir die Anmeldung, und eine Anmeldung vor Ort ist dann nicht mehr möglich. Bei unserem Szőlőskör-Rennen erhalten Vor-Ort-Anmelder kein T-Shirt und können ein Essensmarke für 500 HUF kaufen.",
+        "order": 8
+    },
+    {
+        "question": "Más futóversenyen nyertem egy nevezést. Hogyan érvényesíthetem?",
+        "questionEn": "I won a registration at another race. How can I redeem it?",
+        "questionDe": "Ich habe eine Anmeldung bei einem anderen Rennen gewonnen. Wie kann ich sie einlösen?",
+        "answer": "Írj Nekünk az info[kukac]runion[pont]eu e-mail címre és küld el a nyereményről szóló kupon vagy levél beszkennelt vagy fotózott példányát. Majd nevezz az adott verseny nevezési felületén, és utána aktiváljuk a nevezésedet. A Szőlőskör versenyünkön a helyszíni nevezőknek nem jár póló és étkezési jegyet is csak 500 Ft-ért tudnak váltani.",
+        "answerEn": "Write to us at info[at]runion[dot]eu and send a scanned or photographed copy of the prize coupon or letter. Then register on the specific race's registration interface, and we will activate your registration afterwards. For our Szőlőskör race, on-site registrants do not receive a T-shirt and can purchase a meal ticket for 500 HUF.",
+        "answerDe": "Schreiben Sie uns an info[at]runion[dot]eu und senden Sie eine gescannte oder fotografierte Kopie des Gewinncoupons oder Briefes. Melden Sie sich dann über die Anmeldeoberfläche des jeweiligen Rennens an, und wir aktivieren Ihre Anmeldung anschließend. Bei unserem Szőlőskör-Rennen erhalten Vor-Ort-Anmelder kein T-Shirt und können ein Essensmarke für 500 HUF kaufen.",
+        "order": 9
+    },
+    {
+        "question": "Neveztem, de elfelejtettem utalni, él még a nevezésem?",
+        "questionEn": "I registered but forgot to transfer, is my registration still valid?",
+        "questionDe": "Ich habe mich angemeldet, aber vergessen zu überweisen, ist meine Anmeldung noch gültig?",
+        "answer": "Igen. A nevezések nem törlődnek a versenyig. Írni fogunk egy emlékeztető e-mailt a következő nevezési díj sáv váltás előtt, hogy emlékeztessünk a versenyre. Ha akkor úgy döntesz, hogy mégsem veszel részt, akkor töröljük a nevezésedet. Arra is van lehetőség, hogy később utalj, de akkor már az a nevezési díj lép életbe, amelyik azon a napon aktuális.",
+        "answerEn": "Yes. Registrations are not deleted until the race. We will send a reminder email before the next price tier change to remind you of the race. If you decide not to participate then, we will delete your registration. You can also transfer later, but the entry fee current on that day will apply.",
+        "answerDe": "Ja. Anmeldungen werden bis zum Rennen nicht gelöscht. Wir senden eine Erinnerungs-E-Mail vor dem nächsten Preisstufenwechsel, um Sie an das Rennen zu erinnern. Wenn Sie sich dann entscheiden, nicht teilzunehmen, löschen wir Ihre Anmeldung. Sie können auch später überweisen, aber dann gilt das an diesem Tag aktuelle Startgeld.",
+        "order": 10
+    },
+    {
+        "question": "Szeretnék módosítani a távon, megtehetem?",
+        "questionEn": "I want to change the distance, can I?",
+        "questionDe": "Ich möchte die Distanz ändern, kann ich das?",
+        "answer": "Igen. Az utolsó online fizetési határidőig megteheted, ám ha alacsonyabb árú versenyre módosítasz, nem áll módunkban pénzt visszautalni. Ha drágább versenyszámra módosítasz, akkor a különbözetet utalnod kell, a megjegyzésbe pedig írd be a versenyszámot, amire módosítani szeretnél és azt, hogy versenyszám váltás.",
+        "answerEn": "Yes. You can do this until the last online payment deadline. However, if you switch to a lower-priced race, we cannot refund the difference. If you switch to a more expensive race, you must transfer the difference. Please write the race number you want to switch to and \"category change\" in the comment section.",
+        "answerDe": "Ja. Sie können dies bis zur letzten Online-Zahlungsfrist tun. Wenn Sie jedoch auf ein günstigeres Rennen wechseln, können wir die Differenz nicht zurückerstatten. Wenn Sie auf ein teureres Rennen wechseln, müssen Sie die Differenz überweisen. Bitte geben Sie im Kommentarfeld die Startnummer an, auf die Sie wechseln möchten, sowie \"Kategoriewechsel\".",
+        "order": 11
+    },
+    {
+        "question": "Kapok számlát a nevezési díjról?",
+        "questionEn": "Do I get an invoice for the entry fee?",
+        "questionDe": "Erhalte ich eine Rechnung über das Startgeld?",
+        "answer": "Igen. Mindenképpen kapsz, akkor is, ha nem kérsz céges számlát. Ebben az esetben a befizető neve és címe kerül a számlára. Ha céges számlára van szükséged, a nevezési felületen (az adataid sikeres megadás után, amikor átirányításra kerülsz, a fizetési mód kiválasztásánál) add meg a számlázási adatokat.",
+        "answerEn": "Yes. You will receive one in any case, even if you don't request a company invoice. In this case, the payer's name and address will be on the invoice. If you need a company invoice, provide the billing details on the registration interface (after successfully entering your data, when redirected to select payment method).",
+        "answerDe": "Ja. Sie erhalten in jedem Fall eine, auch wenn Sie keine Firmenrechnung anfordern. In diesem Fall stehen Name und Adresse des Einzahlers auf der Rechnung. Wenn Sie eine Firmenrechnung benötigen, geben Sie die Rechnungsdaten auf der Anmeldeoberfläche an (nach erfolgreicher Dateneingabe, bei der Weiterleitung zur Auswahl der Zahlungsmethode).",
+        "order": 12
+    },
+    {
+        "question": "A futóverseny esőben is meg lesz tartva?",
+        "questionEn": "Will the race be held in rain?",
+        "questionDe": "Findet das Rennen auch bei Regen statt?",
+        "answer": "Természetesen, hiszen akkor kell futni, ha jól esik :) Viccet félretéve, bár tudjuk, hogy a helyzet nem ideális olyankor, sem a futóknak, sem a segítőknek, de a rendezvények eső vagy havazás (ami reméljük, nyáron nem lesz) esetén sem maradnak el.",
+        "answerEn": "Of course, running is best when it pours (pun intended) :) Joking aside, although we know the situation is not ideal then, neither for runners nor helpers, events will not be cancelled in case of rain or snow (which we hope won't happen in summer).",
+        "answerDe": "Natürlich, Laufen ist am schönsten, wenn es läuft :) Spaß beiseite, obwohl wir wissen, dass die Situation dann weder für Läufer noch für Helfer ideal ist, werden Veranstaltungen bei Regen oder Schnee (was wir im Sommer nicht hoffen) nicht abgesagt.",
+        "order": 13
+    },
+    {
+        "question": "Átadhatom a nevezésemet másnak?",
+        "questionEn": "Can I transfer my registration to someone else?",
+        "questionDe": "Kann ich meine Anmeldung auf jemand anderen übertragen?",
+        "answer": "Igen, viszont bizonyos versenyünkön ez gondot okozhat, ha közeli a verseny dátuma, hiszen a Szerelmes Füred versenyen a bögrefeliratot, a Szőlőskör versenyen a pólófeliratot nem tudjuk módosítani.",
+        "answerEn": "Yes, but at certain races this might cause issues if the date is close, as we cannot modify the mug inscription for the \"Szerelmes Füred\" race or the T-shirt inscription for the \"Szőlőskör\" race.",
+        "answerDe": "Ja, aber bei bestimmten Rennen kann dies zu Problemen führen, wenn das Datum nahe ist, da wir die Tassenbeschriftung beim \"Szerelmes Füred\"-Rennen oder die T-Shirt-Beschriftung beim \"Szőlőskör\"-Rennen nicht mehr ändern können.",
+        "order": 14
+    }
+]

@@ -1,0 +1,28 @@
+[
+    {
+        "title": "Félmaraton 2024",
+        "titleEn": "Half Marathon 2024",
+        "titleDe": "Halbmarathon 2024",
+        "slug": "felmaraton-2024",
+        "description": "Ez egy remek verseny.",
+        "descriptionEn": "This is a great race.",
+        "descriptionDe": "Dies ist ein tolles Rennen.",
+        "location": "Balatonfüred",
+        "eventDate": "2024-09-15T09:00:00Z",
+        "regDeadline": "2024-09-01T23:59:00Z",
+        "status": "DRAFT"
+    },
+    {
+        "title": "Maraton 2024",
+        "titleEn": "Marathon 2024",
+        "titleDe": "Marathon 2024",
+        "slug": "maraton-2024",
+        "description": "Hosszú futás.",
+        "descriptionEn": "Long run.",
+        "descriptionDe": "Langer Lauf.",
+        "location": "Budapest",
+        "eventDate": "2024-10-10T08:00:00Z",
+        "regDeadline": "2024-10-01T23:59:00Z",
+        "status": "DRAFT"
+    }
+]

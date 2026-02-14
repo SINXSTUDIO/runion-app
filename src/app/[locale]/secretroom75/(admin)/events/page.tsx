@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/Button';
 import { Plus } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import EventsTable from '@/components/secretroom75/EventsTable';
+import EventImportButton from '@/components/secretroom75/EventImportButton';
 
 export default async function AdminEventsPage() {
     const eventsData = await prisma.event.findMany({
@@ -41,12 +42,15 @@ export default async function AdminEventsPage() {
                         Versenyek létrehozása, szerkesztése és kezelése
                     </p>
                 </div>
-                <Link href="/secretroom75/events/new">
-                    <Button className="gap-2 bg-accent hover:bg-accent/90 text-black font-bold h-12 px-6 rounded-xl">
-                        <Plus className="w-5 h-5" />
-                        Új Verseny
-                    </Button>
-                </Link>
+                <div className="flex gap-2 items-center">
+                    <EventImportButton />
+                    <Link href="/secretroom75/events/new">
+                        <Button className="gap-2 bg-accent hover:bg-accent/90 text-black font-bold h-10 md:h-12 px-4 md:px-6 rounded-xl">
+                            <Plus className="w-5 h-5" />
+                            <span className="hidden sm:inline">Új Verseny</span>
+                        </Button>
+                    </Link>
+                </div>
             </div>
 
             <EventsTable initialEvents={events} />
