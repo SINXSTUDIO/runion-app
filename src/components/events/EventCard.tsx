@@ -13,6 +13,7 @@ interface EventCardProps {
         title: string;
         location: string;
         eventDate: Date;
+        regDeadline: Date;
         coverImage?: string | null;
         distances: { name: string; price: any }[];
         seller?: {
@@ -38,9 +39,9 @@ export default function EventCard({ event, locale }: EventCardProps) {
     });
 
     return (
-        <div className="group relative bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,242,254,0.1)] flex flex-row md:flex-col h-24 md:h-full">
+        <div className="group relative bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,242,254,0.1)] flex flex-row md:flex-col h-36 md:h-full">
             {/* Image Container */}
-            <div className="relative w-24 md:w-full h-full md:h-64 shrink-0 overflow-hidden">
+            <div className="relative w-36 md:w-full h-full md:h-64 shrink-0 overflow-hidden">
                 <Image
                     src={event.coverImage || '/images/maintenance-bg-cheer.png'}
                     alt={event.title}
@@ -57,21 +58,26 @@ export default function EventCard({ event, locale }: EventCardProps) {
                         <Calendar className="w-4 h-4 text-accent" />
                         <span className="text-sm font-medium text-white">{dateStr}</span>
                     </div>
-                    {/* Countdown */}
-                    <CountdownTimer targetDate={event.eventDate} />
+                </div>
+
+                {/* Countdown (Visible on Mobile and Desktop) */}
+                <div className="absolute top-2 right-2 md:top-4 md:right-4 z-20">
+                    <CountdownTimer targetDate={event.regDeadline} />
                 </div>
             </div>
 
             {/* Content */}
             <div className="p-3 md:p-6 flex flex-col flex-grow md:-mt-12 relative z-10 w-full justify-center md:justify-start">
-                <h3 className="text-sm md:text-2xl font-bold text-white mb-1 md:mb-4 leading-tight group-hover:text-accent transition-colors drop-shadow-md truncate md:whitespace-normal line-clamp-2 md:line-clamp-none">
+                <h3 className="text-base md:text-2xl font-bold text-white mb-1 md:mb-4 leading-tight group-hover:text-accent transition-colors drop-shadow-md truncate md:whitespace-normal line-clamp-2 md:line-clamp-none">
                     {event.title}
                 </h3>
 
                 {/* Mobile Date (Visible only on mobile) */}
-                <div className="flex md:hidden items-center gap-2 text-zinc-400 text-xs mb-1">
-                    <Calendar className="w-3 h-3 text-accent" />
-                    <span>{dateStr}</span>
+                <div className="flex md:hidden items-center justify-between mb-2">
+                    <div className="flex items-center gap-2 text-zinc-400 text-xs">
+                        <Calendar className="w-3 h-3 text-accent" />
+                        <span>{dateStr}</span>
+                    </div>
                 </div>
 
                 <div className="hidden md:flex flex-col gap-3 mb-6 bg-zinc-900/50 backdrop-blur-sm rounded-xl p-4 border border-zinc-800/50">
@@ -86,7 +92,7 @@ export default function EventCard({ event, locale }: EventCardProps) {
                 </div>
 
                 {/* Mobile Location/Organizer (Compact) */}
-                <div className="flex md:hidden items-center gap-2 text-zinc-500 text-[10px]">
+                <div className="flex md:hidden items-center gap-2 text-zinc-500 text-[10px] mb-2">
                     <MapPin className="w-3 h-3 text-zinc-600" />
                     <span className="truncate">{event.location}</span>
                 </div>

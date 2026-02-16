@@ -71,7 +71,7 @@ export default async function RacesPage({ params }: { params: Promise<{ locale: 
 
 
             {/* Event Grid */}
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-4 pb-24 md:pb-32">
                 {!hasEvents ? (
                     <div className="flex flex-col items-center justify-center py-32 bg-zinc-900/30 rounded-[3rem] border border-zinc-800/50 backdrop-blur-sm">
                         <div className="bg-zinc-800 p-6 rounded-full mb-6 animate-pulse">
