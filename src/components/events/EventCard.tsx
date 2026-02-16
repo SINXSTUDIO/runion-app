@@ -38,21 +38,21 @@ export default function EventCard({ event, locale }: EventCardProps) {
     });
 
     return (
-        <div className="group relative bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,242,254,0.1)] flex flex-col h-full">
+        <div className="group relative bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,242,254,0.1)] flex flex-row md:flex-col h-24 md:h-full">
             {/* Image Container */}
-            <div className="relative h-40 md:h-64 w-full overflow-hidden">
+            <div className="relative w-24 md:w-full h-full md:h-64 shrink-0 overflow-hidden">
                 <Image
                     src={event.coverImage || '/images/maintenance-bg-cheer.png'}
                     alt={event.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 100px, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-all duration-500 grayscale-[20%] group-hover:grayscale-0"
                 />
-                <div className="absolute inset-0 bg-black/50 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-black/50 group-hover:bg-transparent transition-colors duration-500 pointer-events-none hidden md:block" />
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent opacity-80 hidden md:block" />
 
-                {/* Date Badge on Image */}
-                <div className="absolute top-4 left-4 flex gap-2">
+                {/* Date Badge on Image (Desktop Only) */}
+                <div className="absolute top-4 left-4 hidden md:flex gap-2">
                     <div className="bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 border border-white/10">
                         <Calendar className="w-4 h-4 text-accent" />
                         <span className="text-sm font-medium text-white">{dateStr}</span>
@@ -63,12 +63,18 @@ export default function EventCard({ event, locale }: EventCardProps) {
             </div>
 
             {/* Content */}
-            <div className="p-4 md:p-6 flex flex-col flex-grow -mt-12 relative z-10">
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-4 leading-tight group-hover:text-accent transition-colors drop-shadow-md truncate">
+            <div className="p-3 md:p-6 flex flex-col flex-grow md:-mt-12 relative z-10 w-full justify-center md:justify-start">
+                <h3 className="text-sm md:text-2xl font-bold text-white mb-1 md:mb-4 leading-tight group-hover:text-accent transition-colors drop-shadow-md truncate md:whitespace-normal line-clamp-2 md:line-clamp-none">
                     {event.title}
                 </h3>
 
-                <div className="flex flex-col gap-3 mb-6 bg-zinc-900/50 backdrop-blur-sm rounded-xl p-4 border border-zinc-800/50">
+                {/* Mobile Date (Visible only on mobile) */}
+                <div className="flex md:hidden items-center gap-2 text-zinc-400 text-xs mb-1">
+                    <Calendar className="w-3 h-3 text-accent" />
+                    <span>{dateStr}</span>
+                </div>
+
+                <div className="hidden md:flex flex-col gap-3 mb-6 bg-zinc-900/50 backdrop-blur-sm rounded-xl p-4 border border-zinc-800/50">
                     <div className="flex items-center gap-3 text-zinc-300">
                         <MapPin className="w-4 h-4 text-accent shrink-0" />
                         <span className="text-sm font-medium">{event.location}</span>
@@ -79,7 +85,13 @@ export default function EventCard({ event, locale }: EventCardProps) {
                     </div>
                 </div>
 
-                <div className="mt-auto flex items-center justify-between">
+                {/* Mobile Location/Organizer (Compact) */}
+                <div className="flex md:hidden items-center gap-2 text-zinc-500 text-[10px]">
+                    <MapPin className="w-3 h-3 text-zinc-600" />
+                    <span className="truncate">{event.location}</span>
+                </div>
+
+                <div className="mt-auto hidden md:flex items-center justify-between">
                     <Link href={`/races/${event.slug}`} className="w-full">
                         <Button className="w-full rounded-xl bg-zinc-800 text-white border border-zinc-700 hover:bg-accent hover:text-black hover:border-accent transition-all duration-300 font-bold group/btn h-12 text-lg shadow-lg">
                             {t('details')}
@@ -87,7 +99,11 @@ export default function EventCard({ event, locale }: EventCardProps) {
                         </Button>
                     </Link>
                 </div>
+
+                {/* Mobile Link Overlay */}
+                <Link href={`/races/${event.slug}`} className="absolute inset-0 md:hidden" aria-label={t('details')} />
             </div>
         </div>
+
     );
 }
