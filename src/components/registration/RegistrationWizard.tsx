@@ -338,7 +338,7 @@ export default function RegistrationWizard({ event, user, formConfig }: WizardPr
             billingZip: billingData.zip,
             billingCity: billingData.city,
             billingAddress: billingData.address,
-            billingTaxNumber: billingData.taxNumber
+            billingTaxNumber: billingData.taxNumber.replace(/\s/g, '')
         };
 
         const result = await submitRegistration(event.id, user.id, selectedDistance, formData, mappedBilling, selectedExtras, crewSize);
