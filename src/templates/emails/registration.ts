@@ -151,15 +151,15 @@ export function generateRegistrationEmailHtml(
                                                     <tr>
                                                         <td style="padding: 10px 0; font-weight: bold; font-size: 14px; color: #666666; font-family: Arial, Helvetica, sans-serif;">${t.priceLabel}</td>
                                                         <td style="padding: 10px 0; font-size: 14px; color: #333333; font-family: Arial, Helvetica, sans-serif;">
-                                                            ${(discountPercentage > 0 || Number(distance.price) > finalPrice) ? `<span style="text-decoration: line-through; color: #999; margin-right: 8px;">${distance.price.toLocaleString()} Ft</span>` : ''}
-                                                            <span>${finalPrice.toLocaleString()} Ft</span>
+                                                            ${(discountPercentage > 0 || Number(distance.price) > finalPrice) ? `<span style="text-decoration: line-through; color: #999; margin-right: 8px;">${Number(distance.price) > 0 ? distance.price.toLocaleString() + ' Ft' : ''}</span>` : ''}
+                                                            <span>${priceDisplay}</span>
                                                         </td>
                                                     </tr>
                                                     ${(discountPercentage > 0 || Number(distance.price) > finalPrice) ? `
                                                     <tr>
                                                         <td style="padding: 5px 0 10px 0; font-weight: bold; font-size: 13px; color: #00cc66; font-family: Arial, Helvetica, sans-serif;">${t.discountLabel}</td>
                                                         <td style="padding: 5px 0 10px 0; font-size: 13px; color: #00cc66; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">
-                                                            ${discountPercentage > 0 ? `- ${discountPercentage}%` : `-${(Number(distance.price) - finalPrice).toLocaleString()} Ft`} (Membership)
+                                                            ${discountPercentage > 0 ? `- ${discountPercentage}%` : `Kedvezmény érvényesítve`}
                                                         </td>
                                                     </tr>
                                                     ` : ''}
@@ -203,14 +203,19 @@ export function generateRegistrationEmailHtml(
                                                     <tr>
                                                         <td style="padding: 15px;">
                                                             <p style="margin: 0 0 10px 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong style="color: #666666;">${t.beneficiary}</strong><br/><span style="color: #333333; font-size: 16px; font-weight: bold;">${registration.distance.event.seller?.name || 'Runion SE'}</span></p>
-                                                            <p style="margin: 0 0 10px 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong style="color: #666666;">${t.bankAccount}</strong><br/><span style="color: #333333; font-size: 16px; font-weight: bold;">${registration.distance.event.seller?.bankAccountNumber || '-'}</span><br/><span style="color: #666666; font-size: 13px;">${registration.distance.event.seller?.bankName || '-'}</span></p>
+                                                            ${priceDisplay.includes('€') && !priceDisplay.includes('Ft') && (registration.distance.event.seller as any)?.ibanEuro ? `
+                                                                <p style="margin: 0 0 10px 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong style="color: #666666;">IBAN (EUR):</strong><br/><span style="font-family: 'Courier New', monospace; font-size: 16px; font-weight: bold; color: #333333;">${(registration.distance.event.seller as any)?.ibanEuro}</span><br/><span style="color: #666666; font-size: 13px;">${(registration.distance.event.seller as any)?.bankNameEur || (registration.distance.event.seller as any)?.bankName}</span></p>
+                                                                ${(registration.distance.event.seller as any)?.swift ? `<p style="margin: 0 0 10px 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong style="color: #666666;">SWIFT/BIC:</strong><br/><span style="font-family: 'Courier New', monospace; font-size: 16px; font-weight: bold; color: #333333;">${(registration.distance.event.seller as any)?.swift}</span></p>` : ''}
+                                                            ` : `
+                                                                <p style="margin: 0 0 10px 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong style="color: #666666;">${t.bankAccount}</strong><br/><span style="color: #333333; font-size: 16px; font-weight: bold;">${registration.distance.event.seller?.bankAccountNumber || '-'}</span><br/><span style="color: #666666; font-size: 13px;">${registration.distance.event.seller?.bankName || '-'}</span></p>
+                                                            `}
                                                             <p style="margin: 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong style="color: #666666;">${t.notice}</strong><br/><span style="background-color: #ffe6cc; padding: 5px 10px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 16px; font-weight: bold; color: #333333;">${paymentReference}</span></p>
                                                         </td>
                                                     </tr>
                                                 </table>
 
-                                                ${(registration.distance.event as any).seller?.ibanEuro ? `
-                                                <!-- International Payment -->
+                                                ${(registration.distance.event.seller as any)?.ibanEuro && (!priceDisplay.includes('€') || priceDisplay.includes('Ft')) ? `
+                                                <!-- Optional International Payment -->
                                                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 15px; background-color: #e3f2fd; border: 1px solid #90caf9; border-radius: 6px;">
                                                     <tr>
                                                         <td style="padding: 15px;">

@@ -155,7 +155,7 @@ export async function submitRegistration(
 
             // Calculate Total Price (Dynamic) using the calculated finalPrice as base
             const basePrice = finalPrice;
-            const basePriceEur = (distance as any).priceEur ? Number((distance as any).priceEur) : 0; // Note: EUR discount not yet applied, if needed. Assuming HUF/EUR separation.
+            const basePriceEur = (distance as any).priceEur ? Number((distance as any).priceEur) : 0;
 
             const extrasTotal = extras.reduce((sum, item) => sum + (item.price || 0), 0);
             const extrasTotalEur = extras.reduce((sum, item) => sum + (item.priceEur || 0), 0);
@@ -163,8 +163,11 @@ export async function submitRegistration(
             const totalPrice = basePrice + extrasTotal;
             const totalPriceEur = basePriceEur + extrasTotalEur;
 
+            // Determine primary currency for display and logic
+            const isEurOnly = totalPrice === 0 && totalPriceEur > 0;
+
             let priceDisplay = `${totalPrice.toLocaleString()} Ft`;
-            if (totalPrice === 0 && totalPriceEur > 0) {
+            if (isEurOnly) {
                 priceDisplay = `${totalPriceEur} €`;
             } else if (totalPrice > 0 && totalPriceEur > 0) {
                 priceDisplay = `${totalPrice.toLocaleString()} Ft / ${totalPriceEur} €`;

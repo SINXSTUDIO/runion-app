@@ -143,6 +143,21 @@ export async function generateProformaPDF(
     doc.setLineWidth(0.5);
     doc.line(14, 33, 196, 33);
 
+    // -- DETECT CURRENCY --
+    // If base price is 0 AND we have EUR price, assume EUR invoice
+    let isEur = false;
+    let basePrice = Number(distance.price);
+    let basePriceEur = (distance as any).priceEur ? Number((distance as any).priceEur) : 0;
+
+    if (registration.finalPrice !== undefined) {
+        basePrice = Number(registration.finalPrice);
+    }
+
+    // Logic: If HUF price is 0 but we have EUR price, it's an EUR transaction
+    if (basePrice === 0 && basePriceEur > 0) {
+        isEur = true;
+    }
+
     // -- DATES & INFO --
     const today = new Date();
     const deadline = new Date(today);
@@ -183,12 +198,18 @@ export async function generateProformaPDF(
 
     // Seller
     const sellerName = seller?.name || 'Runion SE';
-    const sellerNameEuro = seller?.nameEuro || sellerName;
+    // const sellerNameEuro = seller?.nameEuro || sellerName; // Not used yet
     const sellerAddress = seller?.address || '';
     const sellerTaxNumber = seller?.taxNumber || '';
     const sellerEmail = seller?.email || '';
-    const sellerBank = seller?.bankName || '-';
-    const sellerAccount = seller?.bankAccountNumber || '-';
+
+    // Bank Details Logic
+    const sellerBank = isEur ? (seller?.bankNameEur || seller?.bankName || '-') : (seller?.bankName || '-');
+    const sellerAccountLabel = isEur ? 'IBAN:' : t.account;
+    const sellerAccount = isEur
+        ? (seller?.ibanEuro || seller?.iban || seller?.bankAccountNumberEuro || '-')
+        : (seller?.bankAccountNumber || '-');
+    const swiftCode = isEur ? (seller?.swift || '') : '';
 
     doc.setFont(fontName, "normal");
     doc.text(sanitizeText(t.issuer), leftX, yPos);
@@ -214,14 +235,24 @@ export async function generateProformaPDF(
 
     // Bank Block
     doc.setFillColor(245, 245, 245);
-    doc.rect(leftX - 2, yPos - 1, 95, 14, 'F');
+    const bankBlockHeight = isEur && swiftCode ? 19 : 14;
+    doc.rect(leftX - 2, yPos - 1, 95, bankBlockHeight, 'F');
+
     doc.setFont("helvetica", "bold");
     doc.text(sanitizeText(`${t.bank} ${sellerBank}`), leftX, yPos + 4);
-    doc.text(sanitizeText(t.account), leftX, yPos + 9);
+
+    doc.text(sanitizeText(sellerAccountLabel), leftX, yPos + 9);
     doc.setFont("helvetica", "normal");
     doc.text(sellerAccount, leftX + 25, yPos + 9);
 
-    yPos += 24;
+    if (isEur && swiftCode) {
+        doc.setFont("helvetica", "bold");
+        doc.text('SWIFT (BIC):', leftX, yPos + 14);
+        doc.setFont("helvetica", "normal");
+        doc.text(swiftCode, leftX + 25, yPos + 14);
+    }
+
+    yPos += (bankBlockHeight + 10);
 
     // Buyer (Registration Data)
     const billing = registration.formData?.billingDetails || {};
@@ -247,25 +278,30 @@ export async function generateProformaPDF(
 
     // -- ITEMS PREPARATION --
     const items = [];
+    const currency = isEur ? '€' : 'Ft';
 
     // 1. Registration Fee
-    let regPrice = Number(distance.price);
-    if (registration.finalPrice) {
-        regPrice = Number(registration.finalPrice);
-    }
+    // If EUR mode, use EUR price. If HUF mode, use HUF price.
+    // Note: 'finalPrice' currently stores the Calculated price.
+    // If isEur is true, it means calculated price was 0 but EUR price exists.
+    // We need to use basePriceEur in that case.
+
+    let displayRegPrice = isEur ? basePriceEur : basePrice;
 
     items.push({
         name: `${event.title} - ${distance.name} ${t.item.toLowerCase()}`,
         qty: 1,
-        price: regPrice,
-        total: regPrice
+        price: displayRegPrice,
+        total: displayRegPrice
     });
 
     // 2. Extras
     if (Array.isArray(registration.extras)) {
         registration.extras.forEach((extra: any) => {
             const extraName = locale === 'en' ? (extra.nameEn || extra.name) : locale === 'de' ? (extra.nameDe || extra.name) : extra.name;
-            const extraPrice = Number(extra.price || 0);
+            // Select price based on currency mode
+            const extraPrice = isEur ? Number(extra.priceEur || 0) : Number(extra.price || 0);
+
             items.push({
                 name: extraName,
                 qty: 1,
@@ -281,8 +317,8 @@ export async function generateProformaPDF(
     const tableRows = items.map(item => [
         sanitizeText(item.name),
         `${item.qty} db`,
-        `${item.price.toLocaleString('hu-HU')} Ft`,
-        `${item.total.toLocaleString('hu-HU')} Ft`
+        `${item.price.toLocaleString(isEur ? 'de-DE' : 'hu-HU')} ${currency}`,
+        `${item.total.toLocaleString(isEur ? 'de-DE' : 'hu-HU')} ${currency}`
     ]);
 
     const totalAmount = items.reduce((sum, item) => sum + item.total, 0);
@@ -311,7 +347,7 @@ export async function generateProformaPDF(
         },
         foot: [[
             { content: sanitizeText(t.total), colSpan: 3, styles: { halign: 'right', fontStyle: 'bold', fontSize: 11 } },
-            { content: `${totalAmount.toLocaleString('hu-HU')} Ft`, styles: { halign: 'right', fontStyle: 'bold', fontSize: 11, textColor: COLOR_ION } }
+            { content: `${totalAmount.toLocaleString(isEur ? 'de-DE' : 'hu-HU')} ${currency}`, styles: { halign: 'right', fontStyle: 'bold', fontSize: 11, textColor: COLOR_ION } }
         ]],
         footStyles: {
             fillColor: [255, 255, 255],

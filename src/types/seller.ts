@@ -43,6 +43,10 @@ export interface SellerForPDF {
     bankAccountNumber: string | null;
     iban: string | null;
     nameEuro?: string | null;
+    bankAccountNumberEuro?: string | null;
+    ibanEuro?: string | null;
+    bankNameEur?: string | null;
+    swift?: string | null;
 }
 
 /**
