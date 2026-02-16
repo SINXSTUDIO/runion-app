@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'plus.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.public.blob.vercel-storage.com',
       }
     ],
     formats: ['image/avif', 'image/webp'], // Modern formats for better compression
@@ -24,6 +28,7 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384], // Smaller image sizes
     minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year cache for optimized images
   },
+
 
   // Server Actions
   experimental: {
