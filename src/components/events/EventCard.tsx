@@ -87,12 +87,14 @@ export default function EventCard({ event, locale }: EventCardProps) {
                 </div>
 
                 {/* Location & Countdown */}
-                <div className="flex items-center justify-between gap-2 mt-auto">
-                    <div className="flex items-center gap-2 text-zinc-500 text-[10px] md:text-xs">
+                <div className="flex items-center justify-between gap-2 mt-auto w-full min-w-0">
+                    <div className="flex items-center gap-2 text-zinc-500 text-[10px] md:text-xs min-w-0 flex-1">
                         <MapPin className="w-3 h-3 md:w-4 md:h-4 text-zinc-600 shrink-0" />
-                        <span className="truncate max-w-[120px] md:max-w-none">{event.location}</span>
+                        <span className="truncate">{event.location}</span>
                     </div>
-                    <CountdownTimer targetDate={event.regDeadline} />
+                    <div className="shrink-0">
+                        <CountdownTimer targetDate={event.regDeadline} />
+                    </div>
                 </div>
 
                 <div className="mt-4 hidden md:flex items-center justify-between">
