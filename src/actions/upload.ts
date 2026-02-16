@@ -4,6 +4,8 @@ import { put, del } from "@vercel/blob";
 import sharp from "sharp";
 import { logError } from "@/lib/logger";
 import { auth } from "@/auth";
+import { writeFile, unlink, mkdir } from "fs/promises";
+import path from "path";
 
 export async function uploadImage(formData: FormData) {
     try {
@@ -51,35 +53,49 @@ export async function uploadImage(formData: FormData) {
             };
         }
 
-        // Check if token exists
-        if (!process.env.BLOB_READ_WRITE_TOKEN) {
-            console.error("BLOB_READ_WRITE_TOKEN is missing!");
-            return {
-                success: false,
-                error: "Konfigurációs hiba: A felhő tárhely nincs beállítva (BLOB_READ_WRITE_TOKEN hiányzik)."
-            };
-        }
-
         // Process image to WebP
         const optimizedBuffer = await sharp(buffer)
             .resize(resizeOptions)
             .webp({ quality: preset === "avatar" ? 75 : 80 })
             .toBuffer();
 
-        // Generate filename
-        const filename = `uploads/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}.webp`;
+        // Check if token exists for Vercel Blob
+        if (process.env.BLOB_READ_WRITE_TOKEN) {
+            // Generate filename for Blob
+            const filename = `uploads/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}.webp`;
 
-        // Upload to Vercel Blob
-        const blob = await put(filename, optimizedBuffer, {
-            access: 'public',
-            contentType: 'image/webp'
-        });
+            // Upload to Vercel Blob
+            const blob = await put(filename, optimizedBuffer, {
+                access: 'public',
+                contentType: 'image/webp'
+            });
 
-        return {
-            success: true,
-            url: blob.url,
-            filename: blob.pathname
-        };
+            return {
+                success: true,
+                url: blob.url,
+                filename: blob.pathname
+            };
+        } else {
+            // Fallback: Local Storage
+            console.warn("BLOB_READ_WRITE_TOKEN missing, utilizing local storage.");
+
+            const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}.webp`;
+            const uploadDir = path.join(process.cwd(), "public", "uploads");
+
+            // Ensure directory exists
+            await mkdir(uploadDir, { recursive: true });
+
+            const filePath = path.join(uploadDir, filename);
+            await writeFile(filePath, optimizedBuffer);
+
+            // Return relative URL
+            return {
+                success: true,
+                url: `/uploads/${filename}`,
+                filename: filename
+            };
+        }
+
     } catch (error: any) {
         console.error('[uploadImage] ERROR DETAILS:', {
             message: error.message,
@@ -100,13 +116,23 @@ export async function deleteImage(url: string) {
         if (!url) return { success: false, error: "Érvénytelen URL" };
 
         // If it's a Vercel Blob URL (contains public.blob.vercel-storage.com)
-        if (url.includes(".public.blob.vercel-storage.com")) {
+        if (url.includes(".public.blob.vercel-storage.com") && process.env.BLOB_READ_WRITE_TOKEN) {
             await del(url);
             return { success: true };
         }
 
-        // Legacy: Local file deletion (won't work on Vercel but kept for backward compat if migrating)
-        // We just ignore local deletion errors on Vercel as files are ephemeral anyway
+        // Local file deletion
+        if (url.startsWith("/uploads/")) {
+            const filename = url.replace("/uploads/", "");
+            const filePath = path.join(process.cwd(), "public", "uploads", filename);
+            try {
+                await unlink(filePath);
+            } catch (e) {
+                console.warn("Could not delete local file (might not exist):", filePath);
+            }
+            return { success: true };
+        }
+
         return { success: true };
 
     } catch (error: any) {
