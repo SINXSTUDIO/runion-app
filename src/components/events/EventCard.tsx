@@ -62,7 +62,7 @@ export default function EventCard({ event, locale }: EventCardProps) {
             </div>
 
             {/* Content */}
-            <div className="p-3 md:p-6 flex flex-col flex-grow md:-mt-12 relative z-10 w-full justify-center md:justify-start">
+            <div className="p-3 md:p-6 flex flex-col flex-1 min-w-0 md:-mt-12 relative z-10 w-full justify-center md:justify-start">
                 <h3 className="text-base md:text-2xl font-bold text-white mb-1 md:mb-4 leading-tight group-hover:text-accent transition-colors drop-shadow-md truncate md:whitespace-normal line-clamp-2 md:line-clamp-none">
                     {event.title}
                 </h3>
