@@ -237,7 +237,7 @@ export async function submitRegistration(
                 // Format extras list for email table
                 const extrasTableRows = extras.length > 0
                     ? extras.map(e => {
-                        const priceStr = e.price > 0
+                        const priceStr = e.price !== 0
                             ? `${e.price.toLocaleString()} Ft`
                             : ((e.priceEur ?? 0) > 0 ? `${e.priceEur} €` : t.free);
                         return `<tr><td style="padding: 10px; border-bottom: 1px solid #eeeeee; font-family: Arial, Helvetica, sans-serif; font-size: 14px;">• ${e.name}</td><td style="padding: 10px; border-bottom: 1px solid #eeeeee; text-align: right; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold;">${priceStr}</td></tr>`;
