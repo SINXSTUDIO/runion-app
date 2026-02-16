@@ -127,3 +127,93 @@ export async function deleteSeller(id: string) {
         return { success: false, error: "Hiba törlés közben (lehet, hogy használatban van)." };
     }
 }
+
+export async function importSellers(formData: FormData) {
+    try {
+        const session = await auth();
+        if (session?.user?.role !== "ADMIN") {
+            return { success: false, error: "Unauthorized" };
+        }
+
+        const file = formData.get("file") as File;
+        if (!file) {
+            return { success: false, error: "Nincs fájl feltöltve" };
+        }
+
+        const jsonContent = await file.text();
+        let sellersData;
+        try {
+            sellersData = JSON.parse(jsonContent);
+        } catch (e) {
+            return { success: false, error: "Érvénytelen JSON formátum" };
+        }
+
+        if (!Array.isArray(sellersData)) {
+            sellersData = [sellersData];
+        }
+
+        let updatedCount = 0;
+        let errors = [];
+
+        for (const seller of sellersData) {
+            try {
+                // Try to find existing seller by ID, then Key, then Name
+                let existingSeller = null;
+
+                if (seller.id) {
+                    existingSeller = await prisma.seller.findUnique({ where: { id: seller.id } });
+                }
+
+                if (!existingSeller && seller.key) {
+                    existingSeller = await prisma.seller.findUnique({ where: { key: seller.key } });
+                }
+
+                if (!existingSeller && seller.name) {
+                    existingSeller = await prisma.seller.findFirst({ where: { name: seller.name } });
+                }
+
+                if (existingSeller) {
+                    // Update
+                    await prisma.seller.update({
+                        where: { id: existingSeller.id },
+                        data: {
+                            // Update fields present in JSON, fallback to existing if not present
+                            name: seller.name || existingSeller.name,
+                            address: seller.address || existingSeller.address,
+                            bankName: seller.bankName !== undefined ? seller.bankName : existingSeller.bankName,
+                            bankAccountNumber: seller.bankAccountNumber !== undefined ? seller.bankAccountNumber : existingSeller.bankAccountNumber,
+                            bankAccountNumberEuro: seller.bankAccountNumberEuro !== undefined ? seller.bankAccountNumberEuro : existingSeller.bankAccountNumberEuro,
+                            ibanEuro: seller.ibanEuro !== undefined ? seller.ibanEuro : existingSeller.ibanEuro,
+                            taxNumber: seller.taxNumber !== undefined ? seller.taxNumber : existingSeller.taxNumber,
+                            email: seller.email !== undefined ? seller.email : existingSeller.email,
+                            representative: seller.representative !== undefined ? seller.representative : existingSeller.representative,
+                            active: seller.active !== undefined ? seller.active : existingSeller.active,
+                        }
+                    });
+                    updatedCount++;
+                } else {
+                    // Optional: Create new if not found? 
+                    // For safety, let's only update existing ones for this specific task, 
+                    // or Create if enough data. The user prompt implies updating existing "BakonyOrszág".
+                    // Let's Log that we couldn't find it.
+                    errors.push(`Nem található szervezet: ${seller.name || seller.id}`);
+                }
+            } catch (err: any) {
+                console.error(`Error updating seller ${seller.name}:`, err);
+                errors.push(`Hiba ${seller.name} frissítésekor: ${err.message}`);
+            }
+        }
+
+        revalidatePath("/secretroom75/sellers");
+
+        if (updatedCount === 0 && errors.length > 0) {
+            return { success: false, error: errors.join(", ") };
+        }
+
+        return { success: true, count: updatedCount, errors: errors.length > 0 ? errors : undefined };
+
+    } catch (error) {
+        console.error("Import error:", error);
+        return { success: false, error: "Váratlan hiba történt importálás közben" };
+    }
+}
