@@ -97,116 +97,104 @@ export default function DistanceCard({ distance, eventSlug, locale, index }: Dis
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className="group relative"
+            className="group relative h-full"
         >
-            <div className="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl md:rounded-3xl p-3 md:p-6 backdrop-blur-sm hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,242,254,0.15)] h-full flex flex-col">
+            <div className="relative bg-zinc-900/50 border border-zinc-800 rounded-xl md:rounded-3xl p-2 md:p-6 backdrop-blur-sm hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,242,254,0.15)] h-full flex flex-col justify-between">
 
                 {/* Status Badge */}
                 {status !== 'AVAILABLE' && (
-                    <div className="absolute top-4 right-4 z-10">
-                        <Badge variant="outline" className={`${currentStatus.color} border-none text-white px-3 py-1 text-xs font-bold uppercase tracking-wide`}>
-                            {currentStatus.icon} {currentStatus.label}
+                    <div className="absolute top-2 right-2 md:top-4 md:right-4 z-10">
+                        <Badge variant="outline" className={`${currentStatus.color} border-none text-white px-1.5 py-0.5 md:px-3 md:py-1 text-[10px] md:text-xs font-bold uppercase tracking-wide`}>
+                            {currentStatus.icon} <span className="hidden md:inline">{currentStatus.label}</span>
                         </Badge>
                     </div>
                 )}
 
                 {/* Early Bird Badge - IF ACTIVE FROM DB */}
                 {activeTier && (
-                    <div className="absolute top-4 left-4 z-10">
-                        <Badge variant="outline" className="bg-accent text-black border-none px-3 py-1 text-xs font-black uppercase tracking-wide animate-pulse">
+                    <div className="absolute top-2 left-2 md:top-4 md:left-4 z-10">
+                        <Badge variant="outline" className="bg-accent text-black border-none px-1.5 py-0.5 md:px-3 md:py-1 text-[10px] md:text-xs font-black uppercase tracking-wide animate-pulse">
                             <Zap className="w-3 h-3 mr-1 inline" />
                             {activeTier.name}
                         </Badge>
                     </div>
                 )}
 
-                {/* Distance Name */}
-                <h3 className="text-lg md:text-2xl font-black font-heading uppercase mb-1 md:mb-3 text-white mt-6 md:mt-8 group-hover:text-accent transition-colors leading-tight">
-                    {distanceName}
-                </h3>
+                <div>
+                    {/* Distance Name */}
+                    <h3 className="text-sm md:text-2xl font-black font-heading uppercase mb-1 md:mb-3 text-white mt-8 md:mt-8 group-hover:text-accent transition-colors leading-tight line-clamp-2 md:line-clamp-none h-10 md:h-auto flex items-end md:block">
+                        {distanceName}
+                    </h3>
 
-                {/* Description (if from DB) */}
-                {distance.description && (
-                    <p className="text-zinc-400 text-xs md:text-sm mb-2 md:mb-4 line-clamp-2 md:block hidden">
-                        {distance.description}
-                    </p>
-                )}
-
-                {/* Start Time */}
-                <div className="flex items-center gap-2 mb-2 md:mb-4 text-zinc-400">
-                    <Clock className="w-3 h-3 md:w-4 md:h-4 text-accent" />
-                    <span className="text-xs md:text-sm">
-                        {format.dateTime(new Date(distance.startTime), {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            timeZone: 'Europe/Budapest'
-                        })}
-                    </span>
-                </div>
-
-                {/* Capacity Progress Bar */}
-                <div className="mb-4">
-                    <div className="flex justify-between items-center mb-2">
-                        <span className="text-xs text-zinc-500 flex items-center gap-1">
-                            <Users className="w-3 h-3" />
-                            {t('capacity.registered', { count: registered })}
-                        </span>
-                        <span className="text-xs text-zinc-500">
-                            {t('capacity.available', { count: available })}
+                    {/* Start Time */}
+                    <div className="flex items-center gap-1 md:gap-2 mb-2 md:mb-4 text-zinc-400">
+                        <Clock className="w-3 h-3 md:w-4 md:h-4 text-accent shrink-0" />
+                        <span className="text-[10px] md:text-sm">
+                            {format.dateTime(new Date(distance.startTime), {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                timeZone: 'Europe/Budapest'
+                            })}
                         </span>
                     </div>
-                    <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                        <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: `${percentageFull}%` }}
-                            transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
-                            className={`h-full rounded-full ${status === 'SOLD_OUT' ? 'bg-red-500' :
-                                status === 'ALMOST_FULL' ? 'bg-orange-500' :
-                                    status === 'FILLING_FAST' ? 'bg-yellow-500' :
-                                        'bg-accent'
-                                }`}
-                        />
+
+                    {/* Capacity Progress Bar */}
+                    <div className="mb-2 md:mb-4">
+                        <div className="flex justify-between items-center mb-1 md:mb-2">
+                            <span className="text-[10px] md:text-xs text-zinc-500 flex items-center gap-1">
+                                <Users className="w-3 h-3 hidden md:block" />
+                                <span className="md:hidden">Reg:</span>
+                                {registered}
+                            </span>
+                            <span className="text-[10px] md:text-xs text-zinc-500">
+                                <span className="md:hidden">Szabad:</span>
+                                <span className="hidden md:inline">{t('capacity.available', { count: available })}</span>
+                                <span className="md:hidden">{available}</span>
+                            </span>
+                        </div>
+                        <div className="h-1.5 md:h-2 bg-zinc-800 rounded-full overflow-hidden">
+                            <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: `${percentageFull}%` }}
+                                transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
+                                className={`h-full rounded-full ${status === 'SOLD_OUT' ? 'bg-red-500' :
+                                    status === 'ALMOST_FULL' ? 'bg-orange-500' :
+                                        status === 'FILLING_FAST' ? 'bg-yellow-500' :
+                                            'bg-accent'
+                                    }`}
+                            />
+                        </div>
                     </div>
                 </div>
 
                 {/* Price Section */}
-                <div className="mt-auto pt-4 border-t border-zinc-800">
-                    <div className="flex items-end justify-between mb-4">
+                <div className="mt-auto pt-2 md:pt-4 border-t border-zinc-800">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-2 md:mb-4 gap-1">
                         <div>
                             {activeTier && (
-                                <p className="text-xs text-zinc-500 line-through mb-1">
+                                <p className="text-[10px] md:text-xs text-zinc-500 line-through mb-0 md:mb-1">
                                     {formatPrice(Number(distance.price), distance.priceEur ? Number(distance.priceEur) : undefined)}
                                 </p>
                             )}
-                            <p className="text-xl md:text-2xl font-black text-white font-mono">
+                            <p className="text-sm md:text-2xl font-black text-white font-mono leading-none">
                                 {formatPrice(Number(displayPrice), displayPriceEur ? Number(displayPriceEur) : undefined)}
                             </p>
-                            {activeTier && (
-                                <p className="text-xs text-accent mt-1">
-                                    {t('pricing.validUntil')} {format.dateTime(new Date(activeTier.validTo), {
-                                        month: 'short',
-                                        day: 'numeric',
-                                        hour: '2-digit',
-                                        minute: '2-digit'
-                                    })}
-                                </p>
-                            )}
                         </div>
 
                         {/* Filling Fast Indicator */}
                         {status === 'FILLING_FAST' && (
-                            <div className="flex items-center gap-1 text-yellow-500 text-xs">
-                                <TrendingUp className="w-4 h-4" />
+                            <div className="flex items-center gap-1 text-yellow-500 text-[10px] md:text-xs">
+                                <TrendingUp className="w-3 h-3 md:w-4 md:h-4" />
                                 <span className="font-bold">{Math.round(percentageFull)}%</span>
                             </div>
                         )}
                     </div>
 
                     {/* CTA Button */}
-                    <Link href={`/races/${eventSlug}/register?distanceId=${distance.id}`}>
+                    <Link href={`/races/${eventSlug}/register?distanceId=${distance.id}`} className="w-full block">
                         <Button
                             disabled={status === 'SOLD_OUT'}
-                            className={`w-full font-bold h-9 md:h-12 text-sm rounded-xl transition-all ${status === 'SOLD_OUT'
+                            className={`w-full font-bold h-8 md:h-12 text-xs md:text-sm rounded-lg md:rounded-xl transition-all ${status === 'SOLD_OUT'
                                 ? 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
                                 : 'bg-accent text-black hover:bg-accent/80 hover:scale-[1.02] shadow-[0_4px_20px_rgba(0,242,254,0.3)]'
                                 }`}

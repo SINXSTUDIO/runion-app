@@ -176,12 +176,12 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                         {/* Left Column: Description & Distances */}
                         <div className="lg:col-span-2 space-y-12">
                             {/* About Section */}
-                            <section className="bg-zinc-900/30 border border-zinc-800/50 p-8 rounded-3xl">
-                                <h2 className="text-3xl font-black font-heading uppercase mb-8 flex items-center gap-4 text-white">
-                                    <span className="w-2 h-8 bg-accent rounded-full" />
+                            <section className="bg-zinc-900/30 border border-zinc-800/50 p-4 md:p-8 rounded-3xl">
+                                <h2 className="text-xl md:text-3xl font-black font-heading uppercase mb-4 md:mb-8 flex items-center gap-2 md:gap-4 text-white">
+                                    <span className="w-1 md:w-2 h-6 md:h-8 bg-accent rounded-full" />
                                     {t('aboutTitle')}
                                 </h2>
-                                <div className="prose prose-invert prose-xl max-w-none text-zinc-300 leading-relaxed">
+                                <div className="prose prose-invert prose-sm md:prose-xl max-w-none text-zinc-300 leading-relaxed">
                                     <div dangerouslySetInnerHTML={{
                                         __html: (locale === 'en' ? (event.descriptionEn || event.description) :
                                             locale === 'de' ? (event.descriptionDe || event.description) :
@@ -193,11 +193,11 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                             {/* Distance Cards */}
                             {event.distances && event.distances.length > 0 && (
                                 <section>
-                                    <h2 className="text-3xl font-black font-heading uppercase mb-8 flex items-center gap-4 text-white">
-                                        <span className="w-2 h-8 bg-accent rounded-full" />
+                                    <h2 className="text-xl md:text-3xl font-black font-heading uppercase mb-4 md:mb-8 flex items-center gap-2 md:gap-4 text-white">
+                                        <span className="w-1 md:w-2 h-6 md:h-8 bg-accent rounded-full" />
                                         {t('distances')}
                                     </h2>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
                                         {event.distances.map((distance: any, index: number) => (
                                             <DistanceCard
                                                 key={distance.id}
