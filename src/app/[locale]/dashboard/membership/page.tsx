@@ -56,11 +56,17 @@ export default async function MembershipPage() {
         where: { active: true }
     });
 
+    const settings = await prisma.globalSettings.findFirst();
+    const activeSeller = settings?.membershipSellerId
+        ? sellers.find(s => s.id === settings.membershipSellerId)
+        : null;
+
     return (
         <MembershipClient
             user={serializedUser}
             tiers={serializedTiers}
             sellers={sellers}
+            activeSeller={activeSeller}
             translations={{
                 title: t('title', { default: 'Tagság Kezelés' }),
                 currentStatus: t('currentStatus', { default: 'Jelenlegi Státusz' }),

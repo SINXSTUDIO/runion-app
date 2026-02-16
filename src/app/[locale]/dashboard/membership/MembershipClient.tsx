@@ -24,9 +24,10 @@ type Props = {
     tiers: Tier[];
     translations: any;
     sellers?: any[];
+    activeSeller?: any;
 };
 
-export default function MembershipClient({ user, tiers, translations: t, sellers }: Props) {
+export default function MembershipClient({ user, tiers, translations: t, sellers, activeSeller }: Props) {
     const [selectedTier, setSelectedTier] = useState<Tier | null>(null);
     const [isBillingOpen, setIsBillingOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -127,6 +128,30 @@ export default function MembershipClient({ user, tiers, translations: t, sellers
                             <span>{selectedTier.durationMonths} {t.month}</span>
                         </div>
                     </div>
+
+                    {activeSeller && (
+                        <div className="mb-6 p-4 bg-emerald-500/10 rounded-xl border border-emerald-500/20">
+                            <h4 className="text-emerald-400 font-bold mb-2 text-sm uppercase tracking-wider">
+                                {t.transferDetails || 'Utalási Információk'}
+                            </h4>
+                            <div className="space-y-2 text-sm text-zinc-300">
+                                <div className="flex justify-between">
+                                    <span className="text-zinc-500">Kedvezményezett:</span>
+                                    <span className="font-medium text-white">{activeSeller.name}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-zinc-500">Bank:</span>
+                                    <span className="font-medium text-white">{activeSeller.bankName}</span>
+                                </div>
+                                <div>
+                                    <span className="text-zinc-500 block mb-1">Számlaszám:</span>
+                                    <span className="font-mono text-white bg-black/30 px-2 py-1 rounded block w-full text-center">
+                                        {activeSeller.bankAccountNumber}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
                     <form onSubmit={handlePurchase} className="space-y-4">
                         <h3 className="font-semibold text-lg">{t.billingDetails}</h3>
