@@ -4,8 +4,9 @@ import { useState } from "react";
 import { upsertSeller, deleteSeller } from "@/actions/sellers";
 import { Button } from "@/components/ui/Button";
 import { toast } from "sonner";
-import { Pencil, Trash2, Plus, Building2, Banknote, MapPin, Phone, Mail, User, ShieldCheck } from "lucide-react";
+import { Pencil, Trash2, Plus, Building2, Banknote, MapPin, Phone, Mail, User, ShieldCheck, Upload } from "lucide-react";
 import { useRouter } from "next/navigation";
+import SellerImportModal from "./SellerImportModal";
 
 // Use Radix UI Dialog or simple Overlay for modal. 
 // For simplicity in this rapid fix, I will use a simple inline editing or a custom modal overlay.
@@ -13,6 +14,7 @@ import { useRouter } from "next/navigation";
 export default function SellerListClient({ initialSellers }: { initialSellers: any[] }) {
     const [sellers, setSellers] = useState(initialSellers);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isImportModalOpen, setIsImportModalOpen] = useState(false);
     const [editingSeller, setEditingSeller] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
@@ -72,12 +74,21 @@ export default function SellerListClient({ initialSellers }: { initialSellers: a
 
     return (
         <div className="space-y-6">
-            <div className="flex justify-end">
+            <div className="flex justify-end gap-3">
+                <Button onClick={() => setIsImportModalOpen(true)} className="flex items-center gap-2" variant="outline">
+                    <Upload className="w-4 h-4" />
+                    Import JSON
+                </Button>
                 <Button onClick={openCreateModal} className="flex items-center gap-2">
                     <Plus className="w-4 h-4" />
                     Új Szervezet
                 </Button>
             </div>
+
+            <SellerImportModal isOpen={isImportModalOpen} onClose={() => {
+                setIsImportModalOpen(false);
+                router.refresh();
+            }} />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {sellers.map((seller) => (

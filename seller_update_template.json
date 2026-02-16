@@ -1,0 +1,18 @@
+[
+    {
+        "id": "633b0bef-4f0f-4b55-861b-6f1b52c0187a",
+        "name": "BakonyOrszág Balcsipart Kulturális és Sportegyesület",
+        "bankName": "OTP Bank",
+        "bankAccountNumber": "11748007-24830210-00000000",
+        "ibanEuro": "HU67117480072483021000000000",
+        "active": true
+    },
+    {
+        "id": "10d8605e-0c69-4a13-8f2b-cdf9bdd9d09b",
+        "name": "KAHU Természet- és Állatvédő, Ifjúsági-, és Sportegyesület",
+        "bankName": "OTP Bank",
+        "bankAccountNumber": "11748038-24826190-00000000",
+        "ibanEuro": "HU19117480382482619000000000",
+        "active": true
+    }
+]
