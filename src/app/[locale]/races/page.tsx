@@ -1,5 +1,7 @@
 import { getPublishedEvents } from '@/actions/events';
 import EventCard from '@/components/events/EventCard';
+import EventsHero from '@/components/events/EventsHero';
+
 import { Inter, Montserrat } from "next/font/google";
 import { Search, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -38,36 +40,35 @@ export default async function RacesPage({ params }: { params: Promise<{ locale: 
     const hasEvents = success && events && events.length > 0;
 
     return (
-        <div className="min-h-screen bg-black text-white pt-28 pb-20">
-            {/* Header Section */}
-            <div className="container mx-auto px-4 mb-16">
-                <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-8">
-                    <div>
-                        <h1 className="text-5xl md:text-7xl font-black font-heading tracking-tighter uppercase mb-4 leading-none">
-                            <span className="text-white block">Következő</span>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-hover">
-                                Versenyeink
-                            </span>
-                        </h1>
-                        <p className="text-zinc-400 text-lg md:text-xl max-w-2xl font-light">
-                            Találd meg a következő kihívásodat. Legyen szó aszfaltról vagy terepről, nálunk megtalálod a számításod.
-                        </p>
+        <div className="min-h-screen bg-black text-white">
+
+            {/* Hero Section */}
+            <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden mb-16">
+                <EventsHero />
+
+                <div className="relative z-20 container mx-auto px-4 text-center">
+                    <h1 className="text-5xl md:text-8xl font-black font-heading tracking-tighter uppercase mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] animate-in fade-in slide-in-from-bottom-4 duration-1000 leading-none">
+                        <span className="text-white block md:inline mr-4">Következő</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-hover block md:inline">
+                            Versenyeink
+                        </span>
+                    </h1>
+                    <p className="text-xl md:text-2xl text-zinc-200 font-medium max-w-2xl mx-auto mb-8 drop-shadow-md leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+                        Találd meg a következő kihívásodat. Legyen szó aszfaltról vagy terepről, nálunk megtalálod a számításod.
+                    </p>
+
+                    <div className="flex justify-center gap-2 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+                        <div className="w-16 h-1 bg-accent rounded-full shadow-[0_0_10px_rgba(0,242,254,0.5)]"></div>
+                        <div className="w-4 h-1 bg-white rounded-full opacity-50"></div>
+                        <div className="w-4 h-1 bg-white rounded-full opacity-30"></div>
                     </div>
                 </div>
 
-                {/* Filters (Visual Placeholder for Phase 2b) */}
-                <div className="w-full h-px bg-zinc-800 mb-8" />
+                {/* Decorative Elements */}
+                <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-zinc-900/80 to-transparent pointer-events-none z-10"></div>
+                <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-10"></div>
+            </section>
 
-                {/* 
-                <div className="flex flex-wrap gap-4 mb-12">
-                     <Button variant="outline" className="rounded-full border-zinc-700 text-zinc-300 hover:text-white hover:border-white">
-                        <Filter className="w-4 h-4 mr-2" />
-                        Szűrők
-                     </Button>
-                     ... categories ...
-                </div> 
-                */}
-            </div>
 
             {/* Event Grid */}
             <div className="container mx-auto px-4">
