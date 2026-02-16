@@ -52,7 +52,7 @@ export const RegistrationFormDataSchema = z.object({
  */
 export const EventExtraSchema = z.object({
     name: z.string().min(1, "Extra név kötelező"),
-    price: z.number().min(0, "Ár nem lehet negatív"),
+    price: z.number(), // Allow negative for discounts
     priceEur: z.number().min(0).optional(),
     category: z.string().optional(),
     description: z.string().optional(),
