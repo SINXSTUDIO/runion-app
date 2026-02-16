@@ -178,13 +178,11 @@ export async function submitRegistration(
                 const event = registration.distance.event;
                 const eventYear = new Date(event.eventDate).getFullYear();
 
-                // 1. Prefix: First 4 chars of slug (e.g. RUNP) + Year
-                // If slug is 'run-punch-2026', we want 'RUNP'. 
-                // We take first 4 chars of slug (removing dashes) uppercased.
+                // 1. Prefix: First 3 chars of slug (e.g. RUN)
                 const cleanSlug = event.slug.replace(/-/g, '').toUpperCase();
-                const prefix = cleanSlug.substring(0, 4);
+                const prefix = cleanSlug.substring(0, 3);
 
-                // 2. Name: KOV + TAM (First 3 of Last + First 3 of First)
+                // 2. Name: KOVTA (First 3 of Last + First 2 of First)
                 // Helper to sanitize (remove accents)
                 const sanitizeName = (s: string) => s ? s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z]/g, "").toUpperCase() : '';
 
@@ -192,16 +190,16 @@ export async function submitRegistration(
                 const fNameRaw = (formData.firstName || formData.keresztnev || user?.firstName || '') as string;
 
                 const lName = sanitizeName(lNameRaw).substring(0, 3);
-                const fName = sanitizeName(fNameRaw).substring(0, 3);
+                const fName = sanitizeName(fNameRaw).substring(0, 2);
                 const nameCode = `${lName}${fName}`;
 
                 // 3. Distance: '21K' or 'MAR'
-                // Limit to 3-4 chars. Remove spaces, take 3 chars.
                 const distNameRaw = registration.distance.name;
-                const distCode = distNameRaw.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().substring(0, 4);
+                const distCode = distNameRaw.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().substring(0, 3);
 
-                // Construct: RUNP2026KOVTAM21K-PRO-ID
-                const paymentReference = `${prefix}${eventYear}${nameCode}${distCode}-PRO-${registration.id.substring(0, 8).toUpperCase()}`;
+                // Construct: RUNKOVTA21K-3BC37
+                // Format: [EVENT_3][NAME_5][DIST_3]-[ID_5]
+                const paymentReference = `${prefix}${nameCode}${distCode}-${registration.id.substring(0, 5).toUpperCase()}`;
 
                 // Update Registration with Proforma Metadata
                 await prisma.registration.update({
