@@ -32,7 +32,7 @@ export default function RegistrationWizard({ event, user, formConfig }: WizardPr
     // Auto-advance if distance is pre-selected
     useEffect(() => {
         if (searchParams.get('distanceId') && step === 1) {
-            setStep(3); // Skip distance step if pre-selected
+            setStep(2); // Go to Extras step (don't skip it)
         }
     }, [searchParams]);
 
