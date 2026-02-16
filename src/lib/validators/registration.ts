@@ -3,7 +3,7 @@ import { z } from 'zod';
 /**
  * Hungarian tax number validation (XXXXXXXX-X-XX format)
  */
-const taxNumberRegex = /^\d{8}-\d-\d{2}$/;
+const taxNumberRegex = /^(\d{8}-?\d-?\d{2}|\d{11})$/;
 
 /**
  * Hungarian phone number validation (+36 or 06 prefix)
