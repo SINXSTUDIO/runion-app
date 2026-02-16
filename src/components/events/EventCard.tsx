@@ -59,11 +59,6 @@ export default function EventCard({ event, locale }: EventCardProps) {
                         <span className="text-sm font-medium text-white">{dateStr}</span>
                     </div>
                 </div>
-
-                {/* Countdown (Visible on Mobile and Desktop) */}
-                <div className="absolute top-2 right-2 md:top-4 md:right-4 z-20">
-                    <CountdownTimer targetDate={event.regDeadline} />
-                </div>
             </div>
 
             {/* Content */}
@@ -73,8 +68,8 @@ export default function EventCard({ event, locale }: EventCardProps) {
                 </h3>
 
                 {/* Mobile Date (Visible only on mobile) */}
-                <div className="flex md:hidden items-center justify-between mb-2">
-                    <div className="flex items-center gap-2 text-zinc-400 text-xs">
+                <div className="flex md:hidden items-center justify-between mb-1">
+                    <div className="flex items-center gap-2 text-zinc-400 text-[10px]">
                         <Calendar className="w-3 h-3 text-accent" />
                         <span>{dateStr}</span>
                     </div>
@@ -91,13 +86,16 @@ export default function EventCard({ event, locale }: EventCardProps) {
                     </div>
                 </div>
 
-                {/* Mobile Location/Organizer (Compact) */}
-                <div className="flex md:hidden items-center gap-2 text-zinc-500 text-[10px] mb-2">
-                    <MapPin className="w-3 h-3 text-zinc-600" />
-                    <span className="truncate">{event.location}</span>
+                {/* Location & Countdown */}
+                <div className="flex items-center justify-between gap-2 mt-auto">
+                    <div className="flex items-center gap-2 text-zinc-500 text-[10px] md:text-xs">
+                        <MapPin className="w-3 h-3 md:w-4 md:h-4 text-zinc-600 shrink-0" />
+                        <span className="truncate max-w-[120px] md:max-w-none">{event.location}</span>
+                    </div>
+                    <CountdownTimer targetDate={event.regDeadline} />
                 </div>
 
-                <div className="mt-auto hidden md:flex items-center justify-between">
+                <div className="mt-4 hidden md:flex items-center justify-between">
                     <Link href={`/races/${event.slug}`} className="w-full">
                         <Button className="w-full rounded-xl bg-zinc-800 text-white border border-zinc-700 hover:bg-accent hover:text-black hover:border-accent transition-all duration-300 font-bold group/btn h-12 text-lg shadow-lg">
                             {t('details')}
@@ -110,6 +108,5 @@ export default function EventCard({ event, locale }: EventCardProps) {
                 <Link href={`/races/${event.slug}`} className="absolute inset-0 md:hidden" aria-label={t('details')} />
             </div>
         </div>
-
     );
 }

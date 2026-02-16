@@ -220,7 +220,7 @@ export default function Navbar({ user }: NavbarProps) {
                                             </Link>
                                             <Link href="/register" onClick={() => setIsOpen(false)}>
                                                 <Button variant="primary" className="w-full h-12 rounded-xl text-sm flex items-center justify-center gap-2 font-bold uppercase tracking-tighter shadow-[0_0_15px_rgba(0,242,254,0.2)]">
-                                                    <UserPlus className="w-4 h-4 text-accent" />
+                                                    <UserPlus className="w-4 h-4" />
                                                     {t('register')}
                                                 </Button>
                                             </Link>
