@@ -42,6 +42,7 @@ export interface SellerForPDF {
     bankName: string | null;
     bankAccountNumber: string | null;
     iban: string | null;
+    nameEuro?: string | null;
 }
 
 /**

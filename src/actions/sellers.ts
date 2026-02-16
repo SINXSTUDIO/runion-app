@@ -157,19 +157,25 @@ export async function importSellers(formData: FormData) {
 
         for (const seller of sellersData) {
             try {
-                // Try to find existing seller by ID, then Key, then Name
+                // Try to find existing seller by ID, then Key (kulcs), then Name (Név)
                 let existingSeller = null;
 
                 if (seller.id) {
                     existingSeller = await prisma.seller.findUnique({ where: { id: seller.id } });
                 }
 
-                if (!existingSeller && seller.key) {
-                    existingSeller = await prisma.seller.findUnique({ where: { key: seller.key } });
+                if (!existingSeller) {
+                    const key = seller.key || seller["kulcs"] || seller["Kulcs"];
+                    if (key) {
+                        existingSeller = await prisma.seller.findUnique({ where: { key: key } });
+                    }
                 }
 
-                if (!existingSeller && seller.name) {
-                    existingSeller = await prisma.seller.findFirst({ where: { name: seller.name } });
+                if (!existingSeller) {
+                    const name = seller.name || seller["Név"] || seller["Nev"];
+                    if (name) {
+                        existingSeller = await prisma.seller.findFirst({ where: { name: name } });
+                    }
                 }
 
                 if (existingSeller) {
@@ -178,16 +184,18 @@ export async function importSellers(formData: FormData) {
                         where: { id: existingSeller.id },
                         data: {
                             // Update fields present in JSON, fallback to existing if not present
-                            name: seller.name || existingSeller.name,
-                            address: seller.address || existingSeller.address,
-                            bankName: seller.bankName !== undefined ? seller.bankName : existingSeller.bankName,
-                            bankAccountNumber: seller.bankAccountNumber !== undefined ? seller.bankAccountNumber : existingSeller.bankAccountNumber,
-                            bankAccountNumberEuro: seller.bankAccountNumberEuro !== undefined ? seller.bankAccountNumberEuro : existingSeller.bankAccountNumberEuro,
-                            ibanEuro: seller.ibanEuro !== undefined ? seller.ibanEuro : existingSeller.ibanEuro,
-                            taxNumber: seller.taxNumber !== undefined ? seller.taxNumber : existingSeller.taxNumber,
-                            email: seller.email !== undefined ? seller.email : existingSeller.email,
-                            representative: seller.representative !== undefined ? seller.representative : existingSeller.representative,
-                            active: seller.active !== undefined ? seller.active : existingSeller.active,
+                            key: (seller.key || seller["kulcs"] || seller["Kulcs"]) ?? existingSeller.key,
+                            name: (seller.name || seller["Név"] || seller["Nev"]) ?? existingSeller.name,
+                            address: (seller.address || seller["Cím"] || seller["Cim"]) ?? existingSeller.address,
+                            bankName: seller.bankName !== undefined ? seller.bankName : (seller["Bank"] || seller["Bank neve"] || existingSeller.bankName),
+                            bankAccountNumber: seller.bankAccountNumber !== undefined ? seller.bankAccountNumber : (seller["Számlaszám"] || seller["Szamlaszam"] || existingSeller.bankAccountNumber),
+                            bankAccountNumberEuro: seller.bankAccountNumberEuro !== undefined ? seller.bankAccountNumberEuro : (seller["Számlaszám (EUR)"] || existingSeller.bankAccountNumberEuro),
+                            ibanEuro: seller.ibanEuro !== undefined ? seller.ibanEuro : (seller["IBAN (EUR)"] || existingSeller.ibanEuro),
+                            nameEuro: seller.nameEuro !== undefined ? seller.nameEuro : (seller["Kedvezményezett (EUR)"] || seller["Kedvezmenyezett (EUR)"] || existingSeller.nameEuro),
+                            taxNumber: seller.taxNumber !== undefined ? seller.taxNumber : (seller["Adószám"] || seller["Adoszam"] || existingSeller.taxNumber),
+                            email: seller.email !== undefined ? seller.email : (seller["Email"] || existingSeller.email),
+                            representative: seller.representative !== undefined ? seller.representative : (seller["Képviselő"] || existingSeller.representative),
+                            active: seller.active !== undefined ? seller.active : (seller["Aktív"] !== undefined ? seller["Aktív"] : existingSeller.active),
                         }
                     });
                     updatedCount++;

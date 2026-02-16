@@ -8,50 +8,49 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(uuid())
-  email         String    @unique
-  passwordHash  String?
-  emailVerified DateTime?
-  image         String?
-  firstName     String
-  lastName      String
-  birthDate     DateTime?
-  gender        Gender?
-  clubName      String?
-  phoneNumber   String?
-  tshirtSize    String?
-  city          String?
-  zipCode       String?
-  address       String?
-  role          Role      @default(USER)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-
+  id                    String          @id @default(uuid())
+  email                 String          @unique
+  passwordHash          String?
+  emailVerified         DateTime?
+  image                 String?
+  firstName             String
+  lastName              String
+  birthDate             DateTime?
+  gender                Gender?
+  clubName              String?
+  phoneNumber           String?
+  tshirtSize            String?
+  city                  String?
+  zipCode               String?
+  address               String?
+  role                  Role            @default(USER)
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
   emergencyContactName  String?
   emergencyContactPhone String?
-  isVegetarian          Boolean         @default(false)
-  fiveTrialsId          String?
-  teamName              String?
-  teamMembers           Json?
-  billingName           String?
-  taxNumber             String?
-  billingZipCode        String?
-  billingCity           String?
   billingAddress        String?
+  billingCity           String?
+  billingName           String?
+  billingZipCode        String?
+  deletedAt             DateTime?
+  fiveTrialsId          String?
+  isVegetarian          Boolean         @default(false)
+  membershipEnd         DateTime?
+  membershipExpiresAt   DateTime?
+  membershipStart       DateTime?
+  membershipTierId      String?
+  taxNumber             String?
+  teamMembers           String[]
+  teamName              String?
+  tokenVersion          Int             @default(0)
   accounts              Account[]
   events                Event[]
+  feedbacks             Feedback[]
+  notifications         Notification[]
   orders                Order[]
   registrations         Registration[]
   sessions              Session[]
-  notifications         Notification[]
-  feedbacks             Feedback[]
-  membershipTierId      String?
-  membershipExpiresAt   DateTime?
   membershipTier        MembershipTier? @relation(fields: [membershipTierId], references: [id])
-  membershipStart       DateTime?
-  membershipEnd         DateTime?
-  deletedAt             DateTime?
-  tokenVersion          Int             @default(0)
 
   @@index([createdAt])
   @@index([updatedAt])
@@ -81,14 +80,14 @@ model MembershipTier {
 }
 
 model Event {
-  id                     String      @id @default(uuid())
+  id                     String           @id @default(uuid())
   title                  String
   description            String
   location               String
   eventDate              DateTime
   regDeadline            DateTime
-  createdAt              DateTime    @default(now())
-  updatedAt              DateTime    @updatedAt
+  createdAt              DateTime         @default(now())
+  updatedAt              DateTime         @updatedAt
   coverImage             String?
   descriptionDe          String?
   descriptionEn          String?
@@ -97,9 +96,9 @@ model Event {
   googleMapsUrl          String?
   organizerId            String
   organizerName          String?
-  showCountdown          Boolean     @default(true)
-  slug                   String      @unique
-  status                 EventStatus @default(DRAFT)
+  showCountdown          Boolean          @default(true)
+  slug                   String           @unique
+  status                 EventStatus      @default(DRAFT)
   titleDe                String?
   titleEn                String?
   websiteUrl             String?
@@ -111,13 +110,13 @@ model Event {
   formConfig             Json?
   notificationEmail      String?
   sellerId               String?
-  sortOrder              Int         @default(0)
+  sortOrder              Int              @default(0)
   confirmationEmailText  String?
-  paymentReminderEnabled Boolean     @default(true)
+  paymentReminderEnabled Boolean          @default(true)
   infopack               Json?
   distances              Distance[]
-  organizer              User        @relation(fields: [organizerId], references: [id])
-  seller                 Seller?     @relation(fields: [sellerId], references: [id])
+  organizer              User             @relation(fields: [organizerId], references: [id])
+  seller                 Seller?          @relation(fields: [sellerId], references: [id])
   featuredInSettings     GlobalSettings[] @relation("FeaturedEvent")
 
   @@index([organizerId])
@@ -147,6 +146,8 @@ model Seller {
   updatedAt             DateTime         @updatedAt
   bankAccountNumberEuro String?
   ibanEuro              String?
+  nameEuro              String?
+
   events                Event[]
   membershipSettings    GlobalSettings[] @relation("MembershipSeller")
   transferSettings      GlobalSettings[] @relation("TransferSeller")
@@ -244,7 +245,7 @@ model Product {
   nameEn         String?
   sizes          String?
   slug           String?         @unique
-  stockBreakdown Json? // e.g. {"S": 5, "M": 3, "L": 0}
+  stockBreakdown Json?
   orderItems     OrderItem[]
 
   @@index([active])
@@ -273,11 +274,10 @@ model Order {
   userId           String
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @updatedAt
+  privacyAccepted  Boolean       @default(false)
+  termsAccepted    Boolean       @default(false)
   user             User          @relation(fields: [userId], references: [id])
   items            OrderItem[]
-
-  termsAccepted   Boolean @default(false)
-  privacyAccepted Boolean @default(false)
 
   @@index([userId])
   @@index([status])
@@ -416,77 +416,67 @@ model FAQ {
 }
 
 model GlobalSettings {
-  id                        String   @id @default(uuid())
-  maintenanceMode           Boolean  @default(false)
-  updatedAt                 DateTime @updatedAt
-  shopEnabled               Boolean  @default(true)
-  shopEmail                 String?
-  shopBeneficiaryName       String?
-  shopBankName              String?
-  shopBankAccountNumber     String?
-  shopShippingCost          Int?     @default(0)
-  shopFreeShippingThreshold Int?     @default(20000)
-  shopNote                  String?  @db.Text
-  shopTaxNumber             String?
-  shopAddress               String?
-  shopLogoUrl               String?
-
-  feature1Title   String?
-  feature1TitleEn String?
-  feature1TitleDe String?
-  feature1Desc    String?
-  feature1DescEn  String?
-  feature1DescDe  String?
-  feature1Icon    String?
-
-  feature2Title   String?
-  feature2TitleEn String?
-  feature2TitleDe String?
-  feature2Desc    String?
-  feature2DescEn  String?
-  feature2DescDe  String?
-  feature2Icon    String?
-
-  feature3Title   String?
-  feature3TitleEn String?
-  feature3TitleDe String?
-  feature3Desc    String?
-  feature3DescEn  String?
-  feature3DescDe  String?
-  feature3Icon    String?
-
-  membershipSellerId          String?
-  membershipSeller            Seller? @relation("MembershipSeller", fields: [membershipSellerId], references: [id])
+  id                          String   @id @default(uuid())
+  maintenanceMode             Boolean  @default(false)
+  updatedAt                   DateTime @updatedAt
+  shopEnabled                 Boolean  @default(true)
+  feature1Desc                String?
+  feature1DescDe              String?
+  feature1DescEn              String?
+  feature1Icon                String?
+  feature1Title               String?
+  feature1TitleDe             String?
+  feature1TitleEn             String?
+  feature2Desc                String?
+  feature2DescDe              String?
+  feature2DescEn              String?
+  feature2Icon                String?
+  feature2Title               String?
+  feature2TitleDe             String?
+  feature2TitleEn             String?
+  feature3Desc                String?
+  feature3DescDe              String?
+  feature3DescEn              String?
+  feature3Icon                String?
+  feature3Title               String?
+  feature3TitleDe             String?
+  feature3TitleEn             String?
   membershipNotificationEmail String?
-
+  membershipSellerId          String?
+  shopAddress                 String?
+  shopBankAccountNumber       String?
+  shopBankName                String?
+  shopBeneficiaryName         String?
+  shopEmail                   String?
+  shopFreeShippingThreshold   Int?     @default(20000)
+  shopLogoUrl                 String?
+  shopNote                    String?
+  shopShippingCost            Int?     @default(0)
+  shopTaxNumber               String?
   cancellationEnabled         Boolean  @default(false)
-
-  // Transfer Page Settings
-  transferInfoHu             String?  @db.Text
-  transferInfoEn             String?  @db.Text
-  transferInfoDe             String?  @db.Text
-  transferBeneficiary        String?
-  transferBankName           String?
-  transferBankAccountNumber  String?
-  transferNote               String?
-  transferEmail              String?
-  transferSellerId           String?
-  transferSeller             Seller? @relation("TransferSeller", fields: [transferSellerId], references: [id])
-
-  // Featured Event for Homepage
-  featuredEventId            String?
-  featuredEventActive        Boolean @default(false)
-  featuredEvent              Event?  @relation("FeaturedEvent", fields: [featuredEventId], references: [id])
-  
-  featuredEventTitleHU       String?
-  featuredEventTitleEN       String?
-  featuredEventTitleDE       String?
-  featuredEventDescriptionHU String?
-  featuredEventDescriptionEN String?
-  featuredEventDescriptionDE String?
-  featuredEventButtonHU      String?
-  featuredEventButtonEN      String?
-  featuredEventButtonDE      String?
+  transferBankAccountNumber   String?
+  transferBankName            String?
+  transferBeneficiary         String?
+  transferInfoDe              String?
+  transferInfoEn              String?
+  transferInfoHu              String?
+  transferNote                String?
+  transferEmail               String?
+  transferSellerId            String?
+  featuredEventActive         Boolean  @default(false)
+  featuredEventId             String?
+  featuredEventButtonDE       String?
+  featuredEventButtonEN       String?
+  featuredEventButtonHU       String?
+  featuredEventDescriptionDE  String?
+  featuredEventDescriptionEN  String?
+  featuredEventDescriptionHU  String?
+  featuredEventTitleDE        String?
+  featuredEventTitleEN        String?
+  featuredEventTitleHU        String?
+  featuredEvent               Event?   @relation("FeaturedEvent", fields: [featuredEventId], references: [id])
+  membershipSeller            Seller?  @relation("MembershipSeller", fields: [membershipSellerId], references: [id])
+  transferSeller              Seller?  @relation("TransferSeller", fields: [transferSellerId], references: [id])
 }
 
 model ChangeRequest {
@@ -505,6 +495,56 @@ model ChangeRequest {
   comment   String?
   createdAt DateTime            @default(now())
   updatedAt DateTime            @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  message   String
+  type      String   @default("info")
+  read      Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Feedback {
+  id            String         @id @default(uuid())
+  userId        String
+  type          FeedbackType
+  subject       String
+  message       String
+  status        FeedbackStatus @default(PENDING)
+  adminResponse String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  user          User           @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([status])
+}
+
+model AuditLog {
+  id         String      @id @default(uuid())
+  userId     String
+  userName   String
+  action     AuditAction
+  entityType String
+  entityId   String
+  entityData Json?
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime    @default(now())
+
+  @@index([userId])
+  @@index([entityType])
+  @@index([entityId])
+  @@index([createdAt])
+  @@index([action])
 }
 
 enum Role {
@@ -572,37 +612,6 @@ enum ChangeRequestStatus {
   REJECTED
 }
 
-model Notification {
-  id        String   @id @default(uuid())
-  userId    String
-  title     String
-  message   String
-  type      String   @default("info")
-  read      Boolean  @default(false)
-  link      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-model Feedback {
-  id            String         @id @default(uuid())
-  userId        String
-  user          User           @relation(fields: [userId], references: [id])
-  type          FeedbackType
-  subject       String
-  message       String
-  status        FeedbackStatus @default(PENDING)
-  adminResponse String?
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-
-  @@index([userId])
-  @@index([status])
-}
-
 enum FeedbackType {
   BUG
   FEATURE
@@ -616,25 +625,6 @@ enum FeedbackStatus {
   CLOSED
 }
 
-model AuditLog {
-  id         String      @id @default(uuid())
-  userId     String
-  userName   String
-  action     AuditAction
-  entityType String      // "Event", "Registration", "User", etc.
-  entityId   String
-  entityData Json?       // Snapshot before deletion/change
-  ipAddress  String?
-  userAgent  String?
-  createdAt  DateTime    @default(now())
-
-  @@index([userId])
-  @@index([entityType])
-  @@index([entityId])
-  @@index([createdAt])
-  @@index([action])
-}
-
 enum AuditAction {
   CREATE
   UPDATE
@@ -643,4 +633,3 @@ enum AuditAction {
   SOFT_DELETE
   FORCE_DELETE
 }
-

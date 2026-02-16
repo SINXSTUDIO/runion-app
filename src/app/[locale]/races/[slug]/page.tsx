@@ -213,6 +213,73 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                         </div>
                     </div>
                 </div>
+                {/* Payment Info Section */}
+                {(event.seller || (event.beneficiaryName && event.bankAccountNumber)) && (
+                    <div className="mt-12 p-8 bg-zinc-900 rounded-2xl border border-zinc-800">
+                        <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                            <span className="text-accent">💳</span>
+                            Fizetési Információk / Payment Details
+                        </h3>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {/* Domestic Transfer */}
+                            <div className="space-y-4">
+                                <h4 className="text-lg font-bold text-zinc-300 border-b border-zinc-700 pb-2">
+                                    🇭🇺 Belföldi utalás (HUF)
+                                </h4>
+                                <div className="space-y-2 text-zinc-400">
+                                    <div>
+                                        <p className="text-xs uppercase tracking-wider text-zinc-500">Kedvezményezett</p>
+                                        <p className="text-white font-medium">{event.seller?.name || event.beneficiaryName}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs uppercase tracking-wider text-zinc-500">Bank</p>
+                                        <p className="text-white">{event.seller?.bankName || event.bankName}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs uppercase tracking-wider text-zinc-500">Számlaszám</p>
+                                        <p className="text-accent font-mono text-lg">{event.seller?.bankAccountNumber || event.bankAccountNumber}</p>
+                                    </div>
+                                    <div className="bg-zinc-800/50 p-3 rounded-lg mt-4">
+                                        <p className="text-xs text-zinc-500 mb-1">Közlemény / Reference:</p>
+                                        <p className="text-white font-mono">"Nevezés - [Név] - [Táv]"</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* International Transfer */}
+                            {(event.seller?.ibanEuro || event.ibanEuro) && (
+                                <div className="space-y-4">
+                                    <h4 className="text-lg font-bold text-zinc-300 border-b border-zinc-700 pb-2">
+                                        🇪🇺 International Transfer (EUR)
+                                    </h4>
+                                    <div className="space-y-2 text-zinc-400">
+                                        <div>
+                                            <p className="text-xs uppercase tracking-wider text-zinc-500">Beneficiary Name</p>
+                                            <p className="text-white font-medium">
+                                                {event.seller?.nameEuro || event.nameEuro || event.seller?.name || event.beneficiaryName}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs uppercase tracking-wider text-zinc-500">IBAN</p>
+                                            <p className="text-accent font-mono text-lg">{event.seller?.ibanEuro || event.ibanEuro}</p>
+                                        </div>
+                                        {(event.seller?.bankAccountNumberEuro || event.bankAccountNumberEuro) && (
+                                            <div>
+                                                <p className="text-xs uppercase tracking-wider text-zinc-500">Account Number</p>
+                                                <p className="text-zinc-300 font-mono">{event.seller?.bankAccountNumberEuro || event.bankAccountNumberEuro}</p>
+                                            </div>
+                                        )}
+                                        <div className="bg-zinc-800/50 p-3 rounded-lg mt-4">
+                                            <p className="text-xs text-zinc-500 mb-1">Reference:</p>
+                                            <p className="text-white font-mono">"Registration - [Name] - [Distance]"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
             </div>
         </>
     );

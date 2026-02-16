@@ -183,6 +183,7 @@ export async function generateProformaPDF(
 
     // Seller
     const sellerName = seller?.name || 'Runion SE';
+    const sellerNameEuro = seller?.nameEuro || sellerName;
     const sellerAddress = seller?.address || '';
     const sellerTaxNumber = seller?.taxNumber || '';
     const sellerEmail = seller?.email || '';

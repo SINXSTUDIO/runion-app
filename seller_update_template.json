@@ -1,27 +1,30 @@
 [
     {
         "id": "633b0bef-4f0f-4b55-861b-6f1b52c0187a",
-        "name": "BakonyOrszág Balcsipart Kulturális és Sportegyesület",
-        "bankName": "OTP Bank",
-        "bankAccountNumber": "11748007-24830210-00000000",
-        "ibanEuro": "HU67117480072483021000000000",
-        "active": true
+        "Név": "BakonyOrszág Balcsipart Kulturális és Sportegyesület",
+        "Bank": "OTP Bank",
+        "Számlaszám": "11748007-24830210-00000000",
+        "IBAN (EUR)": "HU67117480072483021000000000",
+        "Kedvezményezett (EUR)": "",
+        "Aktív": true
     },
     {
         "id": "10d8605e-0c69-4a13-8f2b-cdf9bdd9d09b",
-        "name": "KAHU Természet- és Állatvédő, Ifjúsági-, és Sportegyesület",
-        "bankName": "OTP Bank",
-        "bankAccountNumber": "11748038-24826190-00000000",
-        "ibanEuro": "HU19117480382482619000000000",
-        "active": true
+        "Név": "KAHU Természet- és Állatvédő, Ifjúsági-, és Sportegyesület",
+        "Bank": "OTP Bank",
+        "Számlaszám": "11748038-24826190-00000000",
+        "IBAN (EUR)": "HU19117480382482619000000000",
+        "Kedvezményezett (EUR)": "",
+        "Aktív": true
     },
     {
         "id": "93e85503-1cea-485d-a83b-32717c5803cb",
-        "key": "bac",
-        "name": "Balatonfüredi Atlétikai Club",
-        "bankName": "OTP Bank",
-        "bankAccountNumber": "11748069-25512412-00000000",
-        "ibanEuro": "HU16117480692551241200000000",
-        "active": true
+        "kulcs": "bac",
+        "Név": "Balatonfüredi Atlétikai Club",
+        "Bank": "OTP Bank",
+        "Számlaszám": "11748069-25512412-00000000",
+        "IBAN (EUR)": "HU16117480692551241200000000",
+        "Kedvezményezett (EUR)": "",
+        "Aktív": true
     }
 ]

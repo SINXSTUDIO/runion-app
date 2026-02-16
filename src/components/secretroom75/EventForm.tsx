@@ -71,6 +71,7 @@ export default function EventForm({ event, sellers = [] }: EventFormProps) {
     const [bankAccountNumber, setBankAccountNumber] = useState(event?.seller?.bankAccountNumber || event?.bankAccountNumber || '');
     const [bankAccountNumberEuro, setBankAccountNumberEuro] = useState(event?.seller?.bankAccountNumberEuro || event?.bankAccountNumberEuro || '');
     const [ibanEuro, setIbanEuro] = useState(event?.seller?.ibanEuro || event?.ibanEuro || '');
+    const [nameEuro, setNameEuro] = useState(event?.seller?.nameEuro || event?.nameEuro || '');
     const [selectedTemplate, setSelectedTemplate] = useState<string>(event?.sellerId || '');
 
     // Infopack state
@@ -102,6 +103,7 @@ export default function EventForm({ event, sellers = [] }: EventFormProps) {
             setBeneficiaryName('');
             setBankName('');
             setBankAccountNumber('');
+            setNameEuro('');
             return;
         }
 
@@ -113,6 +115,7 @@ export default function EventForm({ event, sellers = [] }: EventFormProps) {
             setBankAccountNumber(seller.bankAccountNumber || '');
             setBankAccountNumberEuro(seller.bankAccountNumberEuro || '');
             setIbanEuro(seller.ibanEuro || '');
+            setNameEuro(seller.nameEuro || '');
         }
     };
 
@@ -616,15 +619,30 @@ export default function EventForm({ event, sellers = [] }: EventFormProps) {
                                     className="w-full bg-black border border-zinc-800 rounded-lg p-3 text-white focus:border-accent focus:outline-none font-mono"
                                 />
                             </div>
-                            <div className="md:col-span-2">
-                                <label className="block text-sm font-medium text-gray-400 mb-2">IBAN (EUR)</label>
-                                <input
-                                    name="ibanEuro"
-                                    value={ibanEuro}
-                                    onChange={(e) => setIbanEuro(e.target.value)}
-                                    placeholder="HU00 0000 0000 0000 0000 0000 0000"
-                                    className="w-full bg-black border border-zinc-800 rounded-lg p-3 text-white focus:border-accent focus:outline-none font-mono"
-                                />
+                            <div className="md:col-span-2 border-t border-zinc-700 pt-4 mt-2">
+                                <h4 className="text-sm font-bold text-zinc-400 uppercase mb-4">Nemzetközi utalás (EUR) adatok (Opcionális)</h4>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-400 mb-2">Kedvezményezett Neve (EUR)</label>
+                                        <input
+                                            name="nameEuro"
+                                            value={nameEuro}
+                                            onChange={(e) => setNameEuro(e.target.value)}
+                                            placeholder="Ha eltér a belfölditől"
+                                            className="w-full bg-black border border-zinc-800 rounded-lg p-3 text-white focus:border-accent focus:outline-none"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-400 mb-2">IBAN (EUR)</label>
+                                        <input
+                                            name="ibanEuro"
+                                            value={ibanEuro}
+                                            onChange={(e) => setIbanEuro(e.target.value)}
+                                            placeholder="HU00 0000 0000 0000 0000 0000 0000"
+                                            className="w-full bg-black border border-zinc-800 rounded-lg p-3 text-white focus:border-accent focus:outline-none font-mono"
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )}

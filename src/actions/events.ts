@@ -9,7 +9,7 @@ import { handleError, createErrorResponse, createSuccessResponse } from '@/lib/e
 import { sanitizeHtml, sanitizeEmailContent } from '@/lib/sanitize';
 import { slugify } from '@/lib/utils/slugify';
 
-async function ensureSeller(providedSellerId: string, beneficiaryName: string, bankName: string, bankAccountNumber: string, bankAccountNumberEuro: string, ibanEuro: string): Promise<string | null> {
+async function ensureSeller(providedSellerId: string, beneficiaryName: string, bankName: string, bankAccountNumber: string, bankAccountNumberEuro: string, ibanEuro: string, nameEuro: string): Promise<string | null> {
     if (providedSellerId && providedSellerId !== 'custom') {
         const templateIds = ['balatonfuredi-ac', 'kahu', 'bakonyorszag'];
         if (templateIds.includes(providedSellerId)) {
@@ -18,12 +18,14 @@ async function ensureSeller(providedSellerId: string, beneficiaryName: string, b
             });
 
             if (existingSeller) {
+                // If it exists, update it if needed? For now just return ID.
                 return existingSeller.id;
             } else {
                 const newSeller = await prisma.seller.create({
                     data: {
                         key: providedSellerId,
                         name: beneficiaryName,
+                        nameEuro: nameEuro || null,
                         bankName: bankName,
                         bankAccountNumber: bankAccountNumber,
                         bankAccountNumberEuro: bankAccountNumberEuro || null,
@@ -38,16 +40,19 @@ async function ensureSeller(providedSellerId: string, beneficiaryName: string, b
             return providedSellerId;
         }
     } else if (beneficiaryName && bankAccountNumber) {
+        // Check if seller logic exists based on account number
         const existingSeller = await prisma.seller.findFirst({
             where: { bankAccountNumber: bankAccountNumber }
         });
 
         if (existingSeller) {
+            // Optional: Update nameEuro if missing? For now, just return ID.
             return existingSeller.id;
         } else {
             const newSeller = await prisma.seller.create({
                 data: {
                     name: beneficiaryName,
+                    nameEuro: nameEuro || null,
                     bankName: bankName || '',
                     bankAccountNumber: bankAccountNumber,
                     bankAccountNumberEuro: bankAccountNumberEuro || null,
@@ -190,6 +195,7 @@ export async function createEvent(prevState: any, formData: FormData) {
         const bankAccountNumber = rawData.bankAccountNumber as string;
         const bankAccountNumberEuro = rawData.bankAccountNumberEuro as string;
         const ibanEuro = rawData.ibanEuro as string;
+        const nameEuro = rawData.nameEuro as string;
 
         eventData.sellerId = await ensureSeller(
             providedSellerId,
@@ -197,7 +203,8 @@ export async function createEvent(prevState: any, formData: FormData) {
             bankName,
             bankAccountNumber,
             bankAccountNumberEuro,
-            ibanEuro
+            ibanEuro,
+            nameEuro
         );
 
         const event = await prisma.event.create({
@@ -273,6 +280,7 @@ export async function updateEvent(id: string, prevState: any, formData: FormData
         const bankAccountNumber = rawData.bankAccountNumber as string;
         const bankAccountNumberEuro = rawData.bankAccountNumberEuro as string;
         const ibanEuro = rawData.ibanEuro as string;
+        const nameEuro = rawData.nameEuro as string;
 
         eventData.sellerId = await ensureSeller(
             providedSellerId,
@@ -280,7 +288,8 @@ export async function updateEvent(id: string, prevState: any, formData: FormData
             bankName,
             bankAccountNumber,
             bankAccountNumberEuro,
-            ibanEuro
+            ibanEuro,
+            nameEuro
         );
 
         await prisma.event.update({
