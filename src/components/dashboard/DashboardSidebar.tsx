@@ -100,8 +100,9 @@ export default function DashboardSidebar({ user, unreadCount = 0 }: DashboardSid
                                             alt={user.name || 'User'}
                                             width={48}
                                             height={48}
-                                            className="rounded-full border-2 border-accent"
+                                            className="rounded-full border-2 border-accent object-cover"
                                         />
+
                                     ) : (
                                         <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full flex items-center justify-center text-white font-bold">
                                             {user.name?.[0]?.toUpperCase() || 'U'}

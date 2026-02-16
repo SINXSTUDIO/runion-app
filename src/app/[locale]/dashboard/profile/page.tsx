@@ -105,8 +105,9 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
                                 alt={`${lastName} ${firstName}`}
                                 width={120}
                                 height={120}
-                                className="rounded-full border-4 border-accent shadow-2xl shadow-accent/20"
+                                className="rounded-full border-4 border-accent shadow-2xl shadow-accent/20 object-cover"
                             />
+
                         ) : (
                             <div className="w-30 h-30 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full flex items-center justify-center text-white text-4xl font-black border-4 border-accent shadow-2xl shadow-accent/20">
                                 {lastName?.[0]?.toUpperCase() || 'F'}
