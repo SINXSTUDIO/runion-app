@@ -114,6 +114,7 @@ model Event {
   confirmationEmailText  String?
   paymentReminderEnabled Boolean          @default(true)
   infopack               Json?
+  infopackActive         Boolean          @default(false)
   distances              Distance[]
   organizer              User             @relation(fields: [organizerId], references: [id])
   seller                 Seller?          @relation(fields: [sellerId], references: [id])

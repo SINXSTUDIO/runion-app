@@ -11,6 +11,7 @@ import { SocialProofWidget } from '@/components/events/SocialProofWidget';
 import { generateEventMetadata } from '@/lib/seo/metadata';
 import { generateEventSchema, generateBreadcrumbSchema, organizationSchema, JsonLd } from '@/lib/seo/structured-data';
 import { ShareButtons } from '@/components/events/ShareButtons';
+import { InfopackSection } from '@/components/events/InfopackSection';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string; locale: string }> }) {
     const { slug, locale } = await params;
@@ -258,90 +259,97 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                             )}
                         </div>
                     </div>
+
+                    {/* Infopack Section - Only if active */}
+                    {event.infopackActive && event.infopack && (
+                        <InfopackSection infopack={event.infopack as any} />
+                    )}
                 </div>
                 {/* Payment Info Section */}
-                {(event.seller || event.sellerEuro) && (
-                    <div className="mt-12 p-8 bg-zinc-900 rounded-2xl border border-zinc-800">
-                        <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                            <span className="text-accent">💳</span>
-                            Fizetési Információk / Payment Details
-                        </h3>
+                {
+                    (event.seller || event.sellerEuro) && (
+                        <div className="mt-12 p-8 bg-zinc-900 rounded-2xl border border-zinc-800">
+                            <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                <span className="text-accent">💳</span>
+                                Fizetési Információk / Payment Details
+                            </h3>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {/* Domestic Transfer - Always show HUF seller (primary) */}
-                            <div className="space-y-4">
-                                <h4 className="text-lg font-bold text-zinc-300 border-b border-zinc-700 pb-2">
-                                    🇭🇺 Belföldi utalás (HUF)
-                                </h4>
-                                <div className="space-y-2 text-zinc-400">
-                                    <div>
-                                        <p className="text-xs uppercase tracking-wider text-zinc-500">Kedvezményezett</p>
-                                        <p className="text-white font-medium">{event.seller?.name}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs uppercase tracking-wider text-zinc-500">Bank</p>
-                                        <p className="text-white">{event.seller?.bankName}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs uppercase tracking-wider text-zinc-500">Számlaszám</p>
-                                        <p className="text-accent font-mono text-lg">{event.seller?.bankAccountNumber}</p>
-                                    </div>
-                                    <div className="bg-zinc-800/50 p-3 rounded-lg mt-4">
-                                        <p className="text-xs text-zinc-500 mb-1">Közlemény / Reference:</p>
-                                        <p className="text-white font-mono">"Nevezés - [Név] - [Táv]"</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* International Transfer - Show Euro Seller OR Primary Seller's Euro fields */}
-                            {(event.sellerEuro || event.seller?.ibanEuro) && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                {/* Domestic Transfer - Always show HUF seller (primary) */}
                                 <div className="space-y-4">
                                     <h4 className="text-lg font-bold text-zinc-300 border-b border-zinc-700 pb-2">
-                                        🇪🇺 International Transfer (EUR)
+                                        🇭🇺 Belföldi utalás (HUF)
                                     </h4>
                                     <div className="space-y-2 text-zinc-400">
                                         <div>
-                                            <p className="text-xs uppercase tracking-wider text-zinc-500">Beneficiary Name</p>
-                                            <p className="text-white font-medium">
-                                                {/* Use Euro Seller Name if exists, otherwise fallback to primary seller's Euro Name, or primary name */}
-                                                {event.sellerEuro?.nameEuro || event.sellerEuro?.name || event.seller?.nameEuro || event.seller?.name}
-                                            </p>
+                                            <p className="text-xs uppercase tracking-wider text-zinc-500">Kedvezményezett</p>
+                                            <p className="text-white font-medium">{event.seller?.name}</p>
                                         </div>
                                         <div>
-                                            <p className="text-xs uppercase tracking-wider text-zinc-500">IBAN</p>
-                                            <p className="text-accent font-mono text-lg">
-                                                {event.sellerEuro?.ibanEuro || event.seller?.ibanEuro}
-                                            </p>
+                                            <p className="text-xs uppercase tracking-wider text-zinc-500">Bank</p>
+                                            <p className="text-white">{event.seller?.bankName}</p>
                                         </div>
-                                        {/* Bank Name for Euro Seller if available */}
-                                        {(event.sellerEuro?.bankName || (event.sellerEuro && !event.sellerEuro.bankName)) ? (
-                                            <div>
-                                                <p className="text-xs uppercase tracking-wider text-zinc-500">Bank</p>
-                                                <p className="text-zinc-300">{event.sellerEuro?.bankName || event.seller?.bankName}</p>
-                                            </div>
-                                        ) : null}
-
-                                        {/* BIC/SWIFT - mapped to bankAccountNumberEuro usually or separate field if added. 
-                                            For now assuming bankAccountNumberEuro might hold SWIFT if not IBAN, or just display it if present. */}
-                                        {(event.sellerEuro?.bankAccountNumberEuro || event.seller?.bankAccountNumberEuro) && (
-                                            <div>
-                                                <p className="text-xs uppercase tracking-wider text-zinc-500">SWIFT / Account #</p>
-                                                <p className="text-zinc-300 font-mono">
-                                                    {event.sellerEuro?.bankAccountNumberEuro || event.seller?.bankAccountNumberEuro}
-                                                </p>
-                                            </div>
-                                        )}
+                                        <div>
+                                            <p className="text-xs uppercase tracking-wider text-zinc-500">Számlaszám</p>
+                                            <p className="text-accent font-mono text-lg">{event.seller?.bankAccountNumber}</p>
+                                        </div>
                                         <div className="bg-zinc-800/50 p-3 rounded-lg mt-4">
-                                            <p className="text-xs text-zinc-500 mb-1">Reference:</p>
-                                            <p className="text-white font-mono">"Registration - [Name] - [Distance]"</p>
+                                            <p className="text-xs text-zinc-500 mb-1">Közlemény / Reference:</p>
+                                            <p className="text-white font-mono">"Nevezés - [Név] - [Táv]"</p>
                                         </div>
                                     </div>
                                 </div>
-                            )}
+
+                                {/* International Transfer - Show Euro Seller OR Primary Seller's Euro fields */}
+                                {(event.sellerEuro || event.seller?.ibanEuro) && (
+                                    <div className="space-y-4">
+                                        <h4 className="text-lg font-bold text-zinc-300 border-b border-zinc-700 pb-2">
+                                            🇪🇺 International Transfer (EUR)
+                                        </h4>
+                                        <div className="space-y-2 text-zinc-400">
+                                            <div>
+                                                <p className="text-xs uppercase tracking-wider text-zinc-500">Beneficiary Name</p>
+                                                <p className="text-white font-medium">
+                                                    {/* Use Euro Seller Name if exists, otherwise fallback to primary seller's Euro Name, or primary name */}
+                                                    {event.sellerEuro?.nameEuro || event.sellerEuro?.name || event.seller?.nameEuro || event.seller?.name}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p className="text-xs uppercase tracking-wider text-zinc-500">IBAN</p>
+                                                <p className="text-accent font-mono text-lg">
+                                                    {event.sellerEuro?.ibanEuro || event.seller?.ibanEuro}
+                                                </p>
+                                            </div>
+                                            {/* Bank Name for Euro Seller if available */}
+                                            {(event.sellerEuro?.bankName || (event.sellerEuro && !event.sellerEuro.bankName)) ? (
+                                                <div>
+                                                    <p className="text-xs uppercase tracking-wider text-zinc-500">Bank</p>
+                                                    <p className="text-zinc-300">{event.sellerEuro?.bankName || event.seller?.bankName}</p>
+                                                </div>
+                                            ) : null}
+
+                                            {/* BIC/SWIFT - mapped to bankAccountNumberEuro usually or separate field if added. 
+                                            For now assuming bankAccountNumberEuro might hold SWIFT if not IBAN, or just display it if present. */}
+                                            {(event.sellerEuro?.bankAccountNumberEuro || event.seller?.bankAccountNumberEuro) && (
+                                                <div>
+                                                    <p className="text-xs uppercase tracking-wider text-zinc-500">SWIFT / Account #</p>
+                                                    <p className="text-zinc-300 font-mono">
+                                                        {event.sellerEuro?.bankAccountNumberEuro || event.seller?.bankAccountNumberEuro}
+                                                    </p>
+                                                </div>
+                                            )}
+                                            <div className="bg-zinc-800/50 p-3 rounded-lg mt-4">
+                                                <p className="text-xs text-zinc-500 mb-1">Reference:</p>
+                                                <p className="text-white font-mono">"Registration - [Name] - [Distance]"</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                )}
-            </div>
+                    )
+                }
+            </div >
         </>
     );
 }

@@ -219,6 +219,7 @@ export async function createEvent(prevState: any, formData: FormData) {
             status: rawData.status as EventStatus || 'DRAFT',
             paymentReminderEnabled: rawData.paymentReminderEnabled === 'on',
             infopack: rawData.infopack ? JSON.parse(rawData.infopack as string) : undefined,
+            infopackActive: rawData.infopackActive === 'on',
 
             organizerId: user.id
         };
@@ -314,7 +315,8 @@ export async function updateEvent(id: string, prevState: any, formData: FormData
 
             status: rawData.status as EventStatus,
             paymentReminderEnabled: rawData.paymentReminderEnabled === 'on',
-            infopack: rawData.infopack ? JSON.parse(rawData.infopack as string) : undefined
+            infopack: rawData.infopack ? JSON.parse(rawData.infopack as string) : undefined,
+            infopackActive: rawData.infopackActive === 'on'
         };
 
         // Handle Seller (same logic as createEvent)

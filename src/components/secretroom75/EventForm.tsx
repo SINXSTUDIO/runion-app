@@ -916,6 +916,19 @@ export default function EventForm({ event, sellers = [] }: EventFormProps) {
                 <div className="flex items-center gap-3">
                     <Info className="w-8 h-8 text-accent" />
                     <h3 className="text-2xl font-black italic uppercase text-white">Infópakk Részletek</h3>
+                    <div className="flex-1" />
+                    <div className="flex items-center gap-3">
+                        <input
+                            type="checkbox"
+                            name="infopackActive"
+                            id="infopackActive"
+                            defaultChecked={event?.infopackActive}
+                            className="w-5 h-5 rounded border-zinc-800 bg-black text-accent focus:ring-accent"
+                        />
+                        <label htmlFor="infopackActive" className="text-sm font-bold text-white uppercase tracking-wider cursor-pointer">
+                            Megjelenítés az oldalon
+                        </label>
+                    </div>
                 </div>
                 <p className="text-sm text-zinc-500">Itt adhatod meg az eseményhez tartozó technikai információkat, menetrendet és árakat.</p>
 
@@ -1534,17 +1547,19 @@ export default function EventForm({ event, sellers = [] }: EventFormProps) {
                 <input type="hidden" name="infopack" value={JSON.stringify(infopack)} />
             </div>
 
-            {(state as any)?.message && (
-                <div className={`p-4 rounded-xl border ${(state as any).type === 'success' ? 'bg-green-500/10 border-green-500/50 text-green-500' : 'bg-red-500/10 border-red-500/50 text-red-500'}`}>
-                    {(state as any).message}
-                </div>
-            )}
+            {
+                (state as any)?.message && (
+                    <div className={`p-4 rounded-xl border ${(state as any).type === 'success' ? 'bg-green-500/10 border-green-500/50 text-green-500' : 'bg-red-500/10 border-red-500/50 text-red-500'}`}>
+                        {(state as any).message}
+                    </div>
+                )
+            }
 
             <div className="flex justify-end gap-4 pt-6 border-t border-zinc-800">
                 <Button type="submit" size="lg" className="w-full md:w-auto font-black uppercase italic tracking-tighter">
                     {event ? 'Változtatások Mentése' : 'Esemény Létrehozása'}
                 </Button>
             </div>
-        </form>
+        </form >
     );
 }
