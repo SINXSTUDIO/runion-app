@@ -30,6 +30,16 @@ export default async function RegistrationSuccessPage({ params, searchParams }: 
                                     bankAccountNumberEuro: true,
                                     ibanEuro: true
                                 }
+                            },
+                            sellerEuro: {
+                                select: {
+                                    name: true,
+                                    nameEuro: true,
+                                    bankName: true,
+                                    bankAccountNumber: true, // Typically not used for EUR but maybe?
+                                    bankAccountNumberEuro: true,
+                                    ibanEuro: true
+                                }
                             }
                         }
                     }
@@ -65,8 +75,6 @@ export default async function RegistrationSuccessPage({ params, searchParams }: 
     const beneficiaryName = seller.name || 'Ismeretlen szervező';
     const bankName = seller.bankName || 'Nincs megadva';
     const bankAccountNumber = seller.bankAccountNumber || 'Nincs megadva';
-    const bankAccountNumberEuro = seller.bankAccountNumberEuro;
-    const ibanEuro = seller.ibanEuro;
 
     // Calculate Total Price including extras
     const extras = (registration as any).extras as any[] || [];
@@ -74,6 +82,14 @@ export default async function RegistrationSuccessPage({ params, searchParams }: 
     // Use stored finalPrice (which includes discounts) or fallback to distance price
     const basePrice = registration.finalPrice !== null ? Number(registration.finalPrice) : Number(registration.distance.price);
     const totalPrice = basePrice + extrasTotal;
+
+    // Split Beneficiary Logic
+    const euroSeller = (event as any).sellerEuro || seller;
+
+    const bankAccountNumberEuro = euroSeller.bankAccountNumberEuro; // Prefer sellerEuro's account number
+    const ibanEuro = euroSeller.ibanEuro;
+    const euroBeneficiaryName = euroSeller.nameEuro || euroSeller.name || beneficiaryName;
+    const euroBankName = euroSeller.bankName || bankName;
 
     return (
         <div className="min-h-screen bg-black text-white pt-28 pb-20">

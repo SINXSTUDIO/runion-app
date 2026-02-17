@@ -71,6 +71,19 @@ export default function FormBuilder({ eventId, initialConfig = [] }: FormBuilder
         setFields([...fields, newField]);
     };
 
+    const addTeamMemberField = () => {
+        const teamMemberField: FormField = {
+            id: `field_team_members_${Date.now()}`,
+            type: 'textarea',
+            label: 'Csapattagok',
+            required: false,
+            description: 'A profilodban megadott csapattagok automatikusan megjelennek itt.',
+            options: []
+        };
+        setFields([...fields, teamMemberField]);
+        toast.success("Csapattagok mező hozzáadva!");
+    };
+
     const removeField = (id: string) => {
         setFields(fields.filter(f => f.id !== id));
     };
@@ -186,6 +199,13 @@ export default function FormBuilder({ eventId, initialConfig = [] }: FormBuilder
                 <Plus className="w-6 h-6 mr-2 transition-transform group-hover:scale-110" />
                 <span className="text-lg font-bold">{t('newField')}</span>
             </Button>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <Button onClick={addTeamMemberField} variant="outline" className="py-4 border-zinc-800 bg-zinc-900/30 text-zinc-400 hover:text-white hover:border-accent hover:bg-zinc-900/50 transition-all rounded-xl group flex items-center justify-center gap-2">
+                    <Plus className="w-4 h-4" />
+                    <span className="font-bold">Csapattagok Mező Hozzáadása</span>
+                </Button>
+            </div>
         </div>
     );
 }

@@ -145,7 +145,10 @@ export async function submitRegistration(
                     distance: {
                         include: {
                             event: {
-                                include: { seller: true } // Include Seller for PDF
+                                include: {
+                                    seller: true,
+                                    sellerEuro: true // Include Euro Seller for split beneficiary logic
+                                }
                             }
                         }
                     },
@@ -220,7 +223,14 @@ export async function submitRegistration(
                 // -- GENERATE PDF ATTACHMENT --
                 let attachments = [];
                 try {
-                    const seller = (event as any).seller;
+                    const eventWithSellers = (registration.distance.event as any);
+                    let seller = eventWithSellers.seller;
+
+                    // CHECK FOR SPLIT BENEFICIARY
+                    // If the transaction is EUR-only (or dominant), and a specific Euro seller is defined, use that.
+                    if (isEurOnly && eventWithSellers.sellerEuro) {
+                        seller = eventWithSellers.sellerEuro;
+                    }
 
                     if (seller) {
                         const pdfArrayBuffer = await generateProformaPDF(registration as any, event as any, registration.distance as any, seller, locale as any);

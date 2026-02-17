@@ -9,8 +9,18 @@ import { handleError, createErrorResponse, createSuccessResponse } from '@/lib/e
 import { sanitizeHtml, sanitizeEmailContent } from '@/lib/sanitize';
 import { slugify } from '@/lib/utils/slugify';
 
-async function ensureSeller(providedSellerId: string, beneficiaryName: string, bankName: string, bankAccountNumber: string, bankAccountNumberEuro: string, ibanEuro: string, nameEuro: string): Promise<string | null> {
+async function ensureSeller(
+    providedSellerId: string,
+    beneficiaryName: string,
+    bankName: string,
+    bankAccountNumber: string,
+    bankAccountNumberEuro: string,
+    ibanEuro: string,
+    nameEuro: string
+): Promise<string | null> {
     if (providedSellerId && providedSellerId !== 'custom') {
+        // If selecting an existing seller, we might want to update it with provided details if they are newer/different?
+        // For now, if it's a template ID (like 'balatonfuredi-ac'), we check if it exists in DB, if not create it.
         const templateIds = ['balatonfuredi-ac', 'kahu', 'bakonyorszag'];
         if (templateIds.includes(providedSellerId)) {
             const existingSeller = await prisma.seller.findFirst({
@@ -18,7 +28,19 @@ async function ensureSeller(providedSellerId: string, beneficiaryName: string, b
             });
 
             if (existingSeller) {
-                // If it exists, update it if needed? For now just return ID.
+                // Determine if we should update the existing seller with new details
+                // Only update if fields are provided and different
+                const dataToUpdate: any = {};
+                if (nameEuro && existingSeller.nameEuro !== nameEuro) dataToUpdate.nameEuro = nameEuro;
+                if (bankAccountNumberEuro && existingSeller.bankAccountNumberEuro !== bankAccountNumberEuro) dataToUpdate.bankAccountNumberEuro = bankAccountNumberEuro;
+                if (ibanEuro && existingSeller.ibanEuro !== ibanEuro) dataToUpdate.ibanEuro = ibanEuro;
+
+                if (Object.keys(dataToUpdate).length > 0) {
+                    await prisma.seller.update({
+                        where: { id: existingSeller.id },
+                        data: dataToUpdate
+                    });
+                }
                 return existingSeller.id;
             } else {
                 const newSeller = await prisma.seller.create({
@@ -37,16 +59,28 @@ async function ensureSeller(providedSellerId: string, beneficiaryName: string, b
                 return newSeller.id;
             }
         } else {
+            // It's a standard UUID seller ID
             return providedSellerId;
         }
     } else if (beneficiaryName && bankAccountNumber) {
-        // Check if seller logic exists based on account number
+        // Custom mode: Check if seller logic exists based on account number
         const existingSeller = await prisma.seller.findFirst({
             where: { bankAccountNumber: bankAccountNumber }
         });
 
         if (existingSeller) {
-            // Optional: Update nameEuro if missing? For now, just return ID.
+            // Update Euro details if provided
+            const dataToUpdate: any = {};
+            if (nameEuro && existingSeller.nameEuro !== nameEuro) dataToUpdate.nameEuro = nameEuro;
+            if (bankAccountNumberEuro && existingSeller.bankAccountNumberEuro !== bankAccountNumberEuro) dataToUpdate.bankAccountNumberEuro = bankAccountNumberEuro;
+            if (ibanEuro && existingSeller.ibanEuro !== ibanEuro) dataToUpdate.ibanEuro = ibanEuro;
+
+            if (Object.keys(dataToUpdate).length > 0) {
+                await prisma.seller.update({
+                    where: { id: existingSeller.id },
+                    data: dataToUpdate
+                });
+            }
             return existingSeller.id;
         } else {
             const newSeller = await prisma.seller.create({
@@ -174,6 +208,7 @@ export async function createEvent(prevState: any, formData: FormData) {
 
             // Seller Logic: If sellerId is provided, use it. Otherwise, create new Seller if custom data provided.
             sellerId: null as string | null,
+            sellerEuroId: null as string | null,
 
             showCountdown: showCountdown,
             coverImage: rawData.coverImage as string || null,
@@ -206,6 +241,14 @@ export async function createEvent(prevState: any, formData: FormData) {
             ibanEuro,
             nameEuro
         );
+
+        // Handle Euro Seller (Separate ID if selected)
+        const sellerIdEuro = rawData.sellerIdEuro as string;
+        if (sellerIdEuro && sellerIdEuro !== 'same' && sellerIdEuro !== 'custom') {
+            eventData.sellerEuroId = sellerIdEuro;
+        } else {
+            eventData.sellerEuroId = null;
+        }
 
         const event = await prisma.event.create({
             data: eventData
@@ -261,6 +304,7 @@ export async function updateEvent(id: string, prevState: any, formData: FormData
 
             // Seller Logic (same as createEvent)
             sellerId: null as string | null,
+            sellerEuroId: null as string | null,
 
             showCountdown: showCountdown,
             coverImage: rawData.coverImage as string || null,

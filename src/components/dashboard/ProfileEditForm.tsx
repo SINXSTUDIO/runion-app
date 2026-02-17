@@ -13,6 +13,7 @@ import { ImageUpload } from '@/components/ui/ImageUpload';
 import { useTranslations } from 'next-intl';
 import { detectGenderByName } from '@/lib/utils/name-gender';
 import { useEffect } from 'react';
+import { InfoTooltip } from '@/components/ui/InfoTooltip';
 
 // Schema will be re-defined inside component or we use generic messages if possible,
 // but for correct translation of error messages, the schema needs access to `t`, or strictly use constants.
@@ -253,7 +254,10 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
                             <h3 className="text-lg font-bold text-white border-l-4 border-purple-500 pl-3">{t('edit.other')}</h3>
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-zinc-400">{t('fields.club')}</label>
+                                    <div className="flex items-center gap-2">
+                                        <label className="text-sm font-medium text-zinc-400">{t('fields.club')}</label>
+                                        <InfoTooltip text="Add meg az egyesületed nevét, ha tagja vagy valaminek." />
+                                    </div>
                                     <Input {...register('clubName')} placeholder={t('fields.club')} className="bg-white/5 border-white/10 text-white" />
                                 </div>
                                 <div className="space-y-2">
@@ -312,7 +316,10 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-zinc-400">{t('fields.fiveTrialsId')}</label>
+                                    <div className="flex items-center gap-2">
+                                        <label className="text-sm font-medium text-zinc-400">{t('fields.fiveTrialsId')}</label>
+                                        <InfoTooltip text="Ha regisztrált ötpróbázó vagy, itt add meg azonosítódat (p. 12345), hogy pontokat gyűjthess!" />
+                                    </div>
                                     <Input {...register('fiveTrialsId')} placeholder={t('fields.fiveTrialsIdPlaceholder')} className="bg-white/5 border-white/10 text-white" />
                                     <p className="text-xs text-zinc-500">{t('fields.fiveTrialsIdDesc')}</p>
                                 </div>
@@ -330,7 +337,10 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
 
                                 <div className="space-y-3">
                                     <div className="flex justify-between items-center">
-                                        <label className="text-sm font-medium text-zinc-400">{t('fields.teamMembers')}</label>
+                                        <div className="flex items-center gap-2">
+                                            <label className="text-sm font-medium text-zinc-400">{t('fields.teamMembers')}</label>
+                                            <InfoTooltip text="Itt előre megadhatod a csapattársaidat. Nevezéskor ezek a nevek automatikusan kitöltődnek, nem kell újra beírni őket." />
+                                        </div>
                                         <button
                                             type="button"
                                             onClick={() => {
@@ -393,7 +403,10 @@ export default function ProfileEditForm({ user }: ProfileEditFormProps) {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-zinc-400">{t('fields.billingName')}</label>
+                                <div className="flex items-center gap-2">
+                                    <label className="text-sm font-medium text-zinc-400">{t('fields.billingName')}</label>
+                                    <InfoTooltip text="Kérjük, pontosan add meg a számlázási nevet és címet. A számla automatikusan erre a névre állítódik ki." />
+                                </div>
                                 <Input {...register('billingName')} placeholder={t('fields.billingNamePlaceholder')} className="bg-white/5 border-white/10 text-white" />
                             </div>
 

@@ -170,6 +170,13 @@ export default function RegistrationWizard({ event, user, formConfig }: WizardPr
             }
 
             if (field.id === 'teamName' || label.includes('csapat') || label.includes('team')) {
+                // If it's a team MEMBER list field (textarea/text), pre-fill from user profile
+                if ((label.includes('tagok') || label.includes('members') || label.includes('névsor')) && user.teamMembers && user.teamMembers.length > 0) {
+                    initialData[field.id] = user.teamMembers.join(', ');
+                    return;
+                }
+
+                // If it's just "Club/Team Name"
                 initialData[field.id] = user.teamName || '';
                 return;
             }

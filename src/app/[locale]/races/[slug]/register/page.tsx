@@ -42,7 +42,8 @@ export default async function RegisterPage({ params }: { params: Promise<{ slug:
             taxNumber: true,
             billingZipCode: true,
             billingCity: true,
-            billingAddress: true
+            billingAddress: true,
+            teamMembers: true // Added for pre-filling team members
         }
     });
 
@@ -52,7 +53,9 @@ export default async function RegisterPage({ params }: { params: Promise<{ slug:
         include: {
             distances: {
                 include: { _count: { select: { registrations: true } } }
-            }
+            },
+            seller: true,
+            sellerEuro: true // Added for split beneficiary
         }
     });
 

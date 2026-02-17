@@ -117,10 +117,13 @@ model Event {
   distances              Distance[]
   organizer              User             @relation(fields: [organizerId], references: [id])
   seller                 Seller?          @relation(fields: [sellerId], references: [id])
+  sellerEuroId           String?
+  sellerEuro             Seller?          @relation("EventSellerEuro", fields: [sellerEuroId], references: [id])
   featuredInSettings     GlobalSettings[] @relation("FeaturedEvent")
 
   @@index([organizerId])
   @@index([sellerId])
+  @@index([sellerEuroId])
   @@index([status])
   @@index([eventDate])
   @@index([slug])
@@ -149,6 +152,7 @@ model Seller {
   nameEuro              String?
 
   events                Event[]
+  eventsEuro            Event[]          @relation("EventSellerEuro")
   membershipSettings    GlobalSettings[] @relation("MembershipSeller")
   transferSettings      GlobalSettings[] @relation("TransferSeller")
 }

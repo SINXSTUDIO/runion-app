@@ -66,6 +66,7 @@ export default function EventForm({ event, sellers = [] }: EventFormProps) {
 
     // Bank details state
     const [sellerId, setSellerId] = useState(event?.sellerId || '');
+    const [sellerIdEuro, setSellerIdEuro] = useState(event?.sellerEuroId || (event?.sellerId ? 'same' : '')); // Default to 'same' if editing an old event without distinct euro seller
     const [beneficiaryName, setBeneficiaryName] = useState(event?.seller?.name || event?.beneficiaryName || '');
     const [bankName, setBankName] = useState(event?.seller?.bankName || event?.bankName || '');
     const [bankAccountNumber, setBankAccountNumber] = useState(event?.seller?.bankAccountNumber || event?.bankAccountNumber || '');
@@ -113,9 +114,29 @@ export default function EventForm({ event, sellers = [] }: EventFormProps) {
             setBeneficiaryName(seller.name);
             setBankName(seller.bankName || '');
             setBankAccountNumber(seller.bankAccountNumber || '');
-            setBankAccountNumberEuro(seller.bankAccountNumberEuro || '');
+            // Do NOT overwrite Euro details if a specific Euro seller is chosen later.
+            // But if "Same as HUF" is logic, we might defaulting.
+            // For now, let's keep them separate in the UI.
+        }
+    };
+
+    const handleSellerEuroChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedSellerId = e.target.value;
+        setSellerIdEuro(selectedSellerId);
+
+        if (!selectedSellerId || selectedSellerId === 'custom' || selectedSellerId === 'same') {
+            if (selectedSellerId === 'custom') {
+                setNameEuro('');
+                setIbanEuro('');
+            }
+            return;
+        }
+
+        const seller = sellers.find(s => s.id === selectedSellerId);
+        if (seller) {
+            setNameEuro(seller.nameEuro || seller.name); // Fallback to name if nameEuro is empty
             setIbanEuro(seller.ibanEuro || '');
-            setNameEuro(seller.nameEuro || '');
+            setBankAccountNumberEuro(seller.bankAccountNumberEuro || '');
         }
     };
 
@@ -620,29 +641,7 @@ export default function EventForm({ event, sellers = [] }: EventFormProps) {
                                 />
                             </div>
                             <div className="md:col-span-2 border-t border-zinc-700 pt-4 mt-2">
-                                <h4 className="text-sm font-bold text-zinc-400 uppercase mb-4">Nemzetközi utalás (EUR) adatok (Opcionális)</h4>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-400 mb-2">Kedvezményezett Neve (EUR)</label>
-                                        <input
-                                            name="nameEuro"
-                                            value={nameEuro}
-                                            onChange={(e) => setNameEuro(e.target.value)}
-                                            placeholder="Ha eltér a belfölditől"
-                                            className="w-full bg-black border border-zinc-800 rounded-lg p-3 text-white focus:border-accent focus:outline-none"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-400 mb-2">IBAN (EUR)</label>
-                                        <input
-                                            name="ibanEuro"
-                                            value={ibanEuro}
-                                            onChange={(e) => setIbanEuro(e.target.value)}
-                                            placeholder="HU00 0000 0000 0000 0000 0000 0000"
-                                            className="w-full bg-black border border-zinc-800 rounded-lg p-3 text-white focus:border-accent focus:outline-none font-mono"
-                                        />
-                                    </div>
-                                </div>
+                                <p className="text-xs text-zinc-500 italic">Ezek a HUF adatok. A nemzetközi (EUR) adatokat lentebb állíthatod be.</p>
                             </div>
                         </div>
                     )}
@@ -650,17 +649,85 @@ export default function EventForm({ event, sellers = [] }: EventFormProps) {
                     {/* Display selected seller info (read-only preview) */}
                     {sellerId && sellerId !== 'custom' && (
                         <div className="p-4 bg-accent/10 border border-accent/30 rounded-xl">
-                            <p className="text-xs text-zinc-500 uppercase font-bold mb-2">Kiválasztott kedvezményezett adatai:</p>
+                            <p className="text-xs text-zinc-500 uppercase font-bold mb-2">Kiválasztott (HUF) kedvezményezett adatai:</p>
                             <div className="space-y-1 text-sm">
                                 <p><span className="text-zinc-400">Név:</span> <span className="text-white font-bold">{beneficiaryName}</span></p>
                                 <p><span className="text-zinc-400">Bank:</span> <span className="text-white">{bankName}</span></p>
                                 <p><span className="text-zinc-400">Számlaszám (HUF):</span> <span className="text-accent font-mono">{bankAccountNumber}</span></p>
-                                {ibanEuro && (
-                                    <p><span className="text-zinc-400">IBAN (EUR):</span> <span className="text-accent font-mono">{ibanEuro}</span></p>
-                                )}
                             </div>
                         </div>
                     )}
+
+                    <div className="border-t border-zinc-700 pt-6 mt-4">
+                        <h4 className="text-lg font-bold text-white mb-4">Nemzetközi (EUR) Fizetés Beállításai</h4>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-400 mb-2">EUR Kedvezményezett Kiválasztása</label>
+                            <select
+                                name="sellerIdEuro"
+                                value={sellerIdEuro}
+                                onChange={handleSellerEuroChange}
+                                className="w-full bg-black border border-zinc-800 rounded-lg p-3 text-white focus:border-accent focus:outline-none"
+                            >
+                                <option value="same">Megegyezik a HUF szervezővel (Ugyanaz)</option>
+                                <option value="custom">--- Egyéni megadás (Csak ehhez az eseményhez) ---</option>
+                                {sellers.length > 0 && (
+                                    <optgroup label="Adatbázisban tárolt szervezetek">
+                                        {sellers.filter(s => s.id !== sellerId).map(s => (
+                                            <option key={s.id} value={s.id}>{s.name} (EUR opció)</option>
+                                        ))}
+                                    </optgroup>
+                                )}
+                            </select>
+                        </div>
+
+                        {/* Custom EUR Logic or Display */}
+                        {(sellerIdEuro === 'custom' || (sellerIdEuro === 'same' && sellerId === 'custom')) && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 bg-zinc-800/30 rounded-xl border border-zinc-700 mt-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-2">Kedvezményezett Neve (EUR)</label>
+                                    <input
+                                        name="nameEuro"
+                                        value={nameEuro}
+                                        onChange={(e) => setNameEuro(e.target.value)}
+                                        placeholder="Ha eltér a belfölditől"
+                                        className="w-full bg-black border border-zinc-800 rounded-lg p-3 text-white focus:border-accent focus:outline-none"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-400 mb-2">IBAN (EUR)</label>
+                                    <input
+                                        name="ibanEuro"
+                                        value={ibanEuro}
+                                        onChange={(e) => setIbanEuro(e.target.value)}
+                                        placeholder="HU00 0000 0000 0000 0000 0000 0000"
+                                        className="w-full bg-black border border-zinc-800 rounded-lg p-3 text-white focus:border-accent focus:outline-none font-mono"
+                                    />
+                                </div>
+                                <div className="md:col-span-2">
+                                    <label className="block text-sm font-medium text-gray-400 mb-2">SWIFT / BIC (Opcionális)</label>
+                                    <input
+                                        name="bankAccountNumberEuro" // Using this field for SWIFT/BIC or other details if needed, or just standard Euro account
+                                        value={bankAccountNumberEuro}
+                                        onChange={(e) => setBankAccountNumberEuro(e.target.value)}
+                                        className="w-full bg-black border border-zinc-800 rounded-lg p-3 text-white focus:border-accent focus:outline-none font-mono"
+                                        placeholder="SWIFT kód vagy más azonosító"
+                                    />
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Display selected EUR seller info */}
+                        {sellerIdEuro && sellerIdEuro !== 'same' && sellerIdEuro !== 'custom' && (
+                            <div className="p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl mt-4">
+                                <p className="text-xs text-blue-400 uppercase font-bold mb-2">Kiválasztott (EUR) kedvezményezett adatai:</p>
+                                <div className="space-y-1 text-sm">
+                                    <p><span className="text-zinc-400">Név (EUR):</span> <span className="text-white font-bold">{nameEuro}</span></p>
+                                    <p><span className="text-zinc-400">IBAN:</span> <span className="text-blue-400 font-mono">{ibanEuro}</span></p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
 

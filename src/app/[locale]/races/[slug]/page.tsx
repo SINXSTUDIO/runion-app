@@ -1,4 +1,4 @@
-import { getEventBySlug } from '@/actions/events';
+import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { MapPin, Calendar, ArrowRight } from 'lucide-react';
@@ -10,10 +10,20 @@ import DistanceCard from '@/components/events/DistanceCard';
 import { SocialProofWidget } from '@/components/events/SocialProofWidget';
 import { generateEventMetadata } from '@/lib/seo/metadata';
 import { generateEventSchema, generateBreadcrumbSchema, organizationSchema, JsonLd } from '@/lib/seo/structured-data';
+import { ShareButtons } from '@/components/events/ShareButtons';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string; locale: string }> }) {
     const { slug, locale } = await params;
-    const { data: event } = await getEventBySlug(slug) as any;
+
+    const event = await prisma.event.findUnique({
+        where: { slug },
+        include: {
+            distances: true,
+            seller: true,
+            sellerEuro: true,
+            organizer: true
+        }
+    });
 
     if (!event) {
         return { title: 'Event not found' };
@@ -25,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             description: event.description,
             location: event.location,
             slug: event.slug,
-            coverImage: event.coverImage,
+            coverImage: event.coverImage || undefined,
             eventDate: new Date(event.eventDate),
         },
         locale
@@ -35,11 +45,33 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function EventDetailsPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
     const { slug, locale } = await params;
     const t = await getTranslations({ locale, namespace: 'EventDetails' });
-    const { data: event, success } = await getEventBySlug(slug) as any;
 
-    if (!success || !event) {
+    const event = await prisma.event.findUnique({
+        where: { slug },
+        include: {
+            distances: true,
+            seller: true,
+            sellerEuro: true,
+            organizer: true
+        }
+    });
+
+    if (!event) {
         notFound();
     }
+
+    // Fetch recent registrations separately to avoid complex nested includes that might break build
+    const recentRegistrationsData = await prisma.registration.findMany({
+        where: { distance: { eventId: event.id } },
+        take: 5,
+        orderBy: { createdAt: 'desc' },
+        include: { distance: true }
+    });
+
+    // Fetch total count separately
+    const totalRegistrations = await prisma.registration.count({
+        where: { distance: { eventId: event.id } }
+    });
 
     const dateStr = new Date(event.eventDate).toLocaleDateString(locale, {
         weekday: 'long',
@@ -48,11 +80,8 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
         day: 'numeric'
     });
 
-    // Calculate total registrations for social proof
-    const totalRegistrations = event.registrations?.length || 0;
-
     // Format recent registrations for social proof widget
-    const recentRegistrations = (event.registrations || []).slice(0, 5).map((reg: any) => ({
+    const recentRegistrations = recentRegistrationsData.map((reg) => ({
         name: (reg.formData as any)?.firstName
             ? `${(reg.formData as any).firstName} ${(reg.formData as any).lastName?.charAt(0) || ''}.`
             : 'Anonymous Runner',
@@ -68,9 +97,16 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
         eventDate: new Date(event.eventDate),
         endDate: event.endDate ? new Date(event.endDate) : null,
         location: event.location,
-        coverImage: event.coverImage,
-        distances: event.distances,
-        organizer: event.organizer,
+        coverImage: event.coverImage || undefined,
+        distances: event.distances.map(d => ({
+            ...d,
+            price: Number(d.price),
+            priceEur: d.priceEur ? Number(d.priceEur) : undefined,
+            _count: { registrations: 0 } // Default or fetch if needed
+        })),
+        organizer: event.organizer ? {
+            clubName: event.organizer.clubName || undefined
+        } : undefined,
     });
 
     const breadcrumbSchema = generateBreadcrumbSchema([
@@ -171,6 +207,16 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                                     </a>
                                 </div>
                             )}
+                            {/* Share Buttons */}
+                            <ShareButtons
+                                url={`${process.env.NEXT_PUBLIC_APP_URL}/races/${slug}`}
+                                title={event.title}
+                                labels={{
+                                    share: t('share'),
+                                    copy: t('copyLink'),
+                                    copied: t('copied')
+                                }}
+                            />
                         </div>
 
                         {/* Left Column: Description & Distances */}
@@ -214,7 +260,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                     </div>
                 </div>
                 {/* Payment Info Section */}
-                {(event.seller || (event.beneficiaryName && event.bankAccountNumber)) && (
+                {(event.seller || event.sellerEuro) && (
                     <div className="mt-12 p-8 bg-zinc-900 rounded-2xl border border-zinc-800">
                         <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                             <span className="text-accent">💳</span>
@@ -222,7 +268,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                         </h3>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {/* Domestic Transfer */}
+                            {/* Domestic Transfer - Always show HUF seller (primary) */}
                             <div className="space-y-4">
                                 <h4 className="text-lg font-bold text-zinc-300 border-b border-zinc-700 pb-2">
                                     🇭🇺 Belföldi utalás (HUF)
@@ -230,15 +276,15 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                                 <div className="space-y-2 text-zinc-400">
                                     <div>
                                         <p className="text-xs uppercase tracking-wider text-zinc-500">Kedvezményezett</p>
-                                        <p className="text-white font-medium">{event.seller?.name || event.beneficiaryName}</p>
+                                        <p className="text-white font-medium">{event.seller?.name}</p>
                                     </div>
                                     <div>
                                         <p className="text-xs uppercase tracking-wider text-zinc-500">Bank</p>
-                                        <p className="text-white">{event.seller?.bankName || event.bankName}</p>
+                                        <p className="text-white">{event.seller?.bankName}</p>
                                     </div>
                                     <div>
                                         <p className="text-xs uppercase tracking-wider text-zinc-500">Számlaszám</p>
-                                        <p className="text-accent font-mono text-lg">{event.seller?.bankAccountNumber || event.bankAccountNumber}</p>
+                                        <p className="text-accent font-mono text-lg">{event.seller?.bankAccountNumber}</p>
                                     </div>
                                     <div className="bg-zinc-800/50 p-3 rounded-lg mt-4">
                                         <p className="text-xs text-zinc-500 mb-1">Közlemény / Reference:</p>
@@ -247,8 +293,8 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                                 </div>
                             </div>
 
-                            {/* International Transfer */}
-                            {(event.seller?.ibanEuro || event.ibanEuro) && (
+                            {/* International Transfer - Show Euro Seller OR Primary Seller's Euro fields */}
+                            {(event.sellerEuro || event.seller?.ibanEuro) && (
                                 <div className="space-y-4">
                                     <h4 className="text-lg font-bold text-zinc-300 border-b border-zinc-700 pb-2">
                                         🇪🇺 International Transfer (EUR)
@@ -257,17 +303,32 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                                         <div>
                                             <p className="text-xs uppercase tracking-wider text-zinc-500">Beneficiary Name</p>
                                             <p className="text-white font-medium">
-                                                {event.seller?.nameEuro || event.nameEuro || event.seller?.name || event.beneficiaryName}
+                                                {/* Use Euro Seller Name if exists, otherwise fallback to primary seller's Euro Name, or primary name */}
+                                                {event.sellerEuro?.nameEuro || event.sellerEuro?.name || event.seller?.nameEuro || event.seller?.name}
                                             </p>
                                         </div>
                                         <div>
                                             <p className="text-xs uppercase tracking-wider text-zinc-500">IBAN</p>
-                                            <p className="text-accent font-mono text-lg">{event.seller?.ibanEuro || event.ibanEuro}</p>
+                                            <p className="text-accent font-mono text-lg">
+                                                {event.sellerEuro?.ibanEuro || event.seller?.ibanEuro}
+                                            </p>
                                         </div>
-                                        {(event.seller?.bankAccountNumberEuro || event.bankAccountNumberEuro) && (
+                                        {/* Bank Name for Euro Seller if available */}
+                                        {(event.sellerEuro?.bankName || (event.sellerEuro && !event.sellerEuro.bankName)) ? (
                                             <div>
-                                                <p className="text-xs uppercase tracking-wider text-zinc-500">Account Number</p>
-                                                <p className="text-zinc-300 font-mono">{event.seller?.bankAccountNumberEuro || event.bankAccountNumberEuro}</p>
+                                                <p className="text-xs uppercase tracking-wider text-zinc-500">Bank</p>
+                                                <p className="text-zinc-300">{event.sellerEuro?.bankName || event.seller?.bankName}</p>
+                                            </div>
+                                        ) : null}
+
+                                        {/* BIC/SWIFT - mapped to bankAccountNumberEuro usually or separate field if added. 
+                                            For now assuming bankAccountNumberEuro might hold SWIFT if not IBAN, or just display it if present. */}
+                                        {(event.sellerEuro?.bankAccountNumberEuro || event.seller?.bankAccountNumberEuro) && (
+                                            <div>
+                                                <p className="text-xs uppercase tracking-wider text-zinc-500">SWIFT / Account #</p>
+                                                <p className="text-zinc-300 font-mono">
+                                                    {event.sellerEuro?.bankAccountNumberEuro || event.seller?.bankAccountNumberEuro}
+                                                </p>
                                             </div>
                                         )}
                                         <div className="bg-zinc-800/50 p-3 rounded-lg mt-4">
