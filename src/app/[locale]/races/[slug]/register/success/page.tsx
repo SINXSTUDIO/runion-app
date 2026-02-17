@@ -25,6 +25,7 @@ export default async function RegistrationSuccessPage({ params, searchParams }: 
                             seller: {
                                 select: {
                                     name: true,
+                                    nameEuro: true,
                                     bankName: true,
                                     bankAccountNumber: true,
                                     bankAccountNumberEuro: true,
@@ -84,12 +85,18 @@ export default async function RegistrationSuccessPage({ params, searchParams }: 
     const totalPrice = basePrice + extrasTotal;
 
     // Split Beneficiary Logic
-    const euroSeller = (event as any).sellerEuro || seller;
+    const euroSeller = (event as any).sellerEuro;
 
-    const bankAccountNumberEuro = euroSeller.bankAccountNumberEuro; // Prefer sellerEuro's account number
-    const ibanEuro = euroSeller.ibanEuro;
-    const euroBeneficiaryName = euroSeller.nameEuro || euroSeller.name || beneficiaryName;
-    const euroBankName = euroSeller.bankName || bankName;
+    // Logic to detect if we should treat this as a EUR payment
+    // 1. If crewSize is present, it's a crew event -> EUR
+    // 2. If distance has priceEur and price is 0 (or very low), valid for EUR-only events
+    const isCrewEvent = registration.crewSize && registration.crewSize > 0;
+    const isEurPayment = isCrewEvent || (totalPrice === 0 && (registration.distance as any).priceEur > 0);
+
+    const bankAccountNumberEuro = euroSeller?.bankAccountNumberEuro || seller.bankAccountNumberEuro;
+    const ibanEuro = euroSeller?.ibanEuro || seller.ibanEuro;
+    const euroBeneficiaryName = euroSeller?.nameEuro || euroSeller?.name || seller.nameEuro || seller.name;
+    const euroBankName = euroSeller?.bankName || seller.bankName;
 
     return (
         <div className="min-h-screen bg-black text-white pt-28 pb-20">
@@ -111,47 +118,49 @@ export default async function RegistrationSuccessPage({ params, searchParams }: 
                     <div className="space-y-4">
                         <h3 className="text-xl font-bold text-white mb-4">{t('transferInfo')}</h3>
 
-                        {/* Belföldi utalás */}
-                        <div className="p-4 bg-zinc-800/50 rounded-xl border border-zinc-800">
-                            <h4 className="text-sm font-bold text-zinc-300 uppercase mb-3">Belföldi fizetés esetén (HUF)</h4>
-                            <div className="space-y-2">
-                                <div className="flex flex-col md:flex-row justify-between items-center border-b border-zinc-700/50 pb-2">
-                                    <span className="text-zinc-400">Kedvezményezett:</span>
-                                    <div className="flex items-center gap-2">
-                                        <span className="font-bold text-white text-right">{beneficiaryName}</span>
-                                        <CopyButton text={beneficiaryName} />
+                        {/* Belföldi utalás (HUF) - MINDIG megjelenik, ha van seller */}
+                        {seller && (
+                            <div className="p-4 bg-zinc-800/50 rounded-xl border border-zinc-800">
+                                <h4 className="text-sm font-bold text-zinc-300 uppercase mb-3">Belföldi fizetés esetén (HUF)</h4>
+                                <div className="space-y-2">
+                                    <div className="flex flex-col md:flex-row justify-between items-center border-b border-zinc-700/50 pb-2">
+                                        <span className="text-zinc-400">Kedvezményezett:</span>
+                                        <div className="flex items-center gap-2">
+                                            <span className="font-bold text-white text-right">{seller.name}</span>
+                                            <CopyButton text={seller.name} />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="flex flex-col md:flex-row justify-between items-center border-b border-zinc-700/50 pb-2">
-                                    <span className="text-zinc-400">Bank:</span>
-                                    <span className="font-medium text-zinc-200 text-right">{bankName}</span>
-                                </div>
-                                <div className="flex flex-col md:flex-row justify-between items-center">
-                                    <span className="text-zinc-400">Számlaszám:</span>
-                                    <div className="flex items-center gap-2">
-                                        <span className="font-mono text-accent text-lg font-bold text-right tracking-wider">{bankAccountNumber}</span>
-                                        <CopyButton text={bankAccountNumber} className="text-accent" />
+                                    <div className="flex flex-col md:flex-row justify-between items-center border-b border-zinc-700/50 pb-2">
+                                        <span className="text-zinc-400">Bank:</span>
+                                        <span className="font-medium text-zinc-200 text-right">{seller.bankName}</span>
+                                    </div>
+                                    <div className="flex flex-col md:flex-row justify-between items-center">
+                                        <span className="text-zinc-400">Számlaszám:</span>
+                                        <div className="flex items-center gap-2">
+                                            <span className="font-mono text-accent text-lg font-bold text-right tracking-wider">{seller.bankAccountNumber}</span>
+                                            <CopyButton text={seller.bankAccountNumber || ''} className="text-accent" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        )}
 
-                        {/* Külföldi utalás (csak ha van) */}
-                        {ibanEuro && (
+                        {/* Külföldi / EUR utalás - MINDIG megjelenik, ha van Euro Seller VAGY Euro IBAN */}
+                        {(euroSeller || seller.ibanEuro) && (
                             <div className="p-4 bg-blue-900/10 rounded-xl border border-blue-900/30 mt-4">
                                 <h4 className="text-sm font-bold text-blue-300 uppercase mb-3">Külföldi fizetés esetén / For International Payments (EUR)</h4>
                                 <div className="space-y-2">
                                     <p className="text-xs text-blue-400/80 italic mb-2">Please pay the entry fee to the following account number:</p>
                                     <div className="flex flex-col md:flex-row justify-between items-center border-b border-blue-800/20 pb-2">
-                                        <span className="text-zinc-400">Account Owner:</span>
+                                        <span className="text-zinc-400">Beneficiary Name:</span>
                                         <div className="flex items-center gap-2">
-                                            <span className="font-bold text-white text-right">{beneficiaryName} Euro bank account</span>
-                                            <CopyButton text={`${beneficiaryName} Euro bank account`} />
+                                            <span className="font-bold text-white text-right">{euroBeneficiaryName}</span>
+                                            <CopyButton text={euroBeneficiaryName} />
                                         </div>
                                     </div>
                                     <div className="flex flex-col md:flex-row justify-between items-center border-b border-blue-800/20 pb-2">
                                         <span className="text-zinc-400">Bank:</span>
-                                        <span className="font-medium text-zinc-200 text-right">{bankName}</span>
+                                        <span className="font-medium text-zinc-200 text-right">{euroBankName}</span>
                                     </div>
                                     {bankAccountNumberEuro && (
                                         <div className="flex flex-col md:flex-row justify-between items-center border-b border-blue-800/20 pb-2">
@@ -162,43 +171,30 @@ export default async function RegistrationSuccessPage({ params, searchParams }: 
                                             </div>
                                         </div>
                                     )}
-                                    <div className="flex flex-col md:flex-row justify-between items-center">
-                                        <span className="text-zinc-400">IBAN:</span>
-                                        <div className="flex items-center gap-2">
-                                            <span className="font-mono text-accent text-lg font-bold text-right tracking-wider">{ibanEuro}</span>
-                                            <CopyButton text={ibanEuro} className="text-accent" />
+                                    {ibanEuro && (
+                                        <div className="flex flex-col md:flex-row justify-between items-center">
+                                            <span className="text-zinc-400">IBAN:</span>
+                                            <div className="flex items-center gap-2">
+                                                <span className="font-mono text-accent text-lg font-bold text-right tracking-wider">{ibanEuro}</span>
+                                                <CopyButton text={ibanEuro} className="text-accent" />
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
                                 </div>
                             </div>
                         )}
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label className="text-xs text-zinc-500 uppercase font-bold">{t('beneficiary')}</label>
-                                <div className="flex items-center gap-2">
-                                    <p className="text-lg text-white font-medium">{beneficiaryName}</p>
-                                    <CopyButton text={beneficiaryName} />
-                                </div>
-                            </div>
-                            <div>
-                                <label className="text-xs text-zinc-500 uppercase font-bold">{t('bank')}</label>
-                                <p className="text-lg text-white font-medium">{bankName}</p>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label className="text-xs text-zinc-500 uppercase font-bold">{t('accountNumber')}</label>
-                            <div className="flex items-center gap-2">
-                                <p className="text-2xl font-mono text-accent tracking-wider break-all">{bankAccountNumber}</p>
-                                <CopyButton text={bankAccountNumber} className="text-accent" />
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Összegző és Közlemény */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
                             <div>
                                 <label className="text-xs text-zinc-500 uppercase font-bold">{t('amount')}</label>
-                                <p className="text-2xl font-bold text-white">{totalPrice.toLocaleString()} Ft</p>
+                                <p className="text-2xl font-bold text-white">
+                                    {/* Currency Logic: If Crew Pricing OR EUR Price exists and HUF 0, assume EUR */}
+                                    {isEurPayment
+                                        ? `${totalPrice} €`
+                                        : `${totalPrice.toLocaleString()} Ft`
+                                    }
+                                </p>
                             </div>
                             <div>
                                 <label className="text-xs text-zinc-500 uppercase font-bold text-yellow-500">{t('reference')}</label>
@@ -208,6 +204,9 @@ export default async function RegistrationSuccessPage({ params, searchParams }: 
                                     </p>
                                     <CopyButton text={`PRO-${registration.id.substring(0, 8).toUpperCase()}`} className="text-yellow-500 hover:text-yellow-300" />
                                 </div>
+                                <p className="text-xs text-zinc-500 mt-1">
+                                    Kérjük, a közleménybe <b>csak</b> ezt a kódot írd!
+                                </p>
                             </div>
                         </div>
                     </div>
