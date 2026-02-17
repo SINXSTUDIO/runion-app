@@ -90,7 +90,10 @@ export default async function RegistrationSuccessPage({ params, searchParams }: 
     // Logic to detect if we should treat this as a EUR payment
     // 1. If crewSize is present, it's a crew event -> EUR
     // 2. If distance has priceEur and price is 0 (or very low), valid for EUR-only events
-    const isCrewEvent = registration.crewSize && registration.crewSize > 0;
+    // 1. If crewSize is present AND distance has crewPricing, it's a crew event -> EUR
+    // 2. If distance has priceEur and price is 0 (or very low), valid for EUR-only events
+    const hasCrewPricing = (registration.distance as any).crewPricing && Object.keys((registration.distance as any).crewPricing || {}).length > 0;
+    const isCrewEvent = registration.crewSize && registration.crewSize > 0 && hasCrewPricing;
     const isEurPayment = isCrewEvent || (totalPrice === 0 && (registration.distance as any).priceEur > 0);
 
     const bankAccountNumberEuro = euroSeller?.bankAccountNumberEuro || seller.bankAccountNumberEuro;

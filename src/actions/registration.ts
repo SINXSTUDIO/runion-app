@@ -141,7 +141,7 @@ export async function submitRegistration(
                     registrationStatus: 'PENDING',
                     formData: { ...formData, billingDetails: billingData },
                     extras: extras,
-                    crewSize: crewSize || null,
+                    crewSize: isCrewPricing ? crewSize : null,
                     finalPrice: finalPrice,
                 },
                 include: {

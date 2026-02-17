@@ -233,6 +233,11 @@ export default function RegistrationWizard({ event, user, formConfig }: WizardPr
             .catch(err => console.error('Failed to fetch exchange rate', err));
     }, []);
 
+    // Scroll to top when step changes
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [step]);
+
     const formatPrice = (priceHuf: number | string, priceEur: number | string | undefined | null) => {
         const huf = Number(priceHuf);
         const eur = priceEur ? Number(priceEur) : 0;
