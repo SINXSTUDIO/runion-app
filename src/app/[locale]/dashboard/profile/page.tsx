@@ -69,7 +69,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
                     </h1>
                     <p className="text-zinc-400">{t('subtitle')}</p>
                 </div>
-                <div className="flex gap-4">
+                <div className="grid grid-cols-2 gap-4 w-full md:w-auto">
                     <LogoutButton />
 
                     <ProfileEditForm user={{
@@ -87,46 +87,51 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
             </div>
 
             {/* Profile Card */}
-            <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm relative">
-                <div className="absolute top-6 right-6 z-10">
-                    <FeedbackModal>
-                        <button className="flex items-center gap-2 px-4 py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl transition-all text-white font-bold backdrop-blur-md shadow-lg group">
-                            <MessageSquarePlus className="w-5 h-5 text-accent group-hover:scale-110 transition-transform" />
-                            <span>Visszajelzés</span>
-                        </button>
-                    </FeedbackModal>
-                </div>
-                <div className="flex flex-col md:flex-row items-center gap-8 mb-8">
-                    {/* Avatar */}
-                    <div className="relative">
-                        {image ? (
-                            <Image
-                                src={image}
-                                alt={`${lastName} ${firstName}`}
-                                width={120}
-                                height={120}
-                                className="rounded-full border-4 border-accent shadow-2xl shadow-accent/20 object-cover"
-                            />
+            <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl p-6 md:p-8 backdrop-blur-sm relative flex flex-col items-center md:items-stretch">
 
-                        ) : (
-                            <div className="w-30 h-30 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full flex items-center justify-center text-white text-4xl font-black border-4 border-accent shadow-2xl shadow-accent/20">
-                                {lastName?.[0]?.toUpperCase() || 'F'}
+                <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 mb-8 w-full">
+                    {/* Avatar & Feedback Button Container */}
+                    <div className="flex flex-col items-center gap-4">
+                        <div className="relative">
+                            {image ? (
+                                <Image
+                                    src={image}
+                                    alt={`${lastName} ${firstName}`}
+                                    width={100}
+                                    height={100}
+                                    className="rounded-full border-4 border-accent shadow-2xl shadow-accent/20 object-cover md:w-[120px] md:h-[120px]"
+                                />
+
+                            ) : (
+                                <div className="w-24 h-24 md:w-30 md:h-30 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-full flex items-center justify-center text-white text-3xl md:text-4xl font-black border-4 border-accent shadow-2xl shadow-accent/20">
+                                    {lastName?.[0]?.toUpperCase() || 'F'}
+                                </div>
+                            )}
+                            <div className="absolute -bottom-2 -right-2 p-1.5 md:p-2 bg-green-500 border-4 border-zinc-900 rounded-full">
+                                <Shield className="w-4 h-4 md:w-5 md:h-5 text-white" />
                             </div>
-                        )}
-                        <div className="absolute -bottom-2 -right-2 p-2 bg-green-500 border-4 border-zinc-900 rounded-full">
-                            <Shield className="w-5 h-5 text-white" />
+                        </div>
+
+                        {/* Feedback Button - Mobile: Below Avatar, Desktop: Top Right (via absolute) */}
+                        <div className="md:absolute md:top-6 md:right-6 md:z-10">
+                            <FeedbackModal>
+                                <button className="flex items-center gap-2 px-6 py-2 md:px-4 md:py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl transition-all text-white font-bold backdrop-blur-md shadow-lg group text-sm md:text-base">
+                                    <MessageSquarePlus className="w-4 h-4 md:w-5 md:h-5 text-accent group-hover:scale-110 transition-transform" />
+                                    <span>Visszajelzés</span>
+                                </button>
+                            </FeedbackModal>
                         </div>
                     </div>
 
                     {/* User Info */}
                     <div className="flex-1 text-center md:text-left">
-                        <h2 className="text-3xl font-black text-white mb-2">{`${lastName} ${firstName}`}</h2>
-                        <p className="text-zinc-400 mb-4">{email}</p>
+                        <h2 className="text-2xl md:text-3xl font-black text-white mb-2">{`${lastName} ${firstName}`}</h2>
+                        <p className="text-zinc-400 mb-4 text-sm md:text-base break-all">{email}</p>
                         <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                            <span className="px-3 py-1 bg-accent/20 text-accent border border-accent/30 rounded-full text-sm font-bold">
+                            <span className="px-3 py-1 bg-accent/20 text-accent border border-accent/30 rounded-full text-xs md:text-sm font-bold">
                                 {roleName}
                             </span>
-                            <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full text-sm font-bold">
+                            <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full text-xs md:text-sm font-bold">
                                 {t('status.active')}
                             </span>
                         </div>
@@ -134,53 +139,53 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
                 </div>
 
                 {/* Info Grid */}
-                <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="p-3 bg-blue-500/10 rounded-xl">
-                                <Mail className="w-5 h-5 text-blue-400" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-4 md:p-6 overflow-hidden">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 md:p-3 bg-blue-500/10 rounded-xl shrink-0">
+                                <Mail className="w-4 h-4 md:w-5 md:h-5 text-blue-400" />
                             </div>
-                            <div>
-                                <p className="text-xs text-zinc-500 font-medium">{t('fields.email')}</p>
-                                <p className="text-white font-bold">{email}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="p-3 bg-emerald-500/10 rounded-xl">
-                                <Phone className="w-5 h-5 text-emerald-400" />
-                            </div>
-                            <div>
-                                <p className="text-xs text-zinc-500 font-medium">{t('fields.phone')}</p>
-                                <p className="text-white font-bold">{phoneNumber || 'N/A'}</p>
+                            <div className="min-w-0">
+                                <p className="text-[10px] md:text-xs text-zinc-500 font-medium">{t('fields.email')}</p>
+                                <p className="text-white font-bold text-sm md:text-base truncate">{email}</p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="p-3 bg-purple-500/10 rounded-xl">
-                                <Calendar className="w-5 h-5 text-purple-400" />
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-4 md:p-6 overflow-hidden">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 md:p-3 bg-emerald-500/10 rounded-xl shrink-0">
+                                <Phone className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
                             </div>
-                            <div>
-                                <p className="text-xs text-zinc-500 font-medium">{t('fields.birthDate')}</p>
-                                <p className="text-white font-bold">
+                            <div className="min-w-0">
+                                <p className="text-[10px] md:text-xs text-zinc-500 font-medium">{t('fields.phone')}</p>
+                                <p className="text-white font-bold text-sm md:text-base truncate">{phoneNumber || 'N/A'}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-4 md:p-6 overflow-hidden">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 md:p-3 bg-purple-500/10 rounded-xl shrink-0">
+                                <Calendar className="w-4 h-4 md:w-5 md:h-5 text-purple-400" />
+                            </div>
+                            <div className="min-w-0">
+                                <p className="text-[10px] md:text-xs text-zinc-500 font-medium">{t('fields.birthDate')}</p>
+                                <p className="text-white font-bold text-sm md:text-base truncate">
                                     {formattedBirthDate}
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="p-3 bg-amber-500/10 rounded-xl">
-                                <MapPin className="w-5 h-5 text-amber-400" />
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-4 md:p-6 overflow-hidden">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 md:p-3 bg-amber-500/10 rounded-xl shrink-0">
+                                <MapPin className="w-4 h-4 md:w-5 md:h-5 text-amber-400" />
                             </div>
-                            <div>
-                                <p className="text-xs text-zinc-500 font-medium">{t('fields.zip')} / {t('fields.city')}</p>
-                                <p className="text-white font-bold">
+                            <div className="min-w-0">
+                                <p className="text-[10px] md:text-xs text-zinc-500 font-medium">{t('fields.zip')} / {t('fields.city')}</p>
+                                <p className="text-white font-bold text-sm md:text-base truncate">
                                     {city && zipCode
                                         ? `${zipCode} ${city}`
                                         : 'N/A'

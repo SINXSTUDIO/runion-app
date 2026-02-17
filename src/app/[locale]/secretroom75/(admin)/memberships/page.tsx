@@ -1,15 +1,33 @@
-import { getMembershipTiers, importMembershipPayments } from '@/actions/memberships';
-import SecretHeader from '@/components/secretroom75/SecretHeader';
+import { getMembershipTiers } from '@/actions/memberships';
 import MembershipTable from '@/components/secretroom75/MembershipTable';
 import MembershipExportButton from '@/components/secretroom75/MembershipExportButton';
 import MembershipSellerSelector from '@/components/secretroom75/MembershipSellerSelector';
+import MembershipImportForm from '@/components/secretroom75/MembershipImportForm';
 import prisma from '@/lib/prisma';
-import { Crown, Upload } from 'lucide-react';
+import { Crown } from 'lucide-react';
+
+interface MembershipTier {
+    id: string;
+    name: string;
+    description: string | null;
+    price: number;
+    discountPercentage: number;
+    // Add other fields as necessary based on your schema
+    [key: string]: any;
+}
 
 export default async function MembershipsPage() {
-    const memberships = await getMembershipTiers();
+    const rawMemberships = await getMembershipTiers();
     const sellers = await prisma.seller.findMany({ where: { active: true } });
     const globalSettings = await prisma.globalSettings.findFirst();
+
+    // Transform data to ensure numbers are numbers, not Decimals
+    const memberships = rawMemberships.map((m: any) => ({
+        ...m,
+        discountPercentage: m.discountPercentage ? Number(m.discountPercentage) : 0,
+        price: m.price ? Number(m.price) : 0,
+        discountAmount: m.discountAmount ? Number(m.discountAmount) : 0,
+    }));
 
     return (
         <div className="space-y-8 animate-in fade-in zoom-in duration-500 container mx-auto px-4 max-w-7xl py-8">
@@ -28,14 +46,8 @@ export default async function MembershipsPage() {
                 {/* Actions */}
                 <div className="flex gap-2 items-center">
                     <MembershipExportButton />
-
                     {/* Bulk Import Form */}
-                    <form action={importMembershipPayments as any} className="flex gap-2 items-center bg-zinc-900 p-2 rounded-xl border border-white/10">
-                        <input type="file" name="file" accept=".csv" className="text-sm text-zinc-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700" required />
-                        <button type="submit" className="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-lg" title="CSV Feltöltés (Rendelés ID, Státusz)">
-                            <Upload className="w-5 h-5" />
-                        </button>
-                    </form>
+                    <MembershipImportForm />
                 </div>
             </div>
 
@@ -47,11 +59,7 @@ export default async function MembershipsPage() {
                 currentEmail={globalSettings?.membershipNotificationEmail}
             />
 
-            <MembershipTable memberships={memberships.map((m: any) => ({
-                ...m,
-                discountPercentage: Number(m.discountPercentage),
-                price: Number(m.price)
-            }))} />
+            <MembershipTable memberships={memberships} />
         </div >
     );
 }

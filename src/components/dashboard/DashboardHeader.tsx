@@ -27,16 +27,9 @@ export default function DashboardHeader({ user }: DashboardHeaderProps) {
                     </button>
                 </div>
 
-                {/* Right: Notifications */}
+                {/* Right: Notifications removed as per request */}
                 <div className="flex items-center gap-4">
-                    <button className="relative p-2 hover:bg-white/5 rounded-lg transition-colors group">
-                        <Bell className="w-6 h-6 text-zinc-400 group-hover:text-white transition-colors" />
-                        {notificationCount > 0 && (
-                            <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center animate-pulse">
-                                {notificationCount}
-                            </span>
-                        )}
-                    </button>
+                    {/* Placeholder or empty if nothing else is needed */}
                 </div>
             </div>
         </header>

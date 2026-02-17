@@ -105,9 +105,9 @@ export default function DocumentsListClient({ initialDocuments, locale }: Docume
             </div>
 
             {/* Filters & Search */}
-            <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col gap-4">
                 {/* Search */}
-                <div className="flex-1 flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3">
+                <div className="w-full flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3">
                     <Search className="w-5 h-5 text-zinc-500" />
                     <input
                         type="text"
@@ -119,12 +119,12 @@ export default function DocumentsListClient({ initialDocuments, locale }: Docume
                 </div>
 
                 {/* Filters */}
-                <div className="flex gap-4">
-                    <div className="relative">
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="relative w-full">
                         <select
                             value={selectedYear}
                             onChange={(e) => setSelectedYear(e.target.value)}
-                            className="appearance-none bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 pr-10 text-white outline-none focus:border-cyan-500 cursor-pointer min-w-[100px]"
+                            className="w-full appearance-none bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 pr-10 text-white outline-none focus:border-cyan-500 cursor-pointer"
                         >
                             <option value="all">{t('allYears')}</option>
                             {availableYears.map(year => (
@@ -134,24 +134,16 @@ export default function DocumentsListClient({ initialDocuments, locale }: Docume
                         <Calendar className="w-4 h-4 text-zinc-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                     </div>
 
-                    <div className="relative">
+                    <div className="relative w-full">
                         <select
                             value={selectedMonth}
                             onChange={(e) => setSelectedMonth(e.target.value)}
                             disabled={selectedYear === 'all'}
-                            className="appearance-none bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 pr-10 text-white outline-none focus:border-cyan-500 cursor-pointer min-w-[140px] disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full appearance-none bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 pr-10 text-white outline-none focus:border-cyan-500 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             <option value="all">{t('allMonths')}</option>
                             {months.map(m => (
-                                // Use fallback labels if translation fails in component usage (though t is used)
-                                // We rely on 'next-intl' messages structure: Dashboard.Documents.months.january etc.
-                                // If keys are missing, it will return key path.
                                 <option key={m.value} value={m.value}>{t.has(`months.${m.label}`) ? t(`months.${m.label}`) : m.label}</option>
-                                // Actually m.label IS t(...) called above? Yes.
-                            ))}
-                            {/* Wait, the array definition above USES t(). So m.label IS the translated string. Correct. */}
-                            {months.map(m => (
-                                <option key={m.value} value={m.value}>{m.label}</option>
                             ))}
                         </select>
                         <Filter className="w-4 h-4 text-zinc-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />

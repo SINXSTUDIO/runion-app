@@ -100,7 +100,7 @@ export function FeedbackModal({ children }: { children?: React.ReactNode }) {
                     </Button>
                 )}
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[600px] max-h-[85vh] overflow-hidden flex flex-col">
+            <DialogContent className="w-[95vw] sm:max-w-[600px] max-h-[85vh] overflow-hidden flex flex-col p-4 sm:p-6 rounded-xl">
                 <DialogHeader>
                     <DialogTitle>Visszajelzések</DialogTitle>
                     <DialogDescription>
