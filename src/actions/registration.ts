@@ -275,17 +275,32 @@ export async function submitRegistration(
                     return foundKey ? regFormData[foundKey] : undefined;
                 };
 
-                // Extract key fields
-                const lastName = findField(['vezet', 'last', 'család']) || '';
-                const firstName = findField(['kereszt', 'first', 'utónév', 'utó']) || '';
-                const phone = findField(['telefon', 'phone', 'mobil']) || '';
-                const gender = findField(['nem', 'gender']) || '';
-                const birthDate = findField(['szület', 'birth']) || '';
-                const tshirtSize = findField(['póló', 'tshirt', 'shirt']) || 'Nem választott';
-                const city = findField(['város', 'city']) || '';
-                const zipCode = findField(['irányító', 'zip']) || '';
-                const address = findField(['cím', 'address', 'utca']) || '';
-                const clubName = findField(['klub', 'club']) || '';
+                // Extract key fields with fallbacks to User Profile
+                const lastName = findField(['vezet', 'last', 'család']) || registration.user.lastName || '';
+                const firstName = findField(['kereszt', 'first', 'utónév', 'utó']) || registration.user.firstName || '';
+
+                const phone = findField(['telefon', 'phone', 'mobil']) || registration.user.phoneNumber || '';
+                const gender = findField(['nem', 'gender']) || (registration.user.gender === 'MALE' ? 'Férfi' : (registration.user.gender === 'FEMALE' ? 'Nő' : ''));
+
+                let birthDate = findField(['szület', 'birth']);
+                if (!birthDate && registration.user.birthDate) {
+                    try {
+                        birthDate = new Date(registration.user.birthDate).toLocaleDateString('hu-HU', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                    } catch (e) {
+                        // Fallback if date parsing fails
+                        birthDate = '';
+                    }
+                }
+
+                const tshirtSize = findField(['póló', 'tshirt', 'shirt']) || registration.user.tshirtSize || 'Nem választott';
+                const city = findField(['város', 'city']) || registration.user.city || '';
+                const zipCode = findField(['irányító', 'zip']) || registration.user.zipCode || '';
+                const address = findField(['cím', 'address', 'utca']) || registration.user.address || '';
+                const clubName = findField(['klub', 'club']) || registration.user.clubName || '';
 
                 // Format extras list for email with pricing
                 const extrasList = extras.length > 0
@@ -313,10 +328,10 @@ export async function submitRegistration(
 
                 // Replace detailsHTML with table rows
                 let mainDataRows = buildRow('Név', `${lastName} ${firstName}`);
-                mainDataRows += buildRow('Email', registration.user?.email || 'N/A');
+                mainDataRows += buildRow('Email', registration.user.email);
                 mainDataRows += buildRow('Telefon', phone);
+                mainDataRows += buildRow('Születési dátum', birthDate || '');
                 mainDataRows += buildRow('Nem', gender);
-                mainDataRows += buildRow('Születési dátum', birthDate);
                 mainDataRows += buildRow('Póló méret', tshirtSize);
                 mainDataRows += buildRow('Irányítószám', zipCode);
                 mainDataRows += buildRow('Város', city);
