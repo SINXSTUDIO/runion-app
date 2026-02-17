@@ -265,9 +265,9 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                         <InfopackSection infopack={event.infopack as any} />
                     )}
                 </div>
-                {/* Payment Info Section */}
-                {
-                    (event.seller || event.sellerEuro) && (
+                {/* Payment Info Section - HIDDEN AS PER USER REQUEST (2026-02-17) but keeping data valid */}
+                {/* 
+                {(event.seller || event.sellerEuro) && (
                         <div className="mt-12 p-8 bg-zinc-900 rounded-2xl border border-zinc-800">
                             <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                                 <span className="text-accent">💳</span>
@@ -275,7 +275,6 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                             </h3>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                {/* Domestic Transfer - Always show HUF seller (primary) */}
                                 <div className="space-y-4">
                                     <h4 className="text-lg font-bold text-zinc-300 border-b border-zinc-700 pb-2">
                                         🇭🇺 Belföldi utalás (HUF)
@@ -300,7 +299,6 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                                     </div>
                                 </div>
 
-                                {/* International Transfer - Show Euro Seller OR Primary Seller's Euro fields */}
                                 {(event.sellerEuro || event.seller?.ibanEuro) && (
                                     <div className="space-y-4">
                                         <h4 className="text-lg font-bold text-zinc-300 border-b border-zinc-700 pb-2">
@@ -310,7 +308,6 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                                             <div>
                                                 <p className="text-xs uppercase tracking-wider text-zinc-500">Beneficiary Name</p>
                                                 <p className="text-white font-medium">
-                                                    {/* Use Euro Seller Name if exists, otherwise fallback to primary seller's Euro Name, or primary name */}
                                                     {event.sellerEuro?.nameEuro || event.sellerEuro?.name || event.seller?.nameEuro || event.seller?.name}
                                                 </p>
                                             </div>
@@ -320,7 +317,6 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                                                     {event.sellerEuro?.ibanEuro || event.seller?.ibanEuro}
                                                 </p>
                                             </div>
-                                            {/* Bank Name for Euro Seller if available */}
                                             {(event.sellerEuro?.bankName || (event.sellerEuro && !event.sellerEuro.bankName)) ? (
                                                 <div>
                                                     <p className="text-xs uppercase tracking-wider text-zinc-500">Bank</p>
@@ -328,8 +324,6 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                                                 </div>
                                             ) : null}
 
-                                            {/* BIC/SWIFT - mapped to bankAccountNumberEuro usually or separate field if added. 
-                                            For now assuming bankAccountNumberEuro might hold SWIFT if not IBAN, or just display it if present. */}
                                             {(event.sellerEuro?.bankAccountNumberEuro || event.seller?.bankAccountNumberEuro) && (
                                                 <div>
                                                     <p className="text-xs uppercase tracking-wider text-zinc-500">SWIFT / Account #</p>
@@ -348,7 +342,8 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                             </div>
                         </div>
                     )
-                }
+                } 
+                */}
             </div >
         </>
     );
