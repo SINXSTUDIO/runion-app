@@ -5,8 +5,15 @@ import path from 'path';
 
 const prisma = new PrismaClient();
 
-async function restore() {
-    const backupPath = path.join(process.cwd(), 'backups', 'daily', 'backup-2026-02-13.json');
+async function restoreBackup() {
+    const args = process.argv.slice(2);
+    if (!args.includes('--force')) {
+        console.error('❌ SAFETY ERROR: You must use the --force flag to run this destructive operation.');
+        console.error('Usage: npx tsx restore-backup.ts --force');
+        process.exit(1);
+    }
+
+    const backupPath = path.join(__dirname, 'backups', 'daily', 'backup-2026-02-13.json');
     const backupData = JSON.parse(fs.readFileSync(backupPath, 'utf8'));
     const data = backupData.data;
 
