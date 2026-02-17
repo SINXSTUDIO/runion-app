@@ -14,8 +14,13 @@ import bcrypt from 'bcryptjs';
 import backupData from '@/../backups/daily/backup-2026-02-13.json';
 
 export async function GET(request: Request) {
+    const { searchParams } = new URL(request.url);
+    const key = searchParams.get('key');
     const authHeader = request.headers.get('authorization');
-    if (authHeader !== `Bearer ${process.env.CRON_SECRET || 'runion_restore_secret_2026'}`) {
+
+    const validSecret = process.env.CRON_SECRET || 'runion_restore_secret_2026';
+
+    if (key !== validSecret && authHeader !== `Bearer ${validSecret}`) {
         return new NextResponse('Unauthorized', { status: 401 });
     }
 
