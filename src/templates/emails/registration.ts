@@ -239,7 +239,7 @@ export function generateRegistrationEmailHtml(
                                         <tr>
                                             <td style="padding: 20px;">
                                                 <h3 style="margin: 0 0 15px 0; font-size: 18px; color: #b7791f; font-family: Arial, Helvetica, sans-serif; font-weight: bold; text-transform: uppercase;">📋 További Információk / Additional Info</h3>
-                                                <div style="font-size: 14px; color: #333333; font-family: Arial, Helvetica, sans-serif; line-height: 1.8; white-space: pre-wrap;">${registration.distance.event.confirmationEmailText}</div>
+                                                <div style="font-size: 14px; color: #333333; font-family: Arial, Helvetica, sans-serif; line-height: 1.8;">${registration.distance.event.confirmationEmailText}</div>
                                             </td>
                                         </tr>
                                     </table>
