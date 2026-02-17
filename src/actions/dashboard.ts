@@ -31,10 +31,12 @@ export async function getUserRegistrations() {
         });
 
         // Map registrations to flatten event structure for the component
-        const mappedRegistrations = registrations.map(reg => ({
-            ...reg,
-            event: (reg.distance as any).event
-        }));
+        const mappedRegistrations = registrations
+            .filter(reg => reg.distance && (reg.distance as any).event) // Safety check for orphaned registrations
+            .map(reg => ({
+                ...reg,
+                event: (reg.distance as any).event
+            }));
 
         return serializeData(mappedRegistrations) as any;
     } catch (error) {
