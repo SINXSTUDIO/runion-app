@@ -336,6 +336,14 @@ export async function updateEvent(id: string, prevState: any, formData: FormData
             nameEuro
         );
 
+        // Handle Euro Seller (Separate ID if selected)
+        const sellerIdEuro = rawData.sellerIdEuro as string;
+        if (sellerIdEuro && sellerIdEuro !== 'same' && sellerIdEuro !== 'custom') {
+            eventData.sellerEuroId = sellerIdEuro;
+        } else {
+            eventData.sellerEuroId = null;
+        }
+
         await prisma.event.update({
             where: { id },
             data: eventData
