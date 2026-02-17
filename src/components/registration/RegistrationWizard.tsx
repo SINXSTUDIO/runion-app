@@ -29,12 +29,8 @@ export default function RegistrationWizard({ event, user, formConfig }: WizardPr
     const [selectedExtras, setSelectedExtras] = useState<any[]>([]);
     const [crewSize, setCrewSize] = useState<number>(1); // Crew size for dynamic pricing
 
-    // Auto-advance if distance is pre-selected
-    useEffect(() => {
-        if (searchParams.get('distanceId') && step === 1) {
-            setStep(2); // Go to Extras step (don't skip it)
-        }
-    }, [searchParams]);
+    // Auto-advance removed to enforce strict step order
+    // User must always see Step 1 to confirm distance and crew size if applicable
 
     // Smart mapping helper
     const getInitialFormData = () => {
