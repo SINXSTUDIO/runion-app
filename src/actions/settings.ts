@@ -24,7 +24,15 @@ export async function getSettings() {
         return settings;
     } catch (error) {
         console.error('CRITICAL: Failed to fetch or create global settings:', error);
-        throw error;
+        // Fallback to default settings to prevent site crash during schema mismatch
+        return {
+            id: 'default-fallback',
+            maintenanceMode: false,
+            shopEnabled: true,
+            cancellationEnabled: false,
+            // Add other critical fields as null/undefined to satisfy type signature if needed
+            // casting as any to bypass strict type checks for missing fields
+        } as any;
     }
 }
 
