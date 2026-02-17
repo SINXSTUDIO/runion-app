@@ -104,12 +104,15 @@ export async function submitRegistration(
             // Mutex will be released in finally block
 
             // Calculate final price (crew pricing or regular)
+            // Calculate final price (crew pricing or regular)
             let finalPrice = Number(distance.price);
             let discountPercentage = 0; // Track discount
+            let isCrewPricing = false; // Track if we used crew pricing (which implies EUR)
 
             if (distance.crewPricing && crewSize) {
                 const crewPricing = distance.crewPricing as Record<string, number>;
                 finalPrice = crewPricing[crewSize.toString()] || Number(distance.price);
+                isCrewPricing = true;
             } else {
                 // Apply Membership Discount ONLY if standard pricing (not crew)
                 // Fetch user with tier
@@ -157,8 +160,19 @@ export async function submitRegistration(
             });
 
             // Calculate Total Price (Dynamic) using the calculated finalPrice as base
-            const basePrice = finalPrice;
-            const basePriceEur = (distance as any).priceEur ? Number((distance as any).priceEur) : 0;
+            let basePrice = 0;
+            let basePriceEur = 0;
+
+            if (isCrewPricing) {
+                // If it's crew pricing, the finalPrice IS in EUR (based on frontend logic and usage)
+                basePrice = 0;
+                basePriceEur = finalPrice;
+            } else {
+                // Standard pricing: finalPrice is HUF
+                basePrice = finalPrice;
+                // For standard pricing, check if there's a separate EUR price
+                basePriceEur = (distance as any).priceEur ? Number((distance as any).priceEur) : 0;
+            }
 
             const extrasTotal = extras.reduce((sum, item) => sum + (item.price || 0), 0);
             const extrasTotalEur = extras.reduce((sum, item) => sum + (item.priceEur || 0), 0);
@@ -167,6 +181,7 @@ export async function submitRegistration(
             const totalPriceEur = basePriceEur + extrasTotalEur;
 
             // Determine primary currency for display and logic
+            // If Total HUF is 0 and Total EUR > 0, treat as EUR only
             const isEurOnly = totalPrice === 0 && totalPriceEur > 0;
 
             let priceDisplay = `${totalPrice.toLocaleString()} Ft`;

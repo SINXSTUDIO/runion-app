@@ -99,7 +99,29 @@ export default function RegistrationWizard({ event, user, formConfig }: WizardPr
                 initialData[field.id] = user.firstName || '';
                 return;
             }
-            if ((label.includes('név') || label.includes('neve') || label.includes('name')) && !label.includes('any') && !label.includes('megjegyzés') && !label.includes('csapat') && !label.includes('pár') && !label.includes('partner')) {
+
+            // Crew / Team Members - Specific handling
+            if (label.includes('segítő') || label.includes('crew') || label.includes('csapattag') || label.includes('tagok') || label.includes('members')) {
+                if (user.teamMembers && user.teamMembers.length > 0) {
+                    initialData[field.id] = user.teamMembers.join(', ');
+                } else {
+                    initialData[field.id] = '';
+                }
+                return;
+            }
+
+            // Generic Name Filling - With strict exclusions
+            if ((label.includes('név') || label.includes('neve') || label.includes('name')) &&
+                !label.includes('any') &&
+                !label.includes('megjegyzés') &&
+                !label.includes('csapat') &&
+                !label.includes('pár') &&
+                !label.includes('partner') &&
+                !label.includes('versenyző') && // Exclude "Versenyzőm neve" / "Runner's name"
+                !label.includes('runner') &&
+                !label.includes('segítő') && // Exclude "Segítő neve" / "Crew's name"
+                !label.includes('crew')
+            ) {
 
                 // Emergency contact field map
                 if (label.includes('baleset') || label.includes('értesítendő') || label.includes('emergency')) {
