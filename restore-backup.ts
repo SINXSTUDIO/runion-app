@@ -168,7 +168,7 @@ async function restoreBackup() {
     console.log('Restore completed successfully.');
 }
 
-restore()
+restoreBackup()
     .catch(e => {
         console.error('Restore failed:', e);
         process.exit(1);
