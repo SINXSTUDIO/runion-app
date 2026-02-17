@@ -26,7 +26,7 @@ export default async function RegistrationsPage({ params }: { params: Promise<{ 
         .reduce((sum: number, r: any) => sum + Number(r.finalPrice || r.distance?.price || 0), 0);
 
     return (
-        <div className="min-h-screen bg-black text-white pt-28 pb-20">
+        <div className="min-h-screen bg-black text-white pt-20 pb-12">
             <div className="container mx-auto px-4">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6 border-b border-zinc-800 pb-8">
