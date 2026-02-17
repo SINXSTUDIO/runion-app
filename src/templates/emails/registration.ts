@@ -117,7 +117,7 @@ export function generateRegistrationEmailHtml(
                     <td align="center" style="padding: 20px 10px;">
                         
                         <!-- Email Card (650px) -->
-                        <table border="0" cellpadding="0" cellspacing="0" width="650" style="max-width: 650px; background-color: #ffffff; border-radius: 12px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 650px; background-color: #ffffff; border-radius: 12px;">
                             
                             <!-- Header -->
                             <tr>
@@ -299,7 +299,7 @@ export function generateNotificationEmailHtml(
                     <td align="center" style="padding: 20px 10px;">
                         
                         <!-- Email Card Table (650px max-width) -->
-                        <table border="0" cellpadding="0" cellspacing="0" width="650" style="max-width: 650px; background-color: #ffffff; border-radius: 12px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 650px; background-color: #ffffff; border-radius: 12px;">
                             
                             <!-- Header Row -->
                             <tr>
