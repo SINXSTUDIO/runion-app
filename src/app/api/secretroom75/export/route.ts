@@ -48,57 +48,89 @@ export async function GET(request: NextRequest) {
 
         const CRLF = '\r\n';
 
-        // Known keys to exclude from dynamic fields (because they are handled explicitly)
-        const ignoredKeys = new Set(['billingDetails', 'termsAccepted', 'privacyAccepted', 'comment', 'website', 'website_field', 'tshirtSize']);
+        // Helper to remove accents and special characters from headers
+        const normalizeHeader = (str: string) => {
+            return str
+                .normalize('NFD') // Decompose combined characters
+                .replace(/[\u0300-\u036f]/g, '') // Remove dialectics
+                .replace(/[^a-zA-Z0-9\s-_]/g, '') // Keep only safe chars
+                .trim();
+        };
+
+        // Parse form configuration to get human-readable labels
+        const formConfig = (event.formConfig as any[]) || [];
+        const fieldLabels: Record<string, string> = {};
+        const fieldOrder: string[] = [];
+
+        formConfig.forEach(field => {
+            if (field.id && field.label) {
+                fieldLabels[field.id] = normalizeHeader(field.label);
+                fieldOrder.push(field.id);
+            }
+        });
+
+        // Known keys to exclude/handle explicitly
+        const ignoredKeys = new Set([
+            'billingDetails',
+            'termsAccepted',
+            'privacyAccepted',
+            'comment',
+            // 'website', 'website_field', 'tshirtSize' // These might be in formConfig, so let's keep them if they are there, or ignore if hardcoded
+        ]);
 
         // Extract all unique form field keys from registrations
-        const dynamicFieldKeys = new Set<string>();
+        const allDynamicKeys = new Set<string>();
         allRegistrations.forEach(reg => {
             const formData = (reg.formData as Record<string, any>) || {};
             if (formData && typeof formData === 'object') {
                 Object.keys(formData).forEach(key => {
                     if (!ignoredKeys.has(key)) {
-                        dynamicFieldKeys.add(key);
+                        allDynamicKeys.add(key);
                     }
                 });
             }
         });
 
-        const dynamicHeaders = Array.from(dynamicFieldKeys);
+        // Sort dynamic keys: 
+        // 1. Fields defined in formConfig (in order)
+        // 2. Any other fields found in data (alphabetically)
+        const sortedDynamicKeys = [
+            ...fieldOrder.filter(key => allDynamicKeys.has(key)),
+            ...Array.from(allDynamicKeys).filter(key => !fieldOrder.includes(key)).sort()
+        ];
 
         // CSV Header
-        // Note: sep=; is for Excel to automatically detect the delimiter
         const csvHeader = 'sep=;' + CRLF + [
             'ID',
-            'Vezetéknév',
-            'Keresztnév',
+            'Vezeteknev',
+            'Keresztnev',
             'Email',
-            'Irányítószám',
-            'Város',
-            'Cím',
+            'Iranyitoszam',
+            'Varos',
+            'Cim',
             'Nem',
-            'Szül. dátum',
-            'Póló méret',
-            'Táv',
-            'Ár (HUF)',
-            'Ár (EUR)',
-            'Végösszeg',
-            'Egyesület',
-            'Nevezés Státusz',
-            'Fizetési Státusz',
-            'Vészhelyzeti Név',
-            'Vészhelyzeti Telefon',
-            'Reg. Dátum',
+            'Szul datum',
+            'Polo meret',
+            'Tav',
+            'Ar (HUF)',
+            'Ar (EUR)',
+            'Vegosszeg',
+            'Egyesulet',
+            'Nevezes Statusz',
+            'Fizetesi Statusz',
+            'Veszhelyzeti Nev',
+            'Veszhelyzeti Telefon',
+            'Reg Datum',
             // Billing Data
-            'Számlázási Név',
-            'Számlázási Irányítószám',
-            'Számlázási Város',
-            'Számlázási Utca, hsz.',
-            'Adószám',
-            // Legal & Extra
-            'Megjegyzés',
-            // Dynamic
-            ...dynamicHeaders
+            'Szamlazasi Nev',
+            'Szamlazasi Iranyitoszam',
+            'Szamlazasi Varos',
+            'Szamlazasi Utca hsz',
+            'Adoszam',
+            // Lebonyolítási & Extra adatok (Form Config based headers)
+            ...sortedDynamicKeys.map(key => fieldLabels[key] || normalizeHeader(key)),
+            // Megjegyzés mindig a végére
+            'Megjegyzes'
         ].join(';') + CRLF;
 
         // CSV Rows
@@ -112,8 +144,14 @@ export async function GET(request: NextRequest) {
                 return null;
             }
 
-            // Safe helper for strings
-            const safe = (str: any) => `"${String(str || '').replace(/"/g, '""')}"`;
+            // Safe helper: remove newlines, escape quotes
+            const safe = (str: any) => {
+                const s = String(str || '');
+                // Replace line breaks with space to prevent CSV shifting
+                const clean = s.replace(/[\r\n]+/g, ' ').replace(/"/g, '""');
+                return `"${clean}"`;
+            };
+
             const dateStr = (date: Date | null) => date ? date.toISOString().split('T')[0] : '';
 
             // Translate Gender
@@ -123,7 +161,7 @@ export async function GET(request: NextRequest) {
                 return g || '';
             };
 
-            const dynamicValues = dynamicHeaders.map(key => {
+            const dynamicValues = sortedDynamicKeys.map(key => {
                 const value = formData[key];
                 if (value === null || value === undefined) return '';
                 if (typeof value === 'object') return safe(JSON.stringify(value));
@@ -157,10 +195,10 @@ export async function GET(request: NextRequest) {
                 safe(billing.city),
                 safe(billing.address),
                 safe(billing.taxNumber),
-                // Extra
-                safe(formData.comment),
-                // Dynamic
-                ...dynamicValues
+                // Dynamic Values (mapped to headers)
+                ...dynamicValues,
+                // Comment
+                safe(formData.comment)
             ].join(';');
         })
             .filter(row => row !== null)
