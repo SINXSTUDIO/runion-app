@@ -453,32 +453,31 @@ export default function RegistrationWizard({ event, user, formConfig }: WizardPr
                                     <div className="text-sm text-zinc-400 mt-2">
                                         {t('distance.spots', { count: dist.capacityLimit - (dist._count?.registrations || 0) })}
                                     </div>
+                                    {/* Crew Size Selector - Integrated into Card */}
+                                    {selectedDistance === dist.id && dist.crewPricing && (
+                                        <div className="mt-4 pt-4 border-t border-zinc-700/50" onClick={(e) => e.stopPropagation()}>
+                                            <label className="block text-sm font-bold text-accent mb-2">
+                                                👥 Crew Létszám (Segítők)
+                                            </label>
+                                            <select
+                                                value={crewSize}
+                                                onChange={(e) => setCrewSize(Number(e.target.value))}
+                                                className="w-full bg-zinc-950 border border-zinc-700 rounded-lg p-3 text-white focus:border-accent focus:outline-none font-mono text-sm"
+                                            >
+                                                {Object.keys(dist.crewPricing || {}).map((size: string) => (
+                                                    <option key={size} value={size}>
+                                                        {size} fő - {dist.crewPricing[size]} EUR
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            <p className="text-xs text-zinc-500 mt-2">
+                                                💡 A végösszeg automatikusan frissül a választott létszám alapján.
+                                            </p>
+                                        </div>
+                                    )}
                                 </div>
                             ))}
                         </div>
-
-                        {/* Crew Size Selector */}
-                        {selectedDistance && event.distances.find((d: any) => d.id === selectedDistance)?.crewPricing && (
-                            <div className="mt-6 bg-accent/5 border border-accent/30 rounded-xl p-6">
-                                <label className="block text-sm font-bold text-white mb-3">
-                                    👥 Crew Létszám (Segítők)
-                                </label>
-                                <select
-                                    value={crewSize}
-                                    onChange={(e) => setCrewSize(Number(e.target.value))}
-                                    className="w-full bg-zinc-900 border border-zinc-700 rounded-lg p-3 text-white focus:border-accent focus:outline-none font-mono"
-                                >
-                                    {Object.keys(event.distances.find((d: any) => d.id === selectedDistance)?.crewPricing || {}).map((size: string) => (
-                                        <option key={size} value={size}>
-                                            {size} fő - {event.distances.find((d: any) => d.id === selectedDistance)?.crewPricing[size]} EUR
-                                        </option>
-                                    ))}
-                                </select>
-                                <p className="text-xs text-zinc-400 mt-2">
-                                    💡 Az ár automatikusan változik a kiválasztott crew létszám alapján.
-                                </p>
-                            </div>
-                        )}
                     </div>
                 )}
 
@@ -781,6 +780,6 @@ export default function RegistrationWizard({ event, user, formConfig }: WizardPr
                     )}
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
