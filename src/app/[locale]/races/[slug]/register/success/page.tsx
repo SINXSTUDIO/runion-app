@@ -77,29 +77,74 @@ export default async function RegistrationSuccessPage({ params, searchParams }: 
     const bankName = seller.bankName || 'Nincs megadva';
     const bankAccountNumber = seller.bankAccountNumber || 'Nincs megadva';
 
-    // Calculate Total Price including extras
+    // --- ROBUST PRICE CALCULATION (Ported from src/actions/registration.ts) ---
+
+    // 1. Determine if Crew Pricing was used (implies EUR)
+    const distanceResult = registration.distance as any;
+    let isCrewPricing = false;
+
+    // Check if crewSize exists and if distance has crewPricing
+    if (registration.crewSize && distanceResult.crewPricing) {
+        // We can't easily check if the specific crewSize was used for pricing without re-calculating,
+        // but if crewSize is set and > 0, it's safe to assume it's a crew registration.
+        // In registration.ts: isCrewPricing = true if distance.crewPricing && crewSize
+        isCrewPricing = true;
+    }
+
+    // 2. Calculate Base Prices
+    let basePrice = 0;
+    let basePriceEur = 0;
+    const finalPrice = Number(registration.finalPrice);
+
+    if (isCrewPricing) {
+        // If crew pricing, finalPrice IS the EUR price
+        basePrice = 0;
+        basePriceEur = finalPrice;
+    } else {
+        // Standard pricing: finalPrice is HUF
+        basePrice = finalPrice;
+        // Check for separate EUR price in distance
+        basePriceEur = distanceResult.priceEur ? Number(distanceResult.priceEur) : 0;
+    }
+
+    // 3. Calculate Extras Totals
     const extras = (registration as any).extras as any[] || [];
     const extrasTotal = extras.reduce((sum, item) => sum + (Number(item.price) || 0), 0);
-    // Use stored finalPrice (which includes discounts) or fallback to distance price
-    const basePrice = registration.finalPrice !== null ? Number(registration.finalPrice) : Number(registration.distance.price);
+    const extrasTotalEur = extras.reduce((sum, item) => sum + (Number(item.priceEur) || 0), 0);
+
+    // 4. Calculate Grand Totals
     const totalPrice = basePrice + extrasTotal;
+    const totalPriceEur = basePriceEur + extrasTotalEur;
 
-    // Split Beneficiary Logic
+    // 5. Determine Display Logic
+    // If Total HUF is 0 and Total EUR > 0, treat as EUR only
+    // Also consider if it was a crew event (isCrewPricing = true)
+    const isEurOnly = (totalPrice === 0 && totalPriceEur > 0) || isCrewPricing;
+
+    // 6. Split Beneficiary Logic
     const euroSeller = (event as any).sellerEuro;
-
-    // Logic to detect if we should treat this as a EUR payment
-    // 1. If crewSize is present, it's a crew event -> EUR
-    // 2. If distance has priceEur and price is 0 (or very low), valid for EUR-only events
-    // 1. If crewSize is present AND distance has crewPricing, it's a crew event -> EUR
-    // 2. If distance has priceEur and price is 0 (or very low), valid for EUR-only events
-    const hasCrewPricing = (registration.distance as any).crewPricing && Object.keys((registration.distance as any).crewPricing || {}).length > 0;
-    const isCrewEvent = registration.crewSize && registration.crewSize > 0 && hasCrewPricing;
-    const isEurPayment = isCrewEvent || (totalPrice === 0 && (registration.distance as any).priceEur > 0);
-
     const bankAccountNumberEuro = euroSeller?.bankAccountNumberEuro || seller.bankAccountNumberEuro;
     const ibanEuro = euroSeller?.ibanEuro || seller.ibanEuro;
     const euroBeneficiaryName = euroSeller?.nameEuro || euroSeller?.name || seller.nameEuro || seller.name;
     const euroBankName = euroSeller?.bankName || seller.bankName;
+
+    // 7. Prepare Display String (for consistency with email)
+    // We will use this in the render
+    let priceDisplay = `${totalPrice.toLocaleString()} Ft`;
+    if (isEurOnly) {
+        priceDisplay = `${totalPriceEur} €`;
+    } else if (totalPrice > 0 && totalPriceEur > 0) {
+        // Display BOTH if both are relevant
+        priceDisplay = `${totalPrice.toLocaleString()} Ft / ${totalPriceEur} €`;
+    }
+
+    // Logic for the specific "Amount" box below
+    // We want to show the relevant amount. 
+    // If isEurOnly -> show EUR
+    // If both -> show both? Or just HUF? 
+    // The previous logic showed 1 value. 
+    // Let's stick to the email logic: priceDisplay has the full string.
+
 
     return (
         <div className="min-h-screen bg-black text-white pt-28 pb-20">
@@ -149,7 +194,7 @@ export default async function RegistrationSuccessPage({ params, searchParams }: 
                         )}
 
                         {/* Külföldi / EUR utalás - MINDIG megjelenik, ha van Euro Seller VAGY Euro IBAN */}
-                        {(euroSeller || seller.ibanEuro) && (
+                        {(euroSeller || seller.ibanEuro) && (isEurOnly || totalPriceEur > 0) && (
                             <div className="p-4 bg-blue-900/10 rounded-xl border border-blue-900/30 mt-4">
                                 <h4 className="text-sm font-bold text-blue-300 uppercase mb-3">Külföldi fizetés esetén / For International Payments (EUR)</h4>
                                 <div className="space-y-2">
@@ -192,11 +237,8 @@ export default async function RegistrationSuccessPage({ params, searchParams }: 
                             <div>
                                 <label className="text-xs text-zinc-500 uppercase font-bold">{t('amount')}</label>
                                 <p className="text-2xl font-bold text-white">
-                                    {/* Currency Logic: If Crew Pricing OR EUR Price exists and HUF 0, assume EUR */}
-                                    {isEurPayment
-                                        ? `${totalPrice} €`
-                                        : `${totalPrice.toLocaleString()} Ft`
-                                    }
+                                    {/* Currency Logic: Uses robust priceDisplay calculated above */}
+                                    {priceDisplay}
                                 </p>
                             </div>
                             <div>
