@@ -246,8 +246,12 @@ export async function generateProformaPDF(
     yPos += 6;
     doc.setFont("helvetica", "normal");
 
-    doc.text(sanitizeText(sellerName), leftX, yPos);
-    yPos += 5;
+    // Handle Long Seller Name (Wrap Text)
+    const maxNameWidth = 90;
+    const splitName = doc.splitTextToSize(sanitizeText(sellerName), maxNameWidth);
+
+    doc.text(splitName, leftX, yPos);
+    yPos += (splitName.length * 5); // Adjust Y based on number of lines
     if (sellerAddress) {
         doc.text(sanitizeText(sellerAddress), leftX, yPos);
         yPos += 5;
