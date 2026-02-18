@@ -75,6 +75,7 @@ export interface DistanceDataForPDF {
     nameDe?: string | null;
     price: number;
     priceEur?: number | null;
+    crewPricing?: Record<string, number> | null;
 }
 
 /**

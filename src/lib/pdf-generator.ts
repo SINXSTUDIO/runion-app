@@ -108,7 +108,8 @@ export async function generateProformaPDF(
     event: EventDataForPDF,
     distance: DistanceDataForPDF,
     seller: SellerForPDF,
-    locale: PDFLocale = 'hu'
+    locale: PDFLocale = 'hu',
+    sellerEuro?: SellerForPDF
 ): Promise<Uint8Array> {
     const doc = new jsPDF();
     const t = PDF_TRANSLATIONS[locale as Locale] || PDF_TRANSLATIONS.hu;
@@ -143,20 +144,33 @@ export async function generateProformaPDF(
     doc.setLineWidth(0.5);
     doc.line(14, 33, 196, 33);
 
-    // -- DETECT CURRENCY --
-    // If base price is 0 AND we have EUR price, assume EUR invoice
-    let isEur = false;
-    let basePrice = Number(distance.price);
-    let basePriceEur = (distance as any).priceEur ? Number((distance as any).priceEur) : 0;
-
-    if (registration.finalPrice !== undefined) {
-        basePrice = Number(registration.finalPrice);
+    // -- ROBUST CURRENCY & PRICE LOGIC --
+    // 1. Crew Pricing Check
+    let isCrewPricing = false;
+    // Check if crewSize implies crew pricing (safest heuristic matching success page)
+    if (registration.crewSize && distance.crewPricing) {
+        isCrewPricing = true;
     }
 
-    // Logic: If HUF price is 0 but we have EUR price, it's an EUR transaction
-    if (basePrice === 0 && basePriceEur > 0) {
-        isEur = true;
+    // 2. Base Price Calculation
+    let basePrice = 0;
+    let basePriceEur = 0;
+    const finalPrice = registration.finalPrice !== null && registration.finalPrice !== undefined ? Number(registration.finalPrice) : 0;
+
+    if (isCrewPricing) {
+        // If crew pricing, finalPrice IS the EUR price
+        basePrice = 0;
+        basePriceEur = finalPrice;
+    } else {
+        // Standard pricing: finalPrice is HUF
+        basePrice = finalPrice;
+        // Check for separate EUR price in distance
+        basePriceEur = distance.priceEur ? Number(distance.priceEur) : 0;
     }
+
+    // 3. Determine Currency Mode
+    // If Crew OR (HUF is 0 and EUR > 0), assume EUR
+    const isEur = isCrewPricing || (basePrice === 0 && basePriceEur > 0);
 
     // -- DATES & INFO --
     const today = new Date();
@@ -196,20 +210,36 @@ export async function generateProformaPDF(
     const leftX = 14;
     yPos = 45;
 
-    // Seller
-    const sellerName = seller?.name || 'Runion SE';
-    // const sellerNameEuro = seller?.nameEuro || sellerName; // Not used yet
-    const sellerAddress = seller?.address || '';
-    const sellerTaxNumber = seller?.taxNumber || '';
-    const sellerEmail = seller?.email || '';
+    // Determine correct seller details based on currency
+    // If EUR, try to use sellerEuro, fallback to seller (with Euro fields)
+    const activeSeller = isEur && sellerEuro ? sellerEuro : seller;
+
+    // NOTE: sellerEuro object typically has 'name' which IS the euro name, 
+    // but if we use 'seller', we need to check 'nameEuro'.
+    // Logic:
+    const sellerName = isEur
+        ? (sellerEuro?.name || seller.nameEuro || seller.name)
+        : seller.name;
+
+    const sellerAddress = activeSeller.address || seller.address || '';
+    const sellerTaxNumber = activeSeller.taxNumber || seller.taxNumber || '';
+    const sellerEmail = activeSeller.email || seller.email || '';
 
     // Bank Details Logic
-    const sellerBank = isEur ? (seller?.bankNameEur || seller?.bankName || '-') : (seller?.bankName || '-');
+    const sellerBank = isEur
+        ? (sellerEuro?.bankName || seller.bankNameEur || seller.bankName || '-')
+        : (seller.bankName || '-');
+
     const sellerAccountLabel = isEur ? 'IBAN:' : t.account;
+
+    // For account/IBAN: 
+    // If EUR: sellerEuro.bankAccountNumberEuro (often same as IBAN) OR seller.ibanEuro
+    // If HUF: seller.bankAccountNumber
     const sellerAccount = isEur
-        ? (seller?.ibanEuro || seller?.iban || seller?.bankAccountNumberEuro || '-')
-        : (seller?.bankAccountNumber || '-');
-    const swiftCode = isEur ? (seller?.swift || '') : '';
+        ? (sellerEuro?.ibanEuro || sellerEuro?.bankAccountNumberEuro || seller.ibanEuro || seller.bankAccountNumberEuro || '-')
+        : (seller.bankAccountNumber || '-');
+
+    const swiftCode = isEur ? (sellerEuro?.swift || seller.swift || '') : '';
 
     doc.setFont(fontName, "normal");
     doc.text(sanitizeText(t.issuer), leftX, yPos);
@@ -279,13 +309,10 @@ export async function generateProformaPDF(
     // -- ITEMS PREPARATION --
     const items = [];
     const currency = isEur ? '€' : 'Ft';
+    const localeString = isEur ? 'de-DE' : 'hu-HU';
 
     // 1. Registration Fee
-    // If EUR mode, use EUR price. If HUF mode, use HUF price.
-    // Note: 'finalPrice' currently stores the Calculated price.
-    // If isEur is true, it means calculated price was 0 but EUR price exists.
-    // We need to use basePriceEur in that case.
-
+    // Use the correctly calculated variable
     let displayRegPrice = isEur ? basePriceEur : basePrice;
 
     items.push({
@@ -317,8 +344,8 @@ export async function generateProformaPDF(
     const tableRows = items.map(item => [
         sanitizeText(item.name),
         `${item.qty} db`,
-        `${item.price.toLocaleString(isEur ? 'de-DE' : 'hu-HU')} ${currency}`,
-        `${item.total.toLocaleString(isEur ? 'de-DE' : 'hu-HU')} ${currency}`
+        `${item.price.toLocaleString(localeString)} ${currency}`,
+        `${item.total.toLocaleString(localeString)} ${currency}`
     ]);
 
     const totalAmount = items.reduce((sum, item) => sum + item.total, 0);
@@ -347,7 +374,7 @@ export async function generateProformaPDF(
         },
         foot: [[
             { content: sanitizeText(t.total), colSpan: 3, styles: { halign: 'right', fontStyle: 'bold', fontSize: 11 } },
-            { content: `${totalAmount.toLocaleString(isEur ? 'de-DE' : 'hu-HU')} ${currency}`, styles: { halign: 'right', fontStyle: 'bold', fontSize: 11, textColor: COLOR_ION } }
+            { content: `${totalAmount.toLocaleString(localeString)} ${currency}`, styles: { halign: 'right', fontStyle: 'bold', fontSize: 11, textColor: COLOR_ION } }
         ]],
         footStyles: {
             fillColor: [255, 255, 255],

@@ -20,7 +20,10 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
             distance: {
                 include: {
                     event: {
-                        include: { seller: true }
+                        include: {
+                            seller: true,
+                            sellerEuro: true
+                        }
                     }
                 }
             }
@@ -40,6 +43,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
     const event = registration.distance.event;
     const seller = (event as any).seller;
+    const sellerEuro = (event as any).sellerEuro;
 
     if (!seller) {
         return new NextResponse('Seller info missing', { status: 400 });
@@ -51,7 +55,9 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
             registration as any,
             event,
             registration.distance as any,  // Cast needed for Decimal -> number conversion
-            seller
+            seller,
+            'hu', // Default locale, potentially fetch from query param or user pref
+            sellerEuro
         );
 
         // Convert Uint8Array to Buffer for NextResponse compatibility
