@@ -50,7 +50,13 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
     const event = await prisma.event.findUnique({
         where: { slug },
         include: {
-            distances: true,
+            distances: {
+                include: {
+                    _count: {
+                        select: { registrations: true }
+                    }
+                }
+            },
             seller: true,
             sellerEuro: true,
             organizer: true
@@ -61,15 +67,8 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
         notFound();
     }
 
-    // Fetch recent registrations separately to avoid complex nested includes that might break build
-    const recentRegistrationsData = await prisma.registration.findMany({
-        where: { distance: { eventId: event.id } },
-        take: 5,
-        orderBy: { createdAt: 'desc' },
-        include: { distance: true }
-    });
-
-    // Fetch total count separately
+    // Fetch total count separately (or sum up distance counts, but separate is safer if there are deleted distances?)
+    // Actually, simple count is fine.
     const totalRegistrations = await prisma.registration.count({
         where: { distance: { eventId: event.id } }
     });
@@ -81,13 +80,11 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
         day: 'numeric'
     });
 
-    // Format recent registrations for social proof widget
-    const recentRegistrations = recentRegistrationsData.map((reg) => ({
-        name: (reg.formData as any)?.firstName
-            ? `${(reg.formData as any).firstName} ${(reg.formData as any).lastName?.charAt(0) || ''}.`
-            : 'Anonymous Runner',
-        distanceName: reg.distance?.name || 'Unknown',
-        createdAt: reg.createdAt
+    // Prepare distance counts for widget
+    const distanceCounts = event.distances.map(d => ({
+        id: d.id,
+        name: d.name,
+        count: d._count.registrations
     }));
 
     // Generate structured data schemas
@@ -103,7 +100,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
             ...d,
             price: Number(d.price),
             priceEur: d.priceEur ? Number(d.priceEur) : undefined,
-            _count: { registrations: 0 } // Default or fetch if needed
+            _count: { registrations: d._count.registrations }
         })),
         organizer: event.organizer ? {
             clubName: event.organizer.clubName || undefined
@@ -184,7 +181,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                                 <SocialProofWidget
                                     eventId={event.id}
                                     totalRegistrations={totalRegistrations}
-                                    recentRegistrations={recentRegistrations}
+                                    distanceCounts={distanceCounts}
                                 />
                             )}
 

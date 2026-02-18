@@ -8,18 +8,16 @@ import { useFormatter, useTranslations } from 'next-intl';
 interface SocialProofWidgetProps {
     eventId: string;
     totalRegistrations: number;
-    recentRegistrations?: Array<{
+    distanceCounts: Array<{
+        id: string;
         name: string;
-        distanceName: string;
-        createdAt: Date;
+        count: number;
     }>;
 }
 
-export function SocialProofWidget({ eventId, totalRegistrations, recentRegistrations = [] }: SocialProofWidgetProps) {
+export function SocialProofWidget({ eventId, totalRegistrations, distanceCounts }: SocialProofWidgetProps) {
     const t = useTranslations('EventDetails.socialProof');
-    const format = useFormatter();
     const [count, setCount] = useState(0);
-    const [currentIndex, setCurrentIndex] = useState(0);
 
     // Animated counter
     useEffect(() => {
@@ -40,17 +38,6 @@ export function SocialProofWidget({ eventId, totalRegistrations, recentRegistrat
 
         return () => clearInterval(timer);
     }, [totalRegistrations]);
-
-    // Ticker animation for recent registrations
-    useEffect(() => {
-        if (recentRegistrations.length === 0) return;
-
-        const ticker = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1) % recentRegistrations.length);
-        }, 4000); // Change every 4 seconds
-
-        return () => clearInterval(ticker);
-    }, [recentRegistrations.length]);
 
     return (
         <div className="bg-accent/5 border border-accent/20 rounded-2xl p-6 backdrop-blur-sm">
@@ -79,38 +66,32 @@ export function SocialProofWidget({ eventId, totalRegistrations, recentRegistrat
                 <TrendingUp className="w-8 h-8 text-green-500 animate-pulse" />
             </div>
 
-            {/* Recent Registrations Ticker */}
-            {recentRegistrations.length > 0 && (
-                <div className="border-t border-accent/10 pt-4">
+            {/* Distance Breakdown */}
+            {distanceCounts && distanceCounts.length > 0 && (
+                <div className="border-t border-accent/10 pt-4 space-y-3">
                     <p className="text-xs text-zinc-500 mb-2 uppercase tracking-wide font-bold flex items-center gap-2">
                         <Clock className="w-3 h-3" />
-                        {t('recentActivity')}
+                        Nevezések távonként
                     </p>
 
-                    <div className="relative h-12 overflow-hidden">
-                        {recentRegistrations.map((reg, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{
-                                    opacity: currentIndex === index ? 1 : 0,
-                                    y: currentIndex === index ? 0 : 20
-                                }}
-                                transition={{ duration: 0.5 }}
-                                className="absolute inset-0 flex items-center gap-2"
-                            >
-                                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                                <p className="text-sm text-zinc-300">
-                                    <span className="font-bold text-white">{reg.name}</span>
-                                    {' '}
-                                    {t('registeredFor')}
-                                    {' '}
-                                    <span className="text-accent">{reg.distanceName}</span>
-                                </p>
-                                <span className="ml-auto text-xs text-zinc-500">
-                                    {format.relativeTime(new Date(reg.createdAt))}
-                                </span>
-                            </motion.div>
+                    <div className="space-y-2">
+                        {distanceCounts.map((dist) => (
+                            dist.count > 0 && (
+                                <div key={dist.id} className="flex items-center justify-between text-sm">
+                                    <span className="text-zinc-300 font-medium">{dist.name}</span>
+                                    <div className="flex items-center gap-2">
+                                        <div className="h-1.5 w-16 bg-zinc-800 rounded-full overflow-hidden">
+                                            <motion.div
+                                                className="h-full bg-accent"
+                                                initial={{ width: 0 }}
+                                                animate={{ width: `${Math.min((dist.count / totalRegistrations) * 100, 100)}%` }}
+                                                transition={{ duration: 1, delay: 0.5 }}
+                                            />
+                                        </div>
+                                        <span className="text-white font-bold min-w-[2rem] text-right">{dist.count}</span>
+                                    </div>
+                                </div>
+                            )
                         ))}
                     </div>
                 </div>
