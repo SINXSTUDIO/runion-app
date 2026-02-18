@@ -12,7 +12,12 @@ export async function importRegistrationPayments(formData: FormData) {
         }
 
         const text = await file.text();
-        const rawLines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
+        let rawLines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
+
+        // Handle Excel 2007 "sep=;" directive if present
+        if (rawLines.length > 0 && rawLines[0].toLowerCase().startsWith('sep=')) {
+            rawLines.shift();
+        }
 
         if (rawLines.length < 2) {
             return { success: false, message: 'Üres vagy hibás CSV fájl.' };
@@ -20,7 +25,6 @@ export async function importRegistrationPayments(formData: FormData) {
 
         // --- Delimiter Detection ---
         // We check the first line (header) for required columns using common delimiters.
-        // This is more robust than counting occurrences.
         const headerLine = rawLines[0];
         const delimiters = [';', ',', '\t', '|'];
         let delimiter = '';

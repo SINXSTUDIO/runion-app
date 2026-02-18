@@ -46,9 +46,11 @@ export async function GET(request: NextRequest) {
             // Optional: Sort by creation date if needed, or rely on database default order
             .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
+        const CRLF = '\r\n';
+
         // CSV Header
         // Note: sep=; is for Excel to automatically detect the delimiter
-        const csvHeader = 'sep=;\n' + [
+        const csvHeader = 'sep=;' + CRLF + [
             'ID',
             'Vezetéknév',
             'Keresztnév',
@@ -67,7 +69,7 @@ export async function GET(request: NextRequest) {
             'Vészhelyzeti Név',
             'Vészhelyzeti Telefon',
             'Reg. Dátum'
-        ].join(';') + '\n';
+        ].join(';') + CRLF;
 
         // CSV Rows
         const csvRows = allRegistrations.map((reg) => {
@@ -112,7 +114,7 @@ export async function GET(request: NextRequest) {
             ].join(';');
         })
             .filter(row => row !== null) // Filter out malformed rows
-            .join('\n');
+            .join(CRLF);
 
         const csvContent = "\uFEFF" + csvHeader + csvRows; // Add BOM for Excel support
 
