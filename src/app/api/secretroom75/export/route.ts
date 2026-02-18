@@ -47,24 +47,26 @@ export async function GET(request: NextRequest) {
             .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
         // CSV Header
-        const csvHeader = [
-            'id',
-            'name',
-            'email',
-            'address',
-            'city',
-            'zip',
-            'gender',
-            'birth_date',
-            'tshirt_size',
-            'distance',
-            'price',
-            'club',
-            'reg_status',
-            'pay_status',
-            'emergency_name',
-            'emergency_phone',
-            'reg_date'
+        // Note: sep=; is for Excel to automatically detect the delimiter
+        const csvHeader = 'sep=;\n' + [
+            'ID',
+            'Vezetéknév',
+            'Keresztnév',
+            'Email',
+            'Irányítószám',
+            'Város',
+            'Cím',
+            'Nem',
+            'Szül. dátum',
+            'Póló méret',
+            'Táv',
+            'Ár',
+            'Egyesület',
+            'Nevezés Státusz',
+            'Fizetési Státusz',
+            'Vészhelyzeti Név',
+            'Vészhelyzeti Telefon',
+            'Reg. Dátum'
         ].join(';') + '\n';
 
         // CSV Rows
@@ -81,18 +83,26 @@ export async function GET(request: NextRequest) {
             const safe = (str: string | null | undefined) => `"${(str || '').replace(/"/g, '""')}"`;
             const dateStr = (date: Date | null) => date ? date.toISOString().split('T')[0] : '';
 
+            // Translate Gender
+            const translateGender = (g: string | null) => {
+                if (g === 'MALE') return 'Férfi';
+                if (g === 'FEMALE') return 'Nő';
+                return g || '';
+            };
+
             return [
                 reg.id,
-                safe(`${u.firstName} ${u.lastName}`),
-                u.email, // emails usually don't need quotes but safe to have
-                safe(u.address),
-                safe(u.city),
+                safe(u.lastName),
+                safe(u.firstName),
+                u.email,
                 safe(u.zipCode),
-                u.gender || '',
+                safe(u.city),
+                safe(u.address),
+                translateGender(u.gender),
                 dateStr(u.birthDate),
                 safe(u.tshirtSize),
                 safe(d.name),
-                d.price.toString(), // Decimal to string
+                d.price.toString(),
                 safe(u.clubName),
                 reg.registrationStatus,
                 reg.paymentStatus,

@@ -5,6 +5,7 @@ import { Link } from '@/i18n/routing';
 import { Badge } from '@/components/ui/Badge';
 import { getSettings } from '@/actions/settings';
 import MaintenanceToggle from '@/components/secretroom75/MaintenanceToggle';
+import QuickImportButton from '@/components/secretroom75/QuickImportButton';
 
 export default async function AdminPage() {
     const settings = await getSettings();
@@ -128,6 +129,7 @@ export default async function AdminPage() {
                                                         <Download className="w-5 h-5 text-zinc-400" />
                                                     </Button>
                                                 </a>
+                                                <QuickImportButton />
                                                 <a href={`/hu/secretroom75/events/${event.id}/form`} title="Nevezési Űrlap">
                                                     <Button variant="ghost" size="sm" className="h-10 w-10 p-0 rounded-full hover:bg-zinc-800">
                                                         <FileText className="w-5 h-5 text-accent" />
@@ -150,6 +152,7 @@ export default async function AdminPage() {
         </div>
     );
 }
+
 
 function AdminStatCard({ icon, label, value, trend }: { icon: React.ReactNode, label: string, value: string, trend?: string }) {
     return (
