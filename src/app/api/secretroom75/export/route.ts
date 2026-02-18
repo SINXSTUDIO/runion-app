@@ -50,6 +50,8 @@ export async function GET(request: NextRequest) {
 
         // CSV Header
         // Note: sep=; is for Excel to automatically detect the delimiter
+        // CSV Header
+        // Note: sep=; is for Excel to automatically detect the delimiter
         const csvHeader = 'sep=;' + CRLF + [
             'ID',
             'Vezetéknév',
@@ -62,7 +64,9 @@ export async function GET(request: NextRequest) {
             'Szül. dátum',
             'Póló méret',
             'Táv',
-            'Ár',
+            'Ár (HUF)',
+            'Ár (EUR)',
+            'Végösszeg',
             'Egyesület',
             'Nevezés Státusz',
             'Fizetési Státusz',
@@ -105,6 +109,8 @@ export async function GET(request: NextRequest) {
                 safe(u.tshirtSize),
                 safe(d.name),
                 d.price.toString(),
+                (d.priceEur || '').toString(),
+                (reg.finalPrice || '').toString(),
                 safe(u.clubName),
                 reg.registrationStatus,
                 reg.paymentStatus,
