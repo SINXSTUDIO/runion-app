@@ -207,7 +207,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ s
                             )}
                             {/* Share Buttons */}
                             <ShareButtons
-                                url={`${process.env.NEXT_PUBLIC_APP_URL}/races/${slug}`}
+                                url={`${process.env.NEXT_PUBLIC_BASE_URL || 'https://runion.hu'}/races/${slug}`}
                                 title={event.title}
                                 labels={{
                                     share: t('share'),
