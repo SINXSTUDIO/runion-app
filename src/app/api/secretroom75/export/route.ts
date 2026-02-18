@@ -48,8 +48,24 @@ export async function GET(request: NextRequest) {
 
         const CRLF = '\r\n';
 
-        // CSV Header
-        // Note: sep=; is for Excel to automatically detect the delimiter
+        // Known keys to exclude from dynamic fields (because they are handled explicitly)
+        const ignoredKeys = new Set(['billingDetails', 'termsAccepted', 'privacyAccepted', 'comment', 'website', 'website_field', 'tshirtSize']);
+
+        // Extract all unique form field keys from registrations
+        const dynamicFieldKeys = new Set<string>();
+        allRegistrations.forEach(reg => {
+            const formData = (reg.formData as Record<string, any>) || {};
+            if (formData && typeof formData === 'object') {
+                Object.keys(formData).forEach(key => {
+                    if (!ignoredKeys.has(key)) {
+                        dynamicFieldKeys.add(key);
+                    }
+                });
+            }
+        });
+
+        const dynamicHeaders = Array.from(dynamicFieldKeys);
+
         // CSV Header
         // Note: sep=; is for Excel to automatically detect the delimiter
         const csvHeader = 'sep=;' + CRLF + [
@@ -72,21 +88,32 @@ export async function GET(request: NextRequest) {
             'Fizetési Státusz',
             'Vészhelyzeti Név',
             'Vészhelyzeti Telefon',
-            'Reg. Dátum'
+            'Reg. Dátum',
+            // Billing Data
+            'Számlázási Név',
+            'Számlázási Irányítószám',
+            'Számlázási Város',
+            'Számlázási Utca, hsz.',
+            'Adószám',
+            // Legal & Extra
+            'Megjegyzés',
+            // Dynamic
+            ...dynamicHeaders
         ].join(';') + CRLF;
 
         // CSV Rows
         const csvRows = allRegistrations.map((reg) => {
             const u = reg.user;
             const d = reg.distance;
+            const formData = (reg.formData as Record<string, any>) || {};
+            const billing = formData.billingDetails || {};
 
             if (!u || !d) {
-                // Skip or handle malformed registrations
                 return null;
             }
 
-            // Safe helper for strings to avoid CSV injection or breaking
-            const safe = (str: string | null | undefined) => `"${(str || '').replace(/"/g, '""')}"`;
+            // Safe helper for strings
+            const safe = (str: any) => `"${String(str || '').replace(/"/g, '""')}"`;
             const dateStr = (date: Date | null) => date ? date.toISOString().split('T')[0] : '';
 
             // Translate Gender
@@ -95,6 +122,13 @@ export async function GET(request: NextRequest) {
                 if (g === 'FEMALE') return 'Nő';
                 return g || '';
             };
+
+            const dynamicValues = dynamicHeaders.map(key => {
+                const value = formData[key];
+                if (value === null || value === undefined) return '';
+                if (typeof value === 'object') return safe(JSON.stringify(value));
+                return safe(value);
+            });
 
             return [
                 reg.id,
@@ -116,10 +150,20 @@ export async function GET(request: NextRequest) {
                 reg.paymentStatus,
                 safe(u.emergencyContactName),
                 safe(u.emergencyContactPhone),
-                dateStr(reg.createdAt)
+                dateStr(reg.createdAt),
+                // Billing
+                safe(billing.name),
+                safe(billing.zip),
+                safe(billing.city),
+                safe(billing.address),
+                safe(billing.taxNumber),
+                // Extra
+                safe(formData.comment),
+                // Dynamic
+                ...dynamicValues
             ].join(';');
         })
-            .filter(row => row !== null) // Filter out malformed rows
+            .filter(row => row !== null)
             .join(CRLF);
 
         const csvContent = "\uFEFF" + csvHeader + csvRows; // Add BOM for Excel support
