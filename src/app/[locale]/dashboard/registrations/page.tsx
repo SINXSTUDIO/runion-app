@@ -17,13 +17,61 @@ export default async function RegistrationsPage({ params }: { params: Promise<{ 
     const registrations = await getUserRegistrations(session.user.id);
 
     // Calculate financial stats
-    const paidAmount = registrations
-        .filter((r: any) => r.paymentStatus === 'PAID')
-        .reduce((sum: number, r: any) => sum + Number(r.finalPrice || r.distance?.price || 0), 0);
+    let paidHuf = 0;
+    let paidEur = 0;
+    let unpaidHuf = 0;
+    let unpaidEur = 0;
 
-    const unpaidAmount = registrations
-        .filter((r: any) => r.paymentStatus !== 'PAID' && r.paymentStatus !== 'REFUNDED')
-        .reduce((sum: number, r: any) => sum + Number(r.finalPrice || r.distance?.price || 0), 0);
+    registrations.forEach((reg: any) => {
+        const distance = reg.distance || {};
+        const isCrewPricing = !!(reg.crewSize && distance.crewPricing);
+
+        let basePriceHuf = 0;
+        let basePriceEur = 0;
+
+        const finalPrice = reg.finalPrice !== undefined && reg.finalPrice !== null
+            ? Number(reg.finalPrice)
+            : Number(distance.price || 0);
+
+        if (isCrewPricing) {
+            basePriceHuf = 0;
+            basePriceEur = finalPrice;
+        } else {
+            basePriceHuf = finalPrice;
+            basePriceEur = Number(distance.priceEur || 0);
+        }
+
+        const extras = Array.isArray(reg.extras) ? reg.extras : [];
+        const extrasTotalHuf = extras.reduce((sum: number, e: any) => sum + Number(e.price || 0), 0);
+        const extrasTotalEur = extras.reduce((sum: number, e: any) => sum + Number(e.priceEur || 0), 0);
+
+        const totalHuf = basePriceHuf + extrasTotalHuf;
+        const totalEur = basePriceEur + extrasTotalEur;
+
+        // Determine currency mode for this registration
+        // If it's Crew, or (HUF is 0 and EUR > 0), we treat it as EUR-only for summation?
+        // Actually, we can just sum up HUF and EUR components separately across all registrations.
+        // If a registration is mixed (HUF base + EUR extra?), we add to respective totals.
+
+        // HOWEVER, for "isEurOnly" logic:
+        // If a registration is deemed "EUR Only" (e.g. crew), then pure HUF parts shouldn't exist ideally.
+        // But the simplistic summation is safest:
+
+        if (reg.paymentStatus === 'PAID') {
+            paidHuf += totalHuf;
+            paidEur += totalEur;
+        } else if (reg.paymentStatus !== 'REFUNDED') {
+            unpaidHuf += totalHuf;
+            unpaidEur += totalEur;
+        }
+    });
+
+    const formatMoney = (huf: number, eur: number) => {
+        if (huf === 0 && eur === 0) return `0 Ft`;
+        if (huf === 0) return `${eur} €`;
+        if (eur === 0) return `${huf.toLocaleString('hu-HU')} Ft`;
+        return `${huf.toLocaleString('hu-HU')} Ft + ${eur} €`;
+    };
 
     return (
         <div className="min-h-screen bg-black text-white pt-20 pb-12">
@@ -54,13 +102,13 @@ export default async function RegistrationsPage({ params }: { params: Promise<{ 
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="bg-black/50 p-4 rounded-xl border border-zinc-800 text-center">
                                     <div className="text-lg md:text-xl font-black text-green-400 mb-1">
-                                        {paidAmount.toLocaleString('hu-HU')} Ft
+                                        {formatMoney(paidHuf, paidEur)}
                                     </div>
                                     <div className="text-xs text-zinc-500 uppercase font-bold">{t('paid')}</div>
                                 </div>
                                 <div className="bg-black/50 p-4 rounded-xl border border-zinc-800 text-center">
                                     <div className="text-lg md:text-xl font-black text-red-400 mb-1">
-                                        {unpaidAmount.toLocaleString('hu-HU')} Ft
+                                        {formatMoney(unpaidHuf, unpaidEur)}
                                     </div>
                                     <div className="text-xs text-zinc-500 uppercase font-bold">{t('unpaid')}</div>
                                 </div>
