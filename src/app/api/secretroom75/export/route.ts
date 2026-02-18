@@ -48,6 +48,7 @@ export async function GET(request: NextRequest) {
 
         // CSV Header
         const csvHeader = [
+            'id',
             'name',
             'email',
             'address',
@@ -81,6 +82,7 @@ export async function GET(request: NextRequest) {
             const dateStr = (date: Date | null) => date ? date.toISOString().split('T')[0] : '';
 
             return [
+                reg.id,
                 safe(`${u.firstName} ${u.lastName}`),
                 u.email, // emails usually don't need quotes but safe to have
                 safe(u.address),
