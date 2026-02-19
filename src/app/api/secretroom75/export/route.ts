@@ -58,7 +58,11 @@ export async function GET(request: NextRequest) {
         };
 
         // Parse form configuration to get human-readable labels
-        const formConfig = (event.formConfig as any[]) || [];
+        // SECURITY: Ensure formConfig is an array before iterating
+        let formConfig = (event.formConfig as any[]) || [];
+        if (!Array.isArray(formConfig)) {
+            formConfig = [];
+        }
         const fieldLabels: Record<string, string> = {};
         const fieldOrder: string[] = [];
 
