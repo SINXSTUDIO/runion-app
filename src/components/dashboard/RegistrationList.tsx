@@ -178,17 +178,30 @@ export default function RegistrationList({ registrations }: { registrations: Das
                             </div>
 
                             <div className="flex items-center gap-3">
-                                {reg.registrationStatus === 'PENDING' && (
-                                    <Button size="sm" onClick={() => setSelectedReg(reg)} className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold">
-                                        <CreditCard className="w-4 h-4 mr-2" />
-                                        {t('transferBtn')}
-                                    </Button>
-                                )}
-                                {reg.registrationStatus === 'CONFIRMED' && (
-                                    <div className="flex items-center gap-2 text-green-500 font-bold text-sm bg-green-500/10 px-3 py-2 rounded-full">
+                                {reg.paymentStatus === 'PAID' ? (
+                                    <div className="flex items-center gap-2 text-green-500 font-bold text-sm bg-green-500/10 px-3 py-2 rounded-full border border-green-500/20">
                                         <CheckCircle className="w-4 h-4" />
-                                        {t('confirmed')}
+                                        FIZETVE
                                     </div>
+                                ) : (
+                                    <>
+                                        {reg.registrationStatus === 'PENDING' && (
+                                            <Button
+                                                size="sm"
+                                                onClick={() => setSelectedReg(reg)}
+                                                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold animate-pulse hover:animate-none"
+                                            >
+                                                <CreditCard className="w-4 h-4 mr-2" />
+                                                {t('transferBtn')}
+                                            </Button>
+                                        )}
+                                        {reg.registrationStatus === 'CONFIRMED' && reg.paymentStatus !== 'PAID' && (
+                                            <div className="flex items-center gap-2 text-green-500 font-bold text-sm bg-green-500/10 px-3 py-2 rounded-full">
+                                                <CheckCircle className="w-4 h-4" />
+                                                {t('confirmed')}
+                                            </div>
+                                        )}
+                                    </>
                                 )}
                             </div>
                         </div>
