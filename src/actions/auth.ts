@@ -149,7 +149,7 @@ export async function sendVerificationCode(email: string): Promise<RegisterState
             }
         });
 
-        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://rktart.hu';
+        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://runion.eu';
         const verifyUrl = `${baseUrl}/hu/verify?email=${encodeURIComponent(email)}&code=${code}`;
 
         await sendEmail({
