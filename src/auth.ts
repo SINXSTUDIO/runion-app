@@ -87,8 +87,8 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
                         throw new Error('Invalid credentials');
                     }
 
-                    // Block unverified users
-                    if (user.emailVerified === null) {
+                    // Block unverified users except ADMIN and STAFF
+                    if (user.role === 'USER' && user.emailVerified === null) {
                         throw new Error('UNVERIFIED_EMAIL');
                     }
 
