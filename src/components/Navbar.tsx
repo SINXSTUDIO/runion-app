@@ -62,11 +62,11 @@ export default function Navbar({ user }: NavbarProps) {
                     </div>
 
                     {/* Right Side (Language & Auth) - Desktop */}
-                    <div className="hidden md:flex items-center gap-4">
+                    <div className="hidden md:flex items-center gap-3 lg:gap-4">
                         {/* Cart Icon */}
                         <button
                             onClick={toggleCart}
-                            className="relative p-2 text-zinc-400 hover:text-white transition-colors mr-2"
+                            className="relative p-2 text-zinc-400 hover:text-white transition-colors lg:mr-2"
                             aria-label="Kosár"
                         >
                             <ShoppingCart className="w-5 h-5" />
@@ -78,20 +78,20 @@ export default function Navbar({ user }: NavbarProps) {
                         </button>
 
                         <LanguageSwitcher />
-                        <div className="h-6 w-px bg-white/20 mx-2"></div>
+                        <div className="h-6 w-px bg-white/20 mx-1 lg:mx-2"></div>
 
                         {user ? (
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-3 lg:gap-4">
                                 <SessionTimer />
 
-
-
-                                <Link href="/dashboard/profile" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
+                                <Link href="/dashboard/profile" className="flex items-center gap-2 lg:gap-3 hover:opacity-80 transition-opacity group">
                                     <div className="text-right hidden lg:block">
                                         <p className="text-xs text-zinc-400 group-hover:text-accent transition-colors">{t('welcome')}</p>
-                                        <p className="text-sm font-bold text-white">{user.name || user.firstName || 'User'}</p>
+                                        <p className="text-sm font-bold text-white truncate max-w-[100px] xl:max-w-[160px]" title={user.name || user.firstName || 'User'}>
+                                            {user.name || user.firstName || 'User'}
+                                        </p>
                                     </div>
-                                    <div className="w-10 h-10 rounded-full bg-zinc-800 border-2 border-zinc-700 overflow-hidden group-hover:border-accent transition-colors relative">
+                                    <div className="w-10 h-10 shrink-0 rounded-full bg-zinc-800 border-2 border-zinc-700 overflow-hidden group-hover:border-accent transition-colors relative">
                                         {user.image ? (
                                             <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
                                         ) : (
@@ -194,8 +194,8 @@ export default function Navbar({ user }: NavbarProps) {
                                 <div className="grid grid-cols-2 gap-3 opacity-0 animate-fade-in" style={{ animationDelay: '500ms' }}>
                                     {user ? (
                                         <Link href="/dashboard/profile" onClick={() => setIsOpen(false)} className="col-span-2">
-                                            <div className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-4 hover:bg-white/10 transition-colors">
-                                                <div className="w-12 h-12 rounded-full bg-zinc-800 border-2 border-zinc-700 overflow-hidden relative">
+                                            <div className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-4 hover:bg-white/10 transition-colors overflow-hidden">
+                                                <div className="w-12 h-12 shrink-0 rounded-full bg-zinc-800 border-2 border-zinc-700 overflow-hidden relative">
                                                     {user.image ? (
                                                         <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
                                                     ) : (
@@ -204,9 +204,11 @@ export default function Navbar({ user }: NavbarProps) {
                                                         </div>
                                                     )}
                                                 </div>
-                                                <div>
+                                                <div className="min-w-0 flex-1">
                                                     <p className="text-xs text-zinc-400">{t('welcome')}</p>
-                                                    <p className="text-lg font-bold text-white">{user.name || user.firstName || 'User'}</p>
+                                                    <p className="text-lg font-bold text-white truncate" title={user.name || user.firstName || 'User'}>
+                                                        {user.name || user.firstName || 'User'}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </Link>
