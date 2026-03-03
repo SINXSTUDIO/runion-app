@@ -80,27 +80,28 @@ export async function register(prevState: RegisterState | undefined, formData: F
             // And clear deletedAt upon successful verification? 
             // OR update it right here, but keep emailVerified as is (or nullify if we want re-verification).
 
-            // Re-verification is safer.
             const hashedPassword = await bcrypt.hash(password, 10);
 
-            await prisma.user.update({
-                where: { email },
-                data: {
-                    passwordHash: hashedPassword,
-                    firstName,
-                    lastName,
-                    deletedAt: null, // Reactivate immediately? Or wait? 
-                    // If we reactivate here, they can login. 
-                    // But we want them to verify email again if we treat it as "new".
-                    // Let's reset emailVerified to null to force verification if we want strict security.
-                    // But existingUser might have had verified email. 
-                    // The requirement: "mintha most regisztrált volna" (as if registered now).
-                    emailVerified: null
-                }
-            });
+            try {
+                await prisma.user.update({
+                    where: { email },
+                    data: {
+                        passwordHash: hashedPassword,
+                        firstName,
+                        lastName,
+                        deletedAt: null,
+                        emailVerified: null,
+                        tokenVersion: {
+                            increment: 1
+                        }
+                    }
+                });
 
-            // Send verification code
-            return await sendVerificationCode(email);
+                return await sendVerificationCode(email);
+            } catch (error) {
+                console.error("Database Update Error (Reactivation):", error);
+                return { success: false, error: 'Hiba a fiók újraaktiválásakor.' };
+            }
         }
 
         return { success: false, error: 'Ez az email cím már regisztrálva van.' };
