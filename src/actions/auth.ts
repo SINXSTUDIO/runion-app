@@ -23,14 +23,24 @@ export async function authenticate(prevState: string | undefined, formData: Form
         await signIn('credentials', { ...Object.fromEntries(formData), redirectTo: `/${locale}/dashboard` });
     } catch (error) {
         console.error("Login error:", error);
+
+        if (error instanceof Error && error.message.includes('UNVERIFIED_EMAIL')) {
+            return 'UNVERIFIED_EMAIL';
+        }
+
         if (error instanceof AuthError) {
             switch (error.type) {
                 case 'CredentialsSignin':
-                    return 'Invalid credentials.';
+                    if (error.cause?.err?.message === 'UNVERIFIED_EMAIL' || String(error.cause?.err).includes('UNVERIFIED_EMAIL')) {
+                        return 'UNVERIFIED_EMAIL';
+                    }
+                    return 'Érvénytelen bejelentkezési adatok.';
                 default:
-                    return 'Something went wrong.';
+                    return 'Valami hiba történt.';
             }
         }
+
+        // Handle redirect errors properly since NextAuth uses them for success navigation
         throw error;
     }
 }
@@ -139,18 +149,23 @@ export async function sendVerificationCode(email: string): Promise<RegisterState
             }
         });
 
+        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://rktart.hu';
+        const verifyUrl = `${baseUrl}/hu/verify?email=${encodeURIComponent(email)}&code=${code}`;
+
         await sendEmail({
             to: email,
             from: '"RUNION.EU" <runionsport@gmail.com>',
-            subject: 'Regisztráció Megerősítése - Kód',
+            subject: 'Regisztráció Megerősítése',
             html: `
                 <div style="font-family: sans-serif; text-align: center; padding: 20px;">
-                    <h1>Hitelesítő Kód</h1>
-                    <p>A regisztráció befejezéséhez kérlek használd az alábbi kódot:</p>
-                    <div style="background: #f4f4f5; padding: 20px; border-radius: 8px; margin: 20px auto; display: inline-block;">
-                        <span style="font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #000;">${code}</span>
+                    <h1>Fiók Aktiválása</h1>
+                    <p>A regisztráció befejezéséhez kérlek kattints az alábbi gombra:</p>
+                    <div style="margin: 30px auto;">
+                        <a href="${verifyUrl}" style="background-color: #00f2fe; color: #000; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-block;">Fiók aktiválása</a>
                     </div>
-                    <p>A kód 15 percig érvényes.</p>
+                    <p>Ha a gomb nem működik, másold be ezt a hitelesítő kódot az oldalon: <strong>${code}</strong></p>
+                    <p style="font-size: 12px; color: #666; margin-top: 40px;">Vagy használd ezt a linket:<br><a href="${verifyUrl}" style="color: #666;">${verifyUrl}</a></p>
+                    <p>A link 15 percig érvényes.</p>
                 </div>
             `,
         });

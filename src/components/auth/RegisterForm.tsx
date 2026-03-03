@@ -1,27 +1,18 @@
 'use client';
 
 import { useActionState } from 'react';
-import { register, verifyEmail, sendVerificationCode } from '@/actions/auth';
+import { register } from '@/actions/auth';
 import { Button } from '@/components/ui/Button';
 import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
-import { User, Mail, Lock, Check, KeyRound } from 'lucide-react';
-import { useParams, useRouter } from 'next/navigation';
+import { User, Mail, Lock, Check, Send } from 'lucide-react';
+import { useParams } from 'next/navigation';
 
 export default function RegisterForm() {
     const [state, dispatch, isPending] = useActionState(register, { success: false });
     const t = useTranslations('Auth.Register');
     const [isReady, setIsReady] = useState(false);
 
-    // 2FA State
-    const [step, setStep] = useState<'register' | 'verify'>('register');
-    const [email, setEmail] = useState('');
-    const [verificationCode, setVerificationCode] = useState('');
-    const [verifyError, setVerifyError] = useState('');
-    const [verifySuccess, setVerifySuccess] = useState('');
-    const [isVerifying, setIsVerifying] = useState(false);
-
-    const router = useRouter();
     const params = useParams();
     const locale = params.locale as string || 'hu';
 
@@ -31,100 +22,26 @@ export default function RegisterForm() {
         return () => clearTimeout(timer);
     }, []);
 
-    useEffect(() => {
-        if (state?.requiresVerification && state.email) {
-            setEmail(state.email);
-            setStep('verify');
-        }
-    }, [state]);
-
-    const handleVerify = async () => {
-        setIsVerifying(true);
-        setVerifyError('');
-        try {
-            const result = await verifyEmail(email, verificationCode);
-            if (result.success) {
-                setVerifySuccess('Sikeres aktiválás! Átirányítás a bejelentkezéshez...');
-                setTimeout(() => {
-                    router.push(`/${locale}/login`);
-                }, 2000);
-            } else {
-                setVerifyError(result.error || 'Hiba történt az ellenőrzés során.');
-            }
-        } catch (e) {
-            setVerifyError('Hálózati vagy szerver hiba történt.');
-        } finally {
-            setIsVerifying(false);
-        }
-    };
-
-    const handleResend = async () => {
-        await sendVerificationCode(email);
-        alert('Kód újraküldve!');
-    };
-
-    if (step === 'verify') {
+    if (state?.requiresVerification && state.email) {
         return (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                <div className="text-center space-y-2">
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/10 mb-2">
-                        <KeyRound className="w-6 h-6 text-accent" />
+                <div className="text-center space-y-4">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-2">
+                        <Send className="w-8 h-8 text-accent" />
                     </div>
-                    <h2 className="text-xl font-bold text-white">Email Megerősítése</h2>
+                    <h2 className="text-2xl font-bold text-white">Sikeres Regisztráció!</h2>
+                    <p className="text-zinc-400 text-sm leading-relaxed">
+                        Elküldtünk egy megerősítő linket a(z) <span className="text-accent font-medium">{state.email}</span> címre.
+                    </p>
                     <p className="text-zinc-400 text-sm">
-                        Küldtünk egy 6-jegyű kódot a(z) <span className="text-accent font-medium">{email}</span> címre.
+                        Kérlek, nyisd meg az levélt és kattints a <strong>"Fiók aktiválása"</strong> gombra a regisztráció befejezéséhez.
                     </p>
                 </div>
 
-                <div className="space-y-2">
-                    <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Megerősítő Kód</label>
-                    <div className="relative group">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <KeyRound className="h-5 w-5 text-zinc-500 group-focus-within:text-accent transition-colors" />
-                        </div>
-                        <input
-                            type="text"
-                            value={verificationCode}
-                            onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                            className="block w-full pl-10 pr-3 py-3 border border-zinc-800 rounded-xl leading-5 bg-zinc-900/50 text-zinc-100 placeholder-zinc-600 focus:outline-none focus:bg-zinc-900 focus:border-accent focus:ring-1 focus:ring-accent sm:text-sm h-12 transition-all duration-200 tracking-[0.5em] font-mono text-center"
-                            placeholder="000000"
-                            maxLength={6}
-                        />
-                    </div>
-                </div>
-
-                <div className="min-h-[20px]">
-                    {verifyError && (
-                        <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3 flex items-center gap-2 text-red-400 text-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0" />
-                            {verifyError}
-                        </div>
-                    )}
-                    {verifySuccess && (
-                        <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3 flex items-center gap-2 text-green-400 text-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
-                            {verifySuccess}
-                        </div>
-                    )}
-                </div>
-
-                <Button
-                    onClick={handleVerify}
-                    disabled={isVerifying || verificationCode.length < 6}
-                    className="w-full h-12 text-base font-bold bg-accent text-black hover:bg-accent/90 transition-all duration-300 transform hover:scale-[1.02] shadow-[0_0_20px_rgba(0,242,254,0.1)] hover:shadow-[0_0_30px_rgba(0,242,254,0.3)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                >
-                    {isVerifying ? (
-                        <span className="flex items-center justify-center gap-2">
-                            <span className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                            Ellenőrzés...
-                        </span>
-                    ) : 'Megerősítés'}
-                </Button>
-
-                <div className="text-center pt-2">
-                    <button type="button" onClick={handleResend} className="text-zinc-500 hover:text-white text-xs transition-colors">
-                        Nem kaptad meg a kódot? <span className="underline decoration-dotted">Kód újraküldése</span>
-                    </button>
+                <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4 text-center mt-8">
+                    <p className="text-xs text-zinc-500">
+                        Nem találod az emailt? Ellenőrizd a Spam vagy Promóciók mappát is!
+                    </p>
                 </div>
             </div>
         );

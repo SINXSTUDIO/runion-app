@@ -75,19 +75,21 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
                     const user = await prisma.user.findUnique({ where: { email } });
 
                     if (!user) {
-                        console.log(`Login failed: User not found for email ${email}`);
-                        return null;
+                        throw new Error('Invalid credentials');
                     }
 
                     if (!user.passwordHash) {
-                        console.log(`Login failed: No password hash for user ${email}`);
-                        return null;
+                        throw new Error('Invalid credentials');
                     }
 
                     // Block soft-deleted users
                     if (user.deletedAt) {
-                        console.log(`Login failed: User ${email} is soft-deleted at ${user.deletedAt}`);
-                        return null;
+                        throw new Error('Invalid credentials');
+                    }
+
+                    // Block unverified users
+                    if (user.emailVerified === null) {
+                        throw new Error('UNVERIFIED_EMAIL');
                     }
 
                     const passwordsMatch = await bcrypt.compare(password, user.passwordHash);
@@ -96,10 +98,10 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
                         console.log(`Login successful for user ${email}`);
                         return user;
                     } else {
-                        console.log(`Login failed: Invalid password for user ${email}`);
+                        throw new Error('Invalid credentials');
                     }
                 } else {
-                    console.log('Login failed: Invalid credentials format');
+                    throw new Error('Invalid credentials');
                 }
 
                 return null;
