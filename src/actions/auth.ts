@@ -153,14 +153,19 @@ export async function sendVerificationCode(email: string): Promise<RegisterState
         const appUrl = process.env.NEXT_PUBLIC_APP_URL;
         const vercelUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
 
-        let baseUrl = 'https://runion-app.vercel.app';
+        // Determine base URL: Priority 1: APP_URL, Priority 2: VERCEL_URL, Fallback: Production URL
+        let baseUrl = 'https://runion.eu'; // Final production domain fallback
         if (appUrl) {
-            baseUrl = appUrl;
+            baseUrl = appUrl.startsWith('http') ? appUrl : `https://${appUrl}`;
         } else if (vercelUrl) {
             baseUrl = `https://${vercelUrl}`;
         }
 
+        // Ensure no trailing slash
+        baseUrl = baseUrl.replace(/\/$/, '');
+
         const verifyUrl = `${baseUrl}/hu/verify?email=${encodeURIComponent(email)}&code=${code}`;
+        console.log(`[AUTH] Generated verification URL: ${verifyUrl}`);
 
         await sendEmail({
             to: email,
