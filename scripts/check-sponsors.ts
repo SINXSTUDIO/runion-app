@@ -1,5 +1,5 @@
 
-import { prisma } from './src/lib/prisma';
+import { prisma } from '../src/lib/prisma';
 
 async function checkSponsors() {
     console.log('Listing all Sponsors (Támogatók):');

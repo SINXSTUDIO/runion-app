@@ -1,6 +1,6 @@
 
 import 'dotenv/config';
-import { loginRateLimit } from './src/lib/rate-limit';
+import { loginRateLimit } from '../src/lib/rate-limit';
 
 async function checkLimit() {
     const email = 'szkami75@gmail.com';

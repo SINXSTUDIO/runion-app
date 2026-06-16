@@ -6,9 +6,8 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import InputField from '@/components/ui/InputField';
 import { createOrder } from '@/actions/shop';
-import { useRouter } from '@/i18n/routing';
+import { useRouter, Link } from '@/i18n/routing';
 import { Loader2, CreditCard, Landmark, Truck, FileCheck, ClipboardList, Check } from 'lucide-react';
-import Link from 'next/link';
 
 interface CheckoutFormProps {
     defaultValues: {
@@ -208,7 +207,7 @@ export default function CheckoutForm({ defaultValues, locale, settings }: Checko
                             </div>
                             <input type="checkbox" className="hidden" checked={acceptTerms} onChange={(e) => setAcceptTerms(e.target.checked)} />
                             <span className="text-sm text-zinc-400 group-hover:text-white transition-colors">
-                                Elfogadom az <Link href="/aszf" target="_blank" className="underline text-accent hover:text-white" onClick={(e) => e.stopPropagation()}>Általános Szerződési Feltételeket</Link> (ÁSZF)
+                                Elfogadom az <Link href="/terms" target="_blank" className="underline text-accent hover:text-white" onClick={(e) => e.stopPropagation()}>Általános Szerződési Feltételeket</Link> (ÁSZF)
                             </span>
                         </label>
 
@@ -218,7 +217,7 @@ export default function CheckoutForm({ defaultValues, locale, settings }: Checko
                             </div>
                             <input type="checkbox" className="hidden" checked={acceptPrivacy} onChange={(e) => setAcceptPrivacy(e.target.checked)} />
                             <span className="text-sm text-zinc-400 group-hover:text-white transition-colors">
-                                Elfogadom az <Link href="/adatvedelem" target="_blank" className="underline text-accent hover:text-white" onClick={(e) => e.stopPropagation()}>Adatkezelési Tájékoztatót</Link>
+                                Elfogadom az <Link href="/privacy" target="_blank" className="underline text-accent hover:text-white" onClick={(e) => e.stopPropagation()}>Adatkezelési Tájékoztatót</Link>
                             </span>
                         </label>
                     </div>

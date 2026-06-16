@@ -140,7 +140,8 @@
             "membership": "Membership",
             "memberType": "Standard",
             "expires": "Expires",
-            "admin": "Administration"
+            "admin": "Administration",
+            "feedback": "Feedback"
         },
         "Membership": {
             "title": "Membership Management",
@@ -186,7 +187,8 @@
             "uptime": "UPTIME",
             "db": "DATABASE",
             "settings": "Settings",
-            "memberships": "Memberships"
+            "memberships": "Memberships",
+            "backup": "Backup"
         },
         "EventForm": {
             "title": "Customize Form",
@@ -319,6 +321,11 @@
     },
     "EventDetails": {
         "backToRaces": "Back to Races",
+        "date": "Date",
+        "location": "Location",
+        "tabOverview": "Overview",
+        "tabMap": "Map",
+        "tabDistances": "Distances",
         "distances": "Selectable Distances",
         "description": "Description",
         "aboutTitle": "About the Race",
@@ -470,9 +477,25 @@
         "description": "It seems you've strayed from the designated course. Don't worry, it happens to every runner!",
         "button": "Back to Home"
     },
+    "CookieConsent": {
+        "title": "We use cookies",
+        "description": "Our website uses cookies to improve your experience and analyze traffic. By browsing the website, you agree to our use of cookies.",
+        "accept": "Accept",
+        "decline": "Decline",
+        "policy": "Privacy Policy"
+    },
     "Profile": {
         "title": "My Profile",
         "subtitle": "Personal information and settings",
+        "dangerZone": {
+            "title": "Danger Zone",
+            "description": "Account deletion is permanent and cannot be undone. All your data will be lost.",
+            "text": "Account deletion is permanent and cannot be undone. All your data will be lost.",
+            "button": "Delete Account",
+            "confirmTitle": "Are you sure you want to delete?",
+            "confirmMessage": "Your account and all personal data will be deactivated. You will be logged out of the system.",
+            "confirmButton": "Yes, Delete"
+        },
         "edit": {
             "title": "Edit Profile",
             "button": "Edit Data",
@@ -518,6 +541,10 @@
             "street": "Street, Number",
             "contactName": "Contact Name",
             "contactPhone": "Contact Phone",
+            "gender": "Gender",
+            "genderPlaceholder": "Select gender",
+            "genderMale": "Male",
+            "genderFemale": "Female",
             "registrationDate": "Registration Date",
             "isVegetarian": "I follow a vegetarian diet",
             "fiveTrialsId": "Five Trials of the Olympics ID",
@@ -671,6 +698,7 @@
             "date": "Date",
             "checkbox": "Checkbox (Yes/No)",
             "select": "Dropdown List",
+            "gender": "Gender (Automatically filled)",
             "radio": "Radio Buttons",
             "textarea": "Long Text"
         }

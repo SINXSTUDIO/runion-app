@@ -1,5 +1,5 @@
 
-import { prisma } from './src/lib/prisma';
+import { prisma } from '../src/lib/prisma';
 
 async function checkEventText() {
     console.log('Listing all events and their confirmation email text:');
@@ -18,7 +18,7 @@ async function checkEventText() {
         return;
     }
 
-    events.forEach(e => {
+    events.forEach((e: any) => {
         console.log('------------------------------------------------');
         console.log(`ID: ${e.id}`);
         console.log(`Title: ${e.title}`);

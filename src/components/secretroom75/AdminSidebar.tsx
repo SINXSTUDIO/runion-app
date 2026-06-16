@@ -26,9 +26,30 @@ import {
     HeartHandshake
 } from 'lucide-react';
 
+import { useState, useEffect } from 'react';
+import versionInfo from '@/lib/version.json';
+
 export default function AdminSidebar() {
     const pathname = usePathname();
     const t = useTranslations('Admin.Sidebar');
+    const [currentTime, setCurrentTime] = useState<string>('');
+
+    useEffect(() => {
+        const updateClock = () => {
+            const now = new Date();
+            const yyyy = now.getFullYear();
+            const mm = String(now.getMonth() + 1).padStart(2, '0');
+            const dd = String(now.getDate()).padStart(2, '0');
+            const hh = String(now.getHours()).padStart(2, '0');
+            const min = String(now.getMinutes()).padStart(2, '0');
+            const ss = String(now.getSeconds()).padStart(2, '0');
+            setCurrentTime(`${yyyy}.${mm}.${dd}. ${hh}:${min}:${ss}`);
+        };
+
+        updateClock();
+        const interval = setInterval(updateClock, 1000);
+        return () => clearInterval(interval);
+    }, []);
 
     const navLinks = [
         { href: '/secretroom75', label: t('dashboard'), icon: LayoutDashboard },
@@ -88,7 +109,20 @@ export default function AdminSidebar() {
                 })}
             </nav>
 
-            <div className="p-3 border-t border-white/5">
+            <div className="p-3 border-t border-white/5 space-y-2">
+                {/* Rendszer verzió és pontos idő doboz */}
+                <div className="bg-zinc-900 rounded-lg p-3 border border-white/5">
+                    <div className="flex items-center gap-2 mb-1.5">
+                        <span className="text-[10px] font-mono text-zinc-400">VERZIÓ & IDŐ</span>
+                    </div>
+                    <div className="text-[9px] text-zinc-500 font-mono leading-normal space-y-1">
+                        <div>IDŐ: <span className="text-zinc-300 font-bold">{currentTime || 'Betöltés...'}</span></div>
+                        <div>VERZIÓ: <span className="text-accent font-bold">#{versionInfo.version}</span></div>
+                        <div className="text-[8px] text-zinc-600 font-mono">FRISSÍTVE: {versionInfo.builtAt}</div>
+                    </div>
+                </div>
+
+                {/* Eredeti Rendszerállapot doboz */}
                 <div className="bg-zinc-900 rounded-lg p-3 border border-white/5">
                     <div className="flex items-center gap-2 mb-1">
                         <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />

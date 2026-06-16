@@ -1,4 +1,8 @@
 {
+    "Common": {
+        "save": "Speichern",
+        "saving": "Speichern..."
+    },
     "Navbar": {
         "races": "Wettkämpfe",
         "results": "Ergebnisse",
@@ -129,7 +133,8 @@
             "membership": "Mitgliedschaft",
             "memberType": "Standard",
             "expires": "Gültig bis",
-            "admin": "Verwaltung"
+            "admin": "Verwaltung",
+            "feedback": "Feedback"
         },
         "Membership": {
             "title": "Mitgliedschaftsverwaltung",
@@ -175,7 +180,8 @@
             "uptime": "LAUFZEIT",
             "db": "DATENBANK",
             "settings": "Einstellungen",
-            "memberships": "Mitgliedschaften"
+            "memberships": "Mitgliedschaften",
+            "backup": "Datensicherung"
         },
         "EventForm": {
             "title": "Formular anpassen",
@@ -297,6 +303,12 @@
         "free": "Kostenlos",
         "noImage": "Kein Bild"
     },
+    "Event": {
+        "details": "Details",
+        "date": "Datum",
+        "location": "Ort",
+        "organizer": "Veranstalter"
+    },
     "EventDetails": {
         "backToRaces": "Zurück zu den Wettkämpfen",
         "date": "Datum",
@@ -313,9 +325,34 @@
         "openRegistration": "Anmeldung möglich",
         "closedRegistration": "Geschlossen",
         "register": "Registrieren",
-        "capacity": "Kapazität",
+        "capacityLabel": "Kapazität",
         "start": "Start",
-        "organizer": "Veranstalter"
+        "organizer": "Veranstalter",
+        "locationMap": "Ort",
+        "openInMaps": "Auf der Karte öffnen",
+        "status": {
+            "soldOut": "Ausgebucht",
+            "almostFull": "Fast voll",
+            "fillingFast": "Schnell füllen",
+            "available": "Verfügbar"
+        },
+        "capacity": {
+            "registered": "{count} angemeldet",
+            "available": "{count} Plätze übrig"
+        },
+        "pricing": {
+            "validUntil": "Gültig bis"
+        },
+        "cta": {
+            "soldOut": "Ausgebucht",
+            "register": "Jetzt anmelden"
+        },
+        "socialProof": {
+            "totalRegistrations": "Anmeldungen",
+            "recentActivity": "Kürzliche Aktivitäten",
+            "registeredFor": "angemeldet für",
+            "verified": "Verifiziertes Event"
+        }
     },
     "AboutPage": {
         "title": "Über Uns",
@@ -437,9 +474,36 @@
         "description": "Es scheint, als wären Sie vom markierten Kurs abgekommen. Keine Sorge, das passiert jedem Läufer mal!",
         "button": "Zurück zur Startseite"
     },
+    "CookieConsent": {
+        "title": "Wir verwenden Cookies",
+        "description": "Unsere Website verwendet Cookies, um Ihre Erfahrung zu verbessern und den Datenverkehr zu analysieren. Durch das Surfen auf der Website stimmen Sie der Verwendung von Cookies zu.",
+        "accept": "Akzeptieren",
+        "decline": "Ablehnen",
+        "policy": "Datenschutzerklärung"
+    },
     "Profile": {
         "title": "Mein Profil",
         "subtitle": "Persönliche Daten und Einstellungen",
+        "dangerZone": {
+            "title": "Gefahrenbereich",
+            "description": "Die Kontolöschung ist dauerhaft und kann nicht rückgängig gemacht werden. Alle Ihre Daten gehen verloren.",
+            "text": "Die Kontolöschung ist dauerhaft und kann nicht rückgängig gemacht werden. Alle Ihre Daten gehen verloren.",
+            "button": "Konto löschen",
+            "confirmTitle": "Sind Sie sicher, dass Sie löschen möchten?",
+            "confirmMessage": "Ihr Konto und alle persönlichen Daten werden deaktiviert. Sie werden vom System abgemeldet.",
+            "confirmButton": "Ja, löschen"
+        },
+        "profile": {
+            "title": "Profileinstellungen",
+            "subtitle": "Verwalten Sie Ihre persönlichen Daten und Ihr Konto",
+            "avatar": "Profilbild",
+            "imageDesc": "Zulässige Formate: JPG, PNG, WEBP. Maximale Größe: 5 MB.",
+            "save": "Speichern",
+            "saving": "Speichern...",
+            "cancel": "Abbrechen",
+            "success": "Erfolgreich gespeichert",
+            "error": "Fehler beim Speichern"
+        },
         "edit": {
             "title": "Profil bearbeiten",
             "button": "Daten bearbeiten",
@@ -471,6 +535,9 @@
             "city": "Stadt",
             "street": "Straße, Hausnummer",
             "contactName": "Name der Kontaktperson",
+            "contactPhone": "Telefonnummer der Kontaktperson",
+            "gender": "Geschlecht",
+            "genderPlaceholder": "Geschlecht auswählen",
             "genderMale": "Männlich",
             "genderFemale": "Weiblich",
             "registrationDate": "Registrierungsdatum",
@@ -502,6 +569,56 @@
     "Registration": {
         "pageTitle": "Anmeldung: {eventName}",
         "fillDetails": "Bitte füllen Sie Ihre Daten aus, um sich zu registrieren.",
+        "form": {
+            "name": {
+                "label": "Name des Teilnehmers",
+                "placeholder": "z.B. Max Mustermann"
+            },
+            "club": {
+                "label": "Verein / Club",
+                "placeholder": "z.B. Runion SE"
+            },
+            "firstName": {
+                "label": "Vorname",
+                "placeholder": "z.B. Max"
+            },
+            "lastName": {
+                "label": "Nachname",
+                "placeholder": "z.B. Mustermann"
+            },
+            "email": {
+                "label": "E-Mail-Adresse",
+                "placeholder": "max@beispiel.de"
+            },
+            "phone": {
+                "label": "Telefonnummer",
+                "placeholder": "+49..."
+            },
+            "birthDate": {
+                "label": "Geburtsdatum",
+                "placeholder": "TT.MM.JJJJ"
+            },
+            "gender": {
+                "label": "Geschlecht",
+                "placeholder": "Wählen..."
+            },
+            "city": {
+                "label": "Stadt",
+                "placeholder": "z.B. Berlin"
+            },
+            "zip": {
+                "label": "Postleitzahl",
+                "placeholder": "z.B. 12345"
+            },
+            "address": {
+                "label": "Adresse (Straße, Hausnummer)",
+                "placeholder": "z.B. Hauptstraße 1"
+            },
+            "tshirtSize": {
+                "label": "T-Shirt-Größe",
+                "placeholder": "Wählen..."
+            }
+        },
         "steps": {
             "distance": "Distanz",
             "extras": "Extra",
@@ -578,6 +695,7 @@
             "date": "Datum",
             "checkbox": "Checkbox (Ja/Nein)",
             "select": "Dropdown-Liste",
+            "gender": "Geschlecht (Wird automatisch ausgefüllt)",
             "radio": "Radio-Buttons",
             "textarea": "Langtext"
         }
