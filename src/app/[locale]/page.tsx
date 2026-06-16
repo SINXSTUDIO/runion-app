@@ -8,7 +8,7 @@ import { ArrowRight, Trophy, Timer, Users, Camera, TrendingUp, Heart } from 'luc
 import HeroSlideshow from '@/components/ui/HeroSlideshow';
 import EventCountdown from '@/components/ui/EventCountdown';
 import SponsorSlider from '@/components/ui/SponsorSlider';
-import NewsletterForm from '@/components/NewsletterForm';
+// import NewsletterForm from '@/components/NewsletterForm';
 import Image from 'next/image';
 import Partners from '@/components/layout/Partners';
 import FeaturedEvent from '@/components/home/FeaturedEvent';
@@ -327,12 +327,13 @@ export default async function HomePage({ params }: HomePageProps) {
                     </div>
                 </section>
 
-                {/* Newsletter Section */}
+                {/* Newsletter Section - Disabled for now as requested
                 <section className="py-24 bg-black">
                     <div className="container mx-auto px-4">
                         <NewsletterForm />
                     </div>
                 </section>
+                */}
             </div>
         </>
     );

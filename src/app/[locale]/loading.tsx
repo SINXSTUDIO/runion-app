@@ -37,7 +37,7 @@ const HomeLoading: FC = () => {
                 </div>
             </div>
 
-            {/* Newsletter Section Skeleton */}
+            {/* Newsletter Section Skeleton - Disabled
             <div className="py-20 bg-zinc-900">
                 <div className="container mx-auto px-4 max-w-3xl text-center">
                     <Skeleton className="h-10 w-64 mx-auto mb-4" />
@@ -48,6 +48,7 @@ const HomeLoading: FC = () => {
                     </div>
                 </div>
             </div>
+            */}
         </div>
     );
 };

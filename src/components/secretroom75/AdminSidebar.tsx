@@ -6,23 +6,19 @@ import {
     LayoutDashboard,
     Calendar,
     Users,
-    Star,
     Image as ImageIcon,
-    ShoppingCart,
+    ShoppingBag,
     Info,
     Phone,
     FileText,
     ClipboardList,
     Building2,
-    Crown,
     Database,
     Package,
     Handshake,
-    MessageSquare,
     CreditCard,
     Settings as SettingsIcon,
     Shield,
-    ShoppingBag,
     HeartHandshake
 } from 'lucide-react';
 
@@ -51,91 +47,137 @@ export default function AdminSidebar() {
         return () => clearInterval(interval);
     }, []);
 
-    const navLinks = [
-        { href: '/secretroom75', label: t('dashboard'), icon: LayoutDashboard },
-        { href: '/secretroom75/events', label: t('events'), icon: Calendar },
-        { href: '/secretroom75/registrations', label: t('registrations'), icon: ClipboardList },
-        { href: '/secretroom75/products', label: t('products'), icon: ShoppingBag },
-        { href: '/secretroom75/requests', label: 'Átnevezés', icon: ClipboardList }, // Updated label to shorter version
-        { href: '/secretroom75/orders', label: t('orders'), icon: Package }, // Icon changed
-        { href: '/secretroom75/users', label: t('users'), icon: Users },
-        { href: '/secretroom75/sellers', label: 'Szervezetek (Számlázás)', icon: Building2 },
-        { href: '/secretroom75/partners', label: t('partners'), icon: Handshake }, // Visual partners
-        { href: '/secretroom75/memberships', label: t('memberships'), icon: CreditCard },
-        { href: '/secretroom75/gallery', label: t('gallery'), icon: ImageIcon },
-        { href: '/secretroom75/sponsors', label: t('sponsors'), icon: HeartHandshake },
-        { href: '/secretroom75/shop-settings', label: 'Boutique Beállítások', icon: ShoppingBag },
-        { type: 'divider' },
-        { href: '/secretroom75/settings', label: t('settings'), icon: SettingsIcon }, // Icon changed
-        { href: '/secretroom75/settings/backup', label: t('backup'), icon: Database },
-        { href: '/secretroom75/logs', label: 'Rendszernapló', icon: FileText }, // New link
-        { href: '/secretroom75/audit-logs', label: 'Audit Napló', icon: Shield }, // Audit log
-        { href: '/secretroom75/about', label: t('about'), icon: Info },
-        { href: '/secretroom75/contact', label: t('contact'), icon: Phone },
+    // Grouped links for a cleaner structure
+    const linkGroups = [
+        {
+            title: "Áttekintés",
+            links: [
+                { href: '/secretroom75', label: t('dashboard'), icon: LayoutDashboard },
+                { href: '/secretroom75/events', label: t('events'), icon: Calendar },
+                { href: '/secretroom75/registrations', label: t('registrations'), icon: ClipboardList },
+                { href: '/secretroom75/requests', label: 'Átnevezés', icon: ClipboardList },
+            ]
+        },
+        {
+            title: "Webshop & Butik",
+            links: [
+                { href: '/secretroom75/products', label: t('products'), icon: ShoppingBag },
+                { href: '/secretroom75/orders', label: t('orders'), icon: Package },
+                { href: '/secretroom75/shop-settings', label: 'Boutique Beállítások', icon: SettingsIcon },
+            ]
+        },
+        {
+            title: "Közösség",
+            links: [
+                { href: '/secretroom75/users', label: t('users'), icon: Users },
+                { href: '/secretroom75/memberships', label: t('memberships'), icon: CreditCard },
+                { href: '/secretroom75/sellers', label: 'Szervezetek', icon: Building2 },
+                { href: '/secretroom75/partners', label: t('partners'), icon: Handshake },
+                { href: '/secretroom75/sponsors', label: t('sponsors'), icon: HeartHandshake },
+            ]
+        },
+        {
+            title: "Rendszer",
+            links: [
+                { href: '/secretroom75/gallery', label: t('gallery'), icon: ImageIcon },
+                { href: '/secretroom75/settings', label: t('settings'), icon: SettingsIcon },
+                { href: '/secretroom75/settings/backup', label: t('backup'), icon: Database },
+                { href: '/secretroom75/logs', label: 'Rendszernapló', icon: FileText },
+                { href: '/secretroom75/audit-logs', label: 'Audit Napló', icon: Shield },
+            ]
+        },
+        {
+            title: "Támogatás",
+            links: [
+                { href: '/secretroom75/about', label: t('about'), icon: Info },
+                { href: '/secretroom75/contact', label: t('contact'), icon: Phone },
+            ]
+        }
     ];
 
     return (
-        <aside className="w-56 bg-zinc-950 border-r border-white/5 flex-shrink-0 flex flex-col min-h-screen sticky top-0 h-screen overflow-y-auto">
-            <div className="p-4 border-b border-white/5">
-                <span className="text-lg font-black font-heading tracking-tighter italic block leading-tight">
+        <aside className="w-64 bg-zinc-950 border-r border-white/5 flex-shrink-0 flex flex-col min-h-screen sticky top-0 h-screen overflow-y-auto">
+            {/* Sidebar Header */}
+            <div className="p-5 border-b border-white/5 bg-zinc-950/50 backdrop-blur-sm">
+                <span className="text-xl font-black font-heading tracking-tighter italic block leading-tight">
                     <span className="text-white block">RUNION</span>
-                    <span className="text-accent block text-base">VEZÉRLŐPULT</span>
+                    <span className="text-accent block text-base tracking-widest">VEZÉRLŐPULT</span>
                 </span>
                 <span className="text-[9px] text-zinc-500 font-mono mt-1 block">ADMIN CONSOLE v2.0</span>
             </div>
 
-            <nav className="flex-1 px-2 py-2 space-y-0.5">
-                {navLinks.map((link, index) => {
-                    if (link.type === 'divider') {
-                        return <div key={index} className="h-px bg-white/5 my-2 mx-2" />;
-                    }
+            {/* Sidebar Navigation */}
+            <nav className="flex-1 px-3 py-4 space-y-6">
+                {linkGroups.map((group, groupIdx) => (
+                    <div key={groupIdx} className="space-y-1">
+                        <h4 className="px-3 text-[9px] font-bold tracking-widest text-zinc-500 uppercase font-mono mb-1.5">
+                            {group.title}
+                        </h4>
+                        <div className="space-y-0.5">
+                            {group.links.map((link) => {
+                                const isActive = pathname === link.href;
+                                const Icon = link.icon;
 
-                    const isActive = pathname === link.href;
-                    const Icon = link.icon!;
-
-                    return (
-                        <Link
-                            key={link.href}
-                            href={link.href!}
-                            className={`flex items-center gap-2.5 px-3 py-2 rounded-lg transition-all duration-200 group text-xs ${isActive
-                                ? 'bg-accent text-black font-bold shadow-[0_0_10px_rgba(0,242,254,0.3)]'
-                                : 'text-zinc-400 hover:text-white hover:bg-white/5'
-                                }`}
-                        >
-                            <Icon className={`w-4 h-4 ${isActive ? 'text-black' : 'text-zinc-500 group-hover:text-white'}`} />
-                            <span>{link.label}</span>
-                        </Link>
-                    );
-                })}
+                                return (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        className={`flex items-center gap-2.5 px-3 py-1.5 rounded-md transition-all duration-150 group text-xs border-l-2 ${isActive
+                                            ? 'bg-accent/10 text-accent font-semibold border-accent shadow-[inset_4px_0_15px_-4px_rgba(0,242,254,0.15)]'
+                                            : 'text-zinc-400 hover:text-white hover:bg-zinc-900/50 border-transparent hover:translate-x-0.5'
+                                            }`}
+                                    >
+                                        <Icon className={`w-4 h-4 transition-colors duration-150 ${isActive ? 'text-accent' : 'text-zinc-500 group-hover:text-zinc-300'}`} />
+                                        <span>{link.label}</span>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </div>
+                ))}
             </nav>
 
-            <div className="p-3 border-t border-white/5 space-y-2">
+            {/* Sidebar Footer */}
+            <div className="p-4 border-t border-white/5 bg-zinc-950/50 space-y-2.5">
                 {/* Rendszer verzió és pontos idő doboz */}
-                <div className="bg-zinc-900 rounded-lg p-3 border border-white/5">
-                    <div className="flex items-center gap-2 mb-1.5">
-                        <span className="text-[10px] font-mono text-zinc-400">VERZIÓ & IDŐ</span>
-                    </div>
+                <div className="bg-zinc-900/40 rounded-lg p-3 border border-white/5 shadow-inner">
                     <div className="text-[9px] text-zinc-500 font-mono leading-normal space-y-1">
-                        <div>IDŐ: <span className="text-zinc-300 font-bold">{currentTime || 'Betöltés...'}</span></div>
-                        <div>VERZIÓ: <span className="text-accent font-bold">#{versionInfo.version}</span></div>
-                        <div className="text-[8px] text-zinc-600 font-mono">FRISSÍTVE: {versionInfo.builtAt}</div>
+                        <div className="flex justify-between items-center">
+                            <span>IDŐ:</span>
+                            <span className="text-zinc-300 font-bold">{currentTime || 'Betöltés...'}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                            <span>VERZIÓ:</span>
+                            <span className="text-accent font-bold">#{versionInfo.version}</span>
+                        </div>
+                        <div className="text-[8px] text-zinc-600 font-mono pt-1 border-t border-white/5 text-right">
+                            BUILT: {versionInfo.builtAt}
+                        </div>
                     </div>
                 </div>
 
                 {/* Eredeti Rendszerállapot doboz */}
-                <div className="bg-zinc-900 rounded-lg p-3 border border-white/5">
-                    <div className="flex items-center gap-2 mb-1">
+                <div className="bg-zinc-900/40 rounded-lg p-3 border border-white/5 shadow-inner">
+                    <div className="flex items-center gap-2 mb-1.5">
                         <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                         <span className="text-[10px] font-mono text-zinc-400">{t('status')}</span>
                     </div>
-                    <div className="text-[9px] text-zinc-600 font-mono leading-tight">
-                        {t('uptime')}: 99.9%<br />
-                        {t('db')}: CONNECTED<br />
-                        REDIS: STANDBY
+                    <div className="text-[9px] text-zinc-600 font-mono leading-tight space-y-0.5">
+                        <div className="flex justify-between">
+                            <span>{t('uptime')}:</span>
+                            <span className="text-zinc-400">99.9%</span>
+                        </div>
+                        <div className="flex justify-between">
+                            <span>{t('db')}:</span>
+                            <span className="text-emerald-500 font-semibold">CONNECTED</span>
+                        </div>
+                        <div className="flex justify-between">
+                            <span>REDIS:</span>
+                            <span className="text-amber-500 font-semibold">STANDBY</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </aside>
     );
 }
-
