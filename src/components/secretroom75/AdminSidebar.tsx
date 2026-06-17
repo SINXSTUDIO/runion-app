@@ -19,13 +19,19 @@ import {
     CreditCard,
     Settings as SettingsIcon,
     Shield,
-    HeartHandshake
+    HeartHandshake,
+    X
 } from 'lucide-react';
 
 import { useState, useEffect } from 'react';
 import versionInfo from '@/lib/version.json';
 
-export default function AdminSidebar() {
+interface AdminSidebarProps {
+    isOpen?: boolean;
+    onClose?: () => void;
+}
+
+export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
     const pathname = usePathname();
     const t = useTranslations('Admin.Sidebar');
     const [currentTime, setCurrentTime] = useState<string>('');
@@ -96,14 +102,29 @@ export default function AdminSidebar() {
     ];
 
     return (
-        <aside className="w-64 bg-zinc-950 border-r border-white/5 flex-shrink-0 flex flex-col min-h-screen sticky top-0 h-screen overflow-y-auto">
+        <aside 
+            className={`w-64 bg-zinc-950 border-r border-white/5 flex-shrink-0 flex flex-col min-h-screen fixed lg:sticky top-0 h-screen overflow-y-auto z-50 transition-transform duration-300 ease-in-out lg:translate-x-0 lg:flex ${
+                isOpen ? 'translate-x-0 shadow-[5px_0_30px_rgba(0,0,0,0.8)]' : '-translate-x-full'
+            }`}
+        >
             {/* Sidebar Header */}
-            <div className="p-5 border-b border-white/5 bg-zinc-950/50 backdrop-blur-sm">
-                <span className="text-xl font-black font-heading tracking-tighter italic block leading-tight">
-                    <span className="text-white block">RUNION</span>
-                    <span className="text-accent block text-base tracking-widest">VEZÉRLŐPULT</span>
-                </span>
-                <span className="text-[9px] text-zinc-500 font-mono mt-1 block">ADMIN CONSOLE v2.0</span>
+            <div className="p-5 border-b border-white/5 bg-zinc-950/50 backdrop-blur-sm flex justify-between items-center">
+                <div>
+                    <span className="text-xl font-black font-heading tracking-tighter italic block leading-tight">
+                        <span className="text-white block">RUNION</span>
+                        <span className="text-accent block text-base tracking-widest">VEZÉRLŐPULT</span>
+                    </span>
+                    <span className="text-[9px] text-zinc-500 font-mono mt-1 block">ADMIN CONSOLE v2.0</span>
+                </div>
+                {onClose && (
+                    <button
+                        onClick={onClose}
+                        className="lg:hidden text-zinc-400 hover:text-white p-1.5 rounded-lg border border-white/5 bg-zinc-900/50 hover:bg-zinc-900 transition-colors"
+                        aria-label="Close Sidebar"
+                    >
+                        <X className="w-4 h-4" />
+                    </button>
+                )}
             </div>
 
             {/* Sidebar Navigation */}
@@ -122,6 +143,7 @@ export default function AdminSidebar() {
                                     <Link
                                         key={link.href}
                                         href={link.href}
+                                        onClick={onClose}
                                         className={`flex items-center gap-2.5 px-3 py-1.5 rounded-md transition-all duration-150 group text-xs border-l-2 ${isActive
                                             ? 'bg-accent/10 text-accent font-semibold border-accent shadow-[inset_4px_0_15px_-4px_rgba(0,242,254,0.15)]'
                                             : 'text-zinc-400 hover:text-white hover:bg-zinc-900/50 border-transparent hover:translate-x-0.5'

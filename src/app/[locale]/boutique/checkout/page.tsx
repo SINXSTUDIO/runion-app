@@ -63,7 +63,7 @@ export default async function CheckoutPage({
                 <div className="mb-12 relative overflow-hidden">
                     <div className="absolute top-1/2 left-0 w-12 h-px bg-accent/50 hidden md:block"></div>
                     <h1 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter md:pl-16">
-                        Pénztár <span className="text-accent underline decoration-4 underline-offset-8">Checkout</span>
+                        {t('title')} {locale === 'hu' && <span className="text-accent underline decoration-4 underline-offset-8">Checkout</span>}
                     </h1>
                 </div>
 

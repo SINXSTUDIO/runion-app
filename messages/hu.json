@@ -442,7 +442,26 @@
         "paymentMethod": "Választott fizetési mód",
         "bankTransfer": "Banki Átutalás",
         "bankTransferDesc": "Díjbekérő PDF emailben",
-        "placeOrder": "Rendelés Leadása"
+        "placeOrder": "Rendelés Leadása",
+        "empty": "A kosarad üres.",
+        "backToStore": "Vissza a Butikba",
+        "acceptTermsError": "A rendelés leadásához el kell fogadnod az Általános Szerződési Feltételeket!",
+        "acceptPrivacyError": "A rendelés leadásához el kell fogadnod az Adatkezelési Tájékoztatót!",
+        "orderError": "Hiba történt a rendelés során.",
+        "unexpectedError": "Váratlan hiba történt.",
+        "fields": {
+            "name": "Név",
+            "email": "Email",
+            "zip": "Irányítószám",
+            "city": "Város",
+            "address": "Cím (Utca, házszám, emelet)",
+            "phone": "Telefonszám",
+            "billingName": "Név / Cégnév",
+            "taxNumber": "Adószám (Cég esetén)",
+            "notePlaceholder": "Egyéb információ a futárnak vagy a rendeléssel kapcsolatban...",
+            "acceptTerms": "Elfogadom az <link>Általános Szerződési Feltételeket</link> (ÁSZF)",
+            "acceptPrivacy": "Elfogadom az <link>Adatkezelési Tájékoztatót</link>"
+        }
     },
     "CartDrawer": {
         "title": "Kosár",

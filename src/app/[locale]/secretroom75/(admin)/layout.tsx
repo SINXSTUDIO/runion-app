@@ -1,7 +1,6 @@
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
-import SecretHeader from '@/components/secretroom75/SecretHeader';
-import AdminSidebar from '@/components/secretroom75/AdminSidebar';
+import AdminLayoutClient from '@/components/secretroom75/AdminLayoutClient';
 
 export default async function AdminLayout({
     children,
@@ -23,16 +22,8 @@ export default async function AdminLayout({
     }
 
     return (
-        <div className="secret-layout min-h-screen bg-black flex">
-            <AdminSidebar />
-            {/* <div className="w-64 bg-red-900/20 text-white p-4">SIDEBAR DISABLED</div> */}
-            <div className="flex-1 flex flex-col min-w-0">
-                <SecretHeader />
-                {/* <div className="p-4 bg-red-900/50 text-white">SecretHeader DISABLED</div> */}
-                <main className="flex-1 p-6 overflow-y-auto">
-                    {children}
-                </main>
-            </div>
-        </div>
+        <AdminLayoutClient>
+            {children}
+        </AdminLayoutClient>
     );
 }

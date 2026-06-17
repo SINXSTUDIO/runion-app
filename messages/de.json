@@ -435,7 +435,26 @@
         "paymentMethod": "Gewählte Zahlungsmethode",
         "bankTransfer": "Banküberweisung",
         "bankTransferDesc": "Proforma-PDF per E-Mail",
-        "placeOrder": "Bestellung aufgeben"
+        "placeOrder": "Bestellung aufgeben",
+        "empty": "Ihr Warenkorb ist leer.",
+        "backToStore": "Zurück zur Boutique",
+        "acceptTermsError": "Sie müssen die Allgemeinen Geschäftsbedingungen akzeptieren, um die Bestellung aufzugeben!",
+        "acceptPrivacyError": "Sie müssen die Datenschutzerklärung akzeptieren, um die Bestellung aufzugeben!",
+        "orderError": "Bei Ihrer Bestellung ist ein Fehler aufgetreten.",
+        "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten.",
+        "fields": {
+            "name": "Name",
+            "email": "E-Mail",
+            "zip": "Postleitzahl",
+            "city": "Stadt",
+            "address": "Adresse (Straße, Hausnummer, Etage)",
+            "phone": "Telefonnummer",
+            "billingName": "Name / Firmenname",
+            "taxNumber": "Steuernummer (für Firmen)",
+            "notePlaceholder": "Sonstige Informationen für den Kurier oder zur Bestellung...",
+            "acceptTerms": "Ich akzeptiere die <link>Allgemeinen Geschäftsbedingungen</link>",
+            "acceptPrivacy": "Ich akzeptiere die <link>Datenschutzerklärung</link>"
+        }
     },
     "CartDrawer": {
         "title": "Warenkorb",

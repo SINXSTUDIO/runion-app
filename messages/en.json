@@ -438,7 +438,26 @@
         "paymentMethod": "Selected payment method",
         "bankTransfer": "Bank Transfer",
         "bankTransferDesc": "Proforma PDF via email",
-        "placeOrder": "Place Order"
+        "placeOrder": "Place Order",
+        "empty": "Your cart is empty.",
+        "backToStore": "Back to Boutique",
+        "acceptTermsError": "You must accept the General Terms and Conditions to place the order!",
+        "acceptPrivacyError": "You must accept the Privacy Policy to place the order!",
+        "orderError": "An error occurred while processing your order.",
+        "unexpectedError": "An unexpected error occurred.",
+        "fields": {
+            "name": "Name",
+            "email": "Email",
+            "zip": "ZIP Code",
+            "city": "City",
+            "address": "Address (Street, Number, Floor)",
+            "phone": "Phone Number",
+            "billingName": "Name / Company Name",
+            "taxNumber": "Tax Number (for companies)",
+            "notePlaceholder": "Other information for the courier or regarding the order...",
+            "acceptTerms": "I accept the <link>General Terms and Conditions</link>",
+            "acceptPrivacy": "I accept the <link>Privacy Policy</link>"
+        }
     },
     "CartDrawer": {
         "title": "Cart",

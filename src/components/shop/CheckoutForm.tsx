@@ -24,13 +24,12 @@ interface CheckoutFormProps {
         taxNumber?: string;
     };
     locale: string;
-    settings: any; // Using any for simplicity or define properly
+    settings: any;
 }
 
 export default function CheckoutForm({ defaultValues, locale, settings }: CheckoutFormProps) {
     const { items, total, clearCart } = useCart();
 
-    // Calculate Shipping
     const shippingCost = settings?.shopShippingCost || 2000;
     const freeThreshold = settings?.shopFreeShippingThreshold || 20000;
     const isFreeShipping = total >= freeThreshold;
@@ -39,49 +38,25 @@ export default function CheckoutForm({ defaultValues, locale, settings }: Checko
 
     const t = useTranslations('CheckoutPage');
     const router = useRouter();
-    // ...
-    // (Wait, I need to make sure I don't cut off state definitions. I'll rely on matching specific blocks)
-
-    // ... (logic)
-
-    // Update Summary Display
-    <div className="space-y-3 mb-8">
-        <div className="flex justify-between text-xs text-zinc-500 uppercase tracking-widest">
-            <span>{t('subtotal')}</span>
-            <span>{total.toLocaleString('hu-HU')} Ft</span>
-        </div>
-        <div className="flex justify-between text-xs text-zinc-500 uppercase tracking-widest">
-            <span>{t('delivery')}</span>
-            <span className={isFreeShipping ? "text-green-500" : "text-white"}>
-                {isFreeShipping ? t('free') : `${finalShippingCost.toLocaleString('hu-HU')} Ft`}
-            </span>
-        </div>
-        <div className="pt-4 border-t border-white/10 flex justify-between font-black text-2xl italic">
-            <span className="text-white uppercase">{t('total')}</span>
-            <span className="text-accent">{finalTotal.toLocaleString('hu-HU')} Ft</span>
-        </div>
-    </div>
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // Legal Acceptance State
     const [acceptTerms, setAcceptTerms] = useState(false);
     const [acceptPrivacy, setAcceptPrivacy] = useState(false);
 
     async function handleSubmit(formData: FormData) {
         if (!acceptTerms) {
-            setError('A rendelés leadásához el kell fogadnod az Általános Szerződési Feltételeket!');
+            setError(t('acceptTermsError'));
             return;
         }
         if (!acceptPrivacy) {
-            setError('A rendelés leadásához el kell fogadnod az Adatkezelési Tájékoztatót!');
+            setError(t('acceptPrivacyError'));
             return;
         }
 
         setIsPending(true);
         setError(null);
 
-        // ... (rest of the logic)
         const orderPayload = {
             ...Object.fromEntries(formData),
             items: items.map(item => ({
@@ -101,28 +76,27 @@ export default function CheckoutForm({ defaultValues, locale, settings }: Checko
                 clearCart();
                 router.push(`/boutique/checkout/success/${result.orderId}`);
             } else {
-                setError(result.message || 'Hiba történt a rendelés során.');
+                setError(result.message || t('orderError'));
             }
         } catch (e) {
-            setError('Váratlan hiba történt.');
+            setError(t('unexpectedError'));
         } finally {
             setIsPending(false);
         }
     }
 
     if (items.length === 0) {
-        // ... (empty cart view)
         return (
             <div className="text-center py-20 bg-zinc-900 border border-white/5 rounded-[2rem]">
                 <div className="bg-zinc-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Loader2 className="w-10 h-10 text-accent opacity-20" />
                 </div>
-                <p className="text-2xl font-black uppercase italic italic text-white mb-6">A kosarad üres.</p>
+                <p className="text-2xl font-black uppercase italic text-white mb-6">{t('empty')}</p>
                 <Button
                     onClick={() => router.push('/boutique')}
                     className="bg-accent text-black font-bold uppercase py-6 px-10 hover:scale-105 transition-all"
                 >
-                    Vissza a Butikba
+                    {t('backToStore')}
                 </Button>
             </div>
         );
@@ -130,7 +104,6 @@ export default function CheckoutForm({ defaultValues, locale, settings }: Checko
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-
             {/* Form Column */}
             <div className="lg:col-span-8 space-y-12">
                 {error && (
@@ -141,27 +114,27 @@ export default function CheckoutForm({ defaultValues, locale, settings }: Checko
                 )}
 
                 <form action={handleSubmit as any} className="space-y-12">
-                    {/* ... (Shipping Info - kept as is) */}
+                    {/* Shipping Info */}
                     <div className="space-y-6">
                         <div className="flex items-center gap-3 mb-4">
                             <Truck className="text-accent w-6 h-6" />
                             <h2 className="text-2xl font-black uppercase italic tracking-tight">{t('shipping')}</h2>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <InputField label="Név" name="shippingName" defaultValue={defaultValues.name} required />
-                            <InputField label="Email" name="shippingEmail" type="email" defaultValue={defaultValues.email} required placeholder="email@pelda.hu" />
+                            <InputField label={t('fields.name')} name="shippingName" defaultValue={defaultValues.name} required />
+                            <InputField label={t('fields.email')} name="shippingEmail" type="email" defaultValue={defaultValues.email} required placeholder="email@example.com" />
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <InputField label="Irányítószám" name="shippingZip" defaultValue={defaultValues.zipCode} required />
+                            <InputField label={t('fields.zip')} name="shippingZip" defaultValue={defaultValues.zipCode} required />
                             <div className="md:col-span-2">
-                                <InputField label="Város" name="shippingCity" defaultValue={defaultValues.city} required />
+                                <InputField label={t('fields.city')} name="shippingCity" defaultValue={defaultValues.city} required />
                             </div>
                         </div>
-                        <InputField label="Cím (Utca, házszám, emelet)" name="shippingAddress" defaultValue={defaultValues.address} required />
-                        <InputField label="Telefonszám" name="shippingPhone" defaultValue={defaultValues.phone} required placeholder="+36..." />
+                        <InputField label={t('fields.address')} name="shippingAddress" defaultValue={defaultValues.address} required />
+                        <InputField label={t('fields.phone')} name="shippingPhone" defaultValue={defaultValues.phone} required placeholder="+36..." />
                     </div>
 
-                    {/* ... (Billing Info - kept as is) */}
+                    {/* Billing Info */}
                     <div className="space-y-6 pt-12 border-t border-white/5">
                         <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center gap-3">
@@ -174,19 +147,19 @@ export default function CheckoutForm({ defaultValues, locale, settings }: Checko
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <InputField label="Név / Cégnév" name="billingName" defaultValue={defaultValues.billingName || defaultValues.name} required />
-                            <InputField label="Adószám (Cég esetén)" name="billingTaxNumber" defaultValue={defaultValues.taxNumber} placeholder="12345678-x-yy" />
+                            <InputField label={t('fields.billingName')} name="billingName" defaultValue={defaultValues.billingName || defaultValues.name} required />
+                            <InputField label={t('fields.taxNumber')} name="billingTaxNumber" defaultValue={defaultValues.taxNumber} placeholder="12345678-x-yy" />
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <InputField label="Irányítószám" name="billingZip" defaultValue={defaultValues.billingZip || defaultValues.zipCode} required />
+                            <InputField label={t('fields.zip')} name="billingZip" defaultValue={defaultValues.billingZip || defaultValues.zipCode} required />
                             <div className="md:col-span-2">
-                                <InputField label="Város" name="billingCity" defaultValue={defaultValues.billingCity || defaultValues.city} required />
+                                <InputField label={t('fields.city')} name="billingCity" defaultValue={defaultValues.billingCity || defaultValues.city} required />
                             </div>
                         </div>
-                        <InputField label="Cím" name="billingAddress" defaultValue={defaultValues.billingAddress || defaultValues.address} required />
+                        <InputField label={t('fields.address')} name="billingAddress" defaultValue={defaultValues.billingAddress || defaultValues.address} required />
                     </div>
 
-                    {/* ... (Note - kept as is) */}
+                    {/* Note */}
                     <div className="pt-12 border-t border-white/5">
                         <div className="flex items-center gap-3 mb-4">
                             <ClipboardList className="text-accent w-6 h-6" />
@@ -195,7 +168,7 @@ export default function CheckoutForm({ defaultValues, locale, settings }: Checko
                         <textarea
                             className="w-full h-32 bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all text-white placeholder:text-zinc-600"
                             name="note"
-                            placeholder="Egyéb információ a futárnak vagy a rendeléssel kapcsolatban..."
+                            placeholder={t('fields.notePlaceholder')}
                         />
                     </div>
 
@@ -207,7 +180,13 @@ export default function CheckoutForm({ defaultValues, locale, settings }: Checko
                             </div>
                             <input type="checkbox" className="hidden" checked={acceptTerms} onChange={(e) => setAcceptTerms(e.target.checked)} />
                             <span className="text-sm text-zinc-400 group-hover:text-white transition-colors">
-                                Elfogadom az <Link href="/terms" target="_blank" className="underline text-accent hover:text-white" onClick={(e) => e.stopPropagation()}>Általános Szerződési Feltételeket</Link> (ÁSZF)
+                                {t.rich('fields.acceptTerms', {
+                                    link: (chunks) => (
+                                        <Link href="/terms" target="_blank" className="underline text-accent hover:text-white" onClick={(e) => e.stopPropagation()}>
+                                            {chunks}
+                                        </Link>
+                                    )
+                                })}
                             </span>
                         </label>
 
@@ -217,12 +196,17 @@ export default function CheckoutForm({ defaultValues, locale, settings }: Checko
                             </div>
                             <input type="checkbox" className="hidden" checked={acceptPrivacy} onChange={(e) => setAcceptPrivacy(e.target.checked)} />
                             <span className="text-sm text-zinc-400 group-hover:text-white transition-colors">
-                                Elfogadom az <Link href="/privacy" target="_blank" className="underline text-accent hover:text-white" onClick={(e) => e.stopPropagation()}>Adatkezelési Tájékoztatót</Link>
+                                {t.rich('fields.acceptPrivacy', {
+                                    link: (chunks) => (
+                                        <Link href="/privacy" target="_blank" className="underline text-accent hover:text-white" onClick={(e) => e.stopPropagation()}>
+                                            {chunks}
+                                        </Link>
+                                    )
+                                })}
                             </span>
                         </label>
                     </div>
 
-                    {/* Hidden Inputs for Payment Method */}
                     <input type="hidden" name="paymentMethod" value="BANK_TRANSFER" />
 
                     <Button
@@ -236,9 +220,8 @@ export default function CheckoutForm({ defaultValues, locale, settings }: Checko
                 </form>
             </div>
 
-            {/* Summary Column - kept as is but removed the legal text at bottom */}
+            {/* Summary Column */}
             <div className="lg:col-span-4 space-y-8">
-                {/* ... (Summary box content) */}
                 <div className="bg-zinc-900 border border-white/10 p-8 rounded-[2rem] sticky top-24 shadow-xl">
                     <h2 className="text-2xl font-black uppercase italic tracking-tight mb-8 border-b border-white/5 pb-4">{t('summary')}</h2>
                     <div className="space-y-6 mb-8 max-h-[40vh] overflow-y-auto pr-2 custom-scrollbar">

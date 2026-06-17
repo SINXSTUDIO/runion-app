@@ -179,7 +179,7 @@ export default function Footer() {
                                 </span>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                    src="/sinx-logo.png"
+                                    src="/sinx-logo-new.png"
                                     alt="Sinx Software Studio"
                                     className="h-4 w-auto opacity-70 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
                                 />
