@@ -8,9 +8,13 @@ import MaintenanceToggle from '@/components/secretroom75/MaintenanceToggle';
 import QuickImportButton from '@/components/secretroom75/QuickImportButton';
 import { getTranslations, getLocale } from 'next-intl/server';
 
-export default async function AdminPage() {
-    const t = await getTranslations('Admin.Dashboard');
-    const locale = await getLocale();
+export default async function AdminPage({
+    params
+}: {
+    params: Promise<{ locale: string }>;
+}) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'Admin.Dashboard' });
     const settings = await getSettings();
 
     const eventsData = await prisma.event.findMany({

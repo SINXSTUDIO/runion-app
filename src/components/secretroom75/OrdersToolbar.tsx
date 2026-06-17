@@ -5,8 +5,10 @@ import { Button } from '@/components/ui/Button';
 import { Download, Upload, FileText, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { exportOrdersCSV, importOrdersCSV } from '@/actions/admin-orders';
+import { useTranslations } from 'next-intl';
 
 export default function OrdersToolbar() {
+    const t = useTranslations('Admin.Orders');
     const [isExporting, startExport] = useTransition();
     const [isImporting, startImport] = useTransition();
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -25,9 +27,9 @@ export default function OrdersToolbar() {
                 a.click();
                 document.body.removeChild(a);
                 window.URL.revokeObjectURL(url);
-                toast.success('CSV export sikeres!');
+                toast.success(t('toasts.exportSuccess'));
             } else {
-                toast.error(result.message || 'Hiba az exportálás során.');
+                toast.error(result.message || t('toasts.exportError'));
             }
         });
     };
@@ -44,7 +46,7 @@ export default function OrdersToolbar() {
         e.target.value = '';
 
         if (!file.name.endsWith('.csv')) {
-            toast.error('Csak .csv fájl tölthető fel!');
+            toast.error(t('toasts.onlyCsv'));
             return;
         }
 
@@ -57,7 +59,7 @@ export default function OrdersToolbar() {
                 toast.success(result.message);
                 // Refresh is handled by action revalidatePath
             } else {
-                toast.error(result.message || 'Hiba az importálás során.');
+                toast.error(result.message || t('toasts.importError'));
             }
         });
     };
@@ -70,7 +72,7 @@ export default function OrdersToolbar() {
                 className="bg-zinc-800 hover:bg-zinc-700 text-white border border-white/10 gap-2"
             >
                 {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-                CSV Export
+                {t('toolbar.export')}
             </Button>
 
             <Button
@@ -79,7 +81,7 @@ export default function OrdersToolbar() {
                 className="bg-accent hover:bg-accent/90 text-black border-none gap-2"
             >
                 {isImporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-                CSV Import
+                {t('toolbar.import')}
             </Button>
 
             <input
@@ -92,7 +94,7 @@ export default function OrdersToolbar() {
 
             <div className="text-xs text-zinc-500 flex items-center gap-1 ml-auto">
                 <FileText className="w-3 h-3" />
-                <span>Formátum: Rendelésszám; Dátum; Név; ...</span>
+                <span>{t('format')}</span>
             </div>
         </div>
     );

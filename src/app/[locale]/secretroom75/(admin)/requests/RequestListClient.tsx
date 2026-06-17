@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { updateRequestStatus } from '@/actions/requests';
 import { Button } from '@/components/ui/Button';
 import { Check, X, Clock, Mail, Phone } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface ChangeRequest {
     id: string;
@@ -24,6 +25,8 @@ interface ChangeRequest {
 }
 
 export default function RequestListClient({ initialRequests }: { initialRequests: any[] }) {
+    const t = useTranslations('Admin.Requests');
+    const locale = useLocale();
     const [requests, setRequests] = useState<ChangeRequest[]>(initialRequests);
     const [loadingId, setLoadingId] = useState<string | null>(null);
 
@@ -36,36 +39,50 @@ export default function RequestListClient({ initialRequests }: { initialRequests
                 req.id === id ? { ...req, status: newStatus } : req
             ));
         } else {
-            alert('Hiba történt: ' + result.message);
+            alert(t('actions.error') + ': ' + result.message);
         }
     };
 
     const getStatusBadge = (status: string) => {
         switch (status) {
-            case 'APPROVED': return <span className="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1"><Check className="w-3 h-3" /> Elfogadva</span>;
-            case 'REJECTED': return <span className="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1"><X className="w-3 h-3" /> Elutasítva</span>;
-            default: return <span className="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1"><Clock className="w-3 h-3" /> Függőben</span>;
+            case 'APPROVED': return <span className="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1"><Check className="w-3 h-3" /> {t('status.approved')}</span>;
+            case 'REJECTED': return <span className="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1"><X className="w-3 h-3" /> {t('status.rejected')}</span>;
+            default: return <span className="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1"><Clock className="w-3 h-3" /> {t('status.pending')}</span>;
         }
     };
 
     const getTypeBadge = (type: string) => {
         switch (type) {
-            case 'CANCELLATION': return <span className="text-red-400 font-bold uppercase tracking-wider text-xs border border-red-500/30 px-2 py-1 rounded">Lemondás</span>;
-            case 'TRANSFER': return <span className="text-accent font-bold uppercase tracking-wider text-xs border border-accent/30 px-2 py-1 rounded">Átnevezés</span>;
-            default: return <span className="text-blue-400 font-bold uppercase tracking-wider text-xs border border-blue-500/30 px-2 py-1 rounded">Módosítás</span>;
+            case 'CANCELLATION': return <span className="text-red-400 font-bold uppercase tracking-wider text-xs border border-red-500/30 px-2 py-1 rounded">{t('types.cancellation')}</span>;
+            case 'TRANSFER': return <span className="text-accent font-bold uppercase tracking-wider text-xs border border-accent/30 px-2 py-1 rounded">{t('types.transfer')}</span>;
+            default: return <span className="text-blue-400 font-bold uppercase tracking-wider text-xs border border-blue-500/30 px-2 py-1 rounded">{t('types.modification')}</span>;
         }
     };
 
     const downloadCSV = () => {
-        const headers = ['Dátum', 'Típus', 'Státusz', 'Név', 'Email', 'Telefon', 'Születési idő', 'Irányítószám', 'Város', 'Cím', 'Erről', 'Erre', 'Megjegyzés'];
+        const headers = [
+            t('table.date'),
+            t('table.type'),
+            t('table.status'),
+            t('table.name'),
+            'Email',
+            t('table.phone'),
+            t('table.birthDate'),
+            t('table.zipCode'),
+            t('table.city'),
+            t('table.address'),
+            t('actions.from'),
+            t('actions.to'),
+            t('table.comment')
+        ];
         const rows = requests.map(req => [
-            new Date(req.createdAt).toLocaleString('hu-HU'),
+            new Date(req.createdAt).toLocaleString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US'),
             req.type,
             req.status,
             req.name,
             req.email,
             req.phone,
-            req.birthDate ? new Date(req.birthDate).toLocaleDateString('hu-HU') : '',
+            req.birthDate ? new Date(req.birthDate).toLocaleDateString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US') : '',
             req.zipCode || '',
             req.city || '',
             req.address || '',
@@ -82,7 +99,7 @@ export default function RequestListClient({ initialRequests }: { initialRequests
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', `atnevezesek_${new Date().toISOString().split('T')[0]}.csv`);
+        link.setAttribute('download', `requests_${new Date().toISOString().split('T')[0]}.csv`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -93,7 +110,7 @@ export default function RequestListClient({ initialRequests }: { initialRequests
             <div className="flex justify-end">
                 <Button onClick={downloadCSV} variant="outline" className="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" x2="12" y1="15" y2="3" /></svg>
-                    Letöltés CSV-ben
+                    {t('downloadCsv')}
                 </Button>
             </div>
 
@@ -102,28 +119,28 @@ export default function RequestListClient({ initialRequests }: { initialRequests
                     <table className="w-full caption-bottom text-sm text-left">
                         <thead className="bg-zinc-950/50 [&_tr]:border-b [&_tr]:border-zinc-800">
                             <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-                                <th className="h-12 px-4 align-middle font-medium text-zinc-400">Dátum</th>
-                                <th className="h-12 px-4 align-middle font-medium text-zinc-400">Típus</th>
-                                <th className="h-12 px-4 align-middle font-medium text-zinc-400">Igénylő</th>
-                                <th className="h-12 px-4 align-middle font-medium text-zinc-400">Részletek</th>
-                                <th className="h-12 px-4 align-middle font-medium text-zinc-400">Megjegyzés</th>
-                                <th className="h-12 px-4 align-middle font-medium text-zinc-400 text-right">Státusz</th>
+                                <th className="h-12 px-4 align-middle font-medium text-zinc-400">{t('table.date')}</th>
+                                <th className="h-12 px-4 align-middle font-medium text-zinc-400">{t('table.type')}</th>
+                                <th className="h-12 px-4 align-middle font-medium text-zinc-400">{t('table.requester')}</th>
+                                <th className="h-12 px-4 align-middle font-medium text-zinc-400">{t('table.details')}</th>
+                                <th className="h-12 px-4 align-middle font-medium text-zinc-400">{t('table.comment')}</th>
+                                <th className="h-12 px-4 align-middle font-medium text-zinc-400 text-right">{t('table.status')}</th>
                             </tr>
                         </thead>
                         <tbody className="[&_tr:last-child]:border-0">
                             {requests.length === 0 ? (
                                 <tr>
                                     <td colSpan={6} className="text-center py-12 text-zinc-500">
-                                        Nincs megjeleníthető kérelem.
+                                        {t('noRequests')}
                                     </td>
                                 </tr>
                             ) : (
                                 requests.map((req) => (
                                     <tr key={req.id} className="border-b border-zinc-800 transition-colors hover:bg-zinc-800/20 data-[state=selected]:bg-muted">
                                         <td className="p-4 align-middle whitespace-nowrap font-mono text-zinc-500">
-                                            {new Date(req.createdAt).toLocaleDateString('hu-HU')}
+                                            {new Date(req.createdAt).toLocaleDateString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US')}
                                             <br />
-                                            {new Date(req.createdAt).toLocaleTimeString('hu-HU', { hour: '2-digit', minute: '2-digit' })}
+                                            {new Date(req.createdAt).toLocaleTimeString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US', { hour: '2-digit', minute: '2-digit' })}
                                         </td>
                                         <td className="p-4 align-middle">{getTypeBadge(req.type)}</td>
                                         <td className="p-4 align-middle">
@@ -134,11 +151,11 @@ export default function RequestListClient({ initialRequests }: { initialRequests
                                         </td>
                                         <td className="p-4 align-middle max-w-xs">
                                             <div className="text-sm bg-zinc-950 p-2 rounded border border-zinc-800">
-                                                <div className="text-zinc-500 text-xs uppercase">Erről:</div>
+                                                <div className="text-zinc-500 text-xs uppercase">{t('actions.from')}</div>
                                                 <div className="text-white font-medium mb-2">{req.fromEvent}</div>
                                                 {req.toEvent && (
                                                     <>
-                                                        <div className="text-accent text-xs uppercase">Erre:</div>
+                                                        <div className="text-accent text-xs uppercase">{t('actions.to')}</div>
                                                         <div className="text-white font-medium">{req.toEvent}</div>
                                                     </>
                                                 )}
@@ -159,7 +176,7 @@ export default function RequestListClient({ initialRequests }: { initialRequests
                                                             disabled={loadingId === req.id}
                                                             onClick={() => handleStatusUpdate(req.id, 'APPROVED')}
                                                         >
-                                                            Kész
+                                                            {t('actions.approve')}
                                                         </Button>
                                                         <Button
                                                             size="sm"
@@ -168,7 +185,7 @@ export default function RequestListClient({ initialRequests }: { initialRequests
                                                             disabled={loadingId === req.id}
                                                             onClick={() => handleStatusUpdate(req.id, 'REJECTED')}
                                                         >
-                                                            Elutasít
+                                                            {t('actions.reject')}
                                                         </Button>
                                                     </div>
                                                 )}

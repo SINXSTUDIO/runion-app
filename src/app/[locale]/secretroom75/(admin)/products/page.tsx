@@ -2,8 +2,16 @@ import prisma from '@/lib/prisma';
 import { ShoppingBag, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Link } from '@/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 
-export default async function AdminProductsPage() {
+export default async function AdminProductsPage({
+    params
+}: {
+    params: Promise<{ locale: string }>;
+}) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'Admin.Products' });
+
     const products = await prisma.product.findMany({
         orderBy: { createdAt: 'desc' }
     });
@@ -13,11 +21,11 @@ export default async function AdminProductsPage() {
             <div className="flex justify-between items-center mb-8">
                 <h1 className="text-3xl font-black italic uppercase flex items-center gap-3">
                     <ShoppingBag className="w-8 h-8 text-accent" />
-                    Products
+                    {t('title')}
                 </h1>
                 <Link href="/secretroom75/products/new">
                     <Button className="gap-2 bg-accent text-black hover:bg-white">
-                        <Plus className="w-4 h-4" /> Add Product
+                        <Plus className="w-4 h-4" /> {t('newProduct')}
                     </Button>
                 </Link>
             </div>
@@ -26,18 +34,18 @@ export default async function AdminProductsPage() {
                 <table className="w-full text-left">
                     <thead className="bg-white/5 uppercase text-xs text-gray-500 font-bold">
                         <tr>
-                            <th className="p-4">Image</th>
-                            <th className="p-4">Name</th>
-                            <th className="p-4">Price</th>
-                            <th className="p-4">Active</th>
-                            <th className="p-4 text-right">Actions</th>
+                            <th className="p-4">{t('table.image')}</th>
+                            <th className="p-4">{t('table.name')}</th>
+                            <th className="p-4">{t('table.price')}</th>
+                            <th className="p-4">{t('table.active')}</th>
+                            <th className="p-4 text-right">{t('table.actions')}</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-white/5">
                         {products.length === 0 ? (
                             <tr>
                                 <td colSpan={5} className="p-8 text-center text-gray-500">
-                                    No products found.
+                                    {t('noProducts')}
                                 </td>
                             </tr>
                         ) : (
@@ -51,20 +59,21 @@ export default async function AdminProductsPage() {
                                         )}
                                     </td>
                                     <td className="p-4 font-bold">{product.name}</td>
-                                    <td className="p-4 font-mono text-accent">{Number(product.price).toLocaleString('hu-HU')} Ft</td>
+                                    <td className="p-4 font-mono text-accent">
+                                        {Number(product.price).toLocaleString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US')} {locale === 'hu' ? 'Ft' : 'HUF'}
+                                    </td>
                                     <td className="p-4">
                                         {product.active ? (
-                                            <span className="text-green-500 font-bold text-xs uppercase">Active</span>
+                                            <span className="text-green-500 font-bold text-xs uppercase">{t('status.active')}</span>
                                         ) : (
-                                            <span className="text-red-500 font-bold text-xs uppercase">Inactive</span>
+                                            <span className="text-red-500 font-bold text-xs uppercase">{t('status.inactive')}</span>
                                         )}
                                     </td>
                                     <td className="p-4 text-right">
                                         <Link href={`/secretroom75/products/${product.id}`}>
-                                            <Button variant="outline" size="sm">Edit</Button>
+                                            <Button variant="outline" size="sm">{t('actions.edit')}</Button>
                                         </Link>
                                     </td>
-
                                 </tr>
                             ))
                         )}

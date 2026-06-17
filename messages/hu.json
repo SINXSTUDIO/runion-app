@@ -250,6 +250,114 @@
             "view": "Megtekintés",
             "noResults": "Nincs találat a keresési feltételekre."
         },
+        "Requests": {
+            "title": "Átnevezés / Adatmódosítás",
+            "subtitle": "Beérkezett átnevezési és adatmódosítási kérelmek kezelése",
+            "listTab": "Kérelmek Listája",
+            "settingsTab": "Űrlap Szerkesztése",
+            "noRequests": "Nincs megjeleníthető kérelem.",
+            "downloadCsv": "Letöltés CSV-ben",
+            "table": {
+                "date": "Dátum",
+                "type": "Típus",
+                "requester": "Igénylő",
+                "details": "Részletek",
+                "comment": "Megjegyzés",
+                "status": "Státusz",
+                "name": "Név",
+                "phone": "Telefon",
+                "birthDate": "Születési idő",
+                "zipCode": "Irányítószám",
+                "city": "Város",
+                "address": "Cím"
+            },
+            "types": {
+                "cancellation": "Lemondás",
+                "transfer": "Átnevezés",
+                "modification": "Módosítás"
+            },
+            "status": {
+                "approved": "Elfogadva",
+                "rejected": "Elutasítva",
+                "pending": "Függőben"
+            },
+            "actions": {
+                "approve": "Kész",
+                "reject": "Elutasít",
+                "from": "Erről:",
+                "to": "Erre:",
+                "error": "Hiba történt"
+            }
+        },
+        "Products": {
+            "title": "Termékek",
+            "subtitle": "Webáruház termékeinek kezelése",
+            "newProduct": "Új Termék",
+            "noProducts": "Nem találhatók termékek.",
+            "table": {
+                "image": "Kép",
+                "name": "Név",
+                "price": "Ár",
+                "active": "Aktív",
+                "actions": "Műveletek"
+            },
+            "status": {
+                "active": "Aktív",
+                "inactive": "Inaktív"
+            },
+            "actions": {
+                "edit": "Szerkesztés",
+                "delete": "Törlés"
+            }
+        },
+        "Orders": {
+            "title": "Rendelések",
+            "subtitle": "Megrendelések kezelése",
+            "noOrders": "Nincsenek rendelések.",
+            "format": "Formátum: Rendelésszám; Dátum; Név; ...",
+            "itemsCount": "{count} db termék",
+            "toolbar": {
+                "export": "CSV Export",
+                "import": "CSV Import"
+            },
+            "table": {
+                "orderNum": "Rendelés #",
+                "date": "Dátum",
+                "customer": "Ügyfél",
+                "items": "Termékek",
+                "total": "Összesen",
+                "status": "Státusz",
+                "payment": "Fizetés",
+                "actions": "Műveletek"
+            },
+            "actions": {
+                "markPaid": "Tagság Fizetettnek Jelölése",
+                "resendEmail": "Email újraküldése",
+                "edit": "Szerkesztés",
+                "delete": "Rendelés törlése",
+                "confirmMarkPaid": "Biztosan fizetettnek jelölöd ezt a tagsági rendelést? Ez aktiválja a tagságot és emailt küld.",
+                "confirmResend": "Újraküldöd a visszaigazoló emailt?",
+                "confirmDelete": "Biztosan törölni szeretnéd ezt a rendelést? Ez a művelet nem visszavonható.",
+                "successMarkPaid": "Sikeresen fizetettnek jelölve és aktiválva."
+            },
+            "toasts": {
+                "exportSuccess": "CSV export sikeres!",
+                "exportError": "Hiba az exportálás során.",
+                "onlyCsv": "Csak .csv fájl tölthető fel!",
+                "importError": "Hiba az importálás során."
+            },
+            "editModal": {
+                "title": "Rendelés Szerkesztése",
+                "status": "Státusz",
+                "customerName": "Vevő Neve",
+                "customerEmail": "Vevő Email",
+                "paymentMethod": "Fizetési Mód",
+                "cancel": "Mégse",
+                "save": "Mentés",
+                "saving": "Mentés...",
+                "success": "Sikeres frissítés!"
+            }
+        },
         "EventForm": {
             "title": "Űrlap testreszabása",
             "subtitle": "Nevezési űrlap egyedi mezőinek kezelése"

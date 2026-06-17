@@ -250,6 +250,114 @@
             "view": "Anzeigen",
             "noResults": "Keine Ergebnisse für Ihre Suche gefunden."
         },
+        "Requests": {
+            "title": "Ummeldungen",
+            "subtitle": "Ummeldungen und Datenänderungsanträge verwalten",
+            "listTab": "Antragsliste",
+            "settingsTab": "Formular bearbeiten",
+            "noRequests": "Keine Anträge anzuzeigen.",
+            "downloadCsv": "CSV herunterladen",
+            "table": {
+                "date": "Datum",
+                "type": "Typ",
+                "requester": "Antragsteller",
+                "details": "Details",
+                "comment": "Kommentar",
+                "status": "Status",
+                "name": "Name",
+                "phone": "Telefon",
+                "birthDate": "Geburtsdatum",
+                "zipCode": "PLZ",
+                "city": "Stadt",
+                "address": "Adresse"
+            },
+            "types": {
+                "cancellation": "Stornierung",
+                "transfer": "Ummeldung",
+                "modification": "Änderung"
+            },
+            "status": {
+                "approved": "Genehmigt",
+                "rejected": "Abgelehnt",
+                "pending": "Ausstehend"
+            },
+            "actions": {
+                "approve": "Fertig",
+                "reject": "Ablehnen",
+                "from": "Von:",
+                "to": "Auf:",
+                "error": "Ein Fehler ist aufgetreten"
+            }
+        },
+        "Products": {
+            "title": "Produkte",
+            "subtitle": "Webshop-Produkte verwalten",
+            "newProduct": "Produkt hinzufügen",
+            "noProducts": "Keine Produkte gefunden.",
+            "table": {
+                "image": "Bild",
+                "name": "Name",
+                "price": "Preis",
+                "active": "Aktiv",
+                "actions": "Aktionen"
+            },
+            "status": {
+                "active": "Aktiv",
+                "inactive": "Inaktiv"
+            },
+            "actions": {
+                "edit": "Bearbeiten",
+                "delete": "Löschen"
+            }
+        },
+        "Orders": {
+            "title": "Bestellungen",
+            "subtitle": "Bestellungen verwalten",
+            "noOrders": "Keine Bestellungen gefunden.",
+            "format": "Format: Bestellnummer; Datum; Name; ...",
+            "itemsCount": "{count} Artikel",
+            "toolbar": {
+                "export": "CSV Export",
+                "import": "CSV Import"
+            },
+            "table": {
+                "orderNum": "Bestellnr. #",
+                "date": "Datum",
+                "customer": "Kunde",
+                "items": "Artikel",
+                "total": "Gesamt",
+                "status": "Status",
+                "payment": "Zahlung",
+                "actions": "Aktionen"
+            },
+            "actions": {
+                "markPaid": "Mitgliedschaft als bezahlt markieren",
+                "resendEmail": "Bestätigungs-E-Mail erneut senden",
+                "edit": "Bearbeiten",
+                "delete": "Bestellung löschen",
+                "confirmMarkPaid": "Sind Sie sicher, dass Sie diese Mitgliedschaftsbestellung als bezahlt markieren möchten? Dies aktiviert die Mitgliedschaft und sendet eine E-Mail.",
+                "confirmResend": "Möchten Sie die Bestätigungs-E-Mail erneut senden?",
+                "confirmDelete": "Sind Sie sicher, dass Sie diese Bestellung löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+                "successMarkPaid": "Erfolgreich als bezahlt markiert und aktiviert."
+            },
+            "toasts": {
+                "exportSuccess": "CSV-Export erfolgreich!",
+                "exportError": "Fehler beim Export.",
+                "onlyCsv": "Es können nur .csv-Dateien hochgeladen werden!",
+                "importError": "Fehler beim Import."
+            },
+            "editModal": {
+                "title": "Bestellung bearbeiten",
+                "status": "Status",
+                "customerName": "Kundenname",
+                "customerEmail": "Kunden-E-Mail",
+                "paymentMethod": "Zahlungsmethode",
+                "cancel": "Abbrechen",
+                "save": "Speichern",
+                "saving": "Speichern...",
+                "success": "Erfolgreich aktualisiert!"
+            }
+        },
         "EventForm": {
             "title": "Formular anpassen",
             "subtitle": "Benutzerdefinierte Felder für das Anmeldeformular verwalten"

@@ -4,8 +4,13 @@ import SecretHeader from '@/components/secretroom75/SecretHeader';
 import EventGrid from './EventGrid';
 import { getTranslations } from 'next-intl/server';
 
-export default async function AdminRegistrationsIndexPage() {
-    const t = await getTranslations('Admin.Registrations');
+export default async function AdminRegistrationsIndexPage({
+    params
+}: {
+    params: Promise<{ locale: string }>;
+}) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'Admin.Registrations' });
     const events = await prisma.event.findMany({
         orderBy: { eventDate: 'desc' },
         include: {

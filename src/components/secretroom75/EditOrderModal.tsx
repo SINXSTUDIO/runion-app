@@ -4,6 +4,7 @@ import { useState, useTransition } from 'react';
 import { Button } from '@/components/ui/Button';
 import { X } from 'lucide-react';
 import { updateOrder } from '@/actions/admin-orders';
+import { useTranslations } from 'next-intl';
 
 interface EditOrderModalProps {
     order: any;
@@ -12,6 +13,7 @@ interface EditOrderModalProps {
 }
 
 export default function EditOrderModal({ order, isOpen, onClose }: EditOrderModalProps) {
+    const t = useTranslations('Admin.Orders.editModal');
     const [isPending, startTransition] = useTransition();
     const [formData, setFormData] = useState({
         status: order.status,
@@ -27,7 +29,7 @@ export default function EditOrderModal({ order, isOpen, onClose }: EditOrderModa
         startTransition(async () => {
             const result = await updateOrder(order.id, formData);
             if (result.success) {
-                alert('Sikeres frissítés!');
+                alert(t('success'));
                 onClose();
             } else {
                 alert(result.message);
@@ -46,11 +48,11 @@ export default function EditOrderModal({ order, isOpen, onClose }: EditOrderModa
                 </button>
 
                 <div className="p-6">
-                    <h2 className="text-xl font-bold text-white mb-6">Rendelés Szerkesztése</h2>
+                    <h2 className="text-xl font-bold text-white mb-6">{t('title')}</h2>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-400 mb-1">Státusz</label>
+                            <label className="block text-sm font-medium text-gray-400 mb-1">{t('status')}</label>
                             <select
                                 value={formData.status}
                                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
@@ -65,7 +67,7 @@ export default function EditOrderModal({ order, isOpen, onClose }: EditOrderModa
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-400 mb-1">Vevő Neve</label>
+                            <label className="block text-sm font-medium text-gray-400 mb-1">{t('customerName')}</label>
                             <input
                                 type="text"
                                 value={formData.shippingName}
@@ -75,7 +77,7 @@ export default function EditOrderModal({ order, isOpen, onClose }: EditOrderModa
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-400 mb-1">Vevő Email</label>
+                            <label className="block text-sm font-medium text-gray-400 mb-1">{t('customerEmail')}</label>
                             <input
                                 type="email"
                                 value={formData.shippingEmail}
@@ -85,7 +87,7 @@ export default function EditOrderModal({ order, isOpen, onClose }: EditOrderModa
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-400 mb-1">Fizetési Mód</label>
+                            <label className="block text-sm font-medium text-gray-400 mb-1">{t('paymentMethod')}</label>
                             <select
                                 value={formData.paymentMethod}
                                 onChange={(e) => setFormData({ ...formData, paymentMethod: e.target.value })}
@@ -99,10 +101,10 @@ export default function EditOrderModal({ order, isOpen, onClose }: EditOrderModa
 
                         <div className="flex justify-end gap-3 mt-8">
                             <Button type="button" variant="ghost" onClick={onClose}>
-                                Mégse
+                                {t('cancel')}
                             </Button>
                             <Button type="submit" variant="primary" disabled={isPending}>
-                                {isPending ? 'Mentés...' : 'Mentés'}
+                                {isPending ? t('saving') : t('save')}
                             </Button>
                         </div>
                     </form>

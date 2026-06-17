@@ -257,6 +257,114 @@
             "view": "View",
             "noResults": "No results found matching your search."
         },
+        "Requests": {
+            "title": "Change Requests",
+            "subtitle": "Manage event transfers and data change requests",
+            "listTab": "Request List",
+            "settingsTab": "Edit Form",
+            "noRequests": "No requests to display.",
+            "downloadCsv": "Download CSV",
+            "table": {
+                "date": "Date",
+                "type": "Type",
+                "requester": "Requester",
+                "details": "Details",
+                "comment": "Comment",
+                "status": "Status",
+                "name": "Name",
+                "phone": "Phone",
+                "birthDate": "Birth Date",
+                "zipCode": "Zip Code",
+                "city": "City",
+                "address": "Address"
+            },
+            "types": {
+                "cancellation": "Cancellation",
+                "transfer": "Transfer",
+                "modification": "Modification"
+            },
+            "status": {
+                "approved": "Approved",
+                "rejected": "Rejected",
+                "pending": "Pending"
+            },
+            "actions": {
+                "approve": "Done",
+                "reject": "Reject",
+                "from": "From:",
+                "to": "To:",
+                "error": "An error occurred"
+            }
+        },
+        "Products": {
+            "title": "Products",
+            "subtitle": "Manage webshop products",
+            "newProduct": "Add Product",
+            "noProducts": "No products found.",
+            "table": {
+                "image": "Image",
+                "name": "Name",
+                "price": "Price",
+                "active": "Active",
+                "actions": "Actions"
+            },
+            "status": {
+                "active": "Active",
+                "inactive": "Inactive"
+            },
+            "actions": {
+                "edit": "Edit",
+                "delete": "Delete"
+            }
+        },
+        "Orders": {
+            "title": "Orders",
+            "subtitle": "Manage shop orders",
+            "noOrders": "No orders found.",
+            "format": "Format: Order Number; Date; Name; ...",
+            "itemsCount": "{count} items",
+            "toolbar": {
+                "export": "CSV Export",
+                "import": "CSV Import"
+            },
+            "table": {
+                "orderNum": "Order #",
+                "date": "Date",
+                "customer": "Customer",
+                "items": "Items",
+                "total": "Total",
+                "status": "Status",
+                "payment": "Payment",
+                "actions": "Actions"
+            },
+            "actions": {
+                "markPaid": "Mark Membership as Paid",
+                "resendEmail": "Resend confirmation email",
+                "edit": "Edit",
+                "delete": "Delete order",
+                "confirmMarkPaid": "Are you sure you want to mark this membership order as paid? This will activate the membership and send an email.",
+                "confirmResend": "Do you want to resend the confirmation email?",
+                "confirmDelete": "Are you sure you want to delete this order? This action cannot be undone.",
+                "successMarkPaid": "Successfully marked as paid and activated."
+            },
+            "toasts": {
+                "exportSuccess": "CSV export successful!",
+                "exportError": "Error during export.",
+                "onlyCsv": "Only .csv files can be uploaded!",
+                "importError": "Error during import."
+            },
+            "editModal": {
+                "title": "Edit Order",
+                "status": "Status",
+                "customerName": "Customer Name",
+                "customerEmail": "Customer Email",
+                "paymentMethod": "Payment Method",
+                "cancel": "Cancel",
+                "save": "Save",
+                "saving": "Saving...",
+                "success": "Successfully updated!"
+            }
+        },
         "EventForm": {
             "title": "Customize Form",
             "subtitle": "Manage custom fields for the registration form"

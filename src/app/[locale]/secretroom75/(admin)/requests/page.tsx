@@ -5,10 +5,17 @@ import RequestListClient from './RequestListClient';
 import TransferSettingsForm from '@/components/admin/TransferSettingsForm';
 import { ArrowLeftRight, Settings, List } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/Tabs';
+import { getTranslations } from 'next-intl/server';
 
 export const dynamic = 'force-dynamic';
 
-export default async function RequestsAdminPage() {
+export default async function RequestsAdminPage({
+    params
+}: {
+    params: Promise<{ locale: string }>;
+}) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'Admin.Requests' });
     const [requests, settings, companies] = await Promise.all([
         getChangeRequests(),
         getSettings(),
@@ -21,9 +28,9 @@ export default async function RequestsAdminPage() {
                 <div>
                     <h1 className="text-3xl font-black text-white italic uppercase tracking-tighter flex items-center gap-3">
                         <ArrowLeftRight className="text-accent w-8 h-8" />
-                        Átnevezés / Adatmódosítás
+                        {t('title')}
                     </h1>
-                    <p className="text-zinc-400 mt-1">Beérkezett átnevezési és adatmódosítási kérelmek kezelése</p>
+                    <p className="text-zinc-400 mt-1">{t('subtitle')}</p>
                 </div>
             </div>
 
@@ -31,11 +38,11 @@ export default async function RequestsAdminPage() {
                 <TabsList className="grid w-full md:w-[400px] grid-cols-2 mb-8 bg-zinc-900">
                     <TabsTrigger value="list" className="data-[state=active]:bg-zinc-800 data-[state=active]:text-white">
                         <List className="w-4 h-4 mr-2" />
-                        Kérelmek Listája
+                        {t('listTab')}
                     </TabsTrigger>
                     <TabsTrigger value="settings" className="data-[state=active]:bg-zinc-800 data-[state=active]:text-white">
                         <Settings className="w-4 h-4 mr-2" />
-                        Űrlap Szerkesztése
+                        {t('settingsTab')}
                     </TabsTrigger>
                 </TabsList>
 

@@ -6,8 +6,13 @@ import EventsTable from '@/components/secretroom75/EventsTable';
 import EventImportButton from '@/components/secretroom75/EventImportButton';
 import { getTranslations } from 'next-intl/server';
 
-export default async function AdminEventsPage() {
-    const t = await getTranslations('Admin.Events');
+export default async function AdminEventsPage({
+    params
+}: {
+    params: Promise<{ locale: string }>;
+}) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'Admin.Events' });
     const eventsData = await prisma.event.findMany({
         orderBy: { sortOrder: 'asc' },
         include: {
