@@ -12,18 +12,35 @@ export default function CookieConsent() {
 
     useEffect(() => {
         const consent = localStorage.getItem('cookie-consent');
-        if (!consent) {
+        const consentDate = localStorage.getItem('cookie-consent-date');
+        
+        if (!consent || !consentDate) {
             setIsVisible(true);
+        } else {
+            const parsedDate = Number(consentDate);
+            if (isNaN(parsedDate)) {
+                setIsVisible(true);
+            } else {
+                const daysPassed = (Date.now() - parsedDate) / (1000 * 60 * 60 * 24);
+                if (daysPassed > 30 || daysPassed < 0) {
+                    // Reset to prompt again after 30 days
+                    localStorage.removeItem('cookie-consent');
+                    localStorage.removeItem('cookie-consent-date');
+                    setIsVisible(true);
+                }
+            }
         }
     }, []);
 
     const handleAccept = () => {
         localStorage.setItem('cookie-consent', 'accepted');
+        localStorage.setItem('cookie-consent-date', Date.now().toString());
         setIsVisible(false);
     };
 
     const handleDecline = () => {
         localStorage.setItem('cookie-consent', 'declined');
+        localStorage.setItem('cookie-consent-date', Date.now().toString());
         setIsVisible(false);
     };
 
