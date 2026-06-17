@@ -95,6 +95,20 @@ export async function submitRegistration(
                 return { success: false, error: 'Érvénytelen táv' };
             }
 
+            // Check if user is already registered for this distance
+            const existingRegistration = await prisma.registration.findFirst({
+                where: {
+                    userId,
+                    distanceId,
+                    registrationStatus: { in: ['PENDING', 'CONFIRMED', 'COMPLETED'] }
+                }
+            });
+
+            if (existingRegistration) {
+                release(); // Release mutex before returning
+                return { success: false, error: 'Már neveztél erre a távra!' };
+            }
+
             if (distance.capacityLimit > 0 && distance._count.registrations >= distance.capacityLimit) {
                 release(); // Release mutex before returning
                 return { success: false, error: 'Betelt a létszám' };

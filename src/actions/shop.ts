@@ -91,7 +91,23 @@ export async function createOrder(prevState: any, formData: FormData) {
 
         for (const item of data.items) {
             const product = products.find(p => p.id === item.productId);
-            if (!product) continue;
+            if (!product) {
+                return { message: 'A termék nem található.', success: false };
+            }
+
+            // Verify general stock
+            if (product.stock < item.quantity) {
+                return { message: `Sajnáljuk, a(z) "${product.name}" termékből nincs elegendő készlet.`, success: false };
+            }
+
+            // Verify size-specific stock if applicable
+            const stockBreakdown = product.stockBreakdown ? (product.stockBreakdown as Record<string, number>) : null;
+            if (stockBreakdown && item.size) {
+                const sizeStock = Number(stockBreakdown[item.size] || 0);
+                if (sizeStock < item.quantity) {
+                    return { message: `Sajnáljuk, a(z) "${product.name}" (${item.size}) termékből nincs elegendő készlet.`, success: false };
+                }
+            }
 
             const price = Number(product.price);
             totalAmount += price * item.quantity;
@@ -108,33 +124,58 @@ export async function createOrder(prevState: any, formData: FormData) {
             return { message: 'Nincs érvényes termék a kosárban.', success: false };
         }
 
-        // 2. Upsert User
+        // 2. Secure User Handling
         // Split Shipping Name for First/Last
         const nameParts = data.shippingName.trim().split(' ');
         const lastName = nameParts[0];
         const firstName = nameParts.slice(1).join(' ');
 
-        const user = await prisma.user.upsert({
-            where: { email: data.shippingEmail },
-            update: {
-                firstName: firstName || data.shippingName,
-                lastName: lastName || '',
-                city: data.shippingCity,
-                zipCode: data.shippingZip,
-                address: data.shippingAddress,
-                phoneNumber: data.shippingPhone,
-            },
-            create: {
-                email: data.shippingEmail,
-                firstName: firstName || data.shippingName,
-                lastName: lastName || '',
-                city: data.shippingCity,
-                zipCode: data.shippingZip,
-                address: data.shippingAddress,
-                phoneNumber: data.shippingPhone,
-                role: 'USER',
+        // Check if there is an active session
+        const { auth } = await import('@/auth');
+        const session = await auth();
+        const sessionUserId = session?.user?.id;
+
+        let user;
+        if (sessionUserId) {
+            user = await prisma.user.findUnique({ where: { id: sessionUserId } });
+        }
+
+        if (!user) {
+            // Check if user already exists by email
+            user = await prisma.user.findUnique({
+                where: { email: data.shippingEmail }
+            });
+        }
+
+        if (!user) {
+            // Create guest user if they don't exist
+            user = await prisma.user.create({
+                data: {
+                    email: data.shippingEmail,
+                    firstName: firstName || data.shippingName,
+                    lastName: lastName || '',
+                    city: data.shippingCity,
+                    zipCode: data.shippingZip,
+                    address: data.shippingAddress,
+                    phoneNumber: data.shippingPhone,
+                    role: 'USER',
+                }
+            });
+        } else {
+            // User exists: Update profile details ONLY if they are logged in and explicitly updating,
+            // or just leave their profile alone to avoid overwriting their registered info.
+            if (sessionUserId && user.id === sessionUserId) {
+                user = await prisma.user.update({
+                    where: { id: sessionUserId },
+                    data: {
+                        city: data.shippingCity,
+                        zipCode: data.shippingZip,
+                        address: data.shippingAddress,
+                        phoneNumber: data.shippingPhone,
+                    }
+                });
             }
-        });
+        }
 
         // 3. Prepare Order Data
         const orderNumber = `ORD-${new Date().getFullYear()}-${nanoid()}`;
@@ -191,11 +232,29 @@ export async function createOrder(prevState: any, formData: FormData) {
             }
         });
 
-        // Decrement Stock
+        // Decrement Stock (robust per-size and total update)
         for (const item of finalItems) {
+            const product = products.find(p => p.id === item.productId);
+            if (!product) continue;
+
+            let newStock = Math.max(0, product.stock - item.quantity);
+            let newStockBreakdown = product.stockBreakdown ? JSON.parse(JSON.stringify(product.stockBreakdown)) : null;
+
+            if (newStockBreakdown && item.size) {
+                const size = item.size;
+                const currentSizeStock = Number(newStockBreakdown[size] || 0);
+                newStockBreakdown[size] = Math.max(0, currentSizeStock - item.quantity);
+
+                // Recalculate total stock from size breakdown to ensure data consistency
+                newStock = Object.values(newStockBreakdown).reduce((sum: number, val: any) => sum + (Number(val) || 0), 0);
+            }
+
             await prisma.product.update({
                 where: { id: item.productId },
-                data: { stock: { decrement: item.quantity } }
+                data: {
+                    stock: newStock,
+                    stockBreakdown: newStockBreakdown ?? undefined
+                }
             });
         }
 
