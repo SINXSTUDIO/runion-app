@@ -14,6 +14,71 @@ export type FeedbackInput = {
     message: string;
 };
 
+export async function sendFeedbackToDiscord(feedback: {
+    user: { firstName: string | null; lastName: string | null; email: string | null };
+    type: string;
+    subject: string;
+    message: string;
+}) {
+    const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+    if (!webhookUrl) return;
+
+    try {
+        const payload = {
+            embeds: [
+                {
+                    title: '📥 Új Visszajelzés Érkezett',
+                    color: 0x00f2fe, // RUNion Accent Cyan
+                    fields: [
+                        {
+                            name: '👤 Feladó',
+                            value: `${feedback.user.firstName || ''} ${feedback.user.lastName || ''} (${feedback.user.email || 'Nincs email'})`,
+                            inline: true
+                        },
+                        {
+                            name: '🏷️ Típus',
+                            value: feedback.type,
+                            inline: true
+                        },
+                        {
+                            name: '📌 Tárgy',
+                            value: feedback.subject
+                        },
+                        {
+                            name: '💬 Üzenet',
+                            value: `\`\`\`\n${feedback.message}\n\`\`\``
+                        }
+                    ],
+                    timestamp: new Date().toISOString(),
+                    footer: {
+                        text: 'RUNion Platform Notifications'
+                    }
+                }
+            ]
+        };
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload),
+            signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+
+        if (!response.ok) {
+            console.error('Discord Webhook error:', response.statusText);
+        }
+    } catch (err) {
+        console.error('Failed to send feedback to Discord:', err);
+    }
+}
+
 export async function createFeedback(data: FeedbackInput) {
     try {
         const session = await auth();
@@ -56,6 +121,11 @@ export async function createFeedback(data: FeedbackInput) {
             to: ADMIN_EMAIL,
             subject: `[RUNION Feedback] ${data.subject}`,
             html: emailContent
+        });
+
+        // Fire-and-forget Discord webhook post
+        sendFeedbackToDiscord(feedback).catch((err) => {
+            console.error('Discord background send failed:', err);
         });
 
         revalidatePath('/dashboard/profile');
