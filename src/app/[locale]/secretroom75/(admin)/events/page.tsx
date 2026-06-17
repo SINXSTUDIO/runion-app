@@ -4,8 +4,10 @@ import { Plus } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import EventsTable from '@/components/secretroom75/EventsTable';
 import EventImportButton from '@/components/secretroom75/EventImportButton';
+import { getTranslations } from 'next-intl/server';
 
 export default async function AdminEventsPage() {
+    const t = await getTranslations('Admin.Events');
     const eventsData = await prisma.event.findMany({
         orderBy: { sortOrder: 'asc' },
         include: {
@@ -36,10 +38,10 @@ export default async function AdminEventsPage() {
                 <div>
                     <h1 className="text-3xl md:text-4xl font-black italic uppercase mb-2 flex items-center gap-3 text-white">
                         <Plus className="w-8 h-8 text-accent" />
-                        Események Kezelése
+                        {t('title')}
                     </h1>
                     <p className="text-zinc-400">
-                        Versenyek létrehozása, szerkesztése és kezelése
+                        {t('subtitle')}
                     </p>
                 </div>
                 <div className="flex gap-2 items-center">
@@ -47,7 +49,7 @@ export default async function AdminEventsPage() {
                     <Link href="/secretroom75/events/new">
                         <Button className="gap-2 bg-accent hover:bg-accent/90 text-black font-bold h-10 md:h-12 px-4 md:px-6 rounded-xl">
                             <Plus className="w-5 h-5" />
-                            <span className="hidden sm:inline">Új Verseny</span>
+                            <span className="hidden sm:inline">{t('newEvent')}</span>
                         </Button>
                     </Link>
                 </div>

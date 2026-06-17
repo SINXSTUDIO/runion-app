@@ -2,8 +2,10 @@ import prisma from '@/lib/prisma';
 import { ClipboardList } from 'lucide-react';
 import SecretHeader from '@/components/secretroom75/SecretHeader';
 import EventGrid from './EventGrid';
+import { getTranslations } from 'next-intl/server';
 
 export default async function AdminRegistrationsIndexPage() {
+    const t = await getTranslations('Admin.Registrations');
     const events = await prisma.event.findMany({
         orderBy: { eventDate: 'desc' },
         include: {
@@ -25,10 +27,10 @@ export default async function AdminRegistrationsIndexPage() {
             <div>
                 <h1 className="text-3xl md:text-4xl font-black italic uppercase mb-2 flex items-center gap-3 text-white">
                     <ClipboardList className="w-8 h-8 text-accent" />
-                    Nevezések Kezelése
+                    {t('title')}
                 </h1>
                 <p className="text-zinc-400">
-                    Válassz eseményt a nevezések megtekintéséhez
+                    {t('subtitle')}
                 </p>
             </div>
 

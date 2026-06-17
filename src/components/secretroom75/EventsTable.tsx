@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { Edit, Trash2, Copy, GripVertical } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { deleteEvent, duplicateEvent, updateEventsOrder } from '@/actions/events';
+import { useTranslations, useLocale } from 'next-intl';
 import {
     DndContext,
     closestCenter,
@@ -37,6 +38,8 @@ type Event = {
 type Props = { initialEvents: Event[] };
 
 function SortableEventRow({ event }: { event: Event }) {
+    const t = useTranslations('Admin.Events');
+    const locale = useLocale();
     const {
         attributes,
         listeners,
@@ -69,7 +72,7 @@ function SortableEventRow({ event }: { event: Event }) {
                 <div className="text-xs text-zinc-500 font-mono mt-0.5">{event.slug}</div>
             </td>
             <td className="p-4 align-middle text-zinc-400 font-mono text-xs sm:text-sm">
-                {new Date(event.eventDate).toLocaleDateString('hu-HU')}
+                {new Date(event.eventDate).toLocaleDateString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US')}
             </td>
             <td className="p-4 align-middle text-zinc-400 text-xs sm:text-sm">{event.location}</td>
             <td className="p-4 align-middle">
@@ -101,7 +104,7 @@ function SortableEventRow({ event }: { event: Event }) {
                             size="sm"
                             type="submit"
                             className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 border-blue-500/10 h-8 px-2.5 rounded-lg"
-                            title="Duplikálás"
+                            title={t('actions.duplicate')}
                         >
                             <Copy className="w-3.5 h-3.5" />
                         </Button>
@@ -113,7 +116,7 @@ function SortableEventRow({ event }: { event: Event }) {
                     </Link>
                     <form
                         action={async () => {
-                            if (!confirm('Biztosan törölni akarod ezt az eseményt? Ez a művelet nem vonható vissza!')) {
+                            if (!confirm(t('actions.confirmDelete'))) {
                                 return;
                             }
                             const result = await deleteEvent(event.id);
@@ -129,7 +132,7 @@ function SortableEventRow({ event }: { event: Event }) {
                             size="sm"
                             type="submit"
                             className="text-red-500 hover:bg-red-500/10 border-red-500/10 h-8 px-2.5 rounded-lg"
-                            title="Törlés"
+                            title={t('actions.delete')}
                         >
                             <Trash2 className="w-3.5 h-3.5" />
                         </Button>
@@ -141,6 +144,7 @@ function SortableEventRow({ event }: { event: Event }) {
 }
 
 export default function EventsTable({ initialEvents }: Props) {
+    const t = useTranslations('Admin.Events');
     const [events, setEvents] = useState<Event[]>(initialEvents);
     const sensors = useSensors(
         useSensor(PointerSensor),
@@ -181,11 +185,11 @@ export default function EventsTable({ initialEvents }: Props) {
                         <thead className="bg-zinc-950/60 text-zinc-400 uppercase text-xs font-black tracking-widest border-b border-white/5">
                             <tr>
                                 <th className="p-4 w-12"></th>
-                                <th className="p-4">Esemény</th>
-                                <th className="p-4">Dátum</th>
-                                <th className="p-4">Helyszín</th>
-                                <th className="p-4">Státusz</th>
-                                <th className="p-4">Művelet</th>
+                                <th className="p-4">{t('table.event')}</th>
+                                <th className="p-4">{t('table.date')}</th>
+                                <th className="p-4">{t('table.location')}</th>
+                                <th className="p-4">{t('table.status')}</th>
+                                <th className="p-4">{t('table.actions')}</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-white/5">

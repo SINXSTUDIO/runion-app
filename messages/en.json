@@ -209,6 +209,54 @@
                 "auditLogs": "Audit Logs"
             }
         },
+        "Dashboard": {
+            "title": "SECRET ROOM 75",
+            "subtitle": "Administration Dashboard",
+            "systemLogs": "System Logs",
+            "newEvent": "New Event",
+            "totalRunners": "Total Registrations",
+            "runnersTrend": "+12% in the last month",
+            "activeEvents": "Active Events",
+            "potentialRevenue": "Potential Revenue",
+            "revenueTrend": "Paid + Pending",
+            "manageEvents": "Manage Events",
+            "eventName": "Event Name",
+            "status": "Status",
+            "date": "Date",
+            "runners": "Registrations",
+            "actions": "Actions",
+            "downloadCsv": "Download CSV",
+            "registrationForm": "Registration Form",
+            "settings": "Settings",
+            "noEvents": "No events found."
+        },
+        "Events": {
+            "title": "Manage Events",
+            "subtitle": "Create, edit and manage races",
+            "newEvent": "New Event",
+            "jsonImport": "JSON import",
+            "table": {
+                "event": "Event",
+                "date": "Date",
+                "location": "Location",
+                "status": "Status",
+                "actions": "Actions"
+            },
+            "actions": {
+                "duplicate": "Duplicate",
+                "delete": "Delete",
+                "confirmDelete": "Are you sure you want to delete this event? This action cannot be undone!"
+            }
+        },
+        "Registrations": {
+            "title": "Manage Registrations",
+            "subtitle": "Select an event to view registrations",
+            "searchPlaceholder": "Search events...",
+            "runner": "Registration",
+            "runners": "Registrations",
+            "view": "View",
+            "noResults": "No results found matching your search."
+        },
         "EventForm": {
             "title": "Customize Form",
             "subtitle": "Manage custom fields for the registration form"

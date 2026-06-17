@@ -4,12 +4,15 @@ import { useState } from 'react';
 import { Search, MapPin, Users, Calendar, ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/Button';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface EventGridProps {
     events: any[];
 }
 
 export default function EventGrid({ events }: EventGridProps) {
+    const t = useTranslations('Admin.Registrations');
+    const locale = useLocale();
     const [searchTerm, setSearchTerm] = useState('');
 
     const filteredEvents = events.filter(event =>
@@ -33,7 +36,7 @@ export default function EventGrid({ events }: EventGridProps) {
                 <Search className="w-5 h-5 text-zinc-500" />
                 <input
                     type="text"
-                    placeholder="Keresés események között..."
+                    placeholder={t('searchPlaceholder')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="bg-transparent border-none outline-none text-white placeholder:text-zinc-500 flex-1"
@@ -74,7 +77,7 @@ export default function EventGrid({ events }: EventGridProps) {
                                         </span>
                                         <span className="text-zinc-500 text-xs font-mono flex items-center gap-1">
                                             <Calendar className="w-3 h-3" />
-                                            {new Date(event.eventDate).toLocaleDateString('hu-HU')}
+                                            {new Date(event.eventDate).toLocaleDateString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US')}
                                         </span>
                                     </div>
 
@@ -95,17 +98,17 @@ export default function EventGrid({ events }: EventGridProps) {
                                         </div>
                                         <div className="flex flex-col">
                                             <span className="font-bold text-lg leading-none text-white">{totalRegistrations}</span>
-                                            <span className="text-[10px] uppercase text-zinc-500 font-bold">Nevező</span>
+                                            <span className="text-[10px] uppercase text-zinc-500 font-bold">{totalRegistrations === 1 ? t('runner') : t('runners')}</span>
                                         </div>
                                     </div>
-
+ 
                                     <Link href={`/secretroom75/events/${event.id}/registrations`}>
                                         <Button size="sm" className={`
                                             bg-${color}-500/20 hover:bg-${color}-500/30 text-${color}-200
                                             border border-${color}-500/30
                                             rounded-lg h-10 px-6 font-bold
                                         `}>
-                                            Megtekintés <ChevronRight className="w-4 h-4 ml-1" />
+                                            {t('view')} <ChevronRight className="w-4 h-4 ml-1" />
                                         </Button>
                                     </Link>
                                 </div>
@@ -117,7 +120,7 @@ export default function EventGrid({ events }: EventGridProps) {
                 {filteredEvents.length === 0 && (
                     <div className="text-center py-12 text-zinc-500 bg-white/5 rounded-xl border border-white/5">
                         <Search className="w-12 h-12 mx-auto mb-4 opacity-30" />
-                        <p>Nincs találat a keresési feltételekre.</p>
+                        <p>{t('noResults')}</p>
                     </div>
                 )}
             </div>

@@ -202,6 +202,54 @@
                 "auditLogs": "Audit-Protokolle"
             }
         },
+        "Dashboard": {
+            "title": "SECRET ROOM 75",
+            "subtitle": "Verwaltungs-Dashboard",
+            "systemLogs": "Systemprotokolle",
+            "newEvent": "Neuer Wettkampf",
+            "totalRunners": "Registrierungen insgesamt",
+            "runnersTrend": "+12% im letzten Monat",
+            "activeEvents": "Aktive Wettkämpfe",
+            "potentialRevenue": "Erwarteter Umsatz",
+            "revenueTrend": "Bezahlt + Ausstehend",
+            "manageEvents": "Wettkämpfe verwalten",
+            "eventName": "Name des Wettkampfs",
+            "status": "Status",
+            "date": "Datum",
+            "runners": "Anmeldungen",
+            "actions": "Aktionen",
+            "downloadCsv": "CSV herunterladen",
+            "registrationForm": "Anmeldeformular",
+            "settings": "Einstellungen",
+            "noEvents": "Keine Wettkämpfe gefunden."
+        },
+        "Events": {
+            "title": "Wettkämpfe verwalten",
+            "subtitle": "Wettkämpfe erstellen, bearbeiten und verwalten",
+            "newEvent": "Neuer Wettkampf",
+            "jsonImport": "JSON-Import",
+            "table": {
+                "event": "Wettkampf",
+                "date": "Datum",
+                "location": "Ort",
+                "status": "Status",
+                "actions": "Aktionen"
+            },
+            "actions": {
+                "duplicate": "Duplizieren",
+                "delete": "Löschen",
+                "confirmDelete": "Sind Sie sicher, dass Sie diesen Wettkampf löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden!"
+            }
+        },
+        "Registrations": {
+            "title": "Anmeldungen verwalten",
+            "subtitle": "Wettkampf auswählen, um Anmeldungen anzuzeigen",
+            "searchPlaceholder": "Wettkämpfe suchen...",
+            "runner": "Anmeldung",
+            "runners": "Anmeldungen",
+            "view": "Anzeigen",
+            "noResults": "Keine Ergebnisse für Ihre Suche gefunden."
+        },
         "EventForm": {
             "title": "Formular anpassen",
             "subtitle": "Benutzerdefinierte Felder für das Anmeldeformular verwalten"

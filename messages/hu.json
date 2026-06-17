@@ -202,6 +202,54 @@
                 "auditLogs": "Audit Napló"
             }
         },
+        "Dashboard": {
+            "title": "SECRET ROOM 75",
+            "subtitle": "Adminisztrációs Vezérlőpult",
+            "systemLogs": "Rendszer Naplók",
+            "newEvent": "Új Verseny",
+            "totalRunners": "Összes Nevező",
+            "runnersTrend": "+12% az elmúlt hónapban",
+            "activeEvents": "Aktív Versenyek",
+            "potentialRevenue": "Várható Bevétel",
+            "revenueTrend": "Fizetett + Függőben lévő",
+            "manageEvents": "Versenyek Kezelése",
+            "eventName": "Esemény Megnevezése",
+            "status": "Állapot",
+            "date": "Dátum",
+            "runners": "Nevezők",
+            "actions": "Műveletek",
+            "downloadCsv": "CSV Letöltés",
+            "registrationForm": "Nevezési Űrlap",
+            "settings": "Beállítások",
+            "noEvents": "Nincsenek események."
+        },
+        "Events": {
+            "title": "Események Kezelése",
+            "subtitle": "Versenyek létrehozása, szerkesztése és kezelése",
+            "newEvent": "Új Verseny",
+            "jsonImport": "JSON import",
+            "table": {
+                "event": "Esemény",
+                "date": "Dátum",
+                "location": "Helyszín",
+                "status": "Státusz",
+                "actions": "Művelet"
+            },
+            "actions": {
+                "duplicate": "Duplikálás",
+                "delete": "Törlés",
+                "confirmDelete": "Biztosan törölni akarod ezt az eseményt? Ez a művelet nem vonható vissza!"
+            }
+        },
+        "Registrations": {
+            "title": "Nevezések Kezelése",
+            "subtitle": "Válassz eseményt a nevezések megtekintéséhez",
+            "searchPlaceholder": "Keresés események között...",
+            "runner": "Nevező",
+            "runners": "Nevezők",
+            "view": "Megtekintés",
+            "noResults": "Nincs találat a keresési feltételekre."
+        },
         "EventForm": {
             "title": "Űrlap testreszabása",
             "subtitle": "Nevezési űrlap egyedi mezőinek kezelése"

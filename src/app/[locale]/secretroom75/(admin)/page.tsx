@@ -6,8 +6,11 @@ import { Badge } from '@/components/ui/Badge';
 import { getSettings } from '@/actions/settings';
 import MaintenanceToggle from '@/components/secretroom75/MaintenanceToggle';
 import QuickImportButton from '@/components/secretroom75/QuickImportButton';
+import { getTranslations, getLocale } from 'next-intl/server';
 
 export default async function AdminPage() {
+    const t = await getTranslations('Admin.Dashboard');
+    const locale = await getLocale();
     const settings = await getSettings();
 
     const eventsData = await prisma.event.findMany({
@@ -40,20 +43,20 @@ export default async function AdminPage() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div>
                     <h1 className="text-4xl md:text-5xl font-black font-heading tracking-tighter mb-2">SECRET ROOM <span className="text-accent">75</span></h1>
-                    <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold font-mono">Adminisztrációs Vezérlőpult</p>
+                    <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold font-mono">{t('subtitle')}</p>
                 </div>
                 <div className="flex flex-wrap gap-3 items-center">
                     <MaintenanceToggle initialState={settings?.maintenanceMode ?? false} />
                     <Link href="/secretroom75/logs">
                         <Button variant="outline" className="border-white/5 bg-zinc-900/30 hover:bg-zinc-800/50 hover:text-white backdrop-blur-sm gap-2 rounded-xl h-10 px-4 transition-all">
                             <Logs className="w-4 h-4 text-zinc-400" />
-                            Rendszer Naplók
+                            {t('systemLogs')}
                         </Button>
                     </Link>
                     <Link href="/secretroom75/events/new">
                         <Button className="bg-accent hover:bg-accent-hover text-black font-black uppercase italic tracking-tighter gap-2 rounded-xl h-10 px-5 shadow-[0_0_20px_rgba(0,242,254,0.35)] transition-all">
                             <Plus className="w-4 h-4" />
-                            Új Verseny
+                            {t('newEvent')}
                         </Button>
                     </Link>
                 </div>
@@ -63,20 +66,20 @@ export default async function AdminPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <AdminStatCard
                     icon={<Users className="text-accent w-5 h-5" />}
-                    label="Összes Nevező"
+                    label={t('totalRunners')}
                     value={totalStats.runners.toString()}
-                    trend="+12% az elmúlt hónapban"
+                    trend={t('runnersTrend')}
                 />
                 <AdminStatCard
                     icon={<Calendar className="text-blue-400 w-5 h-5" />}
-                    label="Aktív Versenyek"
+                    label={t('activeEvents')}
                     value={totalStats.activeEvents.toString()}
                 />
                 <AdminStatCard
                     icon={<TrendingUp className="text-emerald-400 w-5 h-5" />}
-                    label="Várható Bevétel"
-                    value={`${totalStats.totalRevenue.toLocaleString()} Ft`}
-                    trend="Fizetett + Függőben lévő"
+                    label={t('potentialRevenue')}
+                    value={`${totalStats.totalRevenue.toLocaleString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US')} ${locale === 'hu' ? 'Ft' : 'HUF'}`}
+                    trend={t('revenueTrend')}
                 />
             </div>
 
@@ -85,18 +88,18 @@ export default async function AdminPage() {
                 <div className="p-6 md:p-8 border-b border-white/5 flex justify-between items-center bg-zinc-950/20">
                     <h2 className="text-xl md:text-2xl font-black italic uppercase flex items-center gap-3 text-white">
                         <FileText className="text-zinc-500 w-6 h-6" />
-                        Versenyek Kezelése
+                        {t('manageEvents')}
                     </h2>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead className="bg-zinc-950/60 text-zinc-400 uppercase text-xs font-black tracking-widest border-b border-white/5">
                             <tr>
-                                <th className="px-6 md:px-8 py-5">Esemény Megnevezése</th>
-                                <th className="px-6 md:px-8 py-5">Állapot</th>
-                                <th className="px-6 md:px-8 py-5">Dátum</th>
-                                <th className="px-6 md:px-8 py-5 text-center">Nevezők</th>
-                                <th className="px-6 md:px-8 py-5 text-right">Műveletek</th>
+                                <th className="px-6 md:px-8 py-5">{t('eventName')}</th>
+                                <th className="px-6 md:px-8 py-5">{t('status')}</th>
+                                <th className="px-6 md:px-8 py-5">{t('date')}</th>
+                                <th className="px-6 md:px-8 py-5 text-center">{t('runners')}</th>
+                                <th className="px-6 md:px-8 py-5 text-right">{t('actions')}</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-white/5">
@@ -112,7 +115,7 @@ export default async function AdminPage() {
                                         </Badge>
                                     </td>
                                     <td className="px-6 md:px-8 py-6 text-zinc-400 font-mono italic text-sm">
-                                        {event.eventDate.toLocaleDateString('hu-HU')}
+                                        {event.eventDate.toLocaleDateString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US')}
                                     </td>
                                     <td className="px-6 md:px-8 py-6 text-center">
                                         <span className="bg-zinc-950/80 text-white font-mono px-3.5 py-1.5 rounded-full text-xs border border-white/5 shadow-inner">
@@ -121,18 +124,18 @@ export default async function AdminPage() {
                                     </td>
                                     <td className="px-6 md:px-8 py-6 text-right">
                                         <div className="flex justify-end items-center gap-2">
-                                            <a href={`/api/secretroom75/export?slug=${event.slug}`} title="CSV Letöltés">
+                                            <a href={`/api/secretroom75/export?slug=${event.slug}`} title={t('downloadCsv')}>
                                                 <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-xl hover:bg-zinc-800 hover:text-white transition-all">
                                                     <Download className="w-4.5 h-4.5 text-zinc-400" />
                                                 </Button>
                                             </a>
                                             <QuickImportButton />
-                                            <a href={`/hu/secretroom75/events/${event.id}/form`} title="Nevezési Űrlap">
+                                            <a href={`/${locale}/secretroom75/events/${event.id}/form`} title={t('registrationForm')}>
                                                 <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-xl hover:bg-zinc-800 hover:text-white transition-all">
                                                     <FileText className="w-4.5 h-4.5 text-accent" />
                                                 </Button>
                                             </a>
-                                            <Link href={`/secretroom75/events/${event.id}/edit`} title="Beállítások">
+                                            <Link href={`/secretroom75/events/${event.id}/edit`} title={t('settings')}>
                                                 <Button variant="ghost" size="sm" className="h-9 w-9 p-0 rounded-xl hover:bg-zinc-800 hover:text-white transition-all">
                                                     <Settings className="w-4.5 h-4.5 text-zinc-400" />
                                                 </Button>
