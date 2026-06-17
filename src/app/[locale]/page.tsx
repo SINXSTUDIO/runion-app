@@ -113,9 +113,11 @@ export default async function HomePage({ params }: HomePageProps) {
                 {/* Hero Section */}
                 <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
                     <HeroSlideshow />
+                    {/* Tech Grid overlay */}
+                    <div className="absolute inset-0 tech-grid-overlay z-10 opacity-30 pointer-events-none" />
 
                     <div className="relative z-20 container mx-auto px-4 text-center">
-                        <h1 className="text-5xl md:text-7xl font-extrabold mb-6 pb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 font-heading tracking-tighter animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                        <h1 className="text-5xl md:text-7xl font-extrabold mb-6 pb-2 text-transparent bg-clip-text bg-gradient-to-r from-accent via-cyan-400 to-emerald-400 font-heading tracking-tighter animate-in fade-in slide-in-from-bottom-4 duration-1000">
                             {t('heroTitle')}
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-lg animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
@@ -279,21 +281,19 @@ export default async function HomePage({ params }: HomePageProps) {
                                 <p className="text-zinc-400">{t('gallerySubtitle')}</p>
                             </div>
                             <Camera className="w-12 h-12 text-zinc-800 hidden md:block" />
-                        </div>
-
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        </div>                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             {dbGalleryImages.length > 0 ? (
                                 dbGalleryImages.map((img: any, index: number) => (
                                     <div
                                         key={img.id}
-                                        className={`aspect-square relative overflow-hidden rounded-2xl group ${index % 2 === 1 ? 'md:mt-8' : ''}`}
+                                        className={`aspect-square relative overflow-hidden rounded-2xl group border border-transparent hover:border-accent/30 hover:shadow-[0_0_20px_rgba(0,242,254,0.12)] transition-all duration-500 ${index % 2 === 1 ? 'md:mt-8' : ''}`}
                                     >
                                         <Image
                                             src={img.imageUrl}
                                             alt={img.caption || `Gallery image ${index + 1}`}
                                             width={400}
                                             height={400}
-                                            className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                                            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                                         />
                                         <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                         {img.caption && (
@@ -305,20 +305,20 @@ export default async function HomePage({ params }: HomePageProps) {
                                 ))
                             ) : (
                                 <>
-                                    <div className="aspect-square relative overflow-hidden rounded-2xl group">
-                                        <Image src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=800" alt="Runner 1" width={400} height={400} className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" />
+                                    <div className="aspect-square relative overflow-hidden rounded-2xl group border border-transparent hover:border-accent/30 hover:shadow-[0_0_20px_rgba(0,242,254,0.12)] transition-all duration-500">
+                                        <Image src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=800" alt="Runner 1" width={400} height={400} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110" />
                                         <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     </div>
-                                    <div className="aspect-square relative overflow-hidden rounded-2xl group md:mt-8">
-                                        <Image src="https://images.unsplash.com/photo-1533560904424-a0c61dc306fc?q=80&w=800" alt="Runner 2" width={400} height={400} className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" />
+                                    <div className="aspect-square relative overflow-hidden rounded-2xl group border border-transparent hover:border-accent/30 hover:shadow-[0_0_20px_rgba(0,242,254,0.12)] transition-all duration-500 md:mt-8">
+                                        <Image src="https://images.unsplash.com/photo-1533560904424-a0c61dc306fc?q=80&w=800" alt="Runner 2" width={400} height={400} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110" />
                                         <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     </div>
-                                    <div className="aspect-square relative overflow-hidden rounded-2xl group">
-                                        <Image src="https://images.unsplash.com/photo-1594882645126-14020914d58d?q=80&w=800" alt="Runner 3" width={400} height={400} className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" />
+                                    <div className="aspect-square relative overflow-hidden rounded-2xl group border border-transparent hover:border-accent/30 hover:shadow-[0_0_20px_rgba(0,242,254,0.12)] transition-all duration-500">
+                                        <Image src="https://images.unsplash.com/photo-1594882645126-14020914d58d?q=80&w=800" alt="Runner 3" width={400} height={400} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110" />
                                         <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     </div>
-                                    <div className="aspect-square relative overflow-hidden rounded-2xl group md:mt-8">
-                                        <Image src="https://images.unsplash.com/photo-1452626038306-9aae0e07173a?q=80&w=800" alt="Runner 4" width={400} height={400} className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" />
+                                    <div className="aspect-square relative overflow-hidden rounded-2xl group border border-transparent hover:border-accent/30 hover:shadow-[0_0_20px_rgba(0,242,254,0.12)] transition-all duration-500 md:mt-8">
+                                        <Image src="https://images.unsplash.com/photo-1452626038306-9aae0e07173a?q=80&w=800" alt="Runner 4" width={400} height={400} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110" />
                                         <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     </div>
                                 </>
@@ -326,7 +326,7 @@ export default async function HomePage({ params }: HomePageProps) {
                         </div>
                     </div>
                 </section>
-
+ 
                 {/* Newsletter Section - Disabled for now as requested
                 <section className="py-24 bg-black">
                     <div className="container mx-auto px-4">
@@ -341,8 +341,8 @@ export default async function HomePage({ params }: HomePageProps) {
 
 function StatBox({ icon, value, label }: { icon: React.ReactNode, value: string, label: string }) {
     return (
-        <div className="text-center p-8 bg-zinc-900/30 rounded-3xl border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-zinc-800/50 rounded-xl mb-4">
+        <div className="text-center p-8 rounded-3xl glass-card glass-card-hover">
+            <div className="inline-flex items-center justify-center w-12 h-12 bg-zinc-800/30 rounded-xl mb-4">
                 {icon}
             </div>
             <div className="text-4xl font-black text-white mb-2 font-heading tracking-tighter">{value}</div>
@@ -353,8 +353,8 @@ function StatBox({ icon, value, label }: { icon: React.ReactNode, value: string,
 
 function FeatureItem({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
     return (
-        <div className="bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800 hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 group">
-            <div className="bg-zinc-800/50 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+        <div className="p-8 rounded-2xl glass-card glass-card-hover group">
+            <div className="bg-zinc-800/30 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 {icon}
             </div>
             <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent transition-colors">{title}</h3>

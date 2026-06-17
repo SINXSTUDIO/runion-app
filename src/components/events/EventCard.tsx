@@ -39,7 +39,7 @@ export default function EventCard({ event, locale }: EventCardProps) {
     });
 
     return (
-        <div className="group relative bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,242,254,0.1)] flex flex-row md:flex-col h-36 md:h-full">
+        <div className="group relative glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-row md:flex-col h-36 md:h-full">
             {/* Image Container */}
             <div className="relative w-36 md:w-full h-full md:h-64 shrink-0 overflow-hidden">
                 <Image
@@ -75,7 +75,7 @@ export default function EventCard({ event, locale }: EventCardProps) {
                     </div>
                 </div>
 
-                <div className="hidden md:flex flex-col gap-3 mb-6 bg-zinc-900/50 backdrop-blur-sm rounded-xl p-4 border border-zinc-800/50">
+                <div className="hidden md:flex flex-col gap-3 mb-6 bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/5">
                     <div className="flex items-center gap-3 text-zinc-300">
                         <MapPin className="w-4 h-4 text-accent shrink-0" />
                         <span className="text-sm font-medium">{event.location}</span>
