@@ -4,7 +4,7 @@ import { z } from 'zod';
  * Hungarian tax number validation (XXXXXXXX-X-XX format or just 11 digits)
  * Allows optional spaces and hyphens.
  */
-const taxNumberRegex = /^[\d\-\s]{11,15}$/;
+const taxNumberRegex = /^[A-Z0-9\-\s]{8,20}$/i;
 
 
 /**
@@ -26,7 +26,7 @@ export const BillingDataSchema = z.object({
     billingCity: z.string().min(1, "Város kötelező"),
     billingAddress: z.string().min(5, "Cím kötelező (minimum 5 karakter)"),
     billingTaxNumber: z.string()
-        .regex(taxNumberRegex, "Érvénytelen adószám formátum (v2 - csak számok, kötőjel, szóköz)")
+        .regex(taxNumberRegex, "Érvénytelen adószám formátum (csak betűk, számok, kötőjel és szóköz megengedett, 8-20 karakter)")
         .optional()
         .or(z.literal('')),
 }).strict();

@@ -91,6 +91,15 @@ export function generateRegistrationEmailHtml(
     paymentReference: string,
     extrasTableRows: string
 ) {
+    const seller = registration.distance.event.seller;
+    const sellerEuro = (registration.distance.event as any).sellerEuro;
+
+    // Resolve EUR beneficiary name, bank, IBAN, SWIFT
+    const eurBeneficiary = sellerEuro?.name || seller?.nameEuro || seller?.name || 'Runion SE';
+    const eurBankName = sellerEuro?.bankName || seller?.bankNameEur || seller?.bankName || '-';
+    const eurIban = sellerEuro?.iban || sellerEuro?.ibanEuro || seller?.ibanEuro || seller?.bankAccountNumberEuro || '';
+    const eurSwift = sellerEuro?.swift || (sellerEuro as any)?.swift || seller?.swift || (seller as any)?.swift || '';
+
     return `
         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml" lang="${locale}">
@@ -168,7 +177,7 @@ export function generateRegistrationEmailHtml(
                                             </td>
                                         </tr>
                                     </table>
-
+ 
                                     ${extrasTableRows ? `
                                     <!-- Extras Table -->
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff; margin-bottom: 20px; border: 1px solid #e0e0e0; border-radius: 8px;">
@@ -180,7 +189,7 @@ export function generateRegistrationEmailHtml(
                                         ${extrasTableRows}
                                     </table>
                                     ` : ''}
-
+ 
                                     <!-- Payment Info Section -->
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #fff9e6; margin: 30px 0; border: 2px solid #ffd700; border-radius: 8px;">
                                         <tr>
@@ -197,42 +206,54 @@ export function generateRegistrationEmailHtml(
                                                         </td>
                                                     </tr>
                                                 </table>
-
+ 
                                                 <!-- Bank Details -->
                                                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 6px;">
                                                     <tr>
                                                         <td style="padding: 15px;">
-                                                            <p style="margin: 0 0 10px 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong style="color: #666666;">${t.beneficiary}</strong><br/><span style="color: #333333; font-size: 16px; font-weight: bold;">${registration.distance.event.seller?.name || 'Runion SE'}</span></p>
-                                                            ${priceDisplay.includes('€') && !priceDisplay.includes('Ft') && (registration.distance.event.seller as any)?.ibanEuro ? `
-                                                                <p style="margin: 0 0 10px 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong style="color: #666666;">IBAN (EUR):</strong><br/><span style="font-family: 'Courier New', monospace; font-size: 16px; font-weight: bold; color: #333333;">${(registration.distance.event.seller as any)?.ibanEuro}</span><br/><span style="color: #666666; font-size: 13px;">${(registration.distance.event.seller as any)?.bankNameEur || (registration.distance.event.seller as any)?.bankName}</span></p>
-                                                                ${(registration.distance.event.seller as any)?.swift ? `<p style="margin: 0 0 10px 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong style="color: #666666;">SWIFT/BIC:</strong><br/><span style="font-family: 'Courier New', monospace; font-size: 16px; font-weight: bold; color: #333333;">${(registration.distance.event.seller as any)?.swift}</span></p>` : ''}
-                                                            ` : `
-                                                                <p style="margin: 0 0 10px 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong style="color: #666666;">${t.bankAccount}</strong><br/><span style="color: #333333; font-size: 16px; font-weight: bold;">${registration.distance.event.seller?.bankAccountNumber || '-'}</span><br/><span style="color: #666666; font-size: 13px;">${registration.distance.event.seller?.bankName || '-'}</span></p>
-                                                            `}
-                                                            <p style="margin: 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong style="color: #666666;">${t.notice}</strong><br/><span style="background-color: #ffe6cc; padding: 5px 10px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 16px; font-weight: bold; color: #333333;">${paymentReference}</span></p>
+                                                            ${(priceDisplay.includes('Ft') || !priceDisplay.includes('€')) ? `
+                                                                <p style="margin: 0 0 15px 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
+                                                                    <strong style="color: #666666;">Belföldi fizetés (HUF) / Domestic Payment (HUF):</strong><br/>
+                                                                    <span style="font-size: 13px; color: #666666; margin-left: 10px;">${t.beneficiary}</span> <span style="color: #333333; font-weight: bold;">${seller?.name || 'Runion SE'}</span><br/>
+                                                                    <span style="font-size: 13px; color: #666666; margin-left: 10px;">${t.bankAccount}</span> <span style="color: #333333; font-weight: bold;">${seller?.bankAccountNumber || '-'}</span><br/>
+                                                                    <span style="font-size: 13px; color: #666666; margin-left: 10px;">Bank:</span> <span style="color: #333333;">${seller?.bankName || '-'}</span>
+                                                                </p>
+                                                            ` : ''}
+ 
+                                                            ${(priceDisplay.includes('€') && eurIban) ? `
+                                                                <p style="margin: 15px 0 15px 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;">
+                                                                    <strong style="color: #666666;">Devizás fizetés (EUR) / Euro Payment (EUR):</strong><br/>
+                                                                    <span style="font-size: 13px; color: #666666; margin-left: 10px;">${t.beneficiary}</span> <span style="color: #333333; font-weight: bold;">${eurBeneficiary}</span><br/>
+                                                                    <span style="font-size: 13px; color: #666666; margin-left: 10px;">IBAN (EUR):</span> <span style="font-family: 'Courier New', monospace; font-weight: bold; color: #333333;">${eurIban}</span><br/>
+                                                                    <span style="font-size: 13px; color: #666666; margin-left: 10px;">Bank:</span> <span style="color: #333333;">${eurBankName}</span>
+                                                                    ${eurSwift ? `<br/><span style="font-size: 13px; color: #666666; margin-left: 10px;">SWIFT/BIC:</span> <span style="font-family: 'Courier New', monospace; color: #333333;">${eurSwift}</span>` : ''}
+                                                                </p>
+                                                            ` : ''}
+                                                            
+                                                            <p style="margin: 10px 0 0 0; font-size: 14px; font-family: Arial, Helvetica, sans-serif;"><strong style="color: #666666;">${t.notice}</strong><br/><span style="background-color: #ffe6cc; padding: 5px 10px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 16px; font-weight: bold; color: #333333;">${paymentReference}</span></p>
                                                         </td>
                                                     </tr>
                                                 </table>
-
-                                                ${(registration.distance.event.seller as any)?.ibanEuro && (!priceDisplay.includes('€') || priceDisplay.includes('Ft')) ? `
+ 
+                                                ${eurIban && (!priceDisplay.includes('€') || priceDisplay.includes('Ft')) ? `
                                                 <!-- Optional International Payment -->
                                                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 15px; background-color: #e3f2fd; border: 1px solid #90caf9; border-radius: 6px;">
                                                     <tr>
                                                         <td style="padding: 15px;">
                                                             <h4 style="margin: 0 0 10px 0; font-size: 16px; color: #0056b3; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">🌍 Külföldi fizetés / International Payment (EUR)</h4>
-                                                            <p style="margin: 0 0 8px 0; font-size: 13px; color: #333333; font-family: Arial, Helvetica, sans-serif;"><strong>Account Owner:</strong> ${registration.distance.event.seller?.nameEuro || registration.distance.event.seller?.name}</p>
-                                                            <p style="margin: 0 0 8px 0; font-size: 13px; color: #333333; font-family: Arial, Helvetica, sans-serif;"><strong>Bank:</strong> ${registration.distance.event.seller?.bankName}</p>
-                                                            ${registration.distance.event.seller?.bankAccountNumberEuro ? `<p style="margin: 0 0 8px 0; font-size: 13px; color: #333333; font-family: Arial, Helvetica, sans-serif;"><strong>Account Number:</strong> ${registration.distance.event.seller?.bankAccountNumberEuro}</p>` : ''}
-                                                            <p style="margin: 0; font-size: 13px; color: #333333; font-family: Arial, Helvetica, sans-serif;"><strong>IBAN:</strong> <span style="font-family: 'Courier New', monospace;">${registration.distance.event.seller?.ibanEuro}</span></p>
+                                                            <p style="margin: 0 0 8px 0; font-size: 13px; color: #333333; font-family: Arial, Helvetica, sans-serif;"><strong>Account Owner:</strong> ${eurBeneficiary}</p>
+                                                            <p style="margin: 0 0 8px 0; font-size: 13px; color: #333333; font-family: Arial, Helvetica, sans-serif;"><strong>Bank:</strong> ${eurBankName}</p>
+                                                            ${eurSwift ? `<p style="margin: 0 0 8px 0; font-size: 13px; color: #333333; font-family: Arial, Helvetica, sans-serif;"><strong>SWIFT/BIC:</strong> ${eurSwift}</p>` : ''}
+                                                            <p style="margin: 0; font-size: 13px; color: #333333; font-family: Arial, Helvetica, sans-serif;"><strong>IBAN:</strong> <span style="font-family: 'Courier New', monospace;">${eurIban}</span></p>
                                                         </td>
                                                     </tr>
                                                 </table>
                                                 ` : ''}
-
-                                            </td>
-                                        </tr>
-                                    </table>
-
+ 
+                                             </td>
+                                         </tr>
+                                     </table>
+ 
                                     ${registration.distance.event.confirmationEmailText ? `
                                     <!-- Additional Info Section -->
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #fffbf0; margin: 20px 0; border: 2px solid #ffc107; border-radius: 8px;">
