@@ -1,6 +1,7 @@
 'use server';
 
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
+import { signupRateLimit } from '@/lib/rate-limit';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { z } from 'zod';
@@ -57,6 +58,22 @@ export async function register(prevState: RegisterState | undefined, formData: F
     const honeypot = formData.get('website');
     if (honeypot && honeypot.toString().length > 0) {
         return { success: false, error: 'Registration failed.' };
+    }
+
+    // Rate limiting (max 3 signups per hour per IP)
+    try {
+        const headersList = await headers();
+        const forwardedFor = headersList.get('x-forwarded-for');
+        const realIp = headersList.get('x-real-ip');
+        const cfConnectingIp = headersList.get('cf-connecting-ip');
+        const ip = cfConnectingIp || realIp || forwardedFor?.split(',')[0] || '127.0.0.1';
+
+        const { success } = await signupRateLimit.limit(ip);
+        if (!success) {
+            return { success: false, error: 'Túl sok regisztrációs kísérlet. Kérjük, próbáld újra egy óra múlva!' };
+        }
+    } catch (e) {
+        console.error('[RateLimit] signup limit check failed:', e);
     }
 
     const validatedFields = RegisterSchema.safeParse(Object.fromEntries(formData));

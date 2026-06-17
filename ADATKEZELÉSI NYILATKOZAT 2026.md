@@ -44,7 +44,9 @@ Időtartam: A hozzájárulás visszavonásáig (leiratkozás).
 3. ADATFELDOLGOZÓK (Akiknek az adatokat továbbítjuk)
 Adatait harmadik félnek nem adjuk el, kizárólag a szolgáltatás teljesítéséhez elengedhetetlen partnereknek továbbítjuk:
 
-Tárhely-szolgáltató: MediaCenter Hungary Kft. (6000 Kecskemét, Sosztakovics u. 3. II/6).
+Tárhely-szolgáltató (domain és adminisztráció): MediaCenter Hungary Kft. (6000 Kecskemét, Sosztakovics u. 3. II/6).
+
+Infrastruktúra és felhő alapú tárhely-szolgáltató: Vercel Inc. (Amerikai Egyesült Államok - a Standard Szerződési Feltételek / SCC garanciái mellett a GDPR-megfelelőség biztosított).
 
 Szállító partnerek: GLS General Logistics Systems Hungary Csomag-Logisztikai Kft., FOXPOST Zrt.
 
@@ -53,7 +55,11 @@ Online fizetés: Barion Payment Zrt. (A bankkártya adatokat az Adatkezelő nem 
 Könyvelés: [Ide írhatod a könyvelőd nevét/cégét, ha van].
 
 4. COOKIE-K (SÜTIK) KEZELÉSE
-A weboldal látogatottsági statisztikákhoz és a kosár funkció működéséhez sütiket használ. Ön a böngészője beállításaiban bármikor letilthatja ezeket.
+A weboldal a felhasználói élmény javítása, a webshop kosár funkciójának működése és biztonsági okokból sütiket használ. A sütik típusai:
+- **Szükséges (funkcionális) sütik**: Elengedhetetlenek a weboldal alapvető működéséhez (pl. bejelentkezési munkamenet azonosítása, kosár tartalmának megőrzése). Ezek letiltása esetén a weboldal funkciói nem használhatóak megfelelően.
+- **Analitikai és statisztikai sütik (opcionális)**: Segítenek megérteni a látogatók interakcióit a weboldallal. Ezeket kizárólag a Felhasználó kifejezett hozzájárulása (Cookie Consent elfogadása) esetén töltheti be a rendszer.
+
+Ön a böngészője beállításaiban bármikor letilthatja a sütik mentését, vagy törölheti a meglévőket.
 
 5. ADATBIZTONSÁG
 Az Adatkezelő megtesz minden tőle elvárható technikai és szervezési intézkedést, hogy az adatok ne kerüljenek illetéktelen kezekbe (pl. SSL titkosítás a weboldalon, jelszóval védett rendszerek).

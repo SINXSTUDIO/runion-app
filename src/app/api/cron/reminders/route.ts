@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
         // Allow dev access without header for easier testing if needed, though production needs it.
         // But for strictness let's keep it.
         if (authHeader !== `Bearer ${process.env.CRON_SECRET}` && !isDev) {
-            // return new NextResponse('Unauthorized', { status: 401 });
+            return new NextResponse('Unauthorized', { status: 401 });
         }
 
         const now = new Date();

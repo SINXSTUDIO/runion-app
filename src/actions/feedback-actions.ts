@@ -5,6 +5,8 @@ import { prisma } from '@/lib/prisma';
 import { sendEmail } from '@/lib/email';
 import { FeedbackType, FeedbackStatus } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
+import { headers } from 'next/headers';
+import { feedbackRateLimit } from '@/lib/rate-limit';
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL_NOTIFICATIONS || 'info@sinxstudio.com';
 
@@ -84,6 +86,23 @@ export async function createFeedback(data: FeedbackInput) {
         const session = await auth();
         if (!session?.user?.id) {
             return { success: false, error: 'Authorization required' };
+        }
+
+        // Rate limiting (max 5 submissions per day)
+        try {
+            const headersList = await headers();
+            const forwardedFor = headersList.get('x-forwarded-for');
+            const realIp = headersList.get('x-real-ip');
+            const cfConnectingIp = headersList.get('cf-connecting-ip');
+            const ip = cfConnectingIp || realIp || forwardedFor?.split(',')[0] || '127.0.0.1';
+            const identifier = session.user.id || ip;
+
+            const { success } = await feedbackRateLimit.limit(identifier);
+            if (!success) {
+                return { success: false, error: 'Mára elérted a visszajelzések maximális számát (5/nap). Próbáld újra holnap!' };
+            }
+        } catch (e) {
+            console.error('[RateLimit] feedback limit check failed:', e);
         }
 
         // @ts-ignore - Prisma types might not be updated in editor yet
