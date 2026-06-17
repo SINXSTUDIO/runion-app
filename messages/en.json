@@ -5,7 +5,7 @@
     },
     "Navbar": {
         "races": "Races",
-        "results": "Results",
+        "results": "Boutique",
         "about": "About Us",
         "contact": "Contact",
         "login": "Login",
@@ -188,7 +188,26 @@
             "db": "DATABASE",
             "settings": "Settings",
             "memberships": "Memberships",
-            "backup": "Backup"
+            "backup": "Backup",
+            "welcome": "Welcome,",
+            "controlPanel": "CONTROL PANEL",
+            "loading": "Loading...",
+            "time": "TIME",
+            "version": "VERSION",
+            "groups": {
+                "overview": "Overview",
+                "shop": "Webshop & Boutique",
+                "community": "Community",
+                "system": "System",
+                "support": "Support"
+            },
+            "links": {
+                "requests": "Change Requests",
+                "shopSettings": "Boutique Settings",
+                "sellers": "Organizations",
+                "logs": "System Logs",
+                "auditLogs": "Audit Logs"
+            }
         },
         "EventForm": {
             "title": "Customize Form",

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/routing';
+import { Link, usePathname } from '@/i18n/routing';
 import { User } from 'next-auth';
 import { useCart } from '@/context/CartContext';
 
@@ -17,6 +17,8 @@ interface NavbarProps {
 
 export default function Navbar({ user }: NavbarProps) {
     const t = useTranslations('Navbar');
+    const pathname = usePathname();
+    const isAdminPage = pathname.startsWith('/secretroom75');
     const [isOpen, setIsOpen] = useState(false);
     const { count, toggleCart } = useCart();
 
@@ -84,23 +86,25 @@ export default function Navbar({ user }: NavbarProps) {
                             <div className="flex items-center gap-3 lg:gap-4">
                                 <SessionTimer />
 
-                                <Link href="/dashboard/profile" className="flex items-center gap-2 lg:gap-3 hover:opacity-80 transition-opacity group">
-                                    <div className="text-right hidden lg:block">
-                                        <p className="text-xs text-zinc-400 group-hover:text-accent transition-colors">{t('welcome')}</p>
-                                        <p className="text-sm font-bold text-white truncate max-w-[100px] xl:max-w-[160px]" title={user.name || user.firstName || 'User'}>
-                                            {user.name || user.firstName || 'User'}
-                                        </p>
-                                    </div>
-                                    <div className="w-10 h-10 shrink-0 rounded-full bg-zinc-800 border-2 border-zinc-700 overflow-hidden group-hover:border-accent transition-colors relative">
-                                        {user.image ? (
-                                            <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
-                                        ) : (
-                                            <div className="w-full h-full flex items-center justify-center bg-zinc-900 text-zinc-500">
-                                                <UserIcon className="w-5 h-5" />
-                                            </div>
-                                        )}
-                                    </div>
-                                </Link>
+                                {!isAdminPage && (
+                                    <Link href="/dashboard/profile" className="flex items-center gap-2 lg:gap-3 hover:opacity-80 transition-opacity group">
+                                        <div className="text-right hidden lg:block">
+                                            <p className="text-xs text-zinc-400 group-hover:text-accent transition-colors">{t('welcome')}</p>
+                                            <p className="text-sm font-bold text-white truncate max-w-[100px] xl:max-w-[160px]" title={user.name || user.firstName || 'User'}>
+                                                {user.name || user.firstName || 'User'}
+                                            </p>
+                                        </div>
+                                        <div className="w-10 h-10 shrink-0 rounded-full bg-zinc-800 border-2 border-zinc-700 overflow-hidden group-hover:border-accent transition-colors relative">
+                                            {user.image ? (
+                                                <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
+                                            ) : (
+                                                <div className="w-full h-full flex items-center justify-center bg-zinc-900 text-zinc-500">
+                                                    <UserIcon className="w-5 h-5" />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </Link>
+                                )}
                             </div>
                         ) : (
                             <>
@@ -192,7 +196,7 @@ export default function Navbar({ user }: NavbarProps) {
                             {/* Footer Actions & Socials */}
                             <div className="p-6 bg-black/40 border-t border-white/5 space-y-6">
                                 <div className="grid grid-cols-2 gap-3 opacity-0 animate-fade-in" style={{ animationDelay: '500ms' }}>
-                                    {user ? (
+                                    {user && !isAdminPage ? (
                                         <Link href="/dashboard/profile" onClick={() => setIsOpen(false)} className="col-span-2">
                                             <div className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-4 hover:bg-white/10 transition-colors overflow-hidden">
                                                 <div className="w-12 h-12 shrink-0 rounded-full bg-zinc-800 border-2 border-zinc-700 overflow-hidden relative">
@@ -212,7 +216,7 @@ export default function Navbar({ user }: NavbarProps) {
                                                 </div>
                                             </div>
                                         </Link>
-                                    ) : (
+                                    ) : user ? null : (
                                         <>
                                             <Link href="/login" onClick={() => setIsOpen(false)}>
                                                 <Button variant="ghost" className="w-full h-12 rounded-xl text-sm flex items-center justify-center gap-2 border border-accent/50 text-accent hover:bg-accent hover:text-black transition-all">

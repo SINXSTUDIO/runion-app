@@ -181,7 +181,26 @@
             "db": "ADATBÁZIS",
             "settings": "Beállítások",
             "memberships": "Tagságok",
-            "backup": "Biztonsági Mentés"
+            "backup": "Biztonsági Mentés",
+            "welcome": "Üdv,",
+            "controlPanel": "VEZÉRLŐPULT",
+            "loading": "Betöltés...",
+            "time": "IDŐ",
+            "version": "VERZIÓ",
+            "groups": {
+                "overview": "Áttekintés",
+                "shop": "Webshop & Butik",
+                "community": "Közösség",
+                "system": "Rendszer",
+                "support": "Támogatás"
+            },
+            "links": {
+                "requests": "Átnevezés",
+                "shopSettings": "Boutique Beállítások",
+                "sellers": "Szervezetek",
+                "logs": "Rendszernapló",
+                "auditLogs": "Audit Napló"
+            }
         },
         "EventForm": {
             "title": "Űrlap testreszabása",

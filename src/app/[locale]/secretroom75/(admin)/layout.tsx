@@ -22,7 +22,7 @@ export default async function AdminLayout({
     }
 
     return (
-        <AdminLayoutClient>
+        <AdminLayoutClient user={session.user}>
             {children}
         </AdminLayoutClient>
     );

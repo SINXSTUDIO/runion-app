@@ -20,18 +20,21 @@ import {
     Settings as SettingsIcon,
     Shield,
     HeartHandshake,
-    X
+    X,
+    User as UserIcon
 } from 'lucide-react';
 
 import { useState, useEffect } from 'react';
 import versionInfo from '@/lib/version.json';
+import { User } from 'next-auth';
 
 interface AdminSidebarProps {
     isOpen?: boolean;
     onClose?: () => void;
+    user?: User;
 }
 
-export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
+export default function AdminSidebar({ isOpen = false, onClose, user }: AdminSidebarProps) {
     const pathname = usePathname();
     const t = useTranslations('Admin.Sidebar');
     const [currentTime, setCurrentTime] = useState<string>('');
@@ -53,47 +56,47 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
         return () => clearInterval(interval);
     }, []);
 
-    // Grouped links for a cleaner structure
+    // Grouped links with Next-intl dynamic translation
     const linkGroups = [
         {
-            title: "Áttekintés",
+            title: t('groups.overview'),
             links: [
                 { href: '/secretroom75', label: t('dashboard'), icon: LayoutDashboard },
                 { href: '/secretroom75/events', label: t('events'), icon: Calendar },
                 { href: '/secretroom75/registrations', label: t('registrations'), icon: ClipboardList },
-                { href: '/secretroom75/requests', label: 'Átnevezés', icon: ClipboardList },
+                { href: '/secretroom75/requests', label: t('links.requests'), icon: ClipboardList },
             ]
         },
         {
-            title: "Webshop & Butik",
+            title: t('groups.shop'),
             links: [
                 { href: '/secretroom75/products', label: t('products'), icon: ShoppingBag },
                 { href: '/secretroom75/orders', label: t('orders'), icon: Package },
-                { href: '/secretroom75/shop-settings', label: 'Boutique Beállítások', icon: SettingsIcon },
+                { href: '/secretroom75/shop-settings', label: t('links.shopSettings'), icon: SettingsIcon },
             ]
         },
         {
-            title: "Közösség",
+            title: t('groups.community'),
             links: [
                 { href: '/secretroom75/users', label: t('users'), icon: Users },
                 { href: '/secretroom75/memberships', label: t('memberships'), icon: CreditCard },
-                { href: '/secretroom75/sellers', label: 'Szervezetek', icon: Building2 },
+                { href: '/secretroom75/sellers', label: t('links.sellers'), icon: Building2 },
                 { href: '/secretroom75/partners', label: t('partners'), icon: Handshake },
                 { href: '/secretroom75/sponsors', label: t('sponsors'), icon: HeartHandshake },
             ]
         },
         {
-            title: "Rendszer",
+            title: t('groups.system'),
             links: [
                 { href: '/secretroom75/gallery', label: t('gallery'), icon: ImageIcon },
                 { href: '/secretroom75/settings', label: t('settings'), icon: SettingsIcon },
                 { href: '/secretroom75/settings/backup', label: t('backup'), icon: Database },
-                { href: '/secretroom75/logs', label: 'Rendszernapló', icon: FileText },
-                { href: '/secretroom75/audit-logs', label: 'Audit Napló', icon: Shield },
+                { href: '/secretroom75/logs', label: t('links.logs'), icon: FileText },
+                { href: '/secretroom75/audit-logs', label: t('links.auditLogs'), icon: Shield },
             ]
         },
         {
-            title: "Támogatás",
+            title: t('groups.support'),
             links: [
                 { href: '/secretroom75/about', label: t('about'), icon: Info },
                 { href: '/secretroom75/contact', label: t('contact'), icon: Phone },
@@ -112,7 +115,7 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
                 <div>
                     <span className="text-xl font-black font-heading tracking-tighter italic block leading-tight">
                         <span className="text-white block">RUNION</span>
-                        <span className="text-accent block text-base tracking-widest">VEZÉRLŐPULT</span>
+                        <span className="text-accent block text-base tracking-widest">{t('controlPanel')}</span>
                     </span>
                     <span className="text-[9px] text-zinc-500 font-mono mt-1 block">ADMIN CONSOLE v2.0</span>
                 </div>
@@ -126,6 +129,27 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
                     </button>
                 )}
             </div>
+
+            {/* User Profile in Admin Sidebar */}
+            {user && (
+                <div className="p-4 mx-3 mt-4 bg-zinc-900/40 border border-white/5 rounded-2xl flex items-center gap-3 shadow-inner backdrop-blur-sm">
+                    <div className="w-9 h-9 rounded-full bg-zinc-800 border border-white/10 overflow-hidden relative shrink-0">
+                        {user.image ? (
+                            <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
+                        ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-zinc-900 text-zinc-500">
+                                <UserIcon className="w-4 h-4" />
+                            </div>
+                        )}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                        <p className="text-[9px] text-zinc-500 font-mono uppercase tracking-widest leading-none">{t('welcome')}</p>
+                        <p className="text-xs font-bold text-white truncate mt-1" title={user.name || user.firstName || user.email || 'Admin'}>
+                            {user.name || user.firstName || user.email || 'Admin'}
+                        </p>
+                    </div>
+                </div>
+            )}
 
             {/* Sidebar Navigation */}
             <nav className="flex-1 px-3 py-4 space-y-6">
@@ -165,11 +189,11 @@ export default function AdminSidebar({ isOpen = false, onClose }: AdminSidebarPr
                 <div className="bg-zinc-900/40 rounded-lg p-3 border border-white/5 shadow-inner">
                     <div className="text-[9px] text-zinc-500 font-mono leading-normal space-y-1">
                         <div className="flex justify-between items-center">
-                            <span>IDŐ:</span>
-                            <span className="text-zinc-300 font-bold">{currentTime || 'Betöltés...'}</span>
+                            <span>{t('time')}:</span>
+                            <span className="text-zinc-300 font-bold">{currentTime || t('loading')}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                            <span>VERZIÓ:</span>
+                            <span>{t('version')}:</span>
                             <span className="text-accent font-bold">#{versionInfo.version}</span>
                         </div>
                         <div className="text-[8px] text-zinc-600 font-mono pt-1 border-t border-white/5 text-right">

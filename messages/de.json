@@ -5,7 +5,7 @@
     },
     "Navbar": {
         "races": "Wettkämpfe",
-        "results": "Ergebnisse",
+        "results": "Boutique",
         "about": "Über Uns",
         "contact": "Kontakt",
         "login": "Anmelden",
@@ -181,7 +181,26 @@
             "db": "DATENBANK",
             "settings": "Einstellungen",
             "memberships": "Mitgliedschaften",
-            "backup": "Datensicherung"
+            "backup": "Datensicherung",
+            "welcome": "Willkommen,",
+            "controlPanel": "SYSTEMSTEUERUNG",
+            "loading": "Laden...",
+            "time": "ZEIT",
+            "version": "VERSION",
+            "groups": {
+                "overview": "Übersicht",
+                "shop": "Webshop & Boutique",
+                "community": "Gemeinschaft",
+                "system": "System",
+                "support": "Unterstützung"
+            },
+            "links": {
+                "requests": "Ummeldungen",
+                "shopSettings": "Boutique-Einstellungen",
+                "sellers": "Organisationen",
+                "logs": "Systemprotokolle",
+                "auditLogs": "Audit-Protokolle"
+            }
         },
         "EventForm": {
             "title": "Formular anpassen",

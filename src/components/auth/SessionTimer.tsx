@@ -6,12 +6,12 @@ import { Timer } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 interface SessionTimerProps {
-    timeoutMs?: number; // Default: 10 minutes (600000ms)
+    timeoutMs?: number; // Default: 30 minutes (1800000ms)
     warningThresholdMs?: number; // Default: 1 minute (60000ms)
 }
 
 export default function SessionTimer({
-    timeoutMs = 10 * 60 * 1000,
+    timeoutMs = 30 * 60 * 1000,
     warningThresholdMs = 60 * 1000
 }: SessionTimerProps) {
     const t = useTranslations('Auth'); // Assuming we have auth translations, or use fallback

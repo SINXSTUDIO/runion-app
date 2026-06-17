@@ -3,12 +3,14 @@
 import React, { useState } from "react";
 import AdminSidebar from "./AdminSidebar";
 import SecretHeader from "./SecretHeader";
+import { User } from "next-auth";
 
 interface AdminLayoutClientProps {
     children: React.ReactNode;
+    user?: User;
 }
 
-export default function AdminLayoutClient({ children }: AdminLayoutClientProps) {
+export default function AdminLayoutClient({ children, user }: AdminLayoutClientProps) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
@@ -23,7 +25,7 @@ export default function AdminLayoutClient({ children }: AdminLayoutClientProps) 
             )}
 
             {/* Responsive Sidebar */}
-            <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+            <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} user={user} />
 
             {/* Main Content Area */}
             <div className="flex-1 flex flex-col min-w-0">
