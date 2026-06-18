@@ -289,11 +289,11 @@ export async function generateProformaPDF(
     yPos += (bankBlockHeight + 10);
 
     // Buyer (Registration Data)
-    const billing = (registration.formData as any)?.billingDetails || {};
-    const buyerName = billing.billingName || billing.name || `${registration.user?.lastName || ''} ${registration.user?.firstName || ''}`.trim();
+    const billing = registration.formData?.billingDetails || {};
+    const buyerName = billing.billingName || `${registration.user?.lastName || ''} ${registration.user?.firstName || ''}`.trim();
     
     let buyerAddress = '';
-    const regUser = registration.user as any;
+    const regUser = registration.user;
     if (billing.billingAddress) {
         buyerAddress = `${billing.billingZip || ''} ${billing.billingCity || ''}, ${billing.billingAddress}`.trim();
     } else if (regUser?.billingAddress) {

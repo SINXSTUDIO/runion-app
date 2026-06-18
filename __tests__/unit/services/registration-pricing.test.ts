@@ -31,6 +31,11 @@ vi.mock('@/lib/mutex', () => ({
     },
 }));
 
+vi.mock('@/lib/rate-limit', () => ({
+    checkRateLimit: vi.fn().mockResolvedValue({ success: true }),
+    registrationRateLimit: {},
+}));
+
 vi.mock('@/lib/email', () => ({
     sendEmail: vi.fn().mockResolvedValue(true),
     REG_EMAIL_TRANSLATIONS: {

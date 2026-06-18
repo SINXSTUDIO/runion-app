@@ -1,14 +1,18 @@
 'use server';
 
 import prisma from '@/lib/prisma';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, unstable_cache, revalidateTag } from 'next/cache';
 import { auth } from '@/auth';
 
 // --- ABOUT PAGE ---
 
-export async function getAboutPage() {
-    return await prisma.aboutPage.findFirst();
-}
+export const getAboutPage = unstable_cache(
+    async () => {
+        return await prisma.aboutPage.findFirst();
+    },
+    ['about-page-data'],
+    { tags: ['about-page'], revalidate: 3600 }
+);
 
 export async function updateAboutPage(data: any) {
     const session = await auth();
@@ -44,6 +48,7 @@ export async function updateAboutPage(data: any) {
         }
         revalidatePath('/[locale]/about', 'page');
         revalidatePath('/[locale]/secretroom75', 'layout');
+        (revalidateTag as any)('about-page');
         return { success: true, message: 'Rólunk oldal frissítve!' };
     } catch (e) {
         console.error(e);
@@ -144,11 +149,15 @@ export async function updateCompanyOrder(items: { id: string, order: number }[])
 
 // --- FAQs (CONTACT) ---
 
-export async function getFAQs() {
-    return await prisma.fAQ.findMany({
-        orderBy: { order: 'asc' }
-    });
-}
+export const getFAQs = unstable_cache(
+    async () => {
+        return await prisma.fAQ.findMany({
+            orderBy: { order: 'asc' }
+        });
+    },
+    ['faqs-data'],
+    { tags: ['faqs'], revalidate: 3600 }
+);
 
 export async function upsertFAQ(data: any) {
     const session = await auth();
@@ -189,6 +198,7 @@ export async function upsertFAQ(data: any) {
         }
         revalidatePath('/[locale]/contact', 'page');
         revalidatePath('/[locale]/secretroom75/contact', 'page');
+        (revalidateTag as any)('faqs');
         return { success: true, message: 'GYIK mentve!' };
     } catch (e) {
         console.error(e);
@@ -204,6 +214,7 @@ export async function deleteFAQ(id: string) {
         await prisma.fAQ.delete({ where: { id } });
         revalidatePath('/[locale]/contact', 'page');
         revalidatePath('/[locale]/secretroom75/contact', 'page');
+        (revalidateTag as any)('faqs');
         return { success: true };
     } catch (e) {
         return { success: false, message: 'Hiba a törléskor' };
@@ -224,6 +235,7 @@ export async function updateFAQOrder(items: { id: string, order: number }[]) {
         }
         revalidatePath('/[locale]/contact', 'page');
         revalidatePath('/[locale]/secretroom75/contact', 'page');
+        (revalidateTag as any)('faqs');
         return { success: true };
     } catch (e) {
         return { success: false };
@@ -267,6 +279,7 @@ export async function importFAQs(jsonContent: string) {
 
         revalidatePath('/[locale]/contact', 'page');
         revalidatePath('/[locale]/secretroom75/contact', 'page');
+        (revalidateTag as any)('faqs');
         return { success: true, message: `${count} kérdés sikeresen importálva!` };
     } catch (e) {
         console.error(e);

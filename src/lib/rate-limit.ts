@@ -68,6 +68,17 @@ export const feedbackRateLimit = new Ratelimit({
 });
 
 /**
+ * Rate limiter for event registrations (submissions)
+ * Allows 3 submissions per minute per user/IP
+ */
+export const registrationRateLimit = new Ratelimit({
+    redis,
+    limiter: Ratelimit.slidingWindow(3, '1 m'),
+    analytics: true,
+    prefix: 'ratelimit:registration',
+});
+
+/**
  * Rate limiter for admin actions (deletions, bulk operations)
  * Allows 50 actions per minute per admin user
  */

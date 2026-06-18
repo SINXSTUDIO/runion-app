@@ -15,6 +15,22 @@ import {
 } from '@/lib/validators/registration';
 import { registrationMutex } from '@/lib/mutex';
 import { REG_EMAIL_TRANSLATIONS, Locale, generateRegistrationEmailHtml, generateNotificationEmailHtml } from '@/templates/emails/registration';
+import { sanitizePlainText } from '@/lib/sanitize';
+
+// Helper function to recursively sanitize dynamic form values for XSS protection
+function sanitizeObject(obj: Record<string, unknown>): Record<string, unknown> {
+    const clean: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(obj)) {
+        if (typeof value === 'string') {
+            clean[key] = sanitizePlainText(value);
+        } else if (value && typeof value === 'object' && !Array.isArray(value)) {
+            clean[key] = sanitizeObject(value as Record<string, unknown>);
+        } else {
+            clean[key] = value;
+        }
+    }
+    return clean;
+}
 
 // Old schemas removed - using validators from registration.ts
 
@@ -31,6 +47,16 @@ export async function submitRegistration(
     liabilityAccepted: boolean = false
 ): Promise<{ success: boolean; registrationId?: string; error?: string }> {
     try {
+        // Sanitize dynamic form data to protect against XSS
+        formData = sanitizeObject(formData);
+
+        // Rate Limiting Check (max 3 registrations per minute per user)
+        const { registrationRateLimit, checkRateLimit } = await import('@/lib/rate-limit');
+        const rateLimitResult = await checkRateLimit(registrationRateLimit, userId);
+        if (!rateLimitResult.success) {
+            return { success: false, error: 'Túl sok próbálkozás! Kérjük, várj egy kicsit a következő nevezés leadása előtt.' };
+        }
+
         const locale = await getLocale();
         const t = REG_EMAIL_TRANSLATIONS[locale as Locale] || REG_EMAIL_TRANSLATIONS.hu;
 

@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import { FormField } from '@/lib/types/form';
 import DynamicFormRenderer from './DynamicFormRenderer';
 import { Button } from '@/components/ui/Button';
-import { ArrowRight, ArrowLeft, CheckCircle, CreditCard, User, MapPin, Package } from 'lucide-react';
+import { ArrowRight, ArrowLeft, CheckCircle, CreditCard, User, MapPin, Package, Loader2 } from 'lucide-react';
 import { submitRegistration } from '@/actions/registration';
 import { useSearchParams } from 'next/navigation';
 import { detectGenderByName } from '@/lib/utils/name-gender';
@@ -785,7 +785,8 @@ export default function RegistrationWizard({ event, user, formConfig }: WizardPr
                             <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
                     ) : (
-                        <Button onClick={handleSubmit} disabled={submitting} className="bg-accent text-black hover:bg-accent/80 font-bold px-8 animate-pulse hover:animate-none">
+                        <Button onClick={handleSubmit} disabled={submitting} className="bg-accent text-black hover:bg-accent/80 font-bold px-8 flex items-center gap-2">
+                            {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
                             {submitting ? t('actions.processing') : t('actions.finish')}
                         </Button>
                     )}

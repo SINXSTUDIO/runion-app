@@ -24,6 +24,13 @@ export interface RegistrationWithDetails {
         email: string;
         firstName: string;
         lastName: string;
+        billingAddress?: string | null;
+        billingZipCode?: string | null;
+        billingCity?: string | null;
+        address?: string | null;
+        zipCode?: string | null;
+        city?: string | null;
+        taxNumber?: string | null;
     };
     formData?: {
         billingDetails?: BillingDetails;
