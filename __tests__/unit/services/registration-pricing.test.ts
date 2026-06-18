@@ -71,6 +71,9 @@ describe('submitRegistration - Pricing & Currency Logic', () => {
         firstName: 'Gábor',
         lastName: 'Kovács',
         membershipTier: null,
+        zipCode: '1111',
+        city: 'Budapest',
+        address: 'Fő utca 1.',
     };
 
     const mockSellerHuf = {
@@ -159,7 +162,11 @@ describe('submitRegistration - Pricing & Currency Logic', () => {
             'dist-21k',
             formData,
             billingData,
-            []
+            [],
+            undefined,
+            true,
+            true,
+            true
         );
 
         expect(result.success).toBe(true);
@@ -204,7 +211,11 @@ describe('submitRegistration - Pricing & Currency Logic', () => {
             'dist-21k',
             { phone: '06301234567' },
             null,
-            []
+            [],
+            undefined,
+            true,
+            true,
+            true
         );
 
         expect(result.success).toBe(true);
@@ -235,7 +246,11 @@ describe('submitRegistration - Pricing & Currency Logic', () => {
             'dist-21k',
             { phone: '06301234567' },
             null,
-            []
+            [],
+            undefined,
+            true,
+            true,
+            true
         );
 
         expect(result.success).toBe(true);
@@ -259,7 +274,11 @@ describe('submitRegistration - Pricing & Currency Logic', () => {
             'dist-21k',
             { phone: '06301234567' },
             null,
-            []
+            [],
+            undefined,
+            true,
+            true,
+            true
         );
 
         expect(result.success).toBe(false);
@@ -285,7 +304,10 @@ describe('submitRegistration - Pricing & Currency Logic', () => {
             { phone: '06301234567' },
             null,
             [],
-            3 // crew size
+            3, // crew size
+            true,
+            true,
+            true
         );
 
         expect(result.success).toBe(true);
@@ -326,10 +348,75 @@ describe('submitRegistration - Pricing & Currency Logic', () => {
             'dist-21k',
             formData,
             billingData,
-            []
+            [],
+            undefined,
+            true,
+            true,
+            true
         );
 
         expect(result.success).toBe(true);
         expect(prisma.registration.create).toHaveBeenCalled();
+    });
+
+    it('should fail if legal consents are not accepted', async () => {
+        const formData = { firstName: 'Gábor', lastName: 'Kovács', phone: '06301234567' };
+        const billingData = {
+            billingName: 'Kovács Gábor',
+            billingZip: '8000',
+            billingCity: 'Székesfehérvár',
+            billingAddress: 'Fő utca 12.',
+            billingTaxNumber: '',
+        };
+
+        const result = await submitRegistration(
+            'event-1',
+            'user-1',
+            'dist-21k',
+            formData,
+            billingData,
+            [],
+            undefined,
+            false, // termsAccepted
+            true,  // privacyAccepted
+            true   // liabilityAccepted
+        );
+
+        expect(result.success).toBe(false);
+        expect(result.error).toContain('el kell fogadnod az ÁSZF-et');
+    });
+
+    it('should fail if billingData is missing and user has no address in profile', async () => {
+        // Mock user without any address or billing address
+        const userNoAddress = {
+            id: 'user-1',
+            email: 'runner@example.com',
+            firstName: 'Gábor',
+            lastName: 'Kovács',
+            membershipTier: null,
+            zipCode: null,
+            city: null,
+            address: null,
+            billingZipCode: null,
+            billingCity: null,
+            billingAddress: null,
+        };
+        (prisma.user.findUnique as any).mockResolvedValue(userNoAddress);
+
+        const result = await submitRegistration(
+            'event-1',
+            'user-1',
+            'dist-21k',
+            { phone: '06301234567' },
+            null, // No explicit billingData
+            [],
+            undefined,
+            true,
+            true,
+            true
+        );
+
+        expect(result.success).toBe(false);
+        expect(result.error).toContain('Számlázási adatok megadása kötelező');
     });
 });

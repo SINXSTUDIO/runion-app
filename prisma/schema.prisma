@@ -221,7 +221,11 @@ model Registration {
   formData            Json?
   crewSize            Int?
   finalPrice          Decimal?           @db.Decimal(10, 2)
-  distance            Distance           @relation(fields: [distanceId], references: [id], onDelete: Cascade)
+  termsAccepted       Boolean            @default(false)
+  privacyAccepted     Boolean            @default(false)
+  liabilityAccepted   Boolean            @default(false)
+  acceptedAt          DateTime?
+  distance            Distance           @relation(fields: [distanceId], references: [id], onDelete: Restrict)
   user                User               @relation(fields: [userId], references: [id])
 
   @@index([userId])

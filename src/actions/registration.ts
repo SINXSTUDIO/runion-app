@@ -25,7 +25,10 @@ export async function submitRegistration(
     formData: Record<string, unknown>,
     billingData: BillingData | null,
     extras: EventExtra[] = [],
-    crewSize?: number
+    crewSize?: number,
+    termsAccepted: boolean = false,
+    privacyAccepted: boolean = false,
+    liabilityAccepted: boolean = false
 ): Promise<{ success: boolean; registrationId?: string; error?: string }> {
     try {
         const locale = await getLocale();
@@ -46,12 +49,35 @@ export async function submitRegistration(
             return { success: true, registrationId: 'bot_' + Date.now() };
         }
 
+        // Legal Consent Check
+        if (!termsAccepted || !privacyAccepted || !liabilityAccepted) {
+            return { success: false, error: 'A nevezéshez el kell fogadnod az ÁSZF-et, az Adatkezelési Tájékoztatót és a Felelősségvállalási nyilatkozatot!' };
+        }
+
         // Validate billing data if provided
+        let isBillingComplete = false;
         if (billingData && Object.keys(billingData).length > 0) {
             const billingValidation = BillingDataSchema.safeParse(billingData);
-            if (!billingValidation.success) {
+            if (billingValidation.success) {
+                isBillingComplete = true;
+            } else {
                 const errorMessage = billingValidation.error.issues[0]?.message || 'Hibás számlázási adatok';
                 return createErrorResponse(new Error(errorMessage), errorMessage);
+            }
+        }
+
+        // Szigorított számlázási ellenőrzés (NAV-megfelelés): ha nem adtak meg számlázási adatot,
+        // akkor ellenőrizzük, hogy a profil adatok között megvan-e a NAV által megkövetelt minimális információ (Név, Cím).
+        if (!isBillingComplete) {
+            const userProfile = await prisma.user.findUnique({
+                where: { id: userId }
+            });
+
+            const hasProfileBilling = userProfile?.billingName && userProfile?.billingZipCode && userProfile?.billingCity && userProfile?.billingAddress;
+            const hasProfileAddress = userProfile?.lastName && userProfile?.firstName && userProfile?.zipCode && userProfile?.city && userProfile?.address;
+
+            if (!hasProfileBilling && !hasProfileAddress) {
+                return { success: false, error: 'Számlázási adatok megadása kötelező a szabályos bizonylat kiállításához! Kérjük, töltsd ki a számlázási részt, vagy pótold a hiányzó lakcímet a profilodban.' };
             }
         }
 
@@ -157,6 +183,10 @@ export async function submitRegistration(
                     extras: extras,
                     crewSize: isCrewPricing ? crewSize : null,
                     finalPrice: finalPrice,
+                    termsAccepted,
+                    privacyAccepted,
+                    liabilityAccepted,
+                    acceptedAt: new Date(),
                 },
                 include: {
                     distance: {

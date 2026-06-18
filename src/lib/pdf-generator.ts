@@ -289,10 +289,20 @@ export async function generateProformaPDF(
     yPos += (bankBlockHeight + 10);
 
     // Buyer (Registration Data)
-    const billing = registration.formData?.billingDetails || {};
-    const buyerName = billing.billingName || `${registration.user?.lastName || ''} ${registration.user?.firstName || ''}`.trim();
-    const buyerAddress = billing.billingAddress ? `${billing.billingZip || ''} ${billing.billingCity || ''}, ${billing.billingAddress}`.trim() : '';
-    const buyerTax = billing.billingTaxNumber;
+    const billing = (registration.formData as any)?.billingDetails || {};
+    const buyerName = billing.billingName || billing.name || `${registration.user?.lastName || ''} ${registration.user?.firstName || ''}`.trim();
+    
+    let buyerAddress = '';
+    const regUser = registration.user as any;
+    if (billing.billingAddress) {
+        buyerAddress = `${billing.billingZip || ''} ${billing.billingCity || ''}, ${billing.billingAddress}`.trim();
+    } else if (regUser?.billingAddress) {
+        buyerAddress = `${regUser.billingZipCode || ''} ${regUser.billingCity || ''}, ${regUser.billingAddress}`.trim();
+    } else if (regUser?.address) {
+        buyerAddress = `${regUser.zipCode || ''} ${regUser.city || ''}, ${regUser.address}`.trim();
+    }
+    
+    const buyerTax = billing.billingTaxNumber || regUser?.taxNumber || null;
 
     doc.setFont("helvetica", "bold");
     doc.text(sanitizeText(t.buyer), leftX, yPos);
