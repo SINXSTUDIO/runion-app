@@ -4,29 +4,31 @@ import { z } from 'zod';
  * Hungarian tax number validation (XXXXXXXX-X-XX format or just 11 digits)
  * Allows optional spaces and hyphens.
  */
-const taxNumberRegex = /^[A-Z0-9\-\s]{8,20}$/i;
-
+/**
+ * Alphanumeric tax/VAT number validation (allows letters, digits, spaces, hyphens, 6-25 characters)
+ */
+const taxNumberRegex = /^[A-Z0-9\-\s]{6,25}$/i;
 
 /**
- * Hungarian phone number validation (+36 or 06 prefix)
+ * International phone number validation (allows optional +, digits, spaces, hyphens, parentheses, 7-20 characters)
  */
-const phoneRegex = /^(\+36|06)?[0-9]{9}$/;
+const phoneRegex = /^\+?[0-9\s\-()]{7,20}$/;
 
 /**
- * Hungarian zip code (4 digits)
+ * Alphanumeric zip/postal code validation (allows digits, letters, spaces, hyphens, 3-10 characters)
  */
-const zipRegex = /^\d{4}$/;
+const zipRegex = /^[a-z0-9\-\s]{3,10}$/i;
 
 /**
  * Billing data validation schema
  */
 export const BillingDataSchema = z.object({
     billingName: z.string().min(1, "Számlázási név kötelező"),
-    billingZip: z.string().regex(zipRegex, "Érvénytelen irányítószám (4 számjegy)"),
+    billingZip: z.string().regex(zipRegex, "Érvénytelen irányítószám"),
     billingCity: z.string().min(1, "Város kötelező"),
     billingAddress: z.string().min(5, "Cím kötelező (minimum 5 karakter)"),
     billingTaxNumber: z.string()
-        .regex(taxNumberRegex, "Érvénytelen adószám formátum (csak betűk, számok, kötőjel és szóköz megengedett, 8-20 karakter)")
+        .regex(taxNumberRegex, "Érvénytelen adószám vagy közösségi adószám formátum")
         .optional()
         .or(z.literal('')),
 }).strict();

@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { createFullBackup, restoreFullBackup } from '@/actions/backup-actions';
+import { listAutoBackups, getAutoBackupContent } from '@/actions/auto-backup';
 import { Button } from '@/components/ui/Button';
 import { Download, Loader2, Database, AlertCircle, Upload, RefreshCw, ArchiveRestore } from 'lucide-react';
 import { toast } from 'sonner';
@@ -21,7 +22,66 @@ export default function BackupManager() {
     const [isRestoring, setIsRestoring] = useState(false);
     const [restoreFile, setRestoreFile] = useState<File | null>(null);
     const [isRestoreDialogOpen, setIsRestoreDialogOpen] = useState(false);
+    const [autoBackups, setAutoBackups] = useState<string[]>([]);
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const fetchAutoBackups = async () => {
+        try {
+            const list = await listAutoBackups();
+            setAutoBackups(list);
+        } catch (err) {
+            console.error('Failed to list backups', err);
+        }
+    };
+
+    useEffect(() => {
+        fetchAutoBackups();
+    }, []);
+
+    const handleDownloadAutoBackup = async (filename: string) => {
+        try {
+            const dataStr = await getAutoBackupContent(filename);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            toast.success(`${filename} sikeresen letöltve!`);
+        } catch (error) {
+            console.error(error);
+            toast.error('Hiba történt a letöltés során.');
+        }
+    };
+
+    const handleRestoreAutoBackup = async (filename: string) => {
+        if (!confirm(`Biztosan visszaállítod az adatbázist a(z) ${filename} mentésből? Minden jelenlegi adat felülíródik!`)) {
+            return;
+        }
+        setIsRestoring(true);
+        try {
+            const dataStr = await getAutoBackupContent(filename);
+            const file = new File([dataStr], filename, { type: 'application/json' });
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const result = await restoreFullBackup(formData);
+            if (result.success) {
+                toast.success('Adatbázis sikeresen visszaállítva!');
+                window.location.reload();
+            } else {
+                toast.error(result.error || 'Hiba történt a visszaállítás során.');
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error('Váratlan hiba történt.');
+        } finally {
+            setIsRestoring(false);
+        }
+    };
 
     const handleExport = async () => {
         setIsExporting(true);
@@ -116,6 +176,52 @@ export default function BackupManager() {
                             </>
                         )}
                     </Button>
+                </div>
+            </div>
+
+            {/* Daily Auto-Backups Section */}
+            <div className="flex flex-col gap-6 border-b border-white/10 pb-8">
+                <div>
+                    <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                        <Database className="w-5 h-5 text-emerald-500" />
+                        Automatikus Napi Mentések (Utolsó 5)
+                    </h3>
+                    <p className="text-zinc-400 mb-4 text-sm leading-relaxed">
+                        A rendszer minden éjjel 2:00-kor automatikus biztonsági mentést készít a lemezre. 
+                        Az alábbiakban töltheted le vagy állíthatod vissza a lemezen tárolt napi mentéseket.
+                    </p>
+
+                    {autoBackups.length === 0 ? (
+                        <div className="text-zinc-500 text-sm italic">Nincs elérhető automatikus napi mentés a lemezen.</div>
+                    ) : (
+                        <div className="space-y-3">
+                            {autoBackups.map((filename) => (
+                                <div key={filename} className="flex items-center justify-between p-4 bg-zinc-950/60 rounded-xl border border-white/5 hover:border-white/10 transition-colors">
+                                    <div className="flex items-center gap-3">
+                                        <Database className="w-4 h-4 text-zinc-500" />
+                                        <span className="text-sm font-mono text-zinc-300">{filename}</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Button
+                                            size="sm"
+                                            onClick={() => handleDownloadAutoBackup(filename)}
+                                            className="bg-zinc-900 hover:bg-zinc-800 text-zinc-300 h-8 px-3 rounded-lg flex items-center gap-1.5 border border-zinc-700"
+                                        >
+                                            <Download className="w-3.5 h-3.5" /> Letöltés
+                                        </Button>
+                                        <Button
+                                            size="sm"
+                                            onClick={() => handleRestoreAutoBackup(filename)}
+                                            disabled={isRestoring}
+                                            className="bg-amber-600/20 hover:bg-amber-600/40 text-amber-400 hover:text-amber-300 h-8 px-3 rounded-lg flex items-center gap-1.5 border border-amber-500/20"
+                                        >
+                                            <RefreshCw className="w-3.5 h-3.5" /> Visszaállítás
+                                        </Button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
 

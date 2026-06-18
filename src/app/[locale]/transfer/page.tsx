@@ -25,7 +25,7 @@ export default async function TransferPage({ params }: { params: Promise<{ local
     const bankName = settings?.transferBankName || 'KAHU Egyesület';
     const bankAccountNumber = settings?.transferBankAccountNumber || '11748038-24826190-00000000';
     const note = settings?.transferNote || 'NVZS2024 – ADOMÁNY ÁLLATELEDEL VÁSÁRLÁSÁRA';
-    const contactEmail = settings?.transferEmail || 'versenyiroda.runion@gmail.com';
+    const contactEmail = settings?.transferEmail || process.env.TRANSFER_EMAIL || 'info@runion.eu';
 
     // Fetch User Data for Prefill
     const session = await auth();

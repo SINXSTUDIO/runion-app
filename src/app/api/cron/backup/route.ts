@@ -11,7 +11,12 @@ export async function GET(request: Request) {
     // Allow triggering via secret key for Cron jobs
     const { searchParams } = new URL(request.url);
     const key = searchParams.get('key');
-    const validSecret = process.env.CRON_SECRET || 'runion_restore_secret_2026'; // Reuse the secret for now or add CRON_SECRET
+    const validSecret = process.env.CRON_SECRET;
+
+    if (!validSecret) {
+        console.error('CRON_SECRET is not configured on the server');
+        return new NextResponse('Internal Server Error', { status: 500 });
+    }
 
     if (authHeader !== `Bearer ${validSecret}` && key !== validSecret) {
         return new NextResponse('Unauthorized', { status: 401 });
@@ -57,12 +62,13 @@ export async function GET(request: Request) {
             products
         };
 
-        // effectively "downloading" the JSON
-        // In a real Vercel Cron setup, we might want to POST this to an external storage (S3/R2/Supabase Storage)
-        // because Vercel functions are ephemeral.
-        // For now, we just return it as JSON so the user can "curl" it or we can log it.
-        // Or better: We log the success and maybe send it to an email if configured? 
-        // Returning JSON is the simplest "pull" backup.
+        // Save backup to disk (local daily folder with 5-file rotation)
+        try {
+            const { saveBackupDataToDisk } = await import('@/actions/auto-backup');
+            await saveBackupDataToDisk(backupData);
+        } catch (diskErr) {
+            console.error('[Cron Backup] Failed to save backup to disk:', diskErr);
+        }
 
         return NextResponse.json({
             success: true,

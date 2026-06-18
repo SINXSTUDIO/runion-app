@@ -5,7 +5,12 @@ import { prisma } from '@/lib/prisma';
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const key = searchParams.get('key');
-    const validSecret = process.env.CRON_SECRET || 'runion_restore_secret_2026';
+    const validSecret = process.env.CRON_SECRET;
+
+    if (!validSecret) {
+        console.error('CRON_SECRET is not configured on the server');
+        return new NextResponse('Internal Server Error', { status: 500 });
+    }
 
     if (key !== validSecret) {
         return new NextResponse('Unauthorized', { status: 401 });

@@ -54,8 +54,8 @@ describe('BillingDataSchema - Tax Number Validation', () => {
 
     it('should reject invalid tax numbers', () => {
         const invalidTaxNumbers = [
-            '123', // Too short (minimum 8 characters)
-            'DE1234567890123456789012', // Too long (maximum 20 characters)
+            '123', // Too short (minimum 6 characters)
+            'DE12345678901234567890123456789', // Too long (maximum 25 characters)
             'DE@12345678', // Contains invalid character (@)
             'DE12345#78', // Contains invalid character (#)
         ];

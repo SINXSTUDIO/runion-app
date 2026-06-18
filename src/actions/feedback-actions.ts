@@ -8,7 +8,7 @@ import { revalidatePath } from 'next/cache';
 import { headers } from 'next/headers';
 import { feedbackRateLimit } from '@/lib/rate-limit';
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL_NOTIFICATIONS || 'info@sinxstudio.com';
+const ADMIN_EMAIL_FALLBACK = 'info@runion.eu';
 
 export type FeedbackInput = {
     type: FeedbackType;
@@ -136,8 +136,11 @@ export async function createFeedback(data: FeedbackInput) {
             <p><a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/secretroom75/feedbacks">Megtekintés az Admin felületen</a></p>
         `;
 
+        const globalSettings = await prisma.globalSettings.findFirst();
+        const resolvedAdminEmail = process.env.ADMIN_EMAIL_NOTIFICATIONS || globalSettings?.shopEmail || ADMIN_EMAIL_FALLBACK;
+
         await sendEmail({
-            to: ADMIN_EMAIL,
+            to: resolvedAdminEmail,
             subject: `[RUNION Feedback] ${data.subject}`,
             html: emailContent
         });

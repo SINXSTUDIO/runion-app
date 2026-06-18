@@ -40,7 +40,7 @@ export async function checkAndCreateAutoBackup() {
             await fs.writeFile(filePath, result.backup, 'utf-8');
             console.log(`[AutoBackup] Success: ${filePath}`);
 
-            // Clean up old backups (Keep last 3)
+            // Clean up old backups (Keep last 5)
             await cleanupOldBackups();
 
             return { status: 'created', date: today };
@@ -53,6 +53,21 @@ export async function checkAndCreateAutoBackup() {
     }
 }
 
+export async function saveBackupDataToDisk(backupData: any) {
+    try {
+        await fs.mkdir(BACKUP_DIR, { recursive: true });
+        const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+        const filename = `backup-${today}.json`;
+        const filePath = path.join(BACKUP_DIR, filename);
+
+        await fs.writeFile(filePath, JSON.stringify(backupData, null, 2), 'utf-8');
+        console.log(`[AutoBackup] Cron daily backup saved to disk: ${filePath}`);
+        await cleanupOldBackups();
+    } catch (error) {
+        console.error('[AutoBackup] Failed to save backup data to disk:', error);
+    }
+}
+
 async function cleanupOldBackups() {
     try {
         const files = await fs.readdir(BACKUP_DIR);
@@ -61,9 +76,9 @@ async function cleanupOldBackups() {
         // Sort by name (which has date iso) -> Ascending
         backupFiles.sort();
 
-        // Keep last 30 backups (increased from 3)
-        if (backupFiles.length > 30) {
-            const toDelete = backupFiles.slice(0, backupFiles.length - 30);
+        // Keep last 5 backups
+        if (backupFiles.length > 5) {
+            const toDelete = backupFiles.slice(0, backupFiles.length - 5);
             for (const f of toDelete) {
                 const p = path.join(BACKUP_DIR, f);
                 console.log(`[AutoBackup] Deleting old backup: ${f}`);
@@ -84,4 +99,14 @@ export async function listAutoBackups() {
     } catch {
         return [];
     }
+}
+
+export async function getAutoBackupContent(filename: string) {
+    await requireAdmin();
+    // Validate filename to prevent directory traversal
+    if (!filename.startsWith('backup-') || !filename.endsWith('.json') || filename.includes('/') || filename.includes('\\')) {
+        throw new Error('Invalid filename');
+    }
+    const filePath = path.join(BACKUP_DIR, filename);
+    return await fs.readFile(filePath, 'utf-8');
 }

@@ -1,6 +1,6 @@
 import prisma from '@/lib/prisma';
 import { Button } from '@/components/ui/Button';
-import { Download, Users, Calendar, TrendingUp, Plus, Settings, FileText, Logs } from 'lucide-react';
+import { Download, Users, Calendar, TrendingUp, Plus, Settings, FileText, Logs, Database } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { Badge } from '@/components/ui/Badge';
 import { getSettings } from '@/actions/settings';
@@ -55,6 +55,12 @@ export default async function AdminPage({
                         <Button variant="outline" className="border-white/5 bg-zinc-900/30 hover:bg-zinc-800/50 hover:text-white backdrop-blur-sm gap-2 rounded-xl h-10 px-4 transition-all">
                             <Logs className="w-4 h-4 text-zinc-400" />
                             {t('systemLogs')}
+                        </Button>
+                    </Link>
+                    <Link href="/secretroom75/settings/backup">
+                        <Button variant="outline" className="border-white/5 bg-zinc-900/30 hover:bg-zinc-800/50 hover:text-white backdrop-blur-sm gap-2 rounded-xl h-10 px-4 transition-all">
+                            <Database className="w-4 h-4 text-zinc-400" />
+                            Biztonsági Mentés
                         </Button>
                     </Link>
                     <Link href="/secretroom75/events/new">

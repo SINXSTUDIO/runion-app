@@ -18,7 +18,7 @@ export const sendEmail = async ({ to, subject, html, attachments, from }: SendEm
     try {
         console.log('Sending email to:', to);
         const info = await transporter.sendMail({
-            from: from || process.env.SHOP_EMAIL_FROM || process.env.EMAIL_FROM || '"RUNION.EU" <runionsport@gmail.com>',
+            from: from || process.env.SHOP_EMAIL_FROM || process.env.EMAIL_FROM || '"RUNION.EU" <noreply@runion.eu>',
             to,
             subject,
             html,

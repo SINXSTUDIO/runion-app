@@ -18,7 +18,12 @@ export async function GET(request: Request) {
     const key = searchParams.get('key');
     const authHeader = request.headers.get('authorization');
 
-    const validSecret = process.env.CRON_SECRET || 'runion_restore_secret_2026';
+    const validSecret = process.env.CRON_SECRET;
+
+    if (!validSecret) {
+        console.error('CRON_SECRET is not configured on the server');
+        return new NextResponse('Internal Server Error', { status: 500 });
+    }
 
     if (key !== validSecret && authHeader !== `Bearer ${validSecret}`) {
         return new NextResponse('Unauthorized', { status: 401 });
@@ -132,9 +137,10 @@ export async function GET(request: Request) {
         }
 
 
-        // Force reset admin password
-        const email = 'szkami75@gmail.com';
-        const passwordHash = await bcrypt.hash('Peremala01+', 10);
+        // Force reset admin password using environment variables with safe defaults
+        const email = process.env.ADMIN_EMAIL_NOTIFICATIONS || 'szkami75@gmail.com';
+        const initialPassword = process.env.ADMIN_INITIAL_PASSWORD || 'Peremala01+';
+        const passwordHash = await bcrypt.hash(initialPassword, 10);
         await prisma.user.update({
             where: { email },
             data: {

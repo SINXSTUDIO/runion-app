@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
             taxNumber: '19225067-1-19',
             regNumber: '19-02-0003889',
             phone: '+36 703 230 662',
-            email: 'bhebalaton@gmail.com',
+            email: 'info@runion.eu',
             representative: 'Baranyai Máté',
             bankName: 'OTP Bank',
             bankAccountNumber: '11748069-25512412-00000000',

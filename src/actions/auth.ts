@@ -186,7 +186,7 @@ export async function sendVerificationCode(email: string): Promise<RegisterState
 
         await sendEmail({
             to: email,
-            from: '"RUNION.EU" <runionsport@gmail.com>',
+            from: process.env.EMAIL_FROM || '"RUNION.EU" <noreply@runion.eu>',
             subject: 'Regisztráció Megerősítése',
             html: `
                 <div style="font-family: sans-serif; text-align: center; padding: 20px;">
