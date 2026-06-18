@@ -1,4 +1,30 @@
 import { Card } from '@/components/ui/Card';
+import { generateMetadata as genMeta } from '@/lib/seo/metadata';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    
+    const titles = {
+        hu: 'Általános Szerződési Feltételek',
+        en: 'Terms and Conditions',
+        de: 'Allgemeine Geschäftsbedingungen'
+    };
+
+    const descriptions = {
+        hu: 'A RUNION általános szerződési feltételei (ÁSZF).',
+        en: 'Terms and Conditions of RUNION.',
+        de: 'Allgemeine Geschäftsbedingungen (AGB) von RUNION.'
+    };
+
+    return genMeta({
+        title: titles[locale as keyof typeof titles] || titles.hu,
+        description: descriptions[locale as keyof typeof descriptions] || descriptions.hu,
+        keywords: ['aszf', 'terms', 'feltetelek', 'runion'],
+        locale,
+        canonical: `https://runion.hu/${locale}/terms`,
+    });
+}
 
 export default function TermsPage() {
     return (

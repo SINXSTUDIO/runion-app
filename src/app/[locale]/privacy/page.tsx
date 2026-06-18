@@ -1,4 +1,30 @@
 import { Card } from '@/components/ui/Card';
+import { generateMetadata as genMeta } from '@/lib/seo/metadata';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    
+    const titles = {
+        hu: 'Adatkezelési Tájékoztató',
+        en: 'Privacy Policy',
+        de: 'Datenschutzerklärung'
+    };
+
+    const descriptions = {
+        hu: 'A RUNION adatkezelési tájékoztatója és GDPR megfelelőségi nyilatkozata.',
+        en: 'Privacy policy and GDPR compliance statement of RUNION.',
+        de: 'Datenschutzerklärung und GDPR-Konformitätserklärung von RUNION.'
+    };
+
+    return genMeta({
+        title: titles[locale as keyof typeof titles] || titles.hu,
+        description: descriptions[locale as keyof typeof descriptions] || descriptions.hu,
+        keywords: ['adatvedelem', 'privacy policy', 'gdpr', 'runion'],
+        locale,
+        canonical: `https://runion.hu/${locale}/privacy`,
+    });
+}
 
 export default function PrivacyPage() {
     return (

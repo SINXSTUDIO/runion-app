@@ -4,6 +4,9 @@ import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/Button';
 import { ArrowLeft } from 'lucide-react';
 import ProductDetailClient from '@/components/shop/ProductDetailClient';
+import { generateProductMetadata } from '@/lib/seo/metadata';
+import { generateProductSchema, JsonLd } from '@/lib/seo/structured-data';
+import { Metadata } from 'next';
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -15,12 +18,50 @@ interface ProductPageProps {
     }>;
 }
 
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+    const { productId, locale } = await params;
+
+    let product = await prisma.product.findUnique({
+        where: { id: productId },
+    });
+
+    if (!product && productId) {
+        product = await prisma.product.findUnique({
+            where: { slug: productId },
+        });
+    }
+
+    if (!product || !product.active) {
+        return { title: 'Product not found' };
+    }
+
+    const name = locale === 'en' ? (product.nameEn || product.name) : (locale === 'de' ? (product.nameDe || product.name) : product.name);
+    const description = locale === 'en' ? (product.descriptionEn || product.description) : (locale === 'de' ? (product.descriptionDe || product.description) : product.description);
+
+    return generateProductMetadata(
+        {
+            name: name,
+            description: description || '',
+            slug: product.slug || product.id,
+            images: product.imageUrl ? [product.imageUrl] : [],
+            price: Number(product.price),
+        },
+        locale
+    );
+}
+
 export default async function ProductPage({ params }: ProductPageProps) {
     const { productId, locale } = await params;
 
-    const product = await prisma.product.findUnique({
+    let product = await prisma.product.findUnique({
         where: { id: productId },
     });
+
+    if (!product && productId) {
+        product = await prisma.product.findUnique({
+            where: { slug: productId },
+        });
+    }
 
     if (!product || !product.active) {
         notFound();
@@ -35,8 +76,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
     const name = locale === 'en' ? (product.nameEn || product.name) : (locale === 'de' ? (product.nameDe || product.name) : product.name);
     const description = locale === 'en' ? (product.descriptionEn || product.description) : (locale === 'de' ? (product.descriptionDe || product.description) : product.description);
 
+    const productSchema = generateProductSchema({
+        name,
+        description: description || '',
+        slug: product.slug || product.id,
+        price: Number(product.price),
+        images: product.imageUrl ? [product.imageUrl] : [],
+        inStock: product.stock > 0,
+    });
+
     return (
-        <div className="min-h-screen bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
+        <>
+            <JsonLd data={productSchema} />
+            <div className="min-h-screen bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
                 <div className="mb-8">
                     <Link href="/boutique">
@@ -115,5 +167,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </div>
             </div>
         </div>
-    );
+    </>
+);
 }

@@ -1,4 +1,3 @@
-
 import { getTranslations } from 'next-intl/server';
 import TransferForm from '@/components/registration/TransferForm'; // We'll create this component
 import { Link } from '@/i18n/routing';
@@ -7,6 +6,32 @@ import { auth } from '@/auth';
 
 import { getSettings } from '@/actions/settings';
 import prisma from '@/lib/prisma';
+import { generateMetadata as genMeta } from '@/lib/seo/metadata';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    
+    const titles = {
+        hu: 'Nevezés Átírás',
+        en: 'Transfer Registration',
+        de: 'Anmeldung übertragen'
+    };
+
+    const descriptions = {
+        hu: 'Módosítsd vagy írd át futóverseny nevezésedet egy másik személyre online.',
+        en: 'Modify or transfer your running race registration to another person online.',
+        de: 'Ändern oder übertragen Sie Ihre Laufregistrierung online auf eine andere Person.'
+    };
+
+    return genMeta({
+        title: titles[locale as keyof typeof titles] || titles.hu,
+        description: descriptions[locale as keyof typeof descriptions] || descriptions.hu,
+        keywords: ['atiras', 'nevezes atiras', 'transfer', 'modositas', 'runion'],
+        locale,
+        canonical: `https://runion.hu/${locale}/transfer`,
+    });
+}
 
 export default async function TransferPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;

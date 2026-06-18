@@ -3,6 +3,32 @@ import { getTranslations } from 'next-intl/server';
 import ProductList from '@/components/shop/ProductList';
 import BoutiqueHeroSlideshow from '@/components/shop/BoutiqueHeroSlideshow';
 import { ShoppingBag, FileText, Users, Heart, Shield, Truck, Star, Award, Gift, Zap, TrendingUp, ThumbsUp, CheckCircle, Info } from 'lucide-react';
+import { generateMetadata as genMeta } from '@/lib/seo/metadata';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    
+    const titles = {
+        hu: 'Butik',
+        en: 'Boutique',
+        de: 'Shop'
+    };
+
+    const descriptions = {
+        hu: 'Vásárolj hivatalos RUNION futóruházatot, kiegészítőket és ajándéktárgyakat a hivatalos butikunkban.',
+        en: 'Buy official RUNION running gear, apparel, accessories, and gifts in our official shop.',
+        de: 'Kaufen Sie offizielle RUNION-Laufbekleidung, Accessoires und Geschenkartikel in unserer offiziellen Boutique.'
+    };
+
+    return genMeta({
+        title: titles[locale as keyof typeof titles] || titles.hu,
+        description: descriptions[locale as keyof typeof descriptions] || descriptions.hu,
+        keywords: ['butik', 'bolt', 'shop', 'sportruházat', 'runion', 'merch'],
+        locale,
+        canonical: `https://runion.hu/${locale}/boutique`,
+    });
+}
 
 export default async function BoutiquePage({
     params

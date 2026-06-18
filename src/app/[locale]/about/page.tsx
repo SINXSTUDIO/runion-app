@@ -2,6 +2,32 @@ import { getTranslations } from 'next-intl/server';
 import { Trophy, Heart } from 'lucide-react';
 import Image from 'next/image';
 import prisma from '@/lib/prisma';
+import { generateMetadata as genMeta } from '@/lib/seo/metadata';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    
+    const titles = {
+        hu: 'Rólunk',
+        en: 'About Us',
+        de: 'Über uns'
+    };
+
+    const descriptions = {
+        hu: 'Ismerd meg a RUNION történetét, küldetését és a csapatot a futóversenyek szervezése mögött.',
+        en: 'Learn more about the story of RUNION, our mission, and the team behind organizing running events.',
+        de: 'Erfahren Sie mehr über die Geschichte von RUNION, unsere Mission und das Team hinter der Organisation von Laufveranstaltungen.'
+    };
+
+    return genMeta({
+        title: titles[locale as keyof typeof titles] || titles.hu,
+        description: descriptions[locale as keyof typeof descriptions] || descriptions.hu,
+        keywords: ['rolunk', 'about us', 'runion', 'futokozosseg', 'szervezok'],
+        locale,
+        canonical: `https://runion.hu/${locale}/about`,
+    });
+}
 
 export default async function AboutPage(props: {
     params: Promise<{ locale: string }>

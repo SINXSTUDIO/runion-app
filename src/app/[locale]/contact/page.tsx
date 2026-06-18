@@ -6,6 +6,32 @@ import { Textarea } from '@/components/ui/Textarea';
 import { Card } from '@/components/ui/Card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion';
 import prisma from '@/lib/prisma';
+import { generateMetadata as genMeta } from '@/lib/seo/metadata';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    
+    const titles = {
+        hu: 'Kapcsolat',
+        en: 'Contact Us',
+        de: 'Kontakt'
+    };
+
+    const descriptions = {
+        hu: 'Lépj kapcsolatba velünk! Kérdésed van a nevezéssel, a versenyekkel vagy a butikkal kapcsolatban? Írj nekünk.',
+        en: 'Get in touch with us! Have questions about registration, races, or the boutique? Send us a message.',
+        de: 'Treffen Sie sich mit uns! Haben Sie Fragen zur Registrierung, zu den Rennen oder zur Boutique? Schreiben Sie uns.'
+    };
+
+    return genMeta({
+        title: titles[locale as keyof typeof titles] || titles.hu,
+        description: descriptions[locale as keyof typeof descriptions] || descriptions.hu,
+        keywords: ['kapcsolat', 'contact', 'runion', 'email', 'ugyfelszolgalat'],
+        locale,
+        canonical: `https://runion.hu/${locale}/contact`,
+    });
+}
 
 export default async function ContactPage(props: {
     params: Promise<{ locale: string }>

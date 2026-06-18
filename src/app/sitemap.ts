@@ -10,6 +10,19 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://runion.hu';
  * Automatically includes all published events and static pages
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+    const locales = ['hu', 'en', 'de'];
+    
+    // Define all static subpages with their metadata
+    const subPages = [
+        { path: 'races', changeFrequency: 'daily' as const, priority: 0.8 },
+        { path: 'boutique', changeFrequency: 'weekly' as const, priority: 0.7 },
+        { path: 'about', changeFrequency: 'monthly' as const, priority: 0.6 },
+        { path: 'contact', changeFrequency: 'monthly' as const, priority: 0.6 },
+        { path: 'privacy', changeFrequency: 'monthly' as const, priority: 0.3 },
+        { path: 'terms', changeFrequency: 'monthly' as const, priority: 0.3 },
+        { path: 'transfer', changeFrequency: 'monthly' as const, priority: 0.4 },
+    ];
+
     // Static pages (high priority)
     const staticPages: MetadataRoute.Sitemap = [
         {
@@ -18,60 +31,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: 'daily',
             priority: 1.0,
         },
-        {
-            url: `${BASE_URL}/hu`,
+        // Locale homepages
+        ...locales.map(locale => ({
+            url: `${BASE_URL}/${locale}`,
             lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 1.0,
-        },
-        {
-            url: `${BASE_URL}/en`,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 0.9,
-        },
-        {
-            url: `${BASE_URL}/de`,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 0.9,
-        },
-        {
-            url: `${BASE_URL}/hu/races`,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 0.9,
-        },
-        {
-            url: `${BASE_URL}/en/races`,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 0.8,
-        },
-        {
-            url: `${BASE_URL}/de/races`,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 0.8,
-        },
-        {
-            url: `${BASE_URL}/hu/boutique`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.7,
-        },
-        {
-            url: `${BASE_URL}/en/boutique`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.6,
-        },
-        {
-            url: `${BASE_URL}/de/boutique`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.6,
-        },
+            changeFrequency: 'daily' as const,
+            priority: locale === 'hu' ? 1.0 : 0.9,
+        })),
+        // All subpages for all locales
+        ...subPages.flatMap(page => 
+            locales.map(locale => ({
+                url: `${BASE_URL}/${locale}/${page.path}`,
+                lastModified: new Date(),
+                changeFrequency: page.changeFrequency,
+                priority: locale === 'hu' ? page.priority : page.priority - 0.1,
+            }))
+        )
     ];
 
     try {
@@ -124,31 +99,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 active: true, // Use 'active' instead of 'published'
             },
             select: {
+                id: true,
                 slug: true,
                 updatedAt: true,
             },
         }).catch(() => []); // Graceful fallback if Product model doesn't exist yet
 
-        const productPages: MetadataRoute.Sitemap = products.flatMap(product => [
-            {
-                url: `${BASE_URL}/hu/boutique/${product.slug}`,
-                lastModified: product.updatedAt,
-                changeFrequency: 'weekly' as const,
-                priority: 0.6,
-            },
-            {
-                url: `${BASE_URL}/en/boutique/${product.slug}`,
-                lastModified: product.updatedAt,
-                changeFrequency: 'weekly' as const,
-                priority: 0.5,
-            },
-            {
-                url: `${BASE_URL}/de/boutique/${product.slug}`,
-                lastModified: product.updatedAt,
-                changeFrequency: 'weekly' as const,
-                priority: 0.5,
-            },
-        ]);
+        const productPages: MetadataRoute.Sitemap = products.flatMap(product => {
+            const productKey = product.slug || product.id;
+            return [
+                {
+                    url: `${BASE_URL}/hu/boutique/${productKey}`,
+                    lastModified: product.updatedAt,
+                    changeFrequency: 'weekly' as const,
+                    priority: 0.6,
+                },
+                {
+                    url: `${BASE_URL}/en/boutique/${productKey}`,
+                    lastModified: product.updatedAt,
+                    changeFrequency: 'weekly' as const,
+                    priority: 0.5,
+                },
+                {
+                    url: `${BASE_URL}/de/boutique/${productKey}`,
+                    lastModified: product.updatedAt,
+                    changeFrequency: 'weekly' as const,
+                    priority: 0.5,
+                },
+            ];
+        });
 
         return [...staticPages, ...eventPages, ...productPages];
     } catch (error) {
