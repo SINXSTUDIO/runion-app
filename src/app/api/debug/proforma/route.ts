@@ -1,9 +1,17 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { generateProformaPDF } from '@/lib/pdf-generator';
+import { auth } from '@/auth';
 import fs from 'fs';
 
 export async function GET(request: NextRequest) {
+    if (process.env.NODE_ENV === 'production') {
+        const session = await auth();
+        const role = (session?.user as any)?.role;
+        if (role !== 'ADMIN' && role !== 'STAFF') {
+            return NextResponse.json({ error: 'Unauthorized debug endpoint' }, { status: 403 });
+        }
+    }
     try {
         // Mock data usually found in DB
         const mockSeller = {

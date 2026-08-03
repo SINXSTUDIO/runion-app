@@ -49,8 +49,13 @@ async function main() {
     // 2. Create Admin User (Using a known placeholder, user can change later)
     // The user mentioned the previous admin data was different.
     // We recreate a default admin and print credentials.
-    const adminEmail = process.env.ADMIN_EMAIL || 'szkami75@gmail.com';
-    const adminPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'Peremala01+', 10);
+    const adminEmail = process.env.ADMIN_EMAIL || 'admin@runion.hu';
+    const rawPassword = process.env.ADMIN_PASSWORD;
+    if (!rawPassword) {
+        console.warn('ADMIN_PASSWORD environment variable is not set. Skipping admin user creation in seed.');
+        return;
+    }
+    const adminPassword = await bcrypt.hash(rawPassword, 10);
 
     const admin = await prisma.user.upsert({
         where: { email: adminEmail },

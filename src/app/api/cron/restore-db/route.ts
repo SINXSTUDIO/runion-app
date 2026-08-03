@@ -137,19 +137,21 @@ export async function GET(request: Request) {
         }
 
 
-        // Force reset admin password using environment variables with safe defaults
-        const email = process.env.ADMIN_EMAIL_NOTIFICATIONS || 'szkami75@gmail.com';
-        const initialPassword = process.env.ADMIN_INITIAL_PASSWORD || 'Peremala01+';
-        const passwordHash = await bcrypt.hash(initialPassword, 10);
-        await prisma.user.update({
-            where: { email },
-            data: {
-                passwordHash,
-                deletedAt: null,
-                role: 'ADMIN',
-                tokenVersion: { increment: 1 }
-            }
-        });
+        // Force reset admin password using environment variables safely
+        const email = process.env.ADMIN_EMAIL_NOTIFICATIONS;
+        const initialPassword = process.env.ADMIN_INITIAL_PASSWORD;
+        if (email && initialPassword) {
+            const passwordHash = await bcrypt.hash(initialPassword, 10);
+            await prisma.user.update({
+                where: { email },
+                data: {
+                    passwordHash,
+                    deletedAt: null,
+                    role: 'ADMIN',
+                    tokenVersion: { increment: 1 }
+                }
+            });
+        }
 
         return NextResponse.json({ success: true, message: 'Restore completed successfully' });
     } catch (error: any) {

@@ -1,4 +1,3 @@
-console.log("DEBUG: Middleware (Root) is running");
 import NextAuth from 'next-auth';
 import { authConfig } from './src/auth.config';
 import createMiddleware from 'next-intl/middleware';
