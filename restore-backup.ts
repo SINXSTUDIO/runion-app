@@ -13,7 +13,7 @@ async function restoreBackup() {
         process.exit(1);
     }
 
-    const backupPath = path.join(__dirname, 'backups', 'daily', 'backup-2026-02-13.json');
+    const backupPath = path.join(__dirname, 'backups', 'daily', 'backup-2026-06-17.json');
     const backupData = JSON.parse(fs.readFileSync(backupPath, 'utf8'));
     const data = backupData.data;
 
