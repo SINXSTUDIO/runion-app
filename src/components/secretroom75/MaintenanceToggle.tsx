@@ -3,9 +3,11 @@
 import { useState, useTransition } from 'react';
 import { toggleMaintenance } from '@/actions/settings';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function MaintenanceToggle({ initialState }: { initialState: boolean }) {
     const [isPending, startTransition] = useTransition();
+    const t = useTranslations('Admin.Dashboard');
     const [enabled, setEnabled] = useState(initialState);
     const router = useRouter();
 
@@ -25,40 +27,35 @@ export default function MaintenanceToggle({ initialState }: { initialState: bool
     };
 
     return (
-        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 p-4 rounded-xl flex items-center justify-between shadow-lg max-w-md">
-            <div className="flex flex-col gap-1">
-                <h3 className="text-white font-bold flex items-center gap-2">
-                    {enabled ? (
-                        <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-                    ) : (
-                        <span className="flex h-2 w-2 rounded-full bg-emerald-500" />
-                    )}
-                    Karbantartási Mód
-                </h3>
-                <p className="text-xs text-gray-400">
-                    {enabled
-                        ? "Az oldal jelenleg \"Coming Soon\" módban van."
-                        : "Az oldal nyilvános és elérhető."}
-                </p>
-            </div>
-
-            <button
-                onClick={handleToggle}
-                disabled={isPending}
-                className={`
-          relative w-14 h-8 rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500/50
-          ${enabled ? 'bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.4)]' : 'bg-gray-600 hover:bg-gray-500'}
-          ${isPending ? 'opacity-70 cursor-wait' : 'cursor-pointer'}
-        `}
-                aria-label="Toggle Maintenance Mode"
-            >
+        <button
+            onClick={handleToggle}
+            disabled={isPending}
+            className={`
+                relative flex items-center gap-2 px-4 h-10 rounded-xl transition-all duration-300 ease-in-out font-bold text-xs uppercase tracking-wider
+                ${enabled ? 'bg-red-500/10 text-red-500 border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.2)]' : 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 hover:bg-emerald-500/20'}
+                ${isPending ? 'opacity-70 cursor-wait' : 'cursor-pointer'}
+            `}
+            aria-label={t('maintenanceMode')}
+            title={t('maintenanceMode')}
+        >
+            {enabled ? (
+                <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+            ) : (
+                <span className="flex h-2 w-2 rounded-full bg-emerald-500" />
+            )}
+            <span className="whitespace-nowrap">{t('maintenanceMode')}</span>
+            
+            <div className={`
+                relative w-8 h-4 rounded-full ml-2 transition-colors duration-300
+                ${enabled ? 'bg-red-500/50' : 'bg-emerald-500/50'}
+            `}>
                 <span
                     className={`
-            absolute top-1 left-1 bg-white w-6 h-6 rounded-full shadow-md transform transition-transform duration-300
-            ${enabled ? 'translate-x-6' : 'translate-x-0'}
-          `}
+                        absolute top-0.5 left-0.5 bg-white w-3 h-3 rounded-full shadow-sm transform transition-transform duration-300
+                        ${enabled ? 'translate-x-4' : 'translate-x-0'}
+                    `}
                 />
-            </button>
-        </div>
+            </div>
+        </button>
     );
 }

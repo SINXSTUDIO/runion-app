@@ -998,6 +998,10 @@
         "Dashboard": {
             "subtitle": "ADMINISTRATION DASHBOARD",
             "systemLogs": "System Logs",
+            "viewWebsite": "View Website",
+            "maintenanceMode": "Maintenance Mode",
+            "wpPlugin": "🦩 Download WP Plugin (.zip)",
+            "backup": "Database Backup",
             "newEvent": "+ New Event",
             "totalRunners": "TOTAL RUNNERS",
             "runnersTrend": "+100% in the last month",

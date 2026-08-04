@@ -56,33 +56,38 @@ export default async function AdminPage({
         <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-12">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div>
-                    <h1 className="text-4xl md:text-5xl font-black font-heading tracking-tighter mb-2">SECRET ROOM <span className="text-accent">75</span></h1>
+                    <h1 className="text-3xl md:text-4xl font-black font-heading tracking-tighter mb-2">SECRET ROOM <span className="text-accent">75</span></h1>
                     <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold font-mono">{t('subtitle')}</p>
                 </div>
-                <div className="flex flex-wrap gap-3 items-center">
+                <div className="flex flex-wrap gap-2 items-center justify-end">
+                    <Link href="/" target="_blank">
+                        <Button variant="outline" className="border-white/5 bg-zinc-900/30 hover:bg-zinc-800/50 hover:text-white backdrop-blur-sm gap-2 rounded-xl h-10 px-4 transition-all text-xs uppercase tracking-wider font-bold whitespace-nowrap">
+                            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                            {t('viewWebsite')}
+                        </Button>
+                    </Link>
                     <MaintenanceToggle initialState={settings?.maintenanceMode ?? false} />
                     <a
                         href="/api/secretroom75/export/wp-plugin"
                         download="runion-sync-plugin.zip"
-                        className="inline-flex items-center gap-2 px-4 h-10 bg-cyan-400 hover:bg-cyan-300 text-neutral-950 font-bold rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-cyan-400/20 transition-all active:scale-95"
+                        className="inline-flex items-center gap-2 px-4 h-10 bg-cyan-400 hover:bg-cyan-300 text-neutral-950 font-bold rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-cyan-400/20 transition-all active:scale-95 whitespace-nowrap"
                     >
-                        <Download className="w-4 h-4" />
-                        🦩 WP Plugin Letöltése (.zip)
+                        {t('wpPlugin')}
                     </a>
                     <Link href="/secretroom75/logs">
-                        <Button variant="outline" className="border-white/5 bg-zinc-900/30 hover:bg-zinc-800/50 hover:text-white backdrop-blur-sm gap-2 rounded-xl h-10 px-4 transition-all">
+                        <Button variant="outline" className="border-white/5 bg-zinc-900/30 hover:bg-zinc-800/50 hover:text-white backdrop-blur-sm gap-2 rounded-xl h-10 px-4 transition-all text-xs uppercase tracking-wider font-bold whitespace-nowrap">
                             <Logs className="w-4 h-4 text-zinc-400" />
                             {t('systemLogs')}
                         </Button>
                     </Link>
                     <Link href="/secretroom75/settings/backup">
-                        <Button variant="outline" className="border-white/5 bg-zinc-900/30 hover:bg-zinc-800/50 hover:text-white backdrop-blur-sm gap-2 rounded-xl h-10 px-4 transition-all">
+                        <Button variant="outline" className="border-white/5 bg-zinc-900/30 hover:bg-zinc-800/50 hover:text-white backdrop-blur-sm gap-2 rounded-xl h-10 px-4 transition-all text-xs uppercase tracking-wider font-bold whitespace-nowrap">
                             <Database className="w-4 h-4 text-zinc-400" />
-                            Biztonsági Mentés
+                            {t('backup')}
                         </Button>
                     </Link>
                     <Link href="/secretroom75/events/new">
-                        <Button className="bg-accent hover:bg-accent-hover text-black font-black uppercase italic tracking-tighter gap-2 rounded-xl h-10 px-5 shadow-[0_0_20px_rgba(0,242,254,0.35)] transition-all">
+                        <Button className="bg-accent hover:bg-accent-hover text-black font-black uppercase italic tracking-tighter gap-2 rounded-xl h-10 px-5 shadow-[0_0_20px_rgba(0,242,254,0.35)] transition-all whitespace-nowrap">
                             <Plus className="w-4 h-4" />
                             {t('newEvent')}
                         </Button>

@@ -994,7 +994,11 @@
         },
         "Dashboard": {
             "subtitle": "ADMINISZTRÁCIÓS VEZÉRLŐPULT",
-            "systemLogs": "Rendszer Naplók",
+            "systemLogs": "Rendszernaplók",
+            "viewWebsite": "Weboldal",
+            "maintenanceMode": "Karbantartási Mód",
+            "wpPlugin": "🦩 WP Plugin Letöltése (.zip)",
+            "backup": "Biztonsági Mentés",
             "newEvent": "+ Új Verseny",
             "totalRunners": "ÖSSZES FUTÓ",
             "runnersTrend": "+100% az elmúlt hónapban",
