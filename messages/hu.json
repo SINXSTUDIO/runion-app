@@ -977,6 +977,7 @@
         "Events": {
             "title": "Versenyek",
             "subtitle": "Versenyek kezelése és szerkesztése",
+            "searchPlaceholder": "Keresés versenyek között...",
             "newEvent": "Új Verseny",
             "table": {
                 "event": "ESEMÉNY",

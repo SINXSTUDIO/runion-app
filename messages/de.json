@@ -977,6 +977,7 @@
         "Events": {
             "title": "Veranstaltungen",
             "subtitle": "Veranstaltungen verwalten und bearbeiten",
+            "searchPlaceholder": "Veranstaltungen suchen...",
             "newEvent": "Neue Veranstaltung",
             "table": {
                 "event": "VERANSTALTUNG",

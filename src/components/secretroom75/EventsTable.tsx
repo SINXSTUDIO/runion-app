@@ -6,6 +6,8 @@ import { Edit, Trash2, Copy, GripVertical } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { deleteEvent, duplicateEvent, updateEventsOrder } from '@/actions/events';
 import { useTranslations, useLocale } from 'next-intl';
+import { Search } from 'lucide-react';
+import { Input } from '@/components/ui/Input';
 import {
     DndContext,
     closestCenter,
@@ -71,7 +73,7 @@ function SortableEventRow({ event }: { event: Event }) {
                 <div className="font-bold text-white text-sm sm:text-base">{event.title}</div>
                 <div className="text-xs text-zinc-500 font-mono mt-0.5">{event.slug}</div>
             </td>
-            <td className="p-4 align-middle text-zinc-400 font-mono text-xs sm:text-sm">
+            <td className="p-4 align-middle text-zinc-400 font-mono text-xs sm:text-sm whitespace-nowrap">
                 {new Date(event.eventDate).toLocaleDateString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US')}
             </td>
             <td className="p-4 align-middle text-zinc-400 text-xs sm:text-sm">{event.location}</td>
@@ -146,6 +148,7 @@ function SortableEventRow({ event }: { event: Event }) {
 export default function EventsTable({ initialEvents }: Props) {
     const t = useTranslations('Admin.Events');
     const [events, setEvents] = useState<Event[]>(initialEvents);
+    const [searchTerm, setSearchTerm] = useState('');
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(KeyboardSensor, {
@@ -173,13 +176,32 @@ export default function EventsTable({ initialEvents }: Props) {
         }
     };
 
+    const filteredEvents = events.filter(event => 
+        event.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        event.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        event.slug.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
-        <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-        >
-            <div className="bg-zinc-900/40 border border-white/5 rounded-2xl overflow-hidden backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
+        <div className="space-y-4">
+            <div className="flex items-center gap-2 max-w-sm">
+                <div className="relative flex-1">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+                    <Input 
+                        placeholder={t('searchPlaceholder')}
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="pl-9 bg-zinc-900/50 border-white/10 text-white placeholder:text-zinc-600 focus:border-accent/50 focus:ring-accent/20"
+                    />
+                </div>
+            </div>
+            
+            <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+            >
+                <div className="bg-zinc-900/40 border border-white/5 rounded-2xl overflow-hidden backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead className="bg-zinc-950/60 text-zinc-400 uppercase text-xs font-black tracking-widest border-b border-white/5">
@@ -194,17 +216,25 @@ export default function EventsTable({ initialEvents }: Props) {
                         </thead>
                         <tbody className="divide-y divide-white/5">
                             <SortableContext
-                                items={events.map((e) => e.id)}
+                                items={filteredEvents.map((e) => e.id)}
                                 strategy={verticalListSortingStrategy}
                             >
-                                {events.map((event) => (
+                                {filteredEvents.map((event) => (
                                     <SortableEventRow key={event.id} event={event} />
                                 ))}
                             </SortableContext>
+                            {filteredEvents.length === 0 && (
+                                <tr>
+                                    <td colSpan={6} className="p-8 text-center text-zinc-500">
+                                        Nincs találat a keresésre.
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>
             </div>
         </DndContext>
+        </div>
     );
 }

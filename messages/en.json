@@ -980,6 +980,7 @@
         "Events": {
             "title": "Events",
             "subtitle": "Manage and edit events",
+            "searchPlaceholder": "Search events...",
             "newEvent": "New Event",
             "table": {
                 "event": "EVENT",
