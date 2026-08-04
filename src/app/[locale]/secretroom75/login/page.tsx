@@ -1,8 +1,16 @@
 import SecretLoginForm from '@/components/auth/SecretLoginForm';
 import { Card } from '@/components/ui/Card';
 import { Shield } from 'lucide-react';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
-export default function SecretLoginPage() {
+export default async function SecretLoginPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const session = await auth();
+
+    if (session?.user) {
+        redirect(`/${locale}/secretroom75`);
+    }
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-black relative overflow-hidden">
             {/* Background Effects */}

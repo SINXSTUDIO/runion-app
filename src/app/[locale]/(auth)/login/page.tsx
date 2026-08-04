@@ -2,10 +2,20 @@ import LoginForm from '@/components/auth/LoginForm';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { ArrowLeft, ShieldCheck } from 'lucide-react';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
-export default function LoginPage() {
-    const t = useTranslations('Auth.Login');
+export default async function LoginPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const session = await auth();
+
+    if (session?.user) {
+        redirect(`/${locale}/dashboard`);
+    }
+
+    const t = await getTranslations('Auth.Login');
 
     return (
         <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-black">

@@ -2,10 +2,20 @@ import RegisterForm from '@/components/auth/RegisterForm';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { ArrowLeft, ShieldCheck } from 'lucide-react';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
-export default function RegisterPage() {
-    const t = useTranslations('Auth.Register');
+export default async function RegisterPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const session = await auth();
+
+    if (session?.user) {
+        redirect(`/${locale}/dashboard`);
+    }
+
+    const t = await getTranslations('Auth.Register');
 
     return (
         <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-black">
