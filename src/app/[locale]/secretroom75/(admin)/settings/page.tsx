@@ -201,8 +201,33 @@ export default function SettingsPage() {
                     events={events}
                 />
 
-                {/* Transfer Info Settings */}
-                <TransferSettingsForm initialSettings={initialData || {}} />
+                {/* WordPress Sync Plugin Zone */}
+                <Card className="p-6 bg-cyan-950/20 border-cyan-500/30 border-l-4 border-l-cyan-400">
+                    <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3 text-cyan-400">
+                                <Download className="w-6 h-6" />
+                                <h3 className="text-xl font-bold uppercase italic">WordPress Szinkronizációs Plugin</h3>
+                            </div>
+                            <span className="px-2.5 py-1 text-xs font-semibold text-cyan-300 bg-cyan-900/60 border border-cyan-500/40 rounded-full">
+                                v1.0.0 Ready
+                            </span>
+                        </div>
+
+                        <p className="text-zinc-300 text-sm">
+                            Töltsd le az önálló WordPress bővítményt, töltsd fel a <b>runion.eu/wp-admin</b> felületén a Bővítmények menüben, és kattints az <b>Adatok Áthozása</b> gombra az összes Flamingo és WooCommerce adathoz!
+                        </p>
+
+                        <a
+                            href="/api/secretroom75/export/wp-plugin"
+                            download="runion-sync-plugin.php"
+                            className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-cyan-400 hover:bg-cyan-300 text-neutral-950 font-bold rounded-xl shadow-lg shadow-cyan-400/20 transition-all active:scale-95"
+                        >
+                            <Download className="w-5 h-5" />
+                            🦩 RUNION Sync Plugin Letöltése (.php)
+                        </a>
+                    </div>
+                </Card>
 
                 {/* Backup Zone */}
                 <Card className="p-6 bg-zinc-900 border-zinc-800 border-l-4 border-l-accent">
