@@ -35,18 +35,21 @@ export default async function AdminPage({
                 }
             }
         }
+    }).catch((err) => {
+        console.error('[AdminPage] DB query error fallback:', err);
+        return [];
     });
 
-    const events = eventsData.map(event => ({
+    const events = (eventsData || []).map(event => ({
         ...event,
-        totalRegistrations: event.distances.reduce((acc, dist) => acc + dist._count.registrations, 0),
-        totalPotentialRevenue: event.distances.reduce((acc, dist) => acc + (Number(dist.price) * dist._count.registrations), 0)
+        totalRegistrations: (event.distances || []).reduce((acc, dist) => acc + (dist._count?.registrations || 0), 0),
+        totalPotentialRevenue: (event.distances || []).reduce((acc, dist) => acc + (Number(dist.price || 0) * (dist._count?.registrations || 0)), 0)
     }));
 
     const totalStats = {
-        runners: events.reduce((acc, event) => acc + event.totalRegistrations, 0),
+        runners: events.reduce((acc, event) => acc + (event.totalRegistrations || 0), 0),
         activeEvents: events.filter(e => e.status === 'PUBLISHED').length,
-        totalRevenue: events.reduce((acc, event) => acc + event.totalPotentialRevenue, 0)
+        totalRevenue: events.reduce((acc, event) => acc + (event.totalPotentialRevenue || 0), 0)
     };
 
     return (

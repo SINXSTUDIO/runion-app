@@ -5,9 +5,10 @@ export default async function SecretBaseLayout({
 }: {
     children: React.ReactNode;
 }) {
-    // Trigger Auto Backup Check (Fire and Forget or Await? Await is safer to ensure it happens)
-    // Doing it here covers all admin pages.
-    await checkAndCreateAutoBackup();
+    // Non-blocking background check for auto backup
+    checkAndCreateAutoBackup().catch(err => {
+        console.warn('[SecretBaseLayout] Auto-backup check warning:', err);
+    });
 
     return <>{children}</>;
 }
