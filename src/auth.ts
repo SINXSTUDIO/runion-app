@@ -26,14 +26,18 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
 
             // Check if token is stale (Force Logout check)
             if (token.id) {
-                const dbUser = await prisma.user.findUnique({
-                    where: { id: token.id },
-                    select: { tokenVersion: true, deletedAt: true }
-                });
+                try {
+                    const dbUser = await prisma.user.findUnique({
+                        where: { id: token.id },
+                        select: { tokenVersion: true, deletedAt: true }
+                    });
 
-                // If user deleted or token version mismatch -> invalid
-                if (!dbUser || dbUser.deletedAt || (dbUser.tokenVersion ?? 0) > (token.tokenVersion || 0)) {
-                    return null; // This invalidates the token
+                    // If user deleted or token version mismatch -> invalid
+                    if (!dbUser || dbUser.deletedAt || (dbUser.tokenVersion ?? 0) > (token.tokenVersion || 0)) {
+                        return {}; // Returning {} clears token without crashing NextAuth v5
+                    }
+                } catch (e) {
+                    console.error('[Auth JWT] DB check error, keeping existing token:', e);
                 }
             }
 
