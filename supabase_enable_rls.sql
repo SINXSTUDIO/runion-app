@@ -28,4 +28,5 @@ ALTER TABLE "Feedback" ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "AuditLog" ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "NewsletterSubscriber" ENABLE ROW LEVEL SECURITY;
 
--- Service role bypasses RLS by default in Supabase (used by Prisma direct connection)
+-- Note: The service_role key used by Prisma direct connection automatically bypasses RLS in Supabase.
+-- Direct REST/GraphQL requests without service_role key are blocked by RLS policies.

@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { auth } from "@/auth";
+import { requireAdmin } from "@/lib/auth-checks";
 
 // Schema for validation
 const sellerSchema = z.object({
@@ -39,10 +39,7 @@ export async function getSellers() {
 
 export async function upsertSeller(data: z.infer<typeof sellerSchema>) {
     try {
-        const session = await auth();
-        if (session?.user?.role !== "ADMIN") {
-            return { success: false, error: "Unauthorized" };
-        }
+        await requireAdmin();
 
         const validated = sellerSchema.parse(data);
 
@@ -104,10 +101,7 @@ export async function upsertSeller(data: z.infer<typeof sellerSchema>) {
 
 export async function deleteSeller(id: string) {
     try {
-        const session = await auth();
-        if (session?.user?.role !== "ADMIN") {
-            return { success: false, error: "Unauthorized" };
-        }
+        await requireAdmin();
 
         // Check for usage in events or membership settings
         const usedInEvents = await prisma.event.count({ where: { sellerId: id } });
@@ -130,10 +124,7 @@ export async function deleteSeller(id: string) {
 
 export async function importSellers(formData: FormData) {
     try {
-        const session = await auth();
-        if (session?.user?.role !== "ADMIN") {
-            return { success: false, error: "Unauthorized" };
-        }
+        await requireAdmin();
 
         const file = formData.get("file") as File;
         if (!file) {
