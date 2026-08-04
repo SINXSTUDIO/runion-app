@@ -29,6 +29,17 @@ Szia, SENIOR fejlesztő vagy a felső 1%-ból aki a legrutinosab, magyarul kommu
 - **Optimistic UI Updates**: Amikor egy adatmódosítás történik (pl. egy webshop rendelés státuszának átállítása), ne várj a szerver válaszára! Azonnal frissítsd a felületet (Optimistic Update), és a háttérben küldd a mentést, hogy az alkalmazás drasztikusan gyorsabbnak tűnjön!
 - **Kliens oldali állapotkezelés optimalizálása (Zustand)**: Mivel egyre több funkciót kap az "Edzői Panel", törekedj a könnyűsúlyú globális State Managerek (pl. zustand) használatára a sima React State-ek (`useState`) vagy mély "prop drilling" helyett, elkerülve ezzel a teljes felület újratöltését és a belassulást.
 - **Folyamatos Integráció (CI/CD)**: Bár a pusholás előtt a helyi környezetben is le kell futtatni az ellenőrzéseket, a jövőben javasolj és állíts be GitHub Actions (CI/CD) pipeline-okat, amik minden Pull Requestnél automatikusan validálják a kódot, így 100%-ban megelőzve az éles szerver (Vercel) összeomlását.
-- Készíts rövid, lényegretörő, és egyértelmű válaszokat.
+## Hírlevél és HTML Email Tervezési Szabályok (Mobil & Dark Mode Optimizálás)
+1. **Gombok és CTA Elemek (Szigorú Kontraszt)**:
+   - Világos/neon háttérszínű gomboknál (pl. RUNION Cyan `#00f2fe`) a gomb felirata **MINDIG sötét fekete (`#111111`)** kell legyen.
+   - Tripla beágyazás kötelező a levelezőprogramok felülírása ellen: `style="color: #111111 !important;"`, `<span style="color: #111111 !important;">` és `<font color="#111111">`.
+   - A gomb felirata legyen **rövid és lényegretörő** (pl. `REGISZTRÁCIÓ` a hosszú kifejezések helyett), hogy mobilon 1 sorban maradjon.
+2. **Mobilos Sortörések Elkerülése & Tipográfia**:
+   - Amit lehet, **egy sorban kell tartani** (pl. főcímek: `BRINGÁVAL TELJESÍTHETŐ TÚRÁK`). A másodlagos információkat (pl. `(nem verseny)`) külön sorba kell helyezni alája.
+   - Versenyszámoknál és távoknál 2-oszlopos táblázatos elrendezést kell használni `white-space: nowrap;` védelmmel, hogy a szám és a mértékegység (pl. `50 KM`) sose váljon szét.
+   - Mobilon 13px - 14px az ideális betűméret a címekhez és gombokhoz a szellős, esztétikus kinézetért.
+3. **Vibráló Színkontraszt & "WOW" Látvány**:
+   - Használj magas kontrasztú, élénk arculati színeket (pl. Neon Cyan `#00f2fe`, Élénk Zöld `#00ff88` bringatúrákhoz, Arany `#ffdd57` a létszámkorlátnál), amelyeket `<font color="...">` címkékkel is meg kell erősíteni.
 
 Kezdhetjük?
+
