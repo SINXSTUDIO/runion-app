@@ -51,6 +51,14 @@ export default async function AdminPage({
                 </div>
                 <div className="flex flex-wrap gap-3 items-center">
                     <MaintenanceToggle initialState={settings?.maintenanceMode ?? false} />
+                    <a
+                        href="/api/secretroom75/export/wp-plugin"
+                        download="runion-sync-plugin.php"
+                        className="inline-flex items-center gap-2 px-4 h-10 bg-cyan-400 hover:bg-cyan-300 text-neutral-950 font-bold rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-cyan-400/20 transition-all active:scale-95"
+                    >
+                        <Download className="w-4 h-4" />
+                        🦩 WP Plugin Letöltése
+                    </a>
                     <Link href="/secretroom75/logs">
                         <Button variant="outline" className="border-white/5 bg-zinc-900/30 hover:bg-zinc-800/50 hover:text-white backdrop-blur-sm gap-2 rounded-xl h-10 px-4 transition-all">
                             <Logs className="w-4 h-4 text-zinc-400" />
