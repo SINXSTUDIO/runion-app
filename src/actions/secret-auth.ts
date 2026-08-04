@@ -9,10 +9,13 @@ export async function secretAuthenticate(prevState: string | undefined, formData
         const locale = formData.get('locale') || 'hu';
         await signIn('credentials', {
             ...Object.fromEntries(formData),
-            redirectTo: `/${locale}/secretroom75/events`,
+            redirectTo: `/${locale}/secretroom75`,
         });
     } catch (error: any) {
-        if (error.message === 'NEXT_REDIRECT') throw error;
+        // Rethrow Next.js internal redirects so successful logins redirect cleanly
+        if (error?.digest?.startsWith('NEXT_REDIRECT') || error?.message?.includes('NEXT_REDIRECT')) {
+            throw error;
+        }
 
         if (error instanceof AuthError) {
             switch (error.type) {
@@ -25,6 +28,6 @@ export async function secretAuthenticate(prevState: string | undefined, formData
             }
         }
         await logError(error, 'Secret Login - Unexpected Error');
-        throw error;
+        return 'Helytelen e-mail cím vagy jelszó. Kérjük ellenőrizd az adataidat!';
     }
 }
