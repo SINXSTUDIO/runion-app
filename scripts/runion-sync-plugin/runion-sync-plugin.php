@@ -3,7 +3,7 @@
  * Plugin Name: RUNION Sync Plugin
  * Plugin URI: https://runion.eu
  * Description: Csendes adatszinkronizációs és migrációs bővítmény a RUNION WordPress és az új Next.js webalkalmazás között.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: RUNION Dev Team
  * License: GPLv2 or later
  */
@@ -47,19 +47,36 @@ final class Runion_Data_Sync_Plugin {
         }
 
         $message = '';
-        if (isset($_POST['runion_action_bulk_flamingo']) && check_admin_referer('runion_bulk_sync_nonce')) {
-            $count = $this->process_bulk_flamingo_sync();
-            $message = 'Sikeresen átküldve ' . intval($count) . ' Flamingo bejegyzés a Next.js-nek!';
+        $is_error = false;
+
+        if (isset($_POST['runion_action_bulk_flamingo'])) {
+            $res = $this->process_bulk_flamingo_sync();
+            if (is_wp_error($res)) {
+                $message = 'Hiba történt: ' . $res->get_error_message();
+                $is_error = true;
+            } else {
+                $message = 'Sikeresen átküldve ' . intval($res) . ' Flamingo bejegyzés a Next.js-nek!';
+            }
         }
 
-        if (isset($_POST['runion_action_bulk_wc']) && check_admin_referer('runion_bulk_sync_nonce')) {
-            $count = $this->process_bulk_wc_sync();
-            $message = 'Sikeresen átküldve ' . intval($count) . ' WooCommerce rendelés a Next.js-nek!';
+        if (isset($_POST['runion_action_bulk_wc'])) {
+            $res = $this->process_bulk_wc_sync();
+            if (is_wp_error($res)) {
+                $message = 'Hiba történt: ' . $res->get_error_message();
+                $is_error = true;
+            } else {
+                $message = 'Sikeresen átküldve ' . intval($res) . ' WooCommerce rendelés a Next.js-nek!';
+            }
         }
 
-        if (isset($_POST['runion_action_bulk_events']) && check_admin_referer('runion_bulk_sync_nonce')) {
-            $count = $this->process_bulk_events_sync();
-            $message = 'Sikeresen átküldve ' . intval($count) . ' WordPress esemény a Next.js-nek!';
+        if (isset($_POST['runion_action_bulk_events'])) {
+            $res = $this->process_bulk_events_sync();
+            if (is_wp_error($res)) {
+                $message = 'Hiba történt: ' . $res->get_error_message();
+                $is_error = true;
+            } else {
+                $message = 'Sikeresen átküldve ' . intval($res) . ' WordPress esemény a Next.js-nek!';
+            }
         }
 
         $webhook_url = get_option('runion_target_webhook_url', 'https://runion-app.vercel.app/api/webhooks/wordpress');
@@ -70,7 +87,9 @@ final class Runion_Data_Sync_Plugin {
             <p>Ez a bővítmény csendben, a háttérben szinkronizálja a beérkező Flamingo és WooCommerce nevezéseket, valamint az összes WordPress eseményt az új RUNION webalkalmazással.</p>
 
             <?php if (!empty($message)) : ?>
-                <div class="notice notice-success is-dismissible"><p><strong><?php echo esc_html($message); ?></strong></p></div>
+                <div class="notice <?php echo $is_error ? 'notice-error' : 'notice-success'; ?> is-dismissible" style="padding: 12px; margin: 15px 0;">
+                    <p style="font-size: 15px;"><strong><?php echo esc_html($message); ?></strong></p>
+                </div>
             <?php endif; ?>
 
             <form method="post" action="options.php">
@@ -105,7 +124,7 @@ final class Runion_Data_Sync_Plugin {
                 <button type="submit" name="runion_action_bulk_wc" value="1" class="button button-secondary button-large">
                     🛒 Összes WooCommerce Rendelés Áthozása
                 </button>
-                <button type="submit" name="runion_action_bulk_events" value="1" class="button button-secondary button-large" style="background: #00f2fe; color: #111; font-weight: bold;">
+                <button type="submit" name="runion_action_bulk_events" value="1" class="button button-secondary button-large" style="background: #00f2fe; color: #111; font-weight: bold; border-color: #00f2fe;">
                     📅 Összes Esemény & Nevezési Felület Áthozása
                 </button>
             </form>
@@ -123,7 +142,8 @@ final class Runion_Data_Sync_Plugin {
                 'x-wp-sync-secret' => $sync_secret,
             ),
             'body' => wp_json_encode($payload),
-            'timeout' => 30,
+            'timeout' => 45,
+            'sslverify' => false, // Bypass SSL verification issues on shared hosting
         );
 
         return wp_remote_post($webhook_url, $args);
@@ -218,7 +238,10 @@ final class Runion_Data_Sync_Plugin {
         }
 
         if (!empty($payloads)) {
-            $this->post_to_nextjs_api($payloads);
+            $res = $this->post_to_nextjs_api($payloads);
+            if (is_wp_error($res)) {
+                return $res;
+            }
         }
 
         return count($payloads);
@@ -245,7 +268,10 @@ final class Runion_Data_Sync_Plugin {
         }
 
         if (!empty($payloads)) {
-            $this->post_to_nextjs_api($payloads);
+            $res = $this->post_to_nextjs_api($payloads);
+            if (is_wp_error($res)) {
+                return $res;
+            }
         }
 
         return count($payloads);
@@ -278,7 +304,10 @@ final class Runion_Data_Sync_Plugin {
         }
 
         if (!empty($payloads)) {
-            $this->post_to_nextjs_api($payloads);
+            $res = $this->post_to_nextjs_api($payloads);
+            if (is_wp_error($res)) {
+                return $res;
+            }
         }
 
         return count($payloads);
