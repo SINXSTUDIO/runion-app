@@ -53,23 +53,20 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
                 if (parsedCredentials.success) {
                     const { email, password } = parsedCredentials.data;
 
-                    // Rate limiting protection - 5 attempts per 15 min
+                    // Rate limiting protection
                     try {
                         const { loginRateLimit } = await import('@/lib/rate-limit');
-                        const { success, remaining } = await loginRateLimit.limit(email);
+                        const res = await loginRateLimit.limit(email);
 
-                        if (!success) {
+                        if (res && res.success === false) {
                             console.log(`[RateLimit] Login blocked for ${email} - too many attempts`);
                             throw new Error('Too many login attempts. Please try again in 15 minutes.');
                         }
-
-                        console.log(`[RateLimit] Login attempt for ${email} - ${remaining} attempts remaining`);
                     } catch (error) {
-                        // If Redis is down, log but allow login (fail-open approach)
                         if (error instanceof Error && error.message.includes('Too many')) {
-                            throw error; // Re-throw rate limit errors
+                            throw error;
                         }
-                        console.error('[RateLimit] Redis unavailable, allowing login:', error);
+                        console.error('[RateLimit] Redis or module check failed, allowing login (fail-open):', error);
                     }
 
                     const user = await prisma.user.findUnique({ where: { email } });

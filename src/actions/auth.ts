@@ -25,24 +25,26 @@ export async function authenticate(prevState: string | undefined, formData: Form
     } catch (error) {
         console.error("Login error:", error);
 
-        if (error instanceof Error && error.message.includes('UNVERIFIED_EMAIL')) {
+        // NextAuth uses NEXT_REDIRECT errors for successful navigation
+        const isRedirect =
+            (error as any)?.digest?.startsWith('NEXT_REDIRECT') ||
+            (error as any)?.message?.includes('NEXT_REDIRECT');
+
+        if (isRedirect) {
+            throw error;
+        }
+
+        const fullErrorStr = String((error as any)?.cause?.err?.message || (error as any)?.message || error);
+
+        if (fullErrorStr.includes('UNVERIFIED_EMAIL')) {
             return 'UNVERIFIED_EMAIL';
         }
 
-        if (error instanceof AuthError) {
-            switch (error.type) {
-                case 'CredentialsSignin':
-                    if (error.cause?.err?.message === 'UNVERIFIED_EMAIL' || String(error.cause?.err).includes('UNVERIFIED_EMAIL')) {
-                        return 'UNVERIFIED_EMAIL';
-                    }
-                    return 'Érvénytelen bejelentkezési adatok.';
-                default:
-                    return 'Valami hiba történt.';
-            }
+        if (fullErrorStr.includes('Too many')) {
+            return 'Túl sok hibás próbálkozás. Kérjük próbáld újra 15 perc múlva.';
         }
 
-        // Handle redirect errors properly since NextAuth uses them for success navigation
-        throw error;
+        return 'Érvénytelen bejelentkezési adatok.';
     }
 }
 
