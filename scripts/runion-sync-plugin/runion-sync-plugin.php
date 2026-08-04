@@ -2,8 +2,8 @@
 /**
  * Plugin Name: RUNION Sync Plugin
  * Plugin URI: https://runion.eu
- * Description: Csendes adatszinkronizációs és migrációs bővítmény a RUNION WordPress és az új Next.js webalkalmazás között.
- * Version: 1.2.0
+ * Description: Csendes adatszinkronizációs és migrációs bővítmény a RUNION WordPress és az új Next.js webalkalmazás között (Automatikus 10 perces háttér-szinkronizációval).
+ * Version: 2.0.0
  * Author: RUNION Dev Team
  * License: GPLv2 or later
  */
@@ -22,6 +22,29 @@ final class Runion_Data_Sync_Plugin {
         add_action('wpcf7_mail_sent', array($this, 'on_cf7_sent'));
         add_action('flamingo_inbound_after_save', array($this, 'on_flamingo_saved'));
         add_action('woocommerce_checkout_order_processed', array($this, 'on_wc_checkout'));
+
+        // Automatic Background Sync (Runs automatically every 10 minutes & via Cron)
+        add_action('init', array($this, 'auto_background_sync'));
+        add_action('runion_hourly_cron_sync_event', array($this, 'run_full_auto_sync'));
+
+        if (!wp_next_scheduled('runion_hourly_cron_sync_event')) {
+            wp_schedule_event(time(), 'hourly', 'runion_hourly_cron_sync_event');
+        }
+    }
+
+    public function auto_background_sync() {
+        // Run full sync automatically every 10 minutes without clicking anything
+        $last_sync = get_option('runion_last_auto_sync_time', 0);
+        if (time() - $last_sync > 600) {
+            update_option('runion_last_auto_sync_time', time());
+            $this->run_full_auto_sync();
+        }
+    }
+
+    public function run_full_auto_sync() {
+        $this->process_bulk_flamingo_sync();
+        $this->process_bulk_wc_sync();
+        $this->process_bulk_events_sync();
     }
 
     public function register_admin_menu() {
@@ -49,42 +72,26 @@ final class Runion_Data_Sync_Plugin {
         $message = '';
         $is_error = false;
 
-        if (isset($_POST['runion_action_bulk_flamingo'])) {
-            $res = $this->process_bulk_flamingo_sync();
-            if (is_wp_error($res)) {
-                $message = 'Hiba történt: ' . $res->get_error_message();
-                $is_error = true;
-            } else {
-                $message = 'Sikeresen átküldve ' . intval($res) . ' Flamingo bejegyzés a Next.js-nek!';
-            }
-        }
-
-        if (isset($_POST['runion_action_bulk_wc'])) {
-            $res = $this->process_bulk_wc_sync();
-            if (is_wp_error($res)) {
-                $message = 'Hiba történt: ' . $res->get_error_message();
-                $is_error = true;
-            } else {
-                $message = 'Sikeresen átküldve ' . intval($res) . ' WooCommerce rendelés a Next.js-nek!';
-            }
-        }
-
-        if (isset($_POST['runion_action_bulk_events'])) {
-            $res = $this->process_bulk_events_sync();
-            if (is_wp_error($res)) {
-                $message = 'Hiba történt: ' . $res->get_error_message();
-                $is_error = true;
-            } else {
-                $message = 'Sikeresen átküldve ' . intval($res) . ' WordPress esemény a Next.js-nek!';
-            }
+        if (isset($_POST['runion_action_manual_sync'])) {
+            $this->run_full_auto_sync();
+            $message = 'Teljes szinkronizáció sikeresen lefutott a háttérben!';
         }
 
         $webhook_url = get_option('runion_target_webhook_url', 'https://runion-app.vercel.app/api/webhooks/wordpress');
         $sync_secret = get_option('runion_target_sync_secret', 'runion_wp_sync_secret_key_2026');
+        $last_sync_time = get_option('runion_last_auto_sync_time', 0);
+        $last_sync_formatted = $last_sync_time ? date('Y-m-d H:i:s', $last_sync_time) : 'Még nem futott';
         ?>
         <div class="wrap">
-            <h1>RUNION Adatszinkronizáció & Migráció</h1>
-            <p>Ez a bővítmény csendben, a háttérben szinkronizálja a beérkező Flamingo és WooCommerce nevezéseket, valamint az összes WordPress eseményt az új RUNION webalkalmazással.</p>
+            <h1>RUNION Automatizált Adatszinkronizáció</h1>
+            <div className="notice notice-info" style="background: #e6fffa; border-left: 4px solid #00f2fe; padding: 15px; margin: 15px 0;">
+                <p style="font-size: 14px; color: #111;">
+                    ⚡ <b>AUTOMATIKUS MÓD AKTÍV:</b> A bővítmény <b>10 percenként teljesen automatikusan, kattintgatás nélkül</b> szinkronizálja az összes Flamingo nevezést, WooCommerce rendelést és WordPress eseményt az új RUNION webalkalmazással!
+                </p>
+                <p style="font-size: 13px; color: #555;">
+                    Legutóbbi automatikus szinkronizáció időpontja: <strong><?php echo esc_html($last_sync_formatted); ?></strong>
+                </p>
+            </div>
 
             <?php if (!empty($message)) : ?>
                 <div class="notice <?php echo $is_error ? 'notice-error' : 'notice-success'; ?> is-dismissible" style="padding: 12px; margin: 15px 0;">
@@ -113,19 +120,11 @@ final class Runion_Data_Sync_Plugin {
 
             <hr style="margin: 30px 0;" />
 
-            <h2>Történeti Adatok Tömeges Migrálása</h2>
-            <p>Az alábbi gombokkal az összes eddigi Flamingo nevezést, WooCommerce rendelést és meglévő versenyt áttöltheted az új adatbázisba.</p>
-
-            <form method="post" action="" style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 15px;">
+            <h2>Azonnali Manuális Szinkronizáció (Opcionális)</h2>
+            <form method="post" action="" style="margin-top: 20px;">
                 <?php wp_nonce_field('runion_bulk_sync_nonce'); ?>
-                <button type="submit" name="runion_action_bulk_flamingo" value="1" class="button button-primary button-large">
-                    🦩 Összes Flamingo Nevezés Áthozása
-                </button>
-                <button type="submit" name="runion_action_bulk_wc" value="1" class="button button-secondary button-large">
-                    🛒 Összes WooCommerce Rendelés Áthozása
-                </button>
-                <button type="submit" name="runion_action_bulk_events" value="1" class="button button-secondary button-large" style="background: #00f2fe; color: #111; font-weight: bold; border-color: #00f2fe;">
-                    📅 Összes Esemény & Nevezési Felület Áthozása
+                <button type="submit" name="runion_action_manual_sync" value="1" class="button button-primary button-large" style="background: #00f2fe; color: #111; font-weight: bold; border-color: #00f2fe;">
+                    🔄 Azonnali Szinkronizáció Indítása Most
                 </button>
             </form>
         </div>
@@ -143,7 +142,7 @@ final class Runion_Data_Sync_Plugin {
             ),
             'body' => wp_json_encode($payload),
             'timeout' => 45,
-            'sslverify' => false, // Bypass SSL verification issues on shared hosting
+            'sslverify' => false,
         );
 
         return wp_remote_post($webhook_url, $args);
