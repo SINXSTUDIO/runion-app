@@ -2,8 +2,8 @@
 /**
  * Plugin Name: RUNION Sync Plugin
  * Plugin URI: https://runion.eu
- * Description: Csendes adatszinkronizációs és migrációs bővítmény a RUNION WordPress és az új Next.js webalkalmazás között (Automatikus 10 perces háttér-szinkronizációval).
- * Version: 2.0.0
+ * Description: Csendes adatszinkronizációs és migrációs bővítmény a RUNION WordPress és az új Next.js webalkalmazás között ($wpdb közvetlen SQL lekérdezéssel & kötegelt küldéssel).
+ * Version: 2.1.0
  * Author: RUNION Dev Team
  * License: GPLv2 or later
  */
@@ -23,7 +23,7 @@ final class Runion_Data_Sync_Plugin {
         add_action('flamingo_inbound_after_save', array($this, 'on_flamingo_saved'));
         add_action('woocommerce_checkout_order_processed', array($this, 'on_wc_checkout'));
 
-        // Automatic Background Sync (Runs automatically every 10 minutes & via Cron)
+        // Automatic Background Sync
         add_action('init', array($this, 'auto_background_sync'));
         add_action('runion_hourly_cron_sync_event', array($this, 'run_full_auto_sync'));
 
@@ -33,9 +33,8 @@ final class Runion_Data_Sync_Plugin {
     }
 
     public function auto_background_sync() {
-        // Run full sync automatically every 10 minutes without clicking anything
         $last_sync = get_option('runion_last_auto_sync_time', 0);
-        if (time() - $last_sync > 600) {
+        if (time() - $last_sync > 300) { // Auto sync every 5 minutes
             update_option('runion_last_auto_sync_time', time());
             $this->run_full_auto_sync();
         }
@@ -73,8 +72,10 @@ final class Runion_Data_Sync_Plugin {
         $is_error = false;
 
         if (isset($_POST['runion_action_manual_sync'])) {
-            $this->run_full_auto_sync();
-            $message = 'Teljes szinkronizáció sikeresen lefutott a háttérben!';
+            $flamingo_count = $this->process_bulk_flamingo_sync();
+            $wc_count = $this->process_bulk_wc_sync();
+            $events_count = $this->process_bulk_events_sync();
+            $message = "Sikeresen átküldve {$flamingo_count} Flamingo nevezés, {$wc_count} rendelés és {$events_count} esemény!";
         }
 
         $webhook_url = get_option('runion_target_webhook_url', 'https://runion-app.vercel.app/api/webhooks/wordpress');
@@ -86,10 +87,10 @@ final class Runion_Data_Sync_Plugin {
             <h1>RUNION Automatizált Adatszinkronizáció</h1>
             <div className="notice notice-info" style="background: #e6fffa; border-left: 4px solid #00f2fe; padding: 15px; margin: 15px 0;">
                 <p style="font-size: 14px; color: #111;">
-                    ⚡ <b>AUTOMATIKUS MÓD AKTÍV:</b> A bővítmény <b>10 percenként teljesen automatikusan, kattintgatás nélkül</b> szinkronizálja az összes Flamingo nevezést, WooCommerce rendelést és WordPress eseményt az új RUNION webalkalmazással!
+                    ⚡ <b>AUTOMATIKUS MÓD AKTÍV:</b> A bővítmény <b>5 percenként teljesen automatikusan ($wpdb közvetlen adatbázis lekérdezéssel)</b> szinkronizálja az összes Flamingo nevezést, WooCommerce rendelést és eseményt!
                 </p>
                 <p style="font-size: 13px; color: #555;">
-                    Legutóbbi automatikus szinkronizáció időpontja: <strong><?php echo esc_html($last_sync_formatted); ?></strong>
+                    Legutóbbi szinkronizáció időpontja: <strong><?php echo esc_html($last_sync_formatted); ?></strong>
                 </p>
             </div>
 
@@ -120,7 +121,7 @@ final class Runion_Data_Sync_Plugin {
 
             <hr style="margin: 30px 0;" />
 
-            <h2>Azonnali Manuális Szinkronizáció (Opcionális)</h2>
+            <h2>Azonnali Szinkronizáció Indítása</h2>
             <form method="post" action="" style="margin-top: 20px;">
                 <?php wp_nonce_field('runion_bulk_sync_nonce'); ?>
                 <button type="submit" name="runion_action_manual_sync" value="1" class="button button-primary button-large" style="background: #00f2fe; color: #111; font-weight: bold; border-color: #00f2fe;">
@@ -207,39 +208,48 @@ final class Runion_Data_Sync_Plugin {
     }
 
     public function process_bulk_flamingo_sync() {
-        $posts = get_posts(array(
-            'post_type' => 'flamingo_inbound',
-            'posts_per_page' => 5000,
-            'post_status' => 'any',
-        ));
+        global $wpdb;
+
+        $posts = $wpdb->get_results(
+            "SELECT ID, post_title FROM {$wpdb->posts} WHERE post_type = 'flamingo_inbound' ORDER BY ID DESC LIMIT 5000"
+        );
 
         $payloads = array();
-        foreach ($posts as $post) {
-            $fields = get_post_meta($post->ID, '_fields', true);
-            if (!is_array($fields)) continue;
+        if (is_array($posts)) {
+            foreach ($posts as $post) {
+                $fields = get_post_meta($post->ID, '_fields', true);
+                if (!is_array($fields)) continue;
 
-            $payloads[] = array(
-                'email' => isset($fields['your-email']) ? sanitize_email($fields['your-email']) : (isset($fields['email']) ? sanitize_email($fields['email']) : ''),
-                'firstName' => isset($fields['your-name']) ? sanitize_text_field($fields['your-name']) : (isset($fields['keresztnev']) ? sanitize_text_field($fields['keresztnev']) : ''),
-                'lastName' => isset($fields['vezeteknev']) ? sanitize_text_field($fields['vezeteknev']) : '',
-                'phoneNumber' => isset($fields['telefon']) ? sanitize_text_field($fields['telefon']) : '',
-                'birthDate' => isset($fields['szuletesi_datum']) ? sanitize_text_field($fields['szuletesi_datum']) : '',
-                'gender' => isset($fields['nem']) ? sanitize_text_field($fields['nem']) : '',
-                'clubName' => isset($fields['egyesulet']) ? sanitize_text_field($fields['egyesulet']) : '',
-                'tshirtSize' => isset($fields['polomeret']) ? sanitize_text_field($fields['polomeret']) : '',
-                'city' => isset($fields['varos']) ? sanitize_text_field($fields['varos']) : '',
-                'zipCode' => isset($fields['iranyitoszam']) ? sanitize_text_field($fields['iranyitoszam']) : '',
-                'address' => isset($fields['cim']) ? sanitize_text_field($fields['cim']) : '',
-                'eventName' => sanitize_text_field($post->post_title),
-                'distanceName' => isset($fields['tav']) ? sanitize_text_field($fields['tav']) : 'Alap táv',
-                'paymentStatus' => 'PAID',
-            );
+                $email = '';
+                if (!empty($fields['your-email'])) $email = sanitize_email($fields['your-email']);
+                elseif (!empty($fields['email'])) $email = sanitize_email($fields['email']);
+                elseif (!empty($fields['your_email'])) $email = sanitize_email($fields['your_email']);
+
+                if (empty($email)) continue;
+
+                $payloads[] = array(
+                    'email' => $email,
+                    'firstName' => isset($fields['your-name']) ? sanitize_text_field($fields['your-name']) : (isset($fields['keresztnev']) ? sanitize_text_field($fields['keresztnev']) : ''),
+                    'lastName' => isset($fields['vezeteknev']) ? sanitize_text_field($fields['vezeteknev']) : '',
+                    'phoneNumber' => isset($fields['telefon']) ? sanitize_text_field($fields['telefon']) : '',
+                    'birthDate' => isset($fields['szuletesi_datum']) ? sanitize_text_field($fields['szuletesi_datum']) : '',
+                    'gender' => isset($fields['nem']) ? sanitize_text_field($fields['nem']) : '',
+                    'clubName' => isset($fields['egyesulet']) ? sanitize_text_field($fields['egyesulet']) : '',
+                    'tshirtSize' => isset($fields['polomeret']) ? sanitize_text_field($fields['polomeret']) : '',
+                    'city' => isset($fields['varos']) ? sanitize_text_field($fields['varos']) : '',
+                    'zipCode' => isset($fields['iranyitoszam']) ? sanitize_text_field($fields['iranyitoszam']) : '',
+                    'address' => isset($fields['cim']) ? sanitize_text_field($fields['cim']) : '',
+                    'eventName' => sanitize_text_field($post->post_title),
+                    'distanceName' => isset($fields['tav']) ? sanitize_text_field($fields['tav']) : 'Alap táv',
+                    'paymentStatus' => 'PAID',
+                );
+            }
         }
 
         if (!empty($payloads)) {
-            $res = $this->post_to_nextjs_api($payloads);
-            if (is_wp_error($res)) {
-                return $res;
+            $chunks = array_chunk($payloads, 100);
+            foreach ($chunks as $chunk) {
+                $this->post_to_nextjs_api($chunk);
             }
         }
 
@@ -267,9 +277,9 @@ final class Runion_Data_Sync_Plugin {
         }
 
         if (!empty($payloads)) {
-            $res = $this->post_to_nextjs_api($payloads);
-            if (is_wp_error($res)) {
-                return $res;
+            $chunks = array_chunk($payloads, 100);
+            foreach ($chunks as $chunk) {
+                $this->post_to_nextjs_api($chunk);
             }
         }
 
@@ -277,35 +287,37 @@ final class Runion_Data_Sync_Plugin {
     }
 
     public function process_bulk_events_sync() {
-        $posts = get_posts(array(
-            'post_type' => 'tribe_events',
-            'posts_per_page' => 500,
-            'post_status' => array('publish', 'draft', 'future'),
-        ));
+        global $wpdb;
+
+        $posts = $wpdb->get_results(
+            "SELECT ID, post_title, post_name, post_content FROM {$wpdb->posts} WHERE post_type = 'tribe_events' ORDER BY ID DESC LIMIT 500"
+        );
 
         $payloads = array();
-        foreach ($posts as $post) {
-            $event_date = get_post_meta($post->ID, '_EventStartDate', true);
-            $end_date = get_post_meta($post->ID, '_EventEndDate', true);
-            $venue_id = get_post_meta($post->ID, '_EventVenueID', true);
-            $venue = $venue_id ? get_the_title($venue_id) : 'Balatonfüred';
+        if (is_array($posts)) {
+            foreach ($posts as $post) {
+                $event_date = get_post_meta($post->ID, '_EventStartDate', true);
+                $end_date = get_post_meta($post->ID, '_EventEndDate', true);
+                $venue_id = get_post_meta($post->ID, '_EventVenueID', true);
+                $venue = $venue_id ? get_the_title($venue_id) : 'Balatonfüred';
 
-            $payloads[] = array(
-                'isEventImport' => true,
-                'title' => sanitize_text_field($post->post_title),
-                'slug' => sanitize_title($post->post_name),
-                'description' => wp_strip_all_tags($post->post_content),
-                'location' => sanitize_text_field($venue),
-                'eventDate' => $event_date ? $event_date : date('Y-m-d H:i:s'),
-                'regDeadline' => $end_date ? $end_date : date('Y-m-d H:i:s', strtotime('+30 days')),
-                'coverImage' => get_the_post_thumbnail_url($post->ID, 'full') ?: null,
-            );
+                $payloads[] = array(
+                    'isEventImport' => true,
+                    'title' => sanitize_text_field($post->post_title),
+                    'slug' => sanitize_title($post->post_name),
+                    'description' => wp_strip_all_tags($post->post_content),
+                    'location' => sanitize_text_field($venue),
+                    'eventDate' => $event_date ? $event_date : date('Y-m-d H:i:s'),
+                    'regDeadline' => $end_date ? $end_date : date('Y-m-d H:i:s', strtotime('+30 days')),
+                    'coverImage' => get_the_post_thumbnail_url($post->ID, 'full') ?: null,
+                );
+            }
         }
 
         if (!empty($payloads)) {
-            $res = $this->post_to_nextjs_api($payloads);
-            if (is_wp_error($res)) {
-                return $res;
+            $chunks = array_chunk($payloads, 50);
+            foreach ($chunks as $chunk) {
+                $this->post_to_nextjs_api($chunk);
             }
         }
 
