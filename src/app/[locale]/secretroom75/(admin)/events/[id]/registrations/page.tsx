@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { ArrowLeft, Users } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import RegistrationsTable from '@/components/secretroom75/RegistrationsTable';
@@ -14,9 +14,9 @@ export default async function EventRegistrationsPage({ params }: { params: Promi
             title: true,
             formConfig: true
         }
-    });
+    }).catch(() => null);
 
-    if (!event) notFound();
+    if (!event) redirect(`/${locale || 'hu'}/secretroom75/events`);
 
     const formConfig = (event.formConfig as any)?.fields || [];
 

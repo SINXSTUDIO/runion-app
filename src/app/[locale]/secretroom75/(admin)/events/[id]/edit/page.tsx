@@ -1,18 +1,18 @@
 import prisma from '@/lib/prisma';
 import EventForm from '@/components/secretroom75/EventForm';
 import DistanceManager from '@/components/secretroom75/DistanceManager';
-import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { FileText, Users } from 'lucide-react';
 import { serializeData } from '@/lib/utils/serialization';
 import { Link } from '@/i18n/routing';
 
 interface EditEventPageProps {
-    params: Promise<{ id: string }>;
+    params: Promise<{ id: string; locale: string }>;
 }
 
 export default async function EditEventPage({ params }: EditEventPageProps) {
-    const { id } = await params;
+    const { id, locale } = await params;
     const event = await prisma.event.findUnique({
         where: { id },
         include: {
@@ -24,10 +24,10 @@ export default async function EditEventPage({ params }: EditEventPageProps) {
                 }
             }
         }
-    });
+    }).catch(() => null);
 
     if (!event) {
-        notFound();
+        redirect(`/${locale || 'hu'}/secretroom75/events`);
     }
 
     const sellers = await prisma.seller.findMany({

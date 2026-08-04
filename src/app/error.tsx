@@ -10,8 +10,13 @@ export default function Error({
     error: Error & { digest?: string };
     reset: () => void;
 }) {
-    // Pass through Next.js internal redirects without triggering Error Boundary UI
-    if (error?.digest?.startsWith('NEXT_REDIRECT') || error?.message?.includes('NEXT_REDIRECT')) {
+    // Pass through Next.js internal redirects and not found errors without triggering Error Boundary UI
+    if (
+        error?.digest?.startsWith('NEXT_REDIRECT') ||
+        error?.digest?.startsWith('NEXT_NOT_FOUND') ||
+        error?.message?.includes('NEXT_REDIRECT') ||
+        error?.message?.includes('NEXT_NOT_FOUND')
+    ) {
         return null;
     }
 
