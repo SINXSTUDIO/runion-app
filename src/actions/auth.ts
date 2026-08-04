@@ -48,6 +48,34 @@ export async function authenticate(prevState: string | undefined, formData: Form
     }
 }
 
+export async function checkUserEmailStatus(email: string) {
+    try {
+        const cleanEmail = email.trim().toLowerCase();
+        const user = await prisma.user.findUnique({ where: { email: cleanEmail } });
+        if (!user) {
+            return { exists: false };
+        }
+        return {
+            exists: true,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            hasPassword: !!user.passwordHash,
+            tshirtSize: user.tshirtSize,
+            clubName: user.clubName,
+            birthDate: user.birthDate ? user.birthDate.toISOString().split('T')[0] : null,
+            phone: user.phoneNumber,
+            city: user.city,
+            address: user.address,
+            zipCode: user.zipCode,
+            emergencyContactName: user.emergencyContactName,
+            emergencyContactPhone: user.emergencyContactPhone,
+        };
+    } catch (error) {
+        console.error('Error checking email status:', error);
+        return { exists: false, error: 'Hiba az e-mail ellenőrzése során' };
+    }
+}
+
 export type RegisterState = {
     success: boolean;
     error?: string;
