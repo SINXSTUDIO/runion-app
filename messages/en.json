@@ -974,7 +974,25 @@
             "subtitle": "Manage all registrations here",
             "searchPlaceholder": "Search registrations...",
             "view": "View",
-            "runners": "Runners"
+            "runners": "Runners",
+            "runner": "Runner"
+        },
+        "Events": {
+            "title": "Events",
+            "subtitle": "Manage and edit events",
+            "newEvent": "New Event",
+            "table": {
+                "event": "EVENT",
+                "date": "DATE",
+                "location": "LOCATION",
+                "status": "STATUS",
+                "actions": "ACTIONS"
+            },
+            "actions": {
+                "duplicate": "Duplicate",
+                "delete": "Delete",
+                "confirmDelete": "Are you sure you want to delete this event?"
+            }
         },
         "Dashboard": {
             "subtitle": "ADMINISTRATION DASHBOARD",

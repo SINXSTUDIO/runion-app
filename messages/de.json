@@ -971,7 +971,25 @@
             "subtitle": "Alle Anmeldungen verwalten",
             "searchPlaceholder": "Anmeldungen suchen...",
             "view": "Anzeigen",
-            "runners": "Läufer"
+            "runners": "Läufer",
+            "runner": "Läufer"
+        },
+        "Events": {
+            "title": "Veranstaltungen",
+            "subtitle": "Veranstaltungen verwalten und bearbeiten",
+            "newEvent": "Neue Veranstaltung",
+            "table": {
+                "event": "VERANSTALTUNG",
+                "date": "DATUM",
+                "location": "ORT",
+                "status": "STATUS",
+                "actions": "AKTIONEN"
+            },
+            "actions": {
+                "duplicate": "Duplizieren",
+                "delete": "Löschen",
+                "confirmDelete": "Sind Sie sicher, dass Sie diese Veranstaltung löschen möchten?"
+            }
         },
         "Dashboard": {
             "subtitle": "ADMINISTRATIONS-DASHBOARD",

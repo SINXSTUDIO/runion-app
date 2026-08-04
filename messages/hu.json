@@ -969,9 +969,27 @@
         "Registrations": {
             "title": "Nevezések",
             "subtitle": "Admin.Registrations subtitle",
-            "searchPlaceholder": "Admin.Registrations.searchPlaceholder",
-            "view": "Admin.Registrations.view",
-            "runners": "Admin.Registrations.runners"
+            "searchPlaceholder": "Keresés a nevezések között...",
+            "view": "Megtekintés",
+            "runners": "Futók",
+            "runner": "Futó"
+        },
+        "Events": {
+            "title": "Versenyek",
+            "subtitle": "Versenyek kezelése és szerkesztése",
+            "newEvent": "Új Verseny",
+            "table": {
+                "event": "ESEMÉNY",
+                "date": "DÁTUM",
+                "location": "HELYSZÍN",
+                "status": "STÁTUSZ",
+                "actions": "MŰVELETEK"
+            },
+            "actions": {
+                "duplicate": "Duplikálás",
+                "delete": "Törlés",
+                "confirmDelete": "Biztosan törölni szeretnéd ezt a versenyt?"
+            }
         },
         "Dashboard": {
             "subtitle": "ADMINISZTRÁCIÓS VEZÉRLŐPULT",
