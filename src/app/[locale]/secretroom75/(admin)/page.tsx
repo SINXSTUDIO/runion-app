@@ -140,7 +140,7 @@ export default async function AdminPage({
                                         </Badge>
                                     </td>
                                     <td className="px-6 md:px-8 py-6 text-zinc-400 font-mono italic text-sm">
-                                        {event.eventDate.toLocaleDateString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US')}
+                                        {event.eventDate ? new Date(event.eventDate).toLocaleDateString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US') : '—'}
                                     </td>
                                     <td className="px-6 md:px-8 py-6 text-center">
                                         <span className="bg-zinc-950/80 text-white font-mono px-3.5 py-1.5 rounded-full text-xs border border-white/5 shadow-inner">

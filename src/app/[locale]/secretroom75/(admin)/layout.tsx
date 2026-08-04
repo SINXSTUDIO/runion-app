@@ -9,7 +9,12 @@ export default async function AdminLayout({
     children: React.ReactNode;
     params: Promise<{ locale: string }>;
 }) {
-    const session = await auth();
+    let session = null;
+    try {
+        session = await auth();
+    } catch (e) {
+        console.error('[AdminLayout] Auth session check error:', e);
+    }
     const { locale } = await params;
 
     if (!session?.user) {

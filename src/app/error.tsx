@@ -10,6 +10,11 @@ export default function Error({
     error: Error & { digest?: string };
     reset: () => void;
 }) {
+    // Pass through Next.js internal redirects and not-found errors
+    if (error?.digest?.startsWith('NEXT_REDIRECT') || error?.message?.includes('NEXT_REDIRECT')) {
+        throw error;
+    }
+
     useEffect(() => {
         // Log to error reporting service (Sentry, etc.)
         console.error('[Global Error Boundary]', error);
