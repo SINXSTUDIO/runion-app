@@ -963,5 +963,26 @@
         "beneficiaryTextSuffix": "für den Kauf von Tierfutter gespendet – so möchten wir deren Arbeit unterstützen!",
         "referenceText": "Geben Sie daher bei der Überweisung folgendes in das Feld Verwendungszweck ein:",
         "thankYou": "Vielen Dank!"
+    },
+    "Admin": {
+        "Dashboard": {
+            "subtitle": "ADMINISTRATIONS-DASHBOARD",
+            "systemLogs": "System-Protokolle",
+            "newEvent": "+ Neues Event",
+            "totalRunners": "GESAMTE LÄUFER",
+            "runnersTrend": "+100% im letzten Monat",
+            "activeEvents": "AKTIVE EVENTS",
+            "potentialRevenue": "ERWARTETE EINNAHMEN",
+            "revenueTrend": "Bezahlt + Ausstehend",
+            "manageEvents": "EVENTS VERWALTEN",
+            "eventName": "EVENT NAME",
+            "status": "STATUS",
+            "date": "DATUM",
+            "runners": "LÄUFER",
+            "actions": "AKTIONEN",
+            "downloadCsv": "CSV Herunterladen",
+            "registrationForm": "Anmeldeformular",
+            "settings": "Einstellungen"
+        }
     }
 }

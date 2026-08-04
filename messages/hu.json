@@ -963,5 +963,26 @@
         "beneficiaryTextSuffix": "részére – állateledel vásárlására kerülnek felajánlásra, mi így kívánjuk segíteni munkájukat!",
         "referenceText": "Utaláskor tehát a megjegyzés rovatba ezt kérjük beírni:",
         "thankYou": "Köszönjük!"
+    },
+    "Admin": {
+        "Dashboard": {
+            "subtitle": "ADMINISZTRÁCIÓS VEZÉRLŐPULT",
+            "systemLogs": "Rendszer Naplók",
+            "newEvent": "+ Új Verseny",
+            "totalRunners": "ÖSSZES FUTÓ",
+            "runnersTrend": "+100% az elmúlt hónapban",
+            "activeEvents": "AKTÍV VERSENYEK",
+            "potentialRevenue": "VÁRHATÓ BEVÉTEL",
+            "revenueTrend": "Fizetésre + Függőben lévő",
+            "manageEvents": "VERSENYEK KEZELÉSE",
+            "eventName": "ESEMÉNY MEGNEVEZÉSE",
+            "status": "ÁLLAPOT",
+            "date": "DÁTUM",
+            "runners": "NEVEZŐK",
+            "actions": "MŰVELETEK",
+            "downloadCsv": "CSV Letöltése",
+            "registrationForm": "Nevezési Űrlap",
+            "settings": "Beállítások"
+        }
     }
 }

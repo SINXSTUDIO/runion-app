@@ -14,8 +14,15 @@ export default async function AdminPage({
     params: Promise<{ locale: string }>;
 }) {
     const { locale } = await params;
-    const t = await getTranslations({ locale, namespace: 'Admin.Dashboard' });
-    const settings = await getSettings();
+    let t: (key: string) => string = (key: string) => key;
+    try {
+        const rawT = await getTranslations({ locale, namespace: 'Admin.Dashboard' });
+        t = (key: string) => rawT(key);
+    } catch (e) {
+        console.error('[AdminPage] Translation loading fallback:', e);
+    }
+
+    const settings = await getSettings().catch(() => null);
 
     const eventsData = await prisma.event.findMany({
         orderBy: { eventDate: 'desc' },

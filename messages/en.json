@@ -966,5 +966,26 @@
         "beneficiaryTextSuffix": "for the purchase of animal food – this is how we wish to support their work!",
         "referenceText": "When transferring, please enter this in the reference field:",
         "thankYou": "Thank you!"
+    },
+    "Admin": {
+        "Dashboard": {
+            "subtitle": "ADMINISTRATION DASHBOARD",
+            "systemLogs": "System Logs",
+            "newEvent": "+ New Event",
+            "totalRunners": "TOTAL RUNNERS",
+            "runnersTrend": "+100% in the last month",
+            "activeEvents": "ACTIVE EVENTS",
+            "potentialRevenue": "EXPECTED REVENUE",
+            "revenueTrend": "Paid + Pending",
+            "manageEvents": "MANAGE EVENTS",
+            "eventName": "EVENT NAME",
+            "status": "STATUS",
+            "date": "DATE",
+            "runners": "RUNNERS",
+            "actions": "ACTIONS",
+            "downloadCsv": "Download CSV",
+            "registrationForm": "Registration Form",
+            "settings": "Settings"
+        }
     }
 }
