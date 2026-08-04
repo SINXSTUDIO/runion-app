@@ -6,7 +6,7 @@ import { Link, usePathname } from '@/i18n/routing';
 import { User } from 'next-auth';
 import { useCart } from '@/context/CartContext';
 
-import { User as UserIcon, Trophy, ShoppingBag, Info, Mail, LogIn, UserPlus, Menu, X, ArrowLeftRight, ShoppingCart } from 'lucide-react';
+import { User as UserIcon, Trophy, ShoppingBag, Info, Mail, LogIn, UserPlus, Menu, X, ArrowLeftRight, ShoppingCart, LayoutGrid, Home } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import LanguageSwitcher from './LanguageSwitcher';
 import SessionTimer from '@/components/auth/SessionTimer';
@@ -302,6 +302,68 @@ export default function Navbar({ user }: NavbarProps) {
                     </div>
                 )
             }
+
+            {/* ENOX-Style Fixed Bottom Mobile Nav Bar (md:hidden) */}
+            <div className="fixed bottom-0 inset-x-0 z-[150] md:hidden bg-zinc-950/95 backdrop-blur-2xl border-t border-white/10 px-2 py-2 flex items-center justify-around shadow-[0_-5px_25px_rgba(0,0,0,0.8)]">
+                <Link
+                    href="/"
+                    className={`flex flex-col items-center justify-center flex-1 py-1 transition-all group ${
+                        pathname === '/' ? 'text-accent' : 'text-zinc-400 hover:text-white'
+                    }`}
+                >
+                    <Home className={`w-5 h-5 mb-1 transition-transform group-active:scale-95 ${pathname === '/' ? 'text-accent drop-shadow-[0_0_8px_rgba(0,242,254,0.5)]' : 'text-zinc-400'}`} />
+                    <span className={`text-[10px] font-bold tracking-tight truncate max-w-[65px] ${pathname === '/' ? 'text-accent' : 'text-zinc-400'}`}>
+                        Főoldal
+                    </span>
+                </Link>
+
+                <Link
+                    href="/races"
+                    className={`flex flex-col items-center justify-center flex-1 py-1 transition-all group ${
+                        pathname === '/races' ? 'text-accent' : 'text-zinc-400 hover:text-white'
+                    }`}
+                >
+                    <Trophy className={`w-5 h-5 mb-1 transition-transform group-active:scale-95 ${pathname === '/races' ? 'text-accent drop-shadow-[0_0_8px_rgba(0,242,254,0.5)]' : 'text-zinc-400'}`} />
+                    <span className={`text-[10px] font-bold tracking-tight truncate max-w-[65px] ${pathname === '/races' ? 'text-accent' : 'text-zinc-400'}`}>
+                        Versenyek
+                    </span>
+                </Link>
+
+                <Link
+                    href="/boutique"
+                    className={`flex flex-col items-center justify-center flex-1 py-1 transition-all group ${
+                        pathname === '/boutique' ? 'text-accent' : 'text-zinc-400 hover:text-white'
+                    }`}
+                >
+                    <ShoppingBag className={`w-5 h-5 mb-1 transition-transform group-active:scale-95 ${pathname === '/boutique' ? 'text-accent drop-shadow-[0_0_8px_rgba(0,242,254,0.5)]' : 'text-zinc-400'}`} />
+                    <span className={`text-[10px] font-bold tracking-tight truncate max-w-[65px] ${pathname === '/boutique' ? 'text-accent' : 'text-zinc-400'}`}>
+                        Butik
+                    </span>
+                </Link>
+
+                <Link
+                    href={user ? '/dashboard/profile' : '/login'}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 transition-all group ${
+                        pathname.startsWith('/dashboard') || pathname === '/login' ? 'text-accent' : 'text-zinc-400 hover:text-white'
+                    }`}
+                >
+                    <UserIcon className={`w-5 h-5 mb-1 transition-transform group-active:scale-95 ${pathname.startsWith('/dashboard') || pathname === '/login' ? 'text-accent drop-shadow-[0_0_8px_rgba(0,242,254,0.5)]' : 'text-zinc-400'}`} />
+                    <span className={`text-[10px] font-bold tracking-tight truncate max-w-[65px] ${pathname.startsWith('/dashboard') || pathname === '/login' ? 'text-accent' : 'text-zinc-400'}`}>
+                        {user ? 'Fiókom' : 'Belépés'}
+                    </span>
+                </Link>
+
+                {/* ENOX 5th Item: Menü button triggering full screen ENOX App Grid modal */}
+                <button
+                    onClick={() => setIsOpen(true)}
+                    className="flex flex-col items-center justify-center flex-1 py-1 transition-all group"
+                >
+                    <div className="px-3 py-1 rounded-xl bg-zinc-900 border border-accent/60 text-accent group-active:scale-95 shadow-[0_0_12px_rgba(0,242,254,0.2)] flex flex-col items-center justify-center">
+                        <LayoutGrid className="w-5 h-5 text-accent" />
+                        <span className="text-[10px] font-black text-accent tracking-wider uppercase mt-0.5">Menü</span>
+                    </div>
+                </button>
+            </div>
         </nav >
     );
 }
