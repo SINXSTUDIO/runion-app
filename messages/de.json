@@ -11,7 +11,8 @@
         "login": "Anmelden",
         "register": "Registrieren",
         "welcome": "Willkommen",
-        "transfer": "Ummeldung"
+        "transfer": "Ummeldung",
+        "adminPanel": "Admin Panel"
     },
     "Dashboard": {
         "Home": {
@@ -965,6 +966,13 @@
         "thankYou": "Vielen Dank!"
     },
     "Admin": {
+        "Registrations": {
+            "title": "Anmeldungen",
+            "subtitle": "Alle Anmeldungen verwalten",
+            "searchPlaceholder": "Anmeldungen suchen...",
+            "view": "Anzeigen",
+            "runners": "Läufer"
+        },
         "Dashboard": {
             "subtitle": "ADMINISTRATIONS-DASHBOARD",
             "systemLogs": "System-Protokolle",

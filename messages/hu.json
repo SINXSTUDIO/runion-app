@@ -11,7 +11,8 @@
         "login": "Belépés",
         "register": "Regisztráció",
         "welcome": "Üdv",
-        "transfer": "Átnevezés"
+        "transfer": "Átnevezés",
+        "adminPanel": "Admin Panel"
     },
     "Dashboard": {
         "Home": {
@@ -965,6 +966,13 @@
         "thankYou": "Köszönjük!"
     },
     "Admin": {
+        "Registrations": {
+            "title": "Nevezések",
+            "subtitle": "Admin.Registrations subtitle",
+            "searchPlaceholder": "Admin.Registrations.searchPlaceholder",
+            "view": "Admin.Registrations.view",
+            "runners": "Admin.Registrations.runners"
+        },
         "Dashboard": {
             "subtitle": "ADMINISZTRÁCIÓS VEZÉRLŐPULT",
             "systemLogs": "Rendszer Naplók",
