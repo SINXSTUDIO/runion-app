@@ -1,5 +1,9 @@
 import nodemailer from 'nodemailer';
 import type { SendEmailParams } from '@/types/email';
+import { Resend } from 'resend';
+
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST || 'smtp.gmail.com',
@@ -15,20 +19,53 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendEmail = async ({ to, subject, html, attachments, from }: SendEmailParams): Promise<{ success: boolean; messageId?: string; error?: unknown }> => {
+    const sender = from || process.env.SHOP_EMAIL_FROM || process.env.EMAIL_FROM || '"RUNION.EU" <noreply@runion.eu>';
+
+    // 1. Try Resend if API key is configured
+    if (resend) {
+        try {
+            console.log('Sending email via Resend to:', to);
+            const resendAttachments = attachments?.map(att => ({
+                filename: att.filename,
+                content: att.content,
+            }));
+
+            const { data, error } = await resend.emails.send({
+                from: sender,
+                to: Array.isArray(to) ? to : [to],
+                subject,
+                html,
+                attachments: resendAttachments,
+            });
+
+            if (error) {
+                console.error('Resend API returned error, attempting Gmail SMTP fallback:', error);
+            } else if (data?.id) {
+                console.log('Email sent successfully via Resend. Message ID:', data.id);
+                return { success: true, messageId: data.id };
+            }
+        } catch (resendErr) {
+            console.error('Resend Exception encountered, attempting Gmail SMTP fallback:', resendErr);
+        }
+    } else {
+        console.warn('RESEND_API_KEY is not configured. Falling back to Gmail SMTP.');
+    }
+
+    // 2. Fallback to Gmail Nodemailer SMTP
     try {
-        console.log('Sending email to:', to);
+        console.log('Sending email via Gmail SMTP fallback to:', to);
         const info = await transporter.sendMail({
-            from: from || process.env.SHOP_EMAIL_FROM || process.env.EMAIL_FROM || '"RUNION.EU" <noreply@runion.eu>',
+            from: sender,
             to,
             subject,
             html,
             attachments,
         });
-        console.log('Message sent: %s', info.messageId);
+        console.log('Email sent successfully via Gmail SMTP. Message ID: %s', info.messageId);
         return { success: true, messageId: info.messageId };
-    } catch (error) {
-        console.error('Error sending email:', error);
-        return { success: false, error };
+    } catch (smtpError) {
+        console.error('Error sending email via Gmail SMTP fallback:', smtpError);
+        return { success: false, error: smtpError };
     }
 };
 
