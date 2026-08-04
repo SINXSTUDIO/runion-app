@@ -20,6 +20,67 @@ export async function POST(req: NextRequest) {
 
         for (const item of items) {
             try {
+                // Event Import Branch
+                if (item.isEventImport) {
+                    const title = item.title?.trim();
+                    if (!title) continue;
+
+                    const slug = item.slug || title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+                    const eventDate = item.eventDate ? new Date(item.eventDate) : new Date();
+                    const regDeadline = item.regDeadline ? new Date(item.regDeadline) : new Date(Date.now() + 8640000000);
+
+                    // Find existing admin user to assign as organizer
+                    const adminUser = await prisma.user.findFirst({ where: { role: 'ADMIN' } });
+                    const organizerId = adminUser?.id || (await prisma.user.findFirst())?.id;
+
+                    if (!organizerId) continue;
+
+                    let event = await prisma.event.findFirst({
+                        where: {
+                            OR: [
+                                { slug: { equals: slug, mode: 'insensitive' } },
+                                { title: { equals: title, mode: 'insensitive' } }
+                            ]
+                        }
+                    });
+
+                    if (!event) {
+                        event = await prisma.event.create({
+                            data: {
+                                title,
+                                slug: `${slug}-${Math.floor(Math.random() * 1000)}`,
+                                description: item.description || title,
+                                location: item.location || 'Balatonfüred',
+                                eventDate: isNaN(eventDate.getTime()) ? new Date() : eventDate,
+                                regDeadline: isNaN(regDeadline.getTime()) ? new Date(Date.now() + 8640000000) : regDeadline,
+                                coverImage: item.coverImage || null,
+                                organizerId,
+                                status: 'PUBLISHED',
+                                distances: {
+                                    create: [
+                                        { name: 'Alap Futam (10km)', price: 6000, capacityLimit: 500, startTime: isNaN(eventDate.getTime()) ? new Date() : eventDate },
+                                        { name: 'Félmaraton (21km)', price: 9000, capacityLimit: 500, startTime: isNaN(eventDate.getTime()) ? new Date() : eventDate },
+                                        { name: 'Maraton (42km)', price: 12000, capacityLimit: 500, startTime: isNaN(eventDate.getTime()) ? new Date() : eventDate },
+                                    ]
+                                }
+                            }
+                        });
+                    } else {
+                        await prisma.event.update({
+                            where: { id: event.id },
+                            data: {
+                                description: item.description || event.description,
+                                coverImage: item.coverImage || event.coverImage,
+                                location: item.location || event.location,
+                            }
+                        });
+                    }
+
+                    processedCount++;
+                    continue;
+                }
+
+                // Standard Registration / Person Ingestion Branch
                 const email = item.email?.trim()?.toLowerCase();
                 if (!email) {
                     errorsCount++;
@@ -49,7 +110,7 @@ export async function POST(req: NextRequest) {
                     }
                 }
 
-                // 2. Find or Create User
+                // Find or Create User
                 let user = await prisma.user.findUnique({ where: { email } });
 
                 if (!user) {
@@ -74,7 +135,6 @@ export async function POST(req: NextRequest) {
                         },
                     });
                 } else {
-                    // Update profile fields if new data is provided
                     user = await prisma.user.update({
                         where: { id: user.id },
                         data: {
@@ -95,12 +155,11 @@ export async function POST(req: NextRequest) {
                     });
                 }
 
-                // 3. Match or Create Event & Distance
+                // Match or Create Event & Distance
                 const eventTitle = item.eventName || item.event_title || 'RUNION Futóverseny';
                 const distanceName = item.distanceName || item.distance || 'Alap táv';
                 const pricePaid = Number(item.pricePaid || item.price || 0);
 
-                // Find event by title or slug
                 let event = await prisma.event.findFirst({
                     where: {
                         OR: [
@@ -111,7 +170,6 @@ export async function POST(req: NextRequest) {
                 });
 
                 if (!event) {
-                    // Create default event if not found
                     event = await prisma.event.create({
                         data: {
                             title: eventTitle,
@@ -126,7 +184,6 @@ export async function POST(req: NextRequest) {
                     });
                 }
 
-                // Find or create distance
                 let distance = await prisma.distance.findFirst({
                     where: {
                         eventId: event.id,
@@ -146,7 +203,6 @@ export async function POST(req: NextRequest) {
                     });
                 }
 
-                // 4. Check if registration already exists to prevent duplicate entries
                 const existingReg = await prisma.registration.findFirst({
                     where: {
                         userId: user.id,

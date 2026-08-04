@@ -3,7 +3,7 @@
  * Plugin Name: RUNION Sync Plugin
  * Plugin URI: https://runion.eu
  * Description: Csendes adatszinkronizációs és migrációs bővítmény a RUNION WordPress és az új Next.js webalkalmazás között.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: RUNION Dev Team
  * License: GPLv2 or later
  */
@@ -57,12 +57,17 @@ final class Runion_Data_Sync_Plugin {
             $message = 'Sikeresen átküldve ' . intval($count) . ' WooCommerce rendelés a Next.js-nek!';
         }
 
+        if (isset($_POST['runion_action_bulk_events']) && check_admin_referer('runion_bulk_sync_nonce')) {
+            $count = $this->process_bulk_events_sync();
+            $message = 'Sikeresen átküldve ' . intval($count) . ' WordPress esemény a Next.js-nek!';
+        }
+
         $webhook_url = get_option('runion_target_webhook_url', 'https://runion-app.vercel.app/api/webhooks/wordpress');
         $sync_secret = get_option('runion_target_sync_secret', 'runion_wp_sync_secret_key_2026');
         ?>
         <div class="wrap">
             <h1>RUNION Adatszinkronizáció & Migráció</h1>
-            <p>Ez a bővítmény csendben, a háttérben szinkronizálja a beérkező Flamingo és WooCommerce nevezéseket az új RUNION webalkalmazással.</p>
+            <p>Ez a bővítmény csendben, a háttérben szinkronizálja a beérkező Flamingo és WooCommerce nevezéseket, valamint az összes WordPress eseményt az új RUNION webalkalmazással.</p>
 
             <?php if (!empty($message)) : ?>
                 <div class="notice notice-success is-dismissible"><p><strong><?php echo esc_html($message); ?></strong></p></div>
@@ -90,15 +95,18 @@ final class Runion_Data_Sync_Plugin {
             <hr style="margin: 30px 0;" />
 
             <h2>Történeti Adatok Tömeges Migrálása</h2>
-            <p>Az alábbi gombokkal az összes eddigi Flamingo űrlapbejegyzést és WooCommerce megrendelést áttöltheted a Supabase adatbázisba.</p>
+            <p>Az alábbi gombokkal az összes eddigi Flamingo nevezést, WooCommerce rendelést és meglévő versenyt áttöltheted az új adatbázisba.</p>
 
-            <form method="post" action="" style="margin-top: 20px; display: flex; gap: 15px;">
+            <form method="post" action="" style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 15px;">
                 <?php wp_nonce_field('runion_bulk_sync_nonce'); ?>
                 <button type="submit" name="runion_action_bulk_flamingo" value="1" class="button button-primary button-large">
                     🦩 Összes Flamingo Nevezés Áthozása
                 </button>
                 <button type="submit" name="runion_action_bulk_wc" value="1" class="button button-secondary button-large">
                     🛒 Összes WooCommerce Rendelés Áthozása
+                </button>
+                <button type="submit" name="runion_action_bulk_events" value="1" class="button button-secondary button-large" style="background: #00f2fe; color: #111; font-weight: bold;">
+                    📅 Összes Esemény & Nevezési Felület Áthozása
                 </button>
             </form>
         </div>
@@ -115,7 +123,7 @@ final class Runion_Data_Sync_Plugin {
                 'x-wp-sync-secret' => $sync_secret,
             ),
             'body' => wp_json_encode($payload),
-            'timeout' => 20,
+            'timeout' => 30,
         );
 
         return wp_remote_post($webhook_url, $args);
@@ -218,7 +226,7 @@ final class Runion_Data_Sync_Plugin {
 
     public function process_bulk_wc_sync() {
         if (!function_exists('wc_get_orders')) return 0;
-        $orders = wc_get_orders(array('limit' => 500));
+        $orders = wc_get_orders(array('limit' => 5000));
         $payloads = array();
 
         foreach ($orders as $order) {
@@ -233,6 +241,39 @@ final class Runion_Data_Sync_Plugin {
                 'eventName' => 'WooCommerce Rendelés #' . $order->get_id(),
                 'pricePaid' => $order->get_total(),
                 'paymentStatus' => $order->is_paid() ? 'PAID' : 'PENDING',
+            );
+        }
+
+        if (!empty($payloads)) {
+            $this->post_to_nextjs_api($payloads);
+        }
+
+        return count($payloads);
+    }
+
+    public function process_bulk_events_sync() {
+        $posts = get_posts(array(
+            'post_type' => 'tribe_events',
+            'posts_per_page' => 500,
+            'post_status' => array('publish', 'draft', 'future'),
+        ));
+
+        $payloads = array();
+        foreach ($posts as $post) {
+            $event_date = get_post_meta($post->ID, '_EventStartDate', true);
+            $end_date = get_post_meta($post->ID, '_EventEndDate', true);
+            $venue_id = get_post_meta($post->ID, '_EventVenueID', true);
+            $venue = $venue_id ? get_the_title($venue_id) : 'Balatonfüred';
+
+            $payloads[] = array(
+                'isEventImport' => true,
+                'title' => sanitize_text_field($post->post_title),
+                'slug' => sanitize_title($post->post_name),
+                'description' => wp_strip_all_tags($post->post_content),
+                'location' => sanitize_text_field($venue),
+                'eventDate' => $event_date ? $event_date : date('Y-m-d H:i:s'),
+                'regDeadline' => $end_date ? $end_date : date('Y-m-d H:i:s', strtotime('+30 days')),
+                'coverImage' => get_the_post_thumbnail_url($post->ID, 'full') ?: null,
             );
         }
 
