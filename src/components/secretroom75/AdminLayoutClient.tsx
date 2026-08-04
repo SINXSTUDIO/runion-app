@@ -24,7 +24,7 @@ export default function AdminLayoutClient({ children, user }: AdminLayoutClientP
     ];
 
     return (
-        <div className="secret-layout min-h-screen bg-black flex relative">
+        <div className="secret-layout min-h-screen bg-black flex">
             {/* Backdrop for mobile */}
             {sidebarOpen && (
                 <div
