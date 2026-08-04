@@ -2,8 +2,10 @@ import nodemailer from 'nodemailer';
 import type { SendEmailParams } from '@/types/email';
 import { Resend } from 'resend';
 
-const resendApiKey = process.env.RESEND_API_KEY;
-const resend = resendApiKey ? new Resend(resendApiKey) : null;
+const getResend = () => {
+    const apiKey = process.env.RESEND_API_KEY;
+    return apiKey ? new Resend(apiKey) : null;
+};
 
 const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST || 'smtp.gmail.com',
@@ -20,6 +22,7 @@ const transporter = nodemailer.createTransport({
 
 export const sendEmail = async ({ to, subject, html, attachments, from }: SendEmailParams): Promise<{ success: boolean; messageId?: string; error?: unknown }> => {
     const sender = from || process.env.SHOP_EMAIL_FROM || process.env.EMAIL_FROM || '"RUNION.EU" <noreply@runion.eu>';
+    const resend = getResend();
 
     // 1. Try Resend if API key is configured
     if (resend) {
