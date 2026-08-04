@@ -985,6 +985,14 @@
             "settings": "Beállítások"
         },
         "Sidebar": {
+            "controlPanel": "Vezérlőpult",
+            "welcome": "Üdvözöljük,",
+            "time": "Rendszer Idő",
+            "loading": "Betöltés...",
+            "version": "Verzió",
+            "status": "Rendszerállapot",
+            "uptime": "Rendelkezésre állás",
+            "db": "Adatbázis",
             "dashboard": "Vezérlőpult",
             "events": "Versenyek",
             "registrations": "Nevezések",
@@ -997,6 +1005,8 @@
             "gallery": "Galéria",
             "settings": "Beállítások",
             "backup": "Biztonsági Mentés",
+            "about": "Rólunk",
+            "contact": "Kapcsolat",
             "groups": {
                 "overview": "ÁTTEKINTÉS",
                 "shop": "WEBSHOP & BUTIK",

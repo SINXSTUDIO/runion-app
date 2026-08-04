@@ -988,6 +988,14 @@
             "settings": "Settings"
         },
         "Sidebar": {
+            "controlPanel": "Control Panel",
+            "welcome": "Welcome,",
+            "time": "System Time",
+            "loading": "Loading...",
+            "version": "Version",
+            "status": "System Status",
+            "uptime": "Uptime",
+            "db": "Database",
             "dashboard": "Dashboard",
             "events": "Events",
             "registrations": "Registrations",
@@ -1000,6 +1008,8 @@
             "gallery": "Gallery",
             "settings": "Settings",
             "backup": "Backup",
+            "about": "About Us",
+            "contact": "Contact",
             "groups": {
                 "overview": "OVERVIEW",
                 "shop": "WEBSHOP & STORE",

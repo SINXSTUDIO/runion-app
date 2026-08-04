@@ -985,6 +985,14 @@
             "settings": "Einstellungen"
         },
         "Sidebar": {
+            "controlPanel": "Systemsteuerung",
+            "welcome": "Willkommen,",
+            "time": "Systemzeit",
+            "loading": "Laden...",
+            "version": "Version",
+            "status": "Systemstatus",
+            "uptime": "Betriebszeit",
+            "db": "Datenbank",
             "dashboard": "Dashboard",
             "events": "Events",
             "registrations": "Anmeldungen",
@@ -997,6 +1005,8 @@
             "gallery": "Galerie",
             "settings": "Einstellungen",
             "backup": "Sicherung",
+            "about": "Über uns",
+            "contact": "Kontakt",
             "groups": {
                 "overview": "ÜBERSICHT",
                 "shop": "WEBSHOP & STORE",
