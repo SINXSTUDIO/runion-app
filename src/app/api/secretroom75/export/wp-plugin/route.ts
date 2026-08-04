@@ -7,18 +7,28 @@ export async function GET() {
     try {
         await requireAdmin();
 
-        const filePath = path.join(process.cwd(), 'scripts', 'runion-sync-plugin.php');
-        if (!fs.existsSync(filePath)) {
+        const zipPath = path.join(process.cwd(), 'scripts', 'runion-sync-plugin.zip');
+        const phpPath = path.join(process.cwd(), 'scripts', 'runion-sync-plugin.php');
+
+        let fileBuffer: Buffer;
+        let filename = 'runion-sync-plugin.zip';
+        let contentType = 'application/zip';
+
+        if (fs.existsSync(zipPath)) {
+            fileBuffer = fs.readFileSync(zipPath);
+        } else if (fs.existsSync(phpPath)) {
+            fileBuffer = fs.readFileSync(phpPath);
+            filename = 'runion-sync-plugin.php';
+            contentType = 'application/x-php';
+        } else {
             return NextResponse.json({ error: 'Plugin file not found' }, { status: 404 });
         }
 
-        const fileBuffer = fs.readFileSync(filePath);
-
-        return new NextResponse(fileBuffer, {
+        return new NextResponse(new Uint8Array(fileBuffer), {
             status: 200,
             headers: {
-                'Content-Type': 'application/x-php',
-                'Content-Disposition': 'attachment; filename="runion-sync-plugin.php"',
+                'Content-Type': contentType,
+                'Content-Disposition': `attachment; filename="${filename}"`,
             },
         });
     } catch (error) {

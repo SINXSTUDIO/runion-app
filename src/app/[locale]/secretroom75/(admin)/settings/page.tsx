@@ -220,11 +220,11 @@ export default function SettingsPage() {
 
                         <a
                             href="/api/secretroom75/export/wp-plugin"
-                            download="runion-sync-plugin.php"
+                            download="runion-sync-plugin.zip"
                             className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-cyan-400 hover:bg-cyan-300 text-neutral-950 font-bold rounded-xl shadow-lg shadow-cyan-400/20 transition-all active:scale-95"
                         >
                             <Download className="w-5 h-5" />
-                            🦩 RUNION Sync Plugin Letöltése (.php)
+                            🦩 RUNION Sync Plugin Letöltése (.zip)
                         </a>
                     </div>
                 </Card>
