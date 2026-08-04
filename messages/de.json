@@ -983,6 +983,36 @@
             "downloadCsv": "CSV Herunterladen",
             "registrationForm": "Anmeldeformular",
             "settings": "Einstellungen"
+        },
+        "Sidebar": {
+            "dashboard": "Dashboard",
+            "events": "Events",
+            "registrations": "Anmeldungen",
+            "products": "Produkte",
+            "orders": "Bestellungen",
+            "users": "Benutzer",
+            "memberships": "Mitgliedschaften",
+            "partners": "Partner",
+            "sponsors": "Sponsoren",
+            "gallery": "Galerie",
+            "settings": "Einstellungen",
+            "backup": "Sicherung",
+            "groups": {
+                "overview": "ÜBERSICHT",
+                "shop": "WEBSHOP & STORE",
+                "community": "COMMUNITY",
+                "system": "SYSTEM",
+                "support": "SUPPORT"
+            },
+            "links": {
+                "requests": "Anträge",
+                "shopSettings": "Shop-Einstellungen",
+                "sellers": "Verkäufer",
+                "logs": "System-Protokolle",
+                "auditLogs": "Audit-Protokoll",
+                "about": "Über uns",
+                "contact": "Kontakt"
+            }
         }
     }
 }

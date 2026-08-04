@@ -983,6 +983,36 @@
             "downloadCsv": "CSV Letöltése",
             "registrationForm": "Nevezési Űrlap",
             "settings": "Beállítások"
+        },
+        "Sidebar": {
+            "dashboard": "Vezérlőpult",
+            "events": "Versenyek",
+            "registrations": "Nevezések",
+            "products": "Termékek",
+            "orders": "Rendelések",
+            "users": "Felhasználók",
+            "memberships": "Tagságok",
+            "partners": "Partnerek",
+            "sponsors": "Támogatók",
+            "gallery": "Galéria",
+            "settings": "Beállítások",
+            "backup": "Biztonsági Mentés",
+            "groups": {
+                "overview": "ÁTTEKINTÉS",
+                "shop": "WEBSHOP & BUTIK",
+                "community": "KÖZÖSSÉG",
+                "system": "RENDSZER",
+                "support": "TÁMOGATÁS"
+            },
+            "links": {
+                "requests": "Kérelmek",
+                "shopSettings": "Bolt Beállítások",
+                "sellers": "Eladók",
+                "logs": "Rendszernaplók",
+                "auditLogs": "Audit Napló",
+                "about": "Rólunk",
+                "contact": "Kapcsolat"
+            }
         }
     }
 }
