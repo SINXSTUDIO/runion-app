@@ -153,102 +153,151 @@ export default function Navbar({ user }: NavbarProps) {
                 </div>
             </div >
 
-            {/* Mobile Menu Overlay */}
+            {/* Mobile Menu Overlay - 100% Fullscreen ENOX App Grid */}
             {
                 isOpen && (
-                    <div className="fixed inset-0 z-[100] md:hidden">
-                        {/* Backdrop Blur Overlay */}
-                        <div
-                            className="absolute inset-0 bg-black/95 backdrop-blur-xl animate-fade-in"
-                            onClick={() => setIsOpen(false)}
-                        />
-
-                        {/* Floating Menu Card */}
-                        <div className="absolute top-20 inset-x-4 bg-zinc-900 border border-zinc-800 rounded-[2rem] shadow-2xl flex flex-col overflow-hidden animate-slide-in-top max-h-[85vh]">
-                            {/* Navigation Links */}
-                            <div className="flex-1 overflow-y-auto py-6 px-4 space-y-2 relative">
-                                {/* Inner subtle glow for depth */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/5 blur-[100px] pointer-events-none" />
-
-                                {navLinks.map((link, index) => (
-                                    <Link
-                                        key={link.href}
-                                        href={link.href}
-                                        onClick={() => setIsOpen(false)}
-                                        className="flex items-center gap-3 p-3 rounded-xl bg-zinc-800/50 hover:bg-zinc-800 border border-white/5 hover:border-accent/30 transition-all group opacity-0 animate-slide-in-left hover:shadow-[0_0_15px_rgba(0,242,254,0.15)]"
-                                        style={{ animationDelay: `${index * 100}ms` }}
-                                    >
-                                        <div className="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center group-hover:bg-accent group-hover:text-black transition-colors border border-white/5 group-hover:border-accent">
-                                            <link.icon className="w-5 h-5 text-accent group-hover:text-black transition-colors" />
-                                        </div>
-                                        <div>
-                                            <span className="text-base font-bold text-white block group-hover:text-accent transition-colors">{link.label}</span>
-                                            <span className="text-[10px] text-zinc-500 group-hover:text-accent/70 transition-colors uppercase tracking-widest">
-                                                {link.href.replace('/', '') || 'Home'}
-                                            </span>
-                                        </div>
-                                    </Link>
-                                ))}
-
-
+                    <div className="fixed inset-0 z-[200] md:hidden bg-zinc-950/98 backdrop-blur-2xl flex flex-col h-full w-full overflow-hidden animate-fade-in">
+                        {/* Top Header Badge */}
+                        <div className="p-4 border-b border-white/10 flex items-center justify-between bg-zinc-900/80">
+                            <div className="flex items-center gap-2">
+                                <span className="text-xl font-black font-heading tracking-tighter italic">
+                                    <span className="text-white">RUN</span>
+                                    <span className="text-accent">ION</span>
+                                </span>
+                                <span className="text-[10px] bg-accent/20 text-accent px-2 py-0.5 rounded-full font-mono font-bold border border-accent/30">
+                                    MOBILE NAV
+                                </span>
                             </div>
 
-                            {/* Footer Actions & Socials */}
-                            <div className="p-6 bg-black/40 border-t border-white/5 space-y-6">
-                                <div className="grid grid-cols-2 gap-3 opacity-0 animate-fade-in" style={{ animationDelay: '500ms' }}>
-                                    {user && !isAdminPage ? (
-                                        <Link href="/dashboard/profile" onClick={() => setIsOpen(false)} className="col-span-2">
-                                            <div className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-4 hover:bg-white/10 transition-colors overflow-hidden">
-                                                <div className="w-12 h-12 shrink-0 rounded-full bg-zinc-800 border-2 border-zinc-700 overflow-hidden relative">
-                                                    {user.image ? (
-                                                        <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
-                                                    ) : (
-                                                        <div className="w-full h-full flex items-center justify-center bg-zinc-900 text-zinc-500">
-                                                            <UserIcon className="w-6 h-6" />
-                                                        </div>
-                                                    )}
-                                                </div>
-                                                <div className="min-w-0 flex-1">
-                                                    <p className="text-xs text-zinc-400">{t('welcome')}</p>
-                                                    <p className="text-lg font-bold text-white truncate" title={user.name || user.firstName || 'User'}>
-                                                        {user.name || user.firstName || 'User'}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    ) : user ? null : (
-                                        <>
-                                            <Link href="/login" onClick={() => setIsOpen(false)}>
-                                                <Button variant="ghost" className="w-full h-12 rounded-xl text-sm flex items-center justify-center gap-2 border border-accent/50 text-accent hover:bg-accent hover:text-black transition-all">
-                                                    <LogIn className="w-4 h-4" />
-                                                    {t('login')}
-                                                </Button>
-                                            </Link>
-                                            <Link href="/register" onClick={() => setIsOpen(false)}>
-                                                <Button variant="primary" className="w-full h-12 rounded-xl text-sm flex items-center justify-center gap-2 font-bold uppercase tracking-tighter shadow-[0_0_15px_rgba(0,242,254,0.2)]">
-                                                    <UserPlus className="w-4 h-4" />
-                                                    {t('register')}
-                                                </Button>
-                                            </Link>
-                                        </>
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="w-10 h-10 rounded-xl bg-zinc-800/80 border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white hover:bg-zinc-700 transition-colors"
+                                aria-label="Close"
+                            >
+                                <X className="w-6 h-6" />
+                            </button>
+                        </div>
+
+                        {/* User Status Bar if logged in */}
+                        {user && (
+                            <div className="mx-4 mt-4 p-3 bg-zinc-900/90 border border-white/10 rounded-2xl flex items-center gap-3 shadow-lg">
+                                <div className="w-10 h-10 shrink-0 rounded-full bg-zinc-800 border-2 border-accent overflow-hidden relative">
+                                    {user.image ? (
+                                        <img src={user.image} alt="Profile" className="w-full h-full object-cover" />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center bg-zinc-900 text-zinc-500">
+                                            <UserIcon className="w-5 h-5" />
+                                        </div>
                                     )}
                                 </div>
+                                <div className="min-w-0 flex-1">
+                                    <p className="text-[10px] text-zinc-400 font-mono uppercase tracking-widest">{t('welcome')}</p>
+                                    <p className="text-sm font-bold text-white truncate" title={user.name || user.firstName || 'User'}>
+                                        {user.name || user.firstName || 'User'}
+                                    </p>
+                                </div>
+                                <Link
+                                    href="/dashboard/profile"
+                                    onClick={() => setIsOpen(false)}
+                                    className="px-3 py-1.5 rounded-xl bg-accent text-black font-bold text-xs hover:bg-accent-hover transition-colors"
+                                >
+                                    Fiókom
+                                </Link>
+                            </div>
+                        )}
 
-                                <div className="flex items-center justify-between pt-2 border-t border-white/5 opacity-0 animate-fade-in" style={{ animationDelay: '600ms' }}>
-                                    <LanguageSwitcher />
-                                    <div className="flex gap-4">
-                                        <a href="https://www.facebook.com/runion2021" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-accent hover:text-black hover:bg-accent transition-all border border-accent/50 shadow-[0_0_10px_rgba(0,242,254,0.1)]">
-                                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
-                                        </a>
-                                        <a href="https://www.instagram.com/runion_hungary" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-accent hover:text-black hover:bg-accent transition-all border border-accent/50 shadow-[0_0_10px_rgba(0,242,254,0.1)]">
-                                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.981 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
-                                        </a>
-                                        <a href="https://strava.com" className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-accent hover:text-black hover:bg-accent transition-all border border-accent/50 shadow-[0_0_10px_rgba(0,242,254,0.1)]">
-                                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.065l-2.085 4.116zm-5.283-1.258V12.16H7.04L10.104 6l3.064 6.161h-3.064v4.525z" /></svg>
-                                        </a>
-                                    </div>
+                        {/* Grid Title */}
+                        <div className="pt-4 px-4 text-center">
+                            <h3 className="text-base font-black text-white uppercase tracking-wider font-heading">Összes Menüpont</h3>
+                            <p className="text-xs text-zinc-400 mt-0.5">Válaszd ki a kívánt modult</p>
+                        </div>
+
+                        {/* 3-Column ENOX App Grid */}
+                        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                            <div className="grid grid-cols-3 gap-2.5">
+                                {navLinks.map((link) => {
+                                    const isActive = pathname === link.href;
+                                    const Icon = link.icon;
+
+                                    return (
+                                        <Link
+                                            key={link.href}
+                                            href={link.href}
+                                            onClick={() => setIsOpen(false)}
+                                            className={`flex flex-col items-center justify-center p-3 rounded-2xl border transition-all text-center min-h-[95px] relative group ${isActive
+                                                ? 'bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(0,242,254,0.25)] ring-1 ring-accent'
+                                                : link.highlight
+                                                    ? 'bg-zinc-900/90 border-accent/50 text-accent hover:bg-zinc-800'
+                                                    : 'bg-zinc-900/90 border-white/10 text-zinc-300 hover:bg-zinc-800 hover:border-accent/40'
+                                                }`}
+                                        >
+                                            <div className={`w-10 h-10 rounded-xl mb-2 flex items-center justify-center transition-colors ${isActive || link.highlight ? 'bg-accent text-black shadow-md' : 'bg-zinc-800 text-accent group-hover:bg-accent group-hover:text-black'}`}>
+                                                <Icon className="w-5 h-5" />
+                                            </div>
+                                            <span className={`text-[11px] font-bold leading-tight truncate w-full px-0.5 ${isActive || link.highlight ? 'text-accent font-black' : 'text-zinc-200 group-hover:text-white'}`}>
+                                                {link.label}
+                                            </span>
+                                        </Link>
+                                    );
+                                })}
+
+                                {/* Admin link in Grid if admin */}
+                                {user && isAdminPage === false && (
+                                    <Link
+                                        href="/secretroom75"
+                                        onClick={() => setIsOpen(false)}
+                                        className="flex flex-col items-center justify-center p-3 rounded-2xl border border-red-500/50 bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all text-center min-h-[95px] relative group"
+                                    >
+                                        <div className="w-10 h-10 rounded-xl mb-2 flex items-center justify-center bg-red-500 text-white shadow-md">
+                                            <UserIcon className="w-5 h-5" />
+                                        </div>
+                                        <span className="text-[11px] font-bold leading-tight truncate w-full px-0.5 text-red-400">
+                                            Admin
+                                        </span>
+                                    </Link>
+                                )}
+                            </div>
+
+                            {/* Auth buttons if logged out */}
+                            {!user && (
+                                <div className="grid grid-cols-2 gap-3 pt-2">
+                                    <Link href="/login" onClick={() => setIsOpen(false)}>
+                                        <Button variant="ghost" className="w-full h-12 rounded-xl text-sm flex items-center justify-center gap-2 border border-accent/50 text-accent hover:bg-accent hover:text-black transition-all">
+                                            <LogIn className="w-4 h-4" />
+                                            {t('login')}
+                                        </Button>
+                                    </Link>
+                                    <Link href="/register" onClick={() => setIsOpen(false)}>
+                                        <Button variant="primary" className="w-full h-12 rounded-xl text-sm flex items-center justify-center gap-2 font-bold uppercase tracking-tighter shadow-[0_0_15px_rgba(0,242,254,0.2)]">
+                                            <UserPlus className="w-4 h-4" />
+                                            {t('register')}
+                                        </Button>
+                                    </Link>
+                                </div>
+                            )}
+
+                            {/* Socials & Language Switcher */}
+                            <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                                <LanguageSwitcher />
+                                <div className="flex gap-3">
+                                    <a href="https://www.facebook.com/runion2021" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-zinc-900 flex items-center justify-center text-accent hover:text-black hover:bg-accent transition-all border border-accent/40">
+                                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+                                    </a>
+                                    <a href="https://www.instagram.com/runion_hungary" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-zinc-900 flex items-center justify-center text-accent hover:text-black hover:bg-accent transition-all border border-accent/40">
+                                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.981 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
+                                    </a>
                                 </div>
                             </div>
+                        </div>
+
+                        {/* Bottom Full-width Close Button */}
+                        <div className="p-4 border-t border-white/10 bg-zinc-950">
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="w-full py-3.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm border border-white/10 transition-colors uppercase tracking-wider shadow-lg"
+                            >
+                                Bezárás
+                            </button>
                         </div>
                     </div>
                 )
