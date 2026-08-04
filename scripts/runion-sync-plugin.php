@@ -182,8 +182,8 @@ final class Runion_Data_Sync_Plugin {
     public function process_bulk_flamingo_sync() {
         $posts = get_posts(array(
             'post_type' => 'flamingo_inbound',
-            'posts_per_page' => 500,
-            'post_status' => 'publish',
+            'posts_per_page' => 5000,
+            'post_status' => 'any',
         ));
 
         $payloads = array();
