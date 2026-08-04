@@ -48,18 +48,12 @@ export default function DashboardSidebar({ user, unreadCount = 0 }: DashboardSid
 
     return (
         <>
-            {/* Mobile overlay backdrop */}
-            <div
-                className={`fixed inset-0 bg-black/60 backdrop-blur-sm lg:hidden transition-opacity z-40 ${collapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-                onClick={() => setSidebarOpen(false)}
-            />
-
-            {/* Sidebar */}
+            {/* Sidebar (Desktop only - hidden on mobile) */}
             <aside
                 className={`
-          fixed top-0 left-0 h-screen bg-zinc-900/50 backdrop-blur-xl border-r border-white/10
-          transition-all duration-300 z-50
-          ${collapsed ? '-translate-x-full lg:w-20' : 'translate-x-0 w-64'}
+          hidden lg:flex fixed top-0 left-0 h-screen bg-zinc-900/50 backdrop-blur-xl border-r border-white/10
+          flex-col transition-all duration-300 z-50
+          ${collapsed ? 'lg:w-20' : 'w-64'}
         `}
             >
                 {/* Header */}

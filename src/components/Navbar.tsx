@@ -6,7 +6,7 @@ import { Link, usePathname } from '@/i18n/routing';
 import { User } from 'next-auth';
 import { useCart } from '@/context/CartContext';
 
-import { User as UserIcon, Trophy, ShoppingBag, Info, Mail, LogIn, UserPlus, Menu, X, ArrowLeftRight, ShoppingCart, LayoutGrid, Home } from 'lucide-react';
+import { User as UserIcon, Trophy, ShoppingBag, Info, Mail, LogIn, UserPlus, X, ArrowLeftRight, ShoppingCart, LayoutGrid, Home, LayoutDashboard, FileText, Crown } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import LanguageSwitcher from './LanguageSwitcher';
 import SessionTimer from '@/components/auth/SessionTimer';
@@ -234,20 +234,118 @@ export default function Navbar({ user }: NavbarProps) {
                                 );
                             })}
 
-                            {/* Admin link in Grid if admin */}
+                            {/* Dashboard Items if logged in */}
                             {user && (
-                                <Link
-                                    href="/secretroom75"
-                                    onClick={() => setIsOpen(false)}
-                                    className="flex flex-col items-center justify-center p-3 rounded-2xl border border-red-500/50 bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all text-center min-h-[95px] relative group"
-                                >
-                                    <div className="w-10 h-10 rounded-xl mb-2 flex items-center justify-center bg-red-500 text-white shadow-md">
-                                        <UserIcon className="w-5 h-5" />
-                                    </div>
-                                    <span className="text-[11px] font-bold leading-tight truncate w-full px-0.5 text-red-400">
-                                        Admin
-                                    </span>
-                                </Link>
+                                <>
+                                    <Link
+                                        href="/dashboard"
+                                        onClick={() => setIsOpen(false)}
+                                        className={`flex flex-col items-center justify-center p-3 rounded-2xl border transition-all text-center min-h-[95px] relative group ${pathname === '/dashboard'
+                                            ? 'bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(0,242,254,0.25)] ring-1 ring-accent'
+                                            : 'bg-zinc-900/90 border-white/10 text-zinc-300 hover:bg-zinc-800'
+                                            }`}
+                                    >
+                                        <div className={`w-10 h-10 rounded-xl mb-2 flex items-center justify-center transition-colors ${pathname === '/dashboard' ? 'bg-accent text-black shadow-md' : 'bg-zinc-800 text-accent group-hover:bg-accent group-hover:text-black'}`}>
+                                            <LayoutDashboard className="w-5 h-5" />
+                                        </div>
+                                        <span className={`text-[11px] font-bold leading-tight truncate w-full px-0.5 ${pathname === '/dashboard' ? 'text-accent font-black' : 'text-zinc-200 group-hover:text-white'}`}>
+                                            Vezérlőpult
+                                        </span>
+                                    </Link>
+
+                                    <Link
+                                        href="/dashboard/registrations"
+                                        onClick={() => setIsOpen(false)}
+                                        className={`flex flex-col items-center justify-center p-3 rounded-2xl border transition-all text-center min-h-[95px] relative group ${pathname === '/dashboard/registrations'
+                                            ? 'bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(0,242,254,0.25)] ring-1 ring-accent'
+                                            : 'bg-zinc-900/90 border-white/10 text-zinc-300 hover:bg-zinc-800'
+                                            }`}
+                                    >
+                                        <div className={`w-10 h-10 rounded-xl mb-2 flex items-center justify-center transition-colors ${pathname === '/dashboard/registrations' ? 'bg-accent text-black shadow-md' : 'bg-zinc-800 text-accent group-hover:bg-accent group-hover:text-black'}`}>
+                                            <Trophy className="w-5 h-5" />
+                                        </div>
+                                        <span className={`text-[11px] font-bold leading-tight truncate w-full px-0.5 ${pathname === '/dashboard/registrations' ? 'text-accent font-black' : 'text-zinc-200 group-hover:text-white'}`}>
+                                            Nevezéseim
+                                        </span>
+                                    </Link>
+
+                                    <Link
+                                        href="/dashboard/orders"
+                                        onClick={() => setIsOpen(false)}
+                                        className={`flex flex-col items-center justify-center p-3 rounded-2xl border transition-all text-center min-h-[95px] relative group ${pathname === '/dashboard/orders'
+                                            ? 'bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(0,242,254,0.25)] ring-1 ring-accent'
+                                            : 'bg-zinc-900/90 border-white/10 text-zinc-300 hover:bg-zinc-800'
+                                            }`}
+                                    >
+                                        <div className={`w-10 h-10 rounded-xl mb-2 flex items-center justify-center transition-colors ${pathname === '/dashboard/orders' ? 'bg-accent text-black shadow-md' : 'bg-zinc-800 text-accent group-hover:bg-accent group-hover:text-black'}`}>
+                                            <ShoppingBag className="w-5 h-5" />
+                                        </div>
+                                        <span className={`text-[11px] font-bold leading-tight truncate w-full px-0.5 ${pathname === '/dashboard/orders' ? 'text-accent font-black' : 'text-zinc-200 group-hover:text-white'}`}>
+                                            Rendeléseim
+                                        </span>
+                                    </Link>
+
+                                    <Link
+                                        href="/dashboard/documents"
+                                        onClick={() => setIsOpen(false)}
+                                        className={`flex flex-col items-center justify-center p-3 rounded-2xl border transition-all text-center min-h-[95px] relative group ${pathname === '/dashboard/documents'
+                                            ? 'bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(0,242,254,0.25)] ring-1 ring-accent'
+                                            : 'bg-zinc-900/90 border-white/10 text-zinc-300 hover:bg-zinc-800'
+                                            }`}
+                                    >
+                                        <div className={`w-10 h-10 rounded-xl mb-2 flex items-center justify-center transition-colors ${pathname === '/dashboard/documents' ? 'bg-accent text-black shadow-md' : 'bg-zinc-800 text-accent group-hover:bg-accent group-hover:text-black'}`}>
+                                            <FileText className="w-5 h-5" />
+                                        </div>
+                                        <span className={`text-[11px] font-bold leading-tight truncate w-full px-0.5 ${pathname === '/dashboard/documents' ? 'text-accent font-black' : 'text-zinc-200 group-hover:text-white'}`}>
+                                            Dokumentumok
+                                        </span>
+                                    </Link>
+
+                                    <Link
+                                        href="/dashboard/membership"
+                                        onClick={() => setIsOpen(false)}
+                                        className={`flex flex-col items-center justify-center p-3 rounded-2xl border transition-all text-center min-h-[95px] relative group ${pathname === '/dashboard/membership'
+                                            ? 'bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(0,242,254,0.25)] ring-1 ring-accent'
+                                            : 'bg-zinc-900/90 border-white/10 text-zinc-300 hover:bg-zinc-800'
+                                            }`}
+                                    >
+                                        <div className={`w-10 h-10 rounded-xl mb-2 flex items-center justify-center transition-colors ${pathname === '/dashboard/membership' ? 'bg-accent text-black shadow-md' : 'bg-zinc-800 text-accent group-hover:bg-accent group-hover:text-black'}`}>
+                                            <Crown className="w-5 h-5" />
+                                        </div>
+                                        <span className={`text-[11px] font-bold leading-tight truncate w-full px-0.5 ${pathname === '/dashboard/membership' ? 'text-accent font-black' : 'text-zinc-200 group-hover:text-white'}`}>
+                                            Tagság
+                                        </span>
+                                    </Link>
+
+                                    <Link
+                                        href="/dashboard/profile"
+                                        onClick={() => setIsOpen(false)}
+                                        className={`flex flex-col items-center justify-center p-3 rounded-2xl border transition-all text-center min-h-[95px] relative group ${pathname === '/dashboard/profile'
+                                            ? 'bg-accent/20 border-accent text-accent shadow-[0_0_20px_rgba(0,242,254,0.25)] ring-1 ring-accent'
+                                            : 'bg-zinc-900/90 border-white/10 text-zinc-300 hover:bg-zinc-800'
+                                            }`}
+                                    >
+                                        <div className={`w-10 h-10 rounded-xl mb-2 flex items-center justify-center transition-colors ${pathname === '/dashboard/profile' ? 'bg-accent text-black shadow-md' : 'bg-zinc-800 text-accent group-hover:bg-accent group-hover:text-black'}`}>
+                                            <UserIcon className="w-5 h-5" />
+                                        </div>
+                                        <span className={`text-[11px] font-bold leading-tight truncate w-full px-0.5 ${pathname === '/dashboard/profile' ? 'text-accent font-black' : 'text-zinc-200 group-hover:text-white'}`}>
+                                            Profil
+                                        </span>
+                                    </Link>
+
+                                    <Link
+                                        href="/secretroom75"
+                                        onClick={() => setIsOpen(false)}
+                                        className="flex flex-col items-center justify-center p-3 rounded-2xl border border-red-500/50 bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all text-center min-h-[95px] relative group"
+                                    >
+                                        <div className="w-10 h-10 rounded-xl mb-2 flex items-center justify-center bg-red-500 text-white shadow-md">
+                                            <UserIcon className="w-5 h-5" />
+                                        </div>
+                                        <span className="text-[11px] font-bold leading-tight truncate w-full px-0.5 text-red-400">
+                                            Admin
+                                        </span>
+                                    </Link>
+                                </>
                             )}
                         </div>
 

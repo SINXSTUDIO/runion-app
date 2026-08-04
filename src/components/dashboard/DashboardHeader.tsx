@@ -16,15 +16,8 @@ export default function DashboardHeader({ user }: DashboardHeaderProps) {
     return (
         <header className="sticky top-0 z-30 bg-black/20 backdrop-blur-xl border-b border-white/10">
             <div className="flex items-center justify-between px-4 md:px-6 py-4">
-                {/* Left: Mobile menu */}
+                {/* Left: Dashboard Title or Empty */}
                 <div className="flex items-center gap-4 flex-1">
-                    <button
-                        onClick={toggleSidebar}
-                        className="lg:hidden p-2 hover:bg-white/5 rounded-lg transition-colors"
-                        aria-label="Toggle menu"
-                    >
-                        <Menu className="w-6 h-6" />
-                    </button>
                 </div>
 
                 {/* Right: Notifications removed as per request */}
