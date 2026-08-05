@@ -11,8 +11,14 @@ import { FeedbackModal } from '@/components/dashboard/FeedbackModal';
 
 export default async function ProfilePage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
+    let t: any;
+    try {
+        t = await getTranslations('Profile');
+    } catch {
+        t = (key: string) => key;
+    }
+
     const session = await auth();
-    const t = await getTranslations('Profile');
 
     if (!session?.user) {
         redirect(`/${locale}/login`);

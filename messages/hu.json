@@ -1112,5 +1112,40 @@
         "copyright": "Minden jog fenntartva.",
         "connect": "Kövess minket",
         "rights": "Minden jog fenntartva."
+    },
+    "Profile": {
+        "title": "Profilom",
+        "subtitle": "Személyes adataid és beállításaid kezelése",
+        "roles": {
+            "admin": "Adminisztrátor",
+            "staff": "Személyzet",
+            "runner": "Futó"
+        }
+    },
+    "Dashboard": {
+        "Home": {
+            "title": "Vezérlőpult",
+            "welcome": "Üdv újra"
+        },
+        "Registrations": {
+            "title": "Nevezéseim",
+            "subtitle": "Aktív és korábbi nevezéseid listája"
+        },
+        "Orders": {
+            "title": "Rendeléseim",
+            "subtitle": "Termék vásárlásaid története"
+        },
+        "Membership": {
+            "title": "Klubtagság",
+            "subtitle": "Klubtagsági állapotod és kedvezményeid"
+        },
+        "Documents": {
+            "title": "Dokumentumaim",
+            "subtitle": "Számlák és igazolások"
+        },
+        "Notifications": {
+            "title": "Értesítések",
+            "subtitle": "Rendszerüzenetek és tájékoztatók"
+        }
     }
 }

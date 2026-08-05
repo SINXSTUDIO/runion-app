@@ -1115,5 +1115,40 @@
         "copyright": "All rights reserved.",
         "connect": "Follow us",
         "rights": "All rights reserved."
+    },
+    "Profile": {
+        "title": "My Profile",
+        "subtitle": "Manage your personal information and settings",
+        "roles": {
+            "admin": "Administrator",
+            "staff": "Staff",
+            "runner": "Runner"
+        }
+    },
+    "Dashboard": {
+        "Home": {
+            "title": "Dashboard",
+            "welcome": "Welcome back"
+        },
+        "Registrations": {
+            "title": "My Registrations",
+            "subtitle": "Your active and past race registrations"
+        },
+        "Orders": {
+            "title": "My Orders",
+            "subtitle": "Your purchase history"
+        },
+        "Membership": {
+            "title": "Club Membership",
+            "subtitle": "Your membership status and benefits"
+        },
+        "Documents": {
+            "title": "My Documents",
+            "subtitle": "Invoices and certificates"
+        },
+        "Notifications": {
+            "title": "Notifications",
+            "subtitle": "System messages and announcements"
+        }
     }
 }

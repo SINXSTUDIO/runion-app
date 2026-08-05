@@ -1112,5 +1112,40 @@
         "copyright": "Alle Rechte vorbehalten.",
         "connect": "Folgen Sie uns",
         "rights": "Alle Rechte vorbehalten."
+    },
+    "Profile": {
+        "title": "Mein Profil",
+        "subtitle": "Verwalten Sie Ihre persönlichen Informationen",
+        "roles": {
+            "admin": "Administrator",
+            "staff": "Personal",
+            "runner": "Läufer"
+        }
+    },
+    "Dashboard": {
+        "Home": {
+            "title": "Dashboard",
+            "welcome": "Willkommen zurück"
+        },
+        "Registrations": {
+            "title": "Meine Anmeldungen",
+            "subtitle": "Ihre aktiven und früheren Anmeldungen"
+        },
+        "Orders": {
+            "title": "Meine Bestellungen",
+            "subtitle": "Ihre Kaufhistorie"
+        },
+        "Membership": {
+            "title": "Mitgliedschaft",
+            "subtitle": "Ihr Mitgliedschaftsstatus und Vorteile"
+        },
+        "Documents": {
+            "title": "Meine Dokumente",
+            "subtitle": "Rechnungen und Zertifikate"
+        },
+        "Notifications": {
+            "title": "Benachrichtigungen",
+            "subtitle": "Systemnachrichten und Ankündigungen"
+        }
     }
 }
