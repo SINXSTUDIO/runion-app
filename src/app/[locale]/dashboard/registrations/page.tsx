@@ -7,14 +7,24 @@ import { getTranslations } from 'next-intl/server';
 
 export default async function RegistrationsPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
-    const t = await getTranslations('Dashboard.Registrations');
+    let t: any;
+    try {
+        t = await getTranslations('Dashboard.Registrations');
+    } catch {
+        t = (key: string) => key;
+    }
     const session = await auth();
 
     if (!session?.user) {
         redirect(`/${locale}/login`);
     }
 
-    const registrations = await getUserRegistrations(session.user.id);
+    let registrations: any[] = [];
+    try {
+        registrations = (await getUserRegistrations(session.user.id)) || [];
+    } catch (e) {
+        console.error('[RegistrationsPage] getUserRegistrations error:', e);
+    }
 
     // Calculate financial stats
     let paidHuf = 0;

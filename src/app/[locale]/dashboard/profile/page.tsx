@@ -7,6 +7,7 @@ import LogoutButton from '@/components/dashboard/LogoutButton';
 import DeleteAccountButton from '@/components/dashboard/DeleteAccountButton';
 import { getTranslations, getLocale } from 'next-intl/server';
 import prisma from '@/lib/prisma';
+import { serializeData } from '@/lib/utils/serialization';
 import { FeedbackModal } from '@/components/dashboard/FeedbackModal';
 
 export default async function ProfilePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -26,13 +27,20 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
 
     const { email: sessionEmail, id: sessionId } = session.user as any;
 
-    const user = await prisma.user.findUnique({
-        where: sessionId ? { id: sessionId } : { email: sessionEmail }
-    });
+    let rawUser: any = null;
+    try {
+        rawUser = await prisma.user.findUnique({
+            where: sessionId ? { id: sessionId } : { email: sessionEmail }
+        });
+    } catch (e) {
+        console.error('[ProfilePage] user query error:', e);
+    }
 
-    if (!user) {
+    if (!rawUser) {
         redirect(`/${locale}/login`);
     }
+
+    const user = serializeData(rawUser);
 
     // Destructure for easier access and to avoid possibly null errors
     const {
@@ -51,10 +59,10 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
     } = user;
 
     const roleName = role === 'ADMIN'
-        ? t('roles.admin')
+        ? (t('roles.admin') || 'Adminisztrátor')
         : role === 'STAFF'
-            ? t('roles.staff')
-            : t('roles.runner');
+            ? (t('roles.staff') || 'Személyzet')
+            : (t('roles.runner') || 'Futó');
 
     const formattedBirthDate = birthDate
         ? new Date(birthDate).toLocaleDateString(locale)
@@ -71,24 +79,14 @@ export default async function ProfilePage({ params }: { params: Promise<{ locale
                 <div>
                     <h1 className="text-3xl md:text-4xl font-black italic text-white mb-2 flex items-center gap-3">
                         <User className="w-8 h-8 text-accent" />
-                        {t('title')}
+                        {t('title') || 'Profilom'}
                     </h1>
-                    <p className="text-zinc-400">{t('subtitle')}</p>
+                    <p className="text-zinc-400">{t('subtitle') || 'Személyes adataid és beállításaid kezelése'}</p>
                 </div>
                 <div className="grid grid-cols-2 gap-4 w-full md:w-auto">
                     <LogoutButton />
 
-                    <ProfileEditForm user={{
-                        ...user,
-                        firstName: user.firstName || null,
-                        lastName: user.lastName || null,
-                        email: user.email || null,
-                        phoneNumber: user.phoneNumber || null,
-                        clubName: user.clubName || null,
-                        tshirtSize: user.tshirtSize || null,
-                        createdAt: user.createdAt.toISOString(),
-                        birthDate: user.birthDate ? user.birthDate.toISOString() : null
-                    }} />
+                    <ProfileEditForm user={user} />
                 </div>
             </div>
 

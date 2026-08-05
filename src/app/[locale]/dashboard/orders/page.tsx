@@ -9,15 +9,25 @@ import { getTranslations } from 'next-intl/server';
 export default async function DashboardOrdersPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     const session = await auth();
-    const t = await getTranslations('Dashboard.Orders');
+    let t: any;
+    try {
+        t = await getTranslations('Dashboard.Orders');
+    } catch {
+        t = (key: string) => key;
+    }
 
     if (!session?.user) redirect(`/${locale}/login`);
 
-    const orders = await prisma.order.findMany({
-        where: { userId: session.user.id },
-        orderBy: { createdAt: 'desc' },
-        include: { items: true }
-    });
+    let orders: any[] = [];
+    try {
+        orders = await prisma.order.findMany({
+            where: { userId: session.user.id },
+            orderBy: { createdAt: 'desc' },
+            include: { items: true }
+        });
+    } catch (e) {
+        console.error('[DashboardOrdersPage] orders query error:', e);
+    }
 
     return (
         <div className="space-y-6">
