@@ -26,6 +26,8 @@ interface FeaturedEventProps {
 }
 
 export default function FeaturedEvent({ event, locale, customSettings }: FeaturedEventProps) {
+    if (!event) return null;
+
     const t = useTranslations('HomePage.featured');
     const [isEventStarted, setIsEventStarted] = useState(false);
     const [weather, setWeather] = useState<any>(null);
@@ -33,14 +35,15 @@ export default function FeaturedEvent({ event, locale, customSettings }: Feature
     // Check if event started
     useEffect(() => {
         const checkEventStarted = () => {
+            if (!event?.eventDate) return;
             const now = new Date();
             const eventDate = new Date(event.eventDate);
-            if (+eventDate <= +now) {
+            if (!isNaN(eventDate.getTime()) && +eventDate <= +now) {
                 setIsEventStarted(true);
             }
         };
         checkEventStarted();
-    }, [event.eventDate]);
+    }, [event?.eventDate]);
 
     // Prioritize custom texts from settings over event data
     const getDisplayTitle = () => {
@@ -137,7 +140,15 @@ export default function FeaturedEvent({ event, locale, customSettings }: Feature
     };
 
     const dateLocale = locale === 'hu' ? hu : locale === 'de' ? de : enUS;
-    const formattedDate = format(new Date(event.eventDate), 'PPP', { locale: dateLocale });
+    let formattedDate = '';
+    try {
+        const d = new Date(event.eventDate);
+        if (!isNaN(d.getTime())) {
+            formattedDate = format(d, 'PPP', { locale: dateLocale });
+        }
+    } catch {
+        formattedDate = '';
+    }
 
     return (
         <section className="relative min-h-[500px] md:min-h-[600px] flex items-center justify-center py-10 md:py-20 overflow-hidden">

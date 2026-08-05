@@ -74,13 +74,13 @@ export default async function HomePage({ params }: HomePageProps) {
         }
     });
 
-    const upcomingEvents = serializeData(rawUpcomingEvents);
+    const upcomingEvents = serializeData(rawUpcomingEvents) || [];
 
     // Determine featured event
     let featuredEvent = null;
     if ((settings as any)?.featuredEventActive && (settings as any)?.featuredEvent) {
         featuredEvent = serializeData((settings as any).featuredEvent);
-    } else if (upcomingEvents.length > 0) {
+    } else if (Array.isArray(upcomingEvents) && upcomingEvents.length > 0) {
         featuredEvent = upcomingEvents[0];
     }
 
