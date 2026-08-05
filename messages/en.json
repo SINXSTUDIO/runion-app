@@ -1128,7 +1128,14 @@
     "Dashboard": {
         "Home": {
             "title": "Dashboard",
-            "welcome": "Welcome back"
+            "welcome": "Welcome back",
+            "hello": "Hello <accent>{name}</accent>!",
+            "subtitle": "Welcome to your RUNION account",
+            "admin": "Administration",
+            "myRegistrations": "My Registrations",
+            "stats": "Statistics",
+            "totalRegistrations": "Total Registrations",
+            "activeRegistrations": "Active Registrations"
         },
         "Registrations": {
             "title": "My Registrations",
@@ -1136,7 +1143,17 @@
         },
         "Orders": {
             "title": "My Orders",
-            "subtitle": "Your purchase history"
+            "subtitle": "Your purchase history",
+            "empty": "You have no orders yet",
+            "goToStore": "Go to Shop",
+            "table": {
+                "orderNumber": "Order #",
+                "date": "Date",
+                "items": "Items",
+                "amount": "Amount",
+                "status": "Status",
+                "actions": "Actions"
+            }
         },
         "Membership": {
             "title": "Club Membership",
@@ -1148,7 +1165,12 @@
         },
         "Notifications": {
             "title": "Notifications",
-            "subtitle": "System messages and announcements"
+            "subtitle": "System messages and announcements",
+            "noNew": "No new notifications",
+            "unreadCount": "Unread notification(s)",
+            "markAllRead": "Mark all as read",
+            "emptyTitle": "No notifications",
+            "emptyDesc": "You currently have no notifications."
         }
     }
 }

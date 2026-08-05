@@ -12,7 +12,7 @@ interface Notification {
     message: string;
     type: string;
     read: boolean;
-    timestamp: Date;
+    timestamp: Date | string;
     link?: string | null;
 }
 

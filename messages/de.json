@@ -1125,7 +1125,14 @@
     "Dashboard": {
         "Home": {
             "title": "Dashboard",
-            "welcome": "Willkommen zurück"
+            "welcome": "Willkommen zurück",
+            "hello": "Hallo <accent>{name}</accent>!",
+            "subtitle": "Willkommen in Ihrem RUNION-Konto",
+            "admin": "Administration",
+            "myRegistrations": "Meine Anmeldungen",
+            "stats": "Statistiken",
+            "totalRegistrations": "Gesamte Anmeldungen",
+            "activeRegistrations": "Aktive Anmeldungen"
         },
         "Registrations": {
             "title": "Meine Anmeldungen",
@@ -1133,7 +1140,17 @@
         },
         "Orders": {
             "title": "Meine Bestellungen",
-            "subtitle": "Ihre Kaufhistorie"
+            "subtitle": "Ihre Kaufhistorie",
+            "empty": "Sie haben noch keine Bestellungen",
+            "goToStore": "Zum Shop",
+            "table": {
+                "orderNumber": "Bestell-Nr.",
+                "date": "Datum",
+                "items": "Artikel",
+                "amount": "Betrag",
+                "status": "Status",
+                "actions": "Aktionen"
+            }
         },
         "Membership": {
             "title": "Mitgliedschaft",
@@ -1145,7 +1162,12 @@
         },
         "Notifications": {
             "title": "Benachrichtigungen",
-            "subtitle": "Systemnachrichten und Ankündigungen"
+            "subtitle": "Systemnachrichten und Ankündigungen",
+            "noNew": "Keine neuen Benachrichtigungen",
+            "unreadCount": "Ungelesene Benachrichtigung(en)",
+            "markAllRead": "Alle als gelesen markieren",
+            "emptyTitle": "Keine Benachrichtigungen",
+            "emptyDesc": "Sie haben derzeit keine Benachrichtigungen."
         }
     }
 }

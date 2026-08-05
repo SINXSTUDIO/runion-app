@@ -1125,7 +1125,14 @@
     "Dashboard": {
         "Home": {
             "title": "Vezérlőpult",
-            "welcome": "Üdv újra"
+            "welcome": "Üdv újra",
+            "hello": "Szia <accent>{name}</accent>!",
+            "subtitle": "Üdvözlünk a RUNION fiókodban",
+            "admin": "Adminisztráció",
+            "myRegistrations": "Saját Nevezéseim",
+            "stats": "Statisztika",
+            "totalRegistrations": "Összes Nevezés",
+            "activeRegistrations": "Aktív Nevezések"
         },
         "Registrations": {
             "title": "Nevezéseim",
@@ -1133,7 +1140,17 @@
         },
         "Orders": {
             "title": "Rendeléseim",
-            "subtitle": "Termék vásárlásaid története"
+            "subtitle": "Termék vásárlásaid története",
+            "empty": "Még nincsenek rendeléseid",
+            "goToStore": "Irány a webshop",
+            "table": {
+                "orderNumber": "Rendelésszám",
+                "date": "Dátum",
+                "items": "Termékek",
+                "amount": "Összeg",
+                "status": "Státusz",
+                "actions": "Műveletek"
+            }
         },
         "Membership": {
             "title": "Klubtagság",
@@ -1145,7 +1162,12 @@
         },
         "Notifications": {
             "title": "Értesítések",
-            "subtitle": "Rendszerüzenetek és tájékoztatók"
+            "subtitle": "Rendszerüzenetek és tájékoztatók",
+            "noNew": "Nincsenek új értesítések",
+            "unreadCount": "Olvasatlan értesítés",
+            "markAllRead": "Összes megjelölése olvasottként",
+            "emptyTitle": "Nincsenek értesítések",
+            "emptyDesc": "Jelenleg egyetlen értesítésed sincs."
         }
     }
 }

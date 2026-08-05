@@ -9,13 +9,23 @@ import { getTranslations } from 'next-intl/server';
 export default async function DashboardPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     const session = await auth();
-    const t = await getTranslations('Dashboard.Home');
+    let t: any;
+    try {
+        t = await getTranslations('Dashboard.Home');
+    } catch {
+        t = (key: string) => key;
+    }
 
     if (!session?.user) {
         redirect(`/${locale}/login`);
     }
 
-    const registrations = await getUserRegistrations();
+    let registrations: any[] = [];
+    try {
+        registrations = (await getUserRegistrations()) || [];
+    } catch (e) {
+        console.error('[DashboardPage] getUserRegistrations error:', e);
+    }
 
     return (
         <div className="min-h-screen bg-black text-white pt-28 pb-20">
@@ -26,7 +36,7 @@ export default async function DashboardPage({ params }: { params: Promise<{ loca
                         <h1 className="text-3xl md:text-5xl font-black font-heading uppercase mb-2">
                             {t.rich('hello', {
                                 name: (session.user as any).firstName || session.user.name?.split(' ')[0],
-                                accent: (chunks) => <span className="text-accent">{chunks}</span>
+                                accent: (chunks: any) => <span className="text-accent">{chunks}</span>
                             })}
                         </h1>
                         <p className="text-zinc-500">{t('subtitle')}</p>
