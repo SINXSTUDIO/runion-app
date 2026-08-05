@@ -7,29 +7,33 @@ import { Partner } from "@prisma/client";
 
 import { useTranslations } from "next-intl";
 
-export default function Partners() {
+interface PartnersProps {
+    partners?: Partner[];
+}
+
+export default function Partners({ partners: initialPartners }: PartnersProps) {
     let t: any;
     try {
         t = useTranslations("HomePage");
     } catch {
         t = (key: string) => key;
     }
-    const [partners, setPartners] = useState<Partner[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [partners, setPartners] = useState<Partner[]>(initialPartners?.filter((p) => p.active) || []);
 
     useEffect(() => {
+        if (initialPartners && initialPartners.length > 0) return;
         async function fetchPartners() {
             try {
                 const data = await getPartners();
-                setPartners(data.filter((p) => p.active));
+                if (Array.isArray(data)) {
+                    setPartners(data.filter((p) => p.active));
+                }
             } catch (error) {
                 console.error("Failed to fetch partners", error);
-            } finally {
-                setIsLoading(false);
             }
         }
         fetchPartners();
-    }, []);
+    }, [initialPartners]);
 
     if (partners.length === 0) return null;
 

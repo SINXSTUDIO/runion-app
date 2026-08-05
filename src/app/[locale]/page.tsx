@@ -134,6 +134,17 @@ export default async function HomePage({ params }: HomePageProps) {
         console.error('[HomePage] dbSponsors query error:', e);
     }
 
+    // Fetch dynamic partners
+    let dbPartners: any[] = [];
+    try {
+        dbPartners = await prisma.partner.findMany({
+            where: { active: true },
+            orderBy: { order: 'asc' }
+        });
+    } catch (e) {
+        console.error('[HomePage] dbPartners query error:', e);
+    }
+
     return (
         <>
             {/* Structured Data for SEO & AI */}
@@ -173,7 +184,7 @@ export default async function HomePage({ params }: HomePageProps) {
                         )}
                     </div>
                 </section>
-                <Partners />
+                <Partners partners={dbPartners} />
 
                 {/* Featured Event Section */}
                 {featuredEvent && (
