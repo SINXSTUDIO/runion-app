@@ -10,6 +10,7 @@ import { Metadata } from 'next';
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { serializeData } from '@/lib/utils/serialization';
 
 interface ProductPageProps {
     params: Promise<{
@@ -156,10 +157,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
                         <div className="mt-auto">
                             <ProductDetailClient
-                                product={{
+                                product={serializeData({
                                     ...product,
                                     price: Number(product.price)
-                                }}
+                                })}
                                 locale={locale}
                             />
                         </div>
