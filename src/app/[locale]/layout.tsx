@@ -100,29 +100,14 @@ export default async function LocaleLayout({
     let freshUser: any = null;
     try {
         const session = await auth();
-        freshUser = session?.user || null;
-
-        // Fetch fresh user data from DB to ensure Navbar (image, name) is always up to date
-        if (session?.user?.email) {
-            const dbUser = await prisma.user.findUnique({
-                where: { email: session.user.email },
-                select: {
-                    image: true,
-                    firstName: true,
-                    lastName: true,
-                }
-            }).catch(() => null);
-
-            if (dbUser) {
-                freshUser = {
-                    ...session.user,
-                    image: dbUser.image || session.user.image,
-                    name: `${dbUser.lastName || ''} ${dbUser.firstName || ''}`.trim() || session.user.name,
-                };
-            }
+        if (session?.user) {
+            freshUser = {
+                ...session.user,
+                name: session.user.name || `${(session.user as any).lastName || ''} ${(session.user as any).firstName || ''}`.trim(),
+            };
         }
     } catch (authError) {
-        console.error('[LocaleLayout] Auth/User fetch error:', authError);
+        console.error('[LocaleLayout] Auth session error:', authError);
     }
 
     return (
