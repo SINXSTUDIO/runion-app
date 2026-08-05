@@ -1093,7 +1093,14 @@
         "stat4Label": "Passion",
         "galleryTitle": "MOMENTS",
         "gallerySubtitle": "Relive the unforgettable moments of our races!",
-        "partnersTitle": "OUR FEATURED PARTNERS"
+        "partnersTitle": "OUR FEATURED PARTNERS",
+        "countdown": {
+            "nextEvent": "NEXT EVENT:",
+            "days": "DAYS",
+            "hours": "HOURS",
+            "minutes": "MINS",
+            "seconds": "SECS"
+        }
     },
     "Footer": {
         "tagline": "Your premier running events platform",

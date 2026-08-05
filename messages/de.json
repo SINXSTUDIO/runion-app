@@ -1090,7 +1090,14 @@
         "stat4Label": "Leidenschaft",
         "galleryTitle": "MOMENTE",
         "gallerySubtitle": "Erleben Sie die unvergesslichen Momente unserer Rennen neu!",
-        "partnersTitle": "UNSERE PARTNER"
+        "partnersTitle": "UNSERE PARTNER",
+        "countdown": {
+            "nextEvent": "NÄCHSTES EVENT:",
+            "days": "TAGE",
+            "hours": "STUNDEN",
+            "minutes": "MIN",
+            "seconds": "SEK"
+        }
     },
     "Footer": {
         "tagline": "Ihre führende Laufveranstaltungsplattform",

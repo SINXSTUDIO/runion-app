@@ -1090,7 +1090,14 @@
         "stat4Label": "Lendület",
         "galleryTitle": "PILLANATKÉPEK",
         "gallerySubtitle": "Éld át újra a versenyek felejthetetlen hangulatát!",
-        "partnersTitle": "KIEMELT PARTNEREINK"
+        "partnersTitle": "KIEMELT PARTNEREINK",
+        "countdown": {
+            "nextEvent": "KÖVETKEZŐ VERSENY:",
+            "days": "NAP",
+            "hours": "ÓRA",
+            "minutes": "PERC",
+            "seconds": "MP"
+        }
     },
     "Footer": {
         "tagline": "Az Ön prémium futóverseny platformja",

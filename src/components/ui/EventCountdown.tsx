@@ -16,7 +16,22 @@ interface EventCountdownProps {
 }
 
 export default function EventCountdown({ targetDate, eventTitle }: EventCountdownProps) {
-    const t = useTranslations('HomePage.countdown');
+    let t: any;
+    try {
+        t = useTranslations('HomePage.countdown');
+    } catch {
+        t = (key: string) => key;
+    }
+
+    const safeT = (key: string, fallback: string) => {
+        try {
+            const val = typeof t === 'function' ? t(key) : fallback;
+            return (val && typeof val === 'string' && !val.includes('MISSING_MESSAGE')) ? val : fallback;
+        } catch {
+            return fallback;
+        }
+    };
+
     const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
 
     useEffect(() => {
@@ -54,17 +69,17 @@ export default function EventCountdown({ targetDate, eventTitle }: EventCountdow
     return (
         <div className="mt-8 flex flex-col items-center animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500">
             <div className="text-accent/80 text-[10px] md:text-sm font-black tracking-[0.3em] uppercase mb-6 drop-shadow-lg">
-                <span className="text-white/40 mr-2">{t('nextEvent')}</span> {eventTitle}
+                <span className="text-white/40 mr-2">{safeT('nextEvent', 'KÖVETKEZŐ VERSENY:')}</span> {eventTitle}
             </div>
 
             <div className="flex gap-3 md:gap-6 justify-center">
-                <TimeBox value={timeLeft.days} label={t('days')} />
+                <TimeBox value={timeLeft.days} label={safeT('days', 'NAP')} />
                 <div className="text-4xl md:text-6xl font-black text-accent/30 self-center hidden md:block">:</div>
-                <TimeBox value={timeLeft.hours} label={t('hours')} />
+                <TimeBox value={timeLeft.hours} label={safeT('hours', 'ÓRA')} />
                 <div className="text-4xl md:text-6xl font-black text-accent/30 self-center hidden md:block">:</div>
-                <TimeBox value={timeLeft.minutes} label={t('minutes')} />
+                <TimeBox value={timeLeft.minutes} label={safeT('minutes', 'PERC')} />
                 <div className="text-4xl md:text-6xl font-black text-accent/30 self-center hidden md:block">:</div>
-                <TimeBox value={timeLeft.seconds} label={t('seconds')} />
+                <TimeBox value={timeLeft.seconds} label={safeT('seconds', 'MP')} />
             </div>
         </div>
     );

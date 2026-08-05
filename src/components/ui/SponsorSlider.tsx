@@ -12,9 +12,12 @@ type SponsorSliderProps = {
     sponsors: Sponsor[];
 };
 
-export default function SponsorSlider({ sponsors: initialSponsors }: SponsorSliderProps) {
-    const validSponsors = initialSponsors.filter(sponsor => 
+export default function SponsorSlider({ sponsors: initialSponsors = [] }: SponsorSliderProps) {
+    const list = Array.isArray(initialSponsors) ? initialSponsors : [];
+    const validSponsors = list.filter(sponsor => 
+        sponsor &&
         sponsor.active && 
+        sponsor.logoUrl &&
         !sponsor.logoUrl.includes('sponser.png') && 
         !sponsor.logoUrl.includes('ilovebalaton.png')
     );
