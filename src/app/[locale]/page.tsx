@@ -37,6 +37,8 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
     };
 }
 
+export const revalidate = 300;
+
 export default async function HomePage({ params }: HomePageProps) {
     const { locale } = await params;
     
@@ -47,48 +49,60 @@ export default async function HomePage({ params }: HomePageProps) {
         t = (key: string) => key;
     }
 
-
-    // Fetch global settings for featured event
-    let settings: any = null;
-    try {
-        settings = await prisma.globalSettings.findFirst({
+    // Fetch all homepage data concurrently in parallel
+    const [
+        settingsResult,
+        upcomingEventsResult,
+        featuresResult,
+        galleryResult,
+        sponsorsResult,
+        partnersResult
+    ] = await Promise.allSettled([
+        prisma.globalSettings.findFirst({
             include: {
                 featuredEvent: {
                     include: {
-                        distances: {
-                            select: { price: true, name: true }
-                        }
+                        distances: { select: { price: true, name: true } }
                     }
                 }
             } as any
-        });
-    } catch (e) {
-        console.error('[HomePage] settings query error:', e);
-    }
-
-    // Fetch upcoming events
-    let rawUpcomingEvents: any[] = [];
-    try {
-        rawUpcomingEvents = await prisma.event.findMany({
+        }),
+        prisma.event.findMany({
             where: {
                 status: 'PUBLISHED',
-                eventDate: {
-                    gte: new Date(),
-                },
+                eventDate: { gte: new Date() },
             },
-            orderBy: {
-                eventDate: 'asc',
-            },
+            orderBy: { eventDate: 'asc' },
             take: 3,
             include: {
-                distances: {
-                    select: { price: true, name: true }
-                }
+                distances: { select: { price: true, name: true } }
             }
-        });
-    } catch (e) {
-        console.error('[HomePage] upcomingEvents query error:', e);
-    }
+        }),
+        prisma.homepageFeature.findMany({
+            where: { active: true },
+            orderBy: { order: 'asc' }
+        }),
+        prisma.galleryImage.findMany({
+            where: { active: true },
+            orderBy: { order: 'asc' },
+            take: 4
+        }),
+        prisma.sponsor.findMany({
+            where: { active: true },
+            orderBy: { order: 'asc' }
+        }),
+        prisma.partner.findMany({
+            where: { active: true },
+            orderBy: { order: 'asc' }
+        })
+    ]);
+
+    const settings = settingsResult.status === 'fulfilled' ? settingsResult.value : null;
+    const rawUpcomingEvents = upcomingEventsResult.status === 'fulfilled' && Array.isArray(upcomingEventsResult.value) ? upcomingEventsResult.value : [];
+    const dbFeatures = featuresResult.status === 'fulfilled' && Array.isArray(featuresResult.value) ? featuresResult.value : [];
+    const dbGalleryImages = galleryResult.status === 'fulfilled' && Array.isArray(galleryResult.value) ? galleryResult.value : [];
+    const dbSponsors = sponsorsResult.status === 'fulfilled' && Array.isArray(sponsorsResult.value) ? sponsorsResult.value : [];
+    const dbPartners = partnersResult.status === 'fulfilled' && Array.isArray(partnersResult.value) ? partnersResult.value : [];
 
     const upcomingEvents = serializeData(rawUpcomingEvents) || [];
 
@@ -98,51 +112,6 @@ export default async function HomePage({ params }: HomePageProps) {
         featuredEvent = serializeData((settings as any).featuredEvent);
     } else if (Array.isArray(upcomingEvents) && upcomingEvents.length > 0) {
         featuredEvent = upcomingEvents[0];
-    }
-
-    // Fetch dynamic features
-    let dbFeatures: any[] = [];
-    try {
-        dbFeatures = await prisma.homepageFeature.findMany({
-            where: { active: true },
-            orderBy: { order: 'asc' }
-        });
-    } catch (e) {
-        console.error('[HomePage] dbFeatures query error:', e);
-    }
-
-    // Fetch dynamic gallery images
-    let dbGalleryImages: any[] = [];
-    try {
-        dbGalleryImages = await prisma.galleryImage.findMany({
-            where: { active: true },
-            orderBy: { order: 'asc' },
-            take: 4
-        });
-    } catch (e) {
-        console.error('[HomePage] dbGalleryImages query error:', e);
-    }
-
-    // Fetch dynamic sponsors
-    let dbSponsors: any[] = [];
-    try {
-        dbSponsors = await prisma.sponsor.findMany({
-            where: { active: true },
-            orderBy: { order: 'asc' }
-        });
-    } catch (e) {
-        console.error('[HomePage] dbSponsors query error:', e);
-    }
-
-    // Fetch dynamic partners
-    let dbPartners: any[] = [];
-    try {
-        dbPartners = await prisma.partner.findMany({
-            where: { active: true },
-            orderBy: { order: 'asc' }
-        });
-    } catch (e) {
-        console.error('[HomePage] dbPartners query error:', e);
     }
 
     return (
