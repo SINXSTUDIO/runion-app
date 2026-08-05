@@ -15,7 +15,26 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
         redirect(`/${locale}/dashboard`);
     }
 
-    const t = await getTranslations('Auth.Login');
+    let t: any;
+    try {
+        t = await getTranslations('Auth.Login');
+    } catch {
+        t = (key: string) => key;
+    }
+
+    const safeT = (key: string, fallback: string) => {
+        try {
+            const val = typeof t === 'function' ? t(key) : fallback;
+            return val && val !== key ? val : fallback;
+        } catch {
+            return fallback;
+        }
+    };
+
+    const titleText = safeT('title', 'BELÉPÉS');
+    const subtitleText = safeT('subtitle', 'Lépj be a fiókodba a folytatáshoz');
+    const noAccountText = safeT('noAccount', 'Nincs még fiókod?');
+    const registerLinkText = safeT('registerLink', 'Regisztrálj itt');
 
     return (
         <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-black">
@@ -33,12 +52,12 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
                 <div className="w-full max-w-md mx-auto space-y-8 py-12 lg:py-0">
                     <div className="space-y-2">
                         <h1 className="text-4xl font-black font-heading tracking-tight italic text-white uppercase">
-                            {t('title').split(' ').map((word, i) => (
+                            {titleText.split(' ').map((word: string, i: number) => (
                                 <span key={i} className={i % 2 !== 0 ? 'text-accent' : ''}>{word} </span>
                             ))}
                         </h1>
                         <p className="text-zinc-400 text-lg">
-                            {t('subtitle')}
+                            {subtitleText}
                         </p>
                     </div>
 
@@ -52,9 +71,9 @@ export default async function LoginPage({ params }: { params: Promise<{ locale: 
 
                     <div className="text-center space-y-4">
                         <p className="text-sm text-zinc-500">
-                            {t('noAccount')}{' '}
+                            {noAccountText}{' '}
                             <Link href="/register" className="font-bold text-white hover:text-accent transition-colors">
-                                {t('registerLink')}
+                                {registerLinkText}
                             </Link>
                         </p>
 

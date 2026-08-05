@@ -1169,5 +1169,19 @@
             "emptyTitle": "Nincsenek értesítések",
             "emptyDesc": "Jelenleg egyetlen értesítésed sincs."
         }
+    },
+    "Auth": {
+        "Login": {
+            "title": "BELÉPÉS",
+            "subtitle": "Lépj be a fiókodba a folytatáshoz",
+            "noAccount": "Nincs még fiókod?",
+            "registerLink": "Regisztrálj itt"
+        },
+        "Register": {
+            "title": "REGISZTRÁCIÓ",
+            "subtitle": "Hozz létre fiókot a nevezéshez és vásárláshoz",
+            "hasAccount": "Már van fiókod?",
+            "loginLink": "Lépj be itt"
+        }
     }
 }

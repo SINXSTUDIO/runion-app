@@ -1172,5 +1172,19 @@
             "emptyTitle": "No notifications",
             "emptyDesc": "You currently have no notifications."
         }
+    },
+    "Auth": {
+        "Login": {
+            "title": "LOGIN",
+            "subtitle": "Log in to your account to continue",
+            "noAccount": "Don't have an account?",
+            "registerLink": "Register here"
+        },
+        "Register": {
+            "title": "REGISTER",
+            "subtitle": "Create an account to enter races and shop",
+            "hasAccount": "Already have an account?",
+            "loginLink": "Log in here"
+        }
     }
 }

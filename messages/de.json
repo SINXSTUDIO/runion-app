@@ -1169,5 +1169,19 @@
             "emptyTitle": "Keine Benachrichtigungen",
             "emptyDesc": "Sie haben derzeit keine Benachrichtigungen."
         }
+    },
+    "Auth": {
+        "Login": {
+            "title": "ANMELDUNG",
+            "subtitle": "Melden Sie sich an, um fortzufahren",
+            "noAccount": "Noch kein Konto?",
+            "registerLink": "Hier registrieren"
+        },
+        "Register": {
+            "title": "REGISTRIERUNG",
+            "subtitle": "Erstellen Sie ein Konto für Anmeldungen und Shop",
+            "hasAccount": "Bereits ein Konto?",
+            "loginLink": "Hier anmelden"
+        }
     }
 }
