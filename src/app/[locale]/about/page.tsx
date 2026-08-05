@@ -37,7 +37,12 @@ export default async function AboutPage(props: {
     const t = await getTranslations('AboutPage');
 
     // Fetch from DB
-    const aboutData = await prisma.aboutPage.findFirst();
+    let aboutData: any = null;
+    try {
+        aboutData = await prisma.aboutPage.findFirst();
+    } catch (e) {
+        console.error('[AboutPage] aboutData query error:', e);
+    }
 
     // Determine content based on locale if translations exist in DB, 
     // otherwise fallback to translation keys, then seeded/primary content
