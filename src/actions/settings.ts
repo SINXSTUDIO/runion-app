@@ -10,7 +10,7 @@ import { unstable_cache } from 'next/cache';
  * Retrieves global system settings.
  * Creates default settings if they don't exist.
  */
-export const getSettings = unstable_cache(
+const getCachedSettings = unstable_cache(
     async () => {
         try {
             let settings = await prisma.globalSettings.findFirst();
@@ -39,6 +39,10 @@ export const getSettings = unstable_cache(
     ['global-settings-cache'],
     { revalidate: 60, tags: ['settings'] }
 );
+
+export async function getSettings() {
+    return getCachedSettings();
+}
 
 /**
  * Toggles the system-wide maintenance mode.

@@ -103,7 +103,7 @@ async function ensureSeller(
 
 import { unstable_cache } from 'next/cache';
 
-export const getPublishedEvents = unstable_cache(
+const getCachedPublishedEvents = unstable_cache(
     async () => {
         const { eventService } = await import('@/lib/services');
         return eventService.getPublishedEvents();
@@ -111,6 +111,10 @@ export const getPublishedEvents = unstable_cache(
     ['published-events-cache'],
     { revalidate: 60, tags: ['published-events'] }
 );
+
+export async function getPublishedEvents() {
+    return getCachedPublishedEvents();
+}
 
 export async function getEventBySlug(slug: string) {
     const { eventService } = await import('@/lib/services');
