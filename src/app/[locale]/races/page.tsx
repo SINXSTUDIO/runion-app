@@ -32,12 +32,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     });
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function RacesPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
 
     // Fetch events
-    const { data: events, success } = await getPublishedEvents() as any;
-    const hasEvents = success && events && events.length > 0;
+    let events: any[] = [];
+    let hasEvents = false;
+    try {
+        const res = await getPublishedEvents() as any;
+        if (res?.success && Array.isArray(res?.data)) {
+            events = res.data;
+            hasEvents = events.length > 0;
+        }
+    } catch (e) {
+        console.error('[RacesPage] getPublishedEvents error:', e);
+    }
 
     return (
         <div className="min-h-screen bg-black text-white">

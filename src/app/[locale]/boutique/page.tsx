@@ -30,26 +30,45 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     });
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function BoutiquePage({
     params
 }: {
     params: Promise<{ locale: string }>;
 }) {
     const { locale } = await params;
-    const t = await getTranslations('BoutiquePage');
+    
+    let t: any;
+    try {
+        t = await getTranslations('BoutiquePage');
+    } catch {
+        t = (key: string) => key;
+    }
 
-    const productsData = await prisma.product.findMany({
-        where: { active: true },
-        orderBy: { createdAt: 'desc' },
-    });
+    let products: any[] = [];
+    try {
+        const productsData = await prisma.product.findMany({
+            where: { active: true },
+            orderBy: { createdAt: 'desc' },
+        });
 
-    const products = productsData.map(p => ({
-        ...p,
-        price: Number(p.price)
-    }));
+        products = productsData.map(p => ({
+            ...p,
+            price: Number(p.price)
+        }));
+    } catch (e) {
+        console.error('[BoutiquePage] Products fetch error:', e);
+    }
 
-    const settings = await prisma.globalSettings.findFirst();
-    const shopEnabled = (settings as any)?.shopEnabled ?? true; // Default to true if not set
+    let shopEnabled = true;
+    let settings: any = null;
+    try {
+        settings = await prisma.globalSettings.findFirst();
+        shopEnabled = (settings as any)?.shopEnabled ?? true;
+    } catch (e) {
+        console.error('[BoutiquePage] Settings fetch error:', e);
+    }
 
     return (
         <div className="min-h-screen bg-black text-white">

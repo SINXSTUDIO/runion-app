@@ -60,56 +60,74 @@ export default async function LocaleLayout({
 
     // ---------------------------------------------------------
     // Maintenance Mode Check
-    // ---------------------------------------------------------    // Maintenance Mode Check
-    const settings = await getSettings();
+    // ---------------------------------------------------------
+    let settings: any = null;
+    try {
+        settings = await getSettings();
+    } catch (e) {
+        console.error('[Layout] Settings fetch error:', e);
+    }
 
     if (settings?.maintenanceMode) {
         // 1. Check if exempt URL (Admin or Auth)
-        const headersList = await headers();
-        const pathname = headersList.get('x-pathname') || "";
-        const isExempt = pathname.includes('/secretroom75') || pathname.includes('/api/auth');
+        try {
+            const headersList = await headers();
+            const pathname = headersList.get('x-pathname') || "";
+            const isExempt = pathname.includes('/secretroom75') || pathname.includes('/api/auth');
 
-        if (!isExempt) {
-            // 2. Check if logged-in Admin
-            const session = await auth();
-            const isAdmin = session?.user?.role === 'ADMIN';
+            if (!isExempt) {
+                // 2. Check if logged-in Admin
+                const session = await auth();
+                const isAdmin = session?.user?.role === 'ADMIN';
 
-            if (!isAdmin) {
-                // RENDER COMING SOON PAGE (Full Replacement)
-                return (
-                    <html lang={locale} suppressHydrationWarning>
-                        <body className={`${inter.variable} ${montserrat.variable} antialiased bg-black text-white`}>
-                            <NextIntlClientProvider messages={messages} locale={locale}>
-                                <ComingSoon />
-                            </NextIntlClientProvider>
-                        </body>
-                    </html>
-                );
+                if (!isAdmin) {
+                    // RENDER COMING SOON PAGE (Full Replacement)
+                    return (
+                        <html lang={locale} suppressHydrationWarning>
+                            <body className={`${inter.variable} ${montserrat.variable} antialiased bg-black text-white`}>
+                                <NextIntlClientProvider messages={messages} locale={locale}>
+                                    <ComingSoon />
+                                </NextIntlClientProvider>
+                            </body>
+                        </html>
+                    );
+                }
             }
+        } catch (e) {
+            console.error('[Layout] Maintenance check error:', e);
         }
     }
     // ---------------------------------------------------------
 
-    const session = await auth();
+    let session: any = null;
+    try {
+        session = await auth();
+    } catch (e) {
+        console.error('[Layout] Auth error:', e);
+    }
     let freshUser = session?.user;
 
     // Fetch fresh user data from DB to ensure Navbar (image, name) is always up to date
     if (session?.user?.email) {
-        const dbUser = await prisma.user.findUnique({
-            where: { email: session.user.email },
-            select: {
-                image: true,
-                firstName: true,
-                lastName: true,
-            }
-        });
+        try {
+            const dbUser = await prisma.user.findUnique({
+                where: { email: session.user.email },
+                select: {
+                    image: true,
+                    firstName: true,
+                    lastName: true,
+                }
+            });
 
-        if (dbUser) {
-            freshUser = {
-                ...session.user,
-                image: dbUser.image || session.user.image,
-                name: `${dbUser.lastName} ${dbUser.firstName}`,
-            };
+            if (dbUser) {
+                freshUser = {
+                    ...session.user,
+                    image: dbUser.image || session.user.image,
+                    name: `${dbUser.lastName} ${dbUser.firstName}`,
+                };
+            }
+        } catch (e) {
+            console.error('[Layout] DB User query error:', e);
         }
     }
 
