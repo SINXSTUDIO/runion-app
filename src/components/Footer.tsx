@@ -11,6 +11,16 @@ export default function Footer() {
     } catch {
         t = (key: string) => key;
     }
+
+    const safeT = (key: string, fallback: string) => {
+        try {
+            const val = typeof t === 'function' ? t(key) : fallback;
+            return (val && typeof val === 'string' && !val.includes('MISSING_MESSAGE')) ? val : fallback;
+        } catch {
+            return fallback;
+        }
+    };
+
     const router = useRouter();
     const [clickCount, setClickCount] = useState(0);
 
@@ -60,27 +70,27 @@ export default function Footer() {
                             </span>
                         </Link>
                         <p className="text-gray-400 text-sm text-center md:text-left leading-relaxed">
-                            {t('tagline') || 'Your premier running events platform'}
+                            {safeT('tagline', 'Your premier running events platform')}
                         </p>
                     </div>
 
                     {/* Quick Links */}
                     <div className="flex flex-col items-center md:items-start gap-4">
                         <h3 className="text-white font-bold text-sm uppercase tracking-wider">
-                            {t('quickLinks') || 'Gyorslinkek'}
+                            {safeT('quickLinks', 'Gyorslinkek')}
                         </h3>
                         <nav className="flex flex-col gap-2 text-sm">
                             <Link href="/races" className="text-gray-400 hover:text-accent transition-colors hover:translate-x-1 transform duration-200">
-                                {t('races') || 'Versenyek'}
+                                {safeT('races', 'Versenyek')}
                             </Link>
                             <Link href="/boutique" className="text-gray-400 hover:text-accent transition-colors hover:translate-x-1 transform duration-200">
-                                {t('boutique') || 'Webshop'}
+                                {safeT('boutique', 'Webshop')}
                             </Link>
                             <Link href="/about" className="text-gray-400 hover:text-accent transition-colors hover:translate-x-1 transform duration-200">
-                                {t('about') || 'Rólunk'}
+                                {safeT('about', 'Rólunk')}
                             </Link>
                             <Link href="/contact" className="text-gray-400 hover:text-accent transition-colors hover:translate-x-1 transform duration-200">
-                                {t('contact') || 'Kapcsolat'}
+                                {safeT('contact', 'Kapcsolat')}
                             </Link>
                         </nav>
                     </div>
@@ -88,14 +98,14 @@ export default function Footer() {
                     {/* Legal */}
                     <div className="flex flex-col items-center md:items-start gap-4">
                         <h3 className="text-white font-bold text-sm uppercase tracking-wider">
-                            {t('legal') || 'Jogi'}
+                            {safeT('legal', 'Jogi')}
                         </h3>
                         <nav className="flex flex-col gap-2 text-sm">
                             <Link href="/privacy" className="text-gray-400 hover:text-accent transition-colors hover:translate-x-1 transform duration-200">
-                                {t('privacy') || 'Adatvédelem'}
+                                {safeT('privacy', 'Adatvédelem')}
                             </Link>
                             <Link href="/terms" className="text-gray-400 hover:text-accent transition-colors hover:translate-x-1 transform duration-200">
-                                {t('terms') || 'ÁSZF'}
+                                {safeT('terms', 'ÁSZF')}
                             </Link>
                         </nav>
                     </div>
@@ -103,7 +113,7 @@ export default function Footer() {
                     {/* Social */}
                     <div className="flex flex-col items-center md:items-start gap-4">
                         <h3 className="text-white font-bold text-sm uppercase tracking-wider">
-                            {t('connect') || 'Kövess minket'}
+                            {safeT('connect', 'Kövess minket')}
                         </h3>
 
                         {/* Social Icons - Facebook & Instagram */}
@@ -156,7 +166,7 @@ export default function Footer() {
                                 ©
                             </span>
                             <span className="text-[11px]">{new Date().getFullYear()} Runion.</span>
-                            <span className="hidden lg:inline text-[11px]">{t('rights')}</span>
+                            <span className="hidden lg:inline text-[11px]">{safeT('rights', 'Minden jog fenntartva.')}</span>
                         </div>
 
                         {/* 2. Security Level */}
