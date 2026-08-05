@@ -17,7 +17,7 @@ export default function Error({
         error?.message?.includes('NEXT_REDIRECT') ||
         error?.message?.includes('NEXT_NOT_FOUND')
     ) {
-        return null;
+        throw error;
     }
 
     useEffect(() => {
