@@ -15,10 +15,13 @@ export default function EventGrid({ events }: EventGridProps) {
     const locale = useLocale();
     const [searchTerm, setSearchTerm] = useState('');
 
-    const filteredEvents = events.filter(event =>
-        event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (event.location && event.location.toLowerCase().includes(searchTerm.toLowerCase()))
-    );
+    const filteredEvents = events.filter(event => {
+        const term = searchTerm?.toLowerCase() || '';
+        return (
+            (event.title?.toLowerCase() || '').includes(term) ||
+            (event.location?.toLowerCase() || '').includes(term)
+        );
+    });
 
     const getStatusColor = (status: string) => {
         switch (status) {
@@ -77,7 +80,7 @@ export default function EventGrid({ events }: EventGridProps) {
                                         </span>
                                         <span className="text-zinc-500 text-xs font-mono flex items-center gap-1">
                                             <Calendar className="w-3 h-3" />
-                                            {new Date(event.eventDate).toLocaleDateString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US')}
+                                            {event.eventDate && !isNaN(new Date(event.eventDate).getTime()) ? new Date(event.eventDate).toLocaleDateString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US') : '—'}
                                         </span>
                                     </div>
 
