@@ -14,51 +14,63 @@ export default async function RequestsAdminPage({
 }: {
     params: Promise<{ locale: string }>;
 }) {
-    const { locale } = await params;
-    const t = await getTranslations({ locale, namespace: 'Admin.Requests' });
-    const [requests, settings, companies] = await Promise.all([
-        getChangeRequests(),
-        getSettings(),
-        getCompanies()
-    ]);
+    try {
+        const { locale } = await params;
+        const t = await getTranslations({ locale, namespace: 'Admin.Requests' });
+        const [requests, settings, companies] = await Promise.all([
+            getChangeRequests(),
+            getSettings(),
+            getCompanies()
+        ]);
 
-    return (
-        <div className="space-y-8 animate-in fade-in zoom-in duration-500 container mx-auto px-4 max-w-7xl py-8">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
-                <div>
-                    <h1 className="text-3xl font-black text-white italic uppercase tracking-tighter flex items-center gap-3">
-                        <ArrowLeftRight className="text-accent w-8 h-8" />
-                        {t('title')}
-                    </h1>
-                    <p className="text-zinc-400 mt-1">{t('subtitle')}</p>
-                </div>
-            </div>
-
-            <Tabs defaultValue="list" className="w-full">
-                <TabsList className="grid w-full md:w-[400px] grid-cols-2 mb-8 bg-zinc-900">
-                    <TabsTrigger value="list" className="data-[state=active]:bg-zinc-800 data-[state=active]:text-white">
-                        <List className="w-4 h-4 mr-2" />
-                        {t('listTab')}
-                    </TabsTrigger>
-                    <TabsTrigger value="settings" className="data-[state=active]:bg-zinc-800 data-[state=active]:text-white">
-                        <Settings className="w-4 h-4 mr-2" />
-                        {t('settingsTab')}
-                    </TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="list" className="mt-0">
-                    <RequestListClient initialRequests={requests} />
-                </TabsContent>
-
-                <TabsContent value="settings" className="mt-0">
-                    <div className="max-w-4xl">
-                        <TransferSettingsForm
-                            initialSettings={(settings as any) || {}}
-                            companies={companies || []}
-                        />
+        return (
+            <div className="space-y-8 animate-in fade-in zoom-in duration-500 container mx-auto px-4 max-w-7xl py-8">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
+                    <div>
+                        <h1 className="text-3xl font-black text-white italic uppercase tracking-tighter flex items-center gap-3">
+                            <ArrowLeftRight className="text-accent w-8 h-8" />
+                            {t('title')}
+                        </h1>
+                        <p className="text-zinc-400 mt-1">{t('subtitle')}</p>
                     </div>
-                </TabsContent>
-            </Tabs>
-        </div>
-    );
+                </div>
+
+                <Tabs defaultValue="list" className="w-full">
+                    <TabsList className="grid w-full md:w-[400px] grid-cols-2 mb-8 bg-zinc-900">
+                        <TabsTrigger value="list" className="data-[state=active]:bg-zinc-800 data-[state=active]:text-white">
+                            <List className="w-4 h-4 mr-2" />
+                            {t('listTab')}
+                        </TabsTrigger>
+                        <TabsTrigger value="settings" className="data-[state=active]:bg-zinc-800 data-[state=active]:text-white">
+                            <Settings className="w-4 h-4 mr-2" />
+                            {t('settingsTab')}
+                        </TabsTrigger>
+                    </TabsList>
+
+                    <TabsContent value="list" className="mt-0">
+                        <RequestListClient initialRequests={requests} />
+                    </TabsContent>
+
+                    <TabsContent value="settings" className="mt-0">
+                        <div className="max-w-4xl">
+                            <TransferSettingsForm
+                                initialSettings={(settings as any) || {}}
+                                companies={companies || []}
+                            />
+                        </div>
+                    </TabsContent>
+                </Tabs>
+            </div>
+        );
+    } catch (error: any) {
+        return (
+            <div className="p-8 bg-red-900 text-white rounded-xl">
+                <h2 className="text-2xl font-bold mb-4">CRASH TRACE:</h2>
+                <p className="font-mono text-sm">{error?.message}</p>
+                <pre className="mt-4 p-4 bg-black/50 overflow-auto whitespace-pre-wrap text-xs">
+                    {error?.stack}
+                </pre>
+            </div>
+        );
+    }
 }
