@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/Button';
 import { generateMetadata as genMeta } from '@/lib/seo/metadata';
 import { Metadata } from 'next';
 
+export const revalidate = 60;
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
 
@@ -35,9 +37,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function RacesPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
 
-    // Fetch events
-    const { data: events, success } = await getPublishedEvents() as any;
-    const hasEvents = success && events && events.length > 0;
+    // Fetch events safely
+    let events: any[] = [];
+    let hasEvents = false;
+
+    try {
+        const res = await getPublishedEvents() as any;
+        if (res && res.success && Array.isArray(res.data)) {
+            events = res.data;
+            hasEvents = events.length > 0;
+        }
+    } catch (err) {
+        console.error('[RacesPage] Error fetching published events:', err);
+    }
 
     return (
         <div className="min-h-screen bg-black text-white">

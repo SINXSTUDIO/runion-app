@@ -5,9 +5,6 @@ import { routing } from '@/i18n/routing';
 import { Inter, Montserrat } from "next/font/google";
 import Navbar from '@/components/Navbar';
 // ...
-
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
 import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent';
 import { CartProvider } from '@/context/CartContext';
