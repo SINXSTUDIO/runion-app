@@ -1089,6 +1089,19 @@
         "stat4Value": "100%",
         "stat4Label": "Lendület",
         "galleryTitle": "PILLANATKÉPEK",
-        "gallerySubtitle": "Éld át újra a versenyek felejthetetlen hangulatát!"
+        "gallerySubtitle": "Éld át újra a versenyek felejthetetlen hangulatát!",
+        "partnersTitle": "KIEMELT PARTNEREINK"
+    },
+    "Footer": {
+        "tagline": "Az Ön prémium futóverseny platformja",
+        "quickLinks": "Gyorslinkek",
+        "races": "Versenyek",
+        "boutique": "Butik",
+        "about": "Rólunk",
+        "contact": "Kapcsolat",
+        "legal": "Jogi Nyilatkozatok",
+        "privacy": "Adatvédelem",
+        "terms": "Általános Szerződési Feltételek (ÁSZF)",
+        "copyright": "Minden jog fenntartva."
     }
 }

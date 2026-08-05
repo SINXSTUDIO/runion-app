@@ -1092,6 +1092,19 @@
         "stat4Value": "100%",
         "stat4Label": "Passion",
         "galleryTitle": "MOMENTS",
-        "gallerySubtitle": "Relive the unforgettable moments of our races!"
+        "gallerySubtitle": "Relive the unforgettable moments of our races!",
+        "partnersTitle": "OUR FEATURED PARTNERS"
+    },
+    "Footer": {
+        "tagline": "Your premier running events platform",
+        "quickLinks": "Quick Links",
+        "races": "Races",
+        "boutique": "Boutique",
+        "about": "About Us",
+        "contact": "Contact",
+        "legal": "Legal",
+        "privacy": "Privacy Policy",
+        "terms": "Terms & Conditions",
+        "copyright": "All rights reserved."
     }
 }

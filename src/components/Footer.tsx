@@ -5,7 +5,12 @@ import { Link, useRouter } from '@/i18n/routing';
 import { useState, useEffect } from 'react';
 
 export default function Footer() {
-    const t = useTranslations('Footer');
+    let t: any;
+    try {
+        t = useTranslations('Footer');
+    } catch {
+        t = (key: string) => key;
+    }
     const router = useRouter();
     const [clickCount, setClickCount] = useState(0);
 

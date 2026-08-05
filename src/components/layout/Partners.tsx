@@ -8,7 +8,12 @@ import { Partner } from "@prisma/client";
 import { useTranslations } from "next-intl";
 
 export default function Partners() {
-    const t = useTranslations("HomePage");
+    let t: any;
+    try {
+        t = useTranslations("HomePage");
+    } catch {
+        t = (key: string) => key;
+    }
     const [partners, setPartners] = useState<Partner[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 

@@ -1089,6 +1089,19 @@
         "stat4Value": "100%",
         "stat4Label": "Leidenschaft",
         "galleryTitle": "MOMENTE",
-        "gallerySubtitle": "Erleben Sie die unvergesslichen Momente unserer Rennen neu!"
+        "gallerySubtitle": "Erleben Sie die unvergesslichen Momente unserer Rennen neu!",
+        "partnersTitle": "UNSERE PARTNER"
+    },
+    "Footer": {
+        "tagline": "Ihre führende Laufveranstaltungsplattform",
+        "quickLinks": "Schnelllinks",
+        "races": "Rennen",
+        "boutique": "Shop",
+        "about": "Über uns",
+        "contact": "Kontakt",
+        "legal": "Rechtliches",
+        "privacy": "Datenschutz",
+        "terms": "AGB",
+        "copyright": "Alle Rechte vorbehalten."
     }
 }
