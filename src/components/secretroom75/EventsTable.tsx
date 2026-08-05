@@ -176,11 +176,14 @@ export default function EventsTable({ initialEvents }: Props) {
         }
     };
 
-    const filteredEvents = events.filter(event => 
-        event.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-        event.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        event.slug.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredEvents = events.filter(event => {
+        const term = searchTerm?.toLowerCase() || '';
+        return (
+            (event.title?.toLowerCase() || '').includes(term) ||
+            (event.location?.toLowerCase() || '').includes(term) ||
+            (event.slug?.toLowerCase() || '').includes(term)
+        );
+    });
 
     return (
         <div className="space-y-4">
