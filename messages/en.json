@@ -1058,5 +1058,40 @@
                 "contact": "Contact"
             }
         }
+    },
+    "HomePage": {
+        "heroTitle": "RUN WITH US ACROSS THE MOST BEAUTIFUL SCENERIES!",
+        "heroSubtitle": "Discover the latest running races and join the RUNION community!",
+        "cta": "OUR RACES",
+        "featured": {
+            "nextEvent": "NEXT EVENT",
+            "eventLive": "LIVE EVENT"
+        },
+        "countdown": {
+            "nextEvent": "NEXT EVENT:"
+        },
+        "feature1Title": "UNIQUE LOCATIONS",
+        "feature1Desc": "Our races are organized in the most beautiful places.",
+        "feature2Title": "ACCURATE TIMING",
+        "feature2Desc": "Professional timing and instant results.",
+        "feature3Title": "GREAT ATMOSPHERE",
+        "feature3Desc": "A friendly and supportive community for all runners.",
+        "upcomingTitle": "UPCOMING RACES",
+        "upcomingSubtitle": "Choose from our upcoming races and register easily!",
+        "viewAll": "View All Races",
+        "sponsorsTitle": "OUR SPONSORS",
+        "sponsorsSubtitle": "JOIN US AS A SPONSOR",
+        "statsTitle": "RUNION IN NUMBERS",
+        "statsSubtitle": "We are proud of our community and our achievements.",
+        "stat1Value": "50+",
+        "stat1Label": "Successful Events",
+        "stat2Value": "10 000+",
+        "stat2Label": "Runners",
+        "stat3Value": "150 000+",
+        "stat3Label": "Km Distance Run",
+        "stat4Value": "100%",
+        "stat4Label": "Passion",
+        "galleryTitle": "MOMENTS",
+        "gallerySubtitle": "Relive the unforgettable moments of our races!"
     }
 }

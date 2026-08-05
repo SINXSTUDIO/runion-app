@@ -39,7 +39,13 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 
 export default async function HomePage({ params }: HomePageProps) {
     const { locale } = await params;
-    const t = await getTranslations({ locale, namespace: 'HomePage' });
+    
+    let t: any;
+    try {
+        t = await getTranslations({ locale, namespace: 'HomePage' });
+    } catch {
+        t = (key: string) => key;
+    }
 
 
     // Fetch global settings for featured event

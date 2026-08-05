@@ -1055,5 +1055,40 @@
                 "contact": "Kapcsolat"
             }
         }
+    },
+    "HomePage": {
+        "heroTitle": "FUSS VELÜNK A LEGYSZEBB TÁJAKON!",
+        "heroSubtitle": "Fedezd fel a legújabb futóversenyeket és csatlakozz a RUNION közösséghez!",
+        "cta": "VERSENYEINK",
+        "featured": {
+            "nextEvent": "KÖVETKEZŐ ESEMÉNY",
+            "eventLive": "ÉLŐ ESEMÉNY"
+        },
+        "countdown": {
+            "nextEvent": "KÖVETKEZŐ ESEMÉNY:"
+        },
+        "feature1Title": "KÜLÖNLEGES HELYSZÍNEK",
+        "feature1Desc": "Futóversenyeinket Magyarország legszebb tájain szervezzük.",
+        "feature2Title": "PONTOS MÉRÉS",
+        "feature2Desc": "Professzionális időmérés és azonnali eredményhirdetés.",
+        "feature3Title": "KIVÁLÓ HANGULAT",
+        "feature3Desc": "Családias, támogató közösség vár minden futót.",
+        "upcomingTitle": "KÖVETKEZŐ VERSENYEINK",
+        "upcomingSubtitle": "Válassz a megrendezésre kerülő futamok közül és nevezz be egyszerűen!",
+        "viewAll": "Összes Verseny",
+        "sponsorsTitle": "TÁMOGATÓINK",
+        "sponsorsSubtitle": "CSATLAKOZZ TE IS HOZZÁNK",
+        "statsTitle": "RUNION SZÁMOKBAN",
+        "statsSubtitle": "Büszkék vagyunk a közösségünkre és a közösen elért eredményekre.",
+        "stat1Value": "50+",
+        "stat1Label": "Sikeres Verseny",
+        "stat2Value": "10 000+",
+        "stat2Label": "Futó",
+        "stat3Value": "150 000+",
+        "stat3Label": "Km Megtett Táv",
+        "stat4Value": "100%",
+        "stat4Label": "Lendület",
+        "galleryTitle": "PILLANATKÉPEK",
+        "gallerySubtitle": "Éld át újra a versenyek felejthetetlen hangulatát!"
     }
 }

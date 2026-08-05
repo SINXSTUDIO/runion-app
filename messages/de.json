@@ -1055,5 +1055,40 @@
                 "contact": "Kontakt"
             }
         }
+    },
+    "HomePage": {
+        "heroTitle": "LAUFEN SIE MIT UNS DURCH DIE SCHÖNSTEN LANDSCHAFTEN!",
+        "heroSubtitle": "Entdecken Sie die neuesten Laufveranstaltungen und treten Sie der RUNION-Community bei!",
+        "cta": "UNSERE RENNEN",
+        "featured": {
+            "nextEvent": "NÄCHSTES EVENT",
+            "eventLive": "LIVE EVENT"
+        },
+        "countdown": {
+            "nextEvent": "NÄCHSTES EVENT:"
+        },
+        "feature1Title": "EINZIGARTIGE ORTE",
+        "feature1Desc": "Unsere Rennen werden an den schönsten Orten organisiert.",
+        "feature2Title": "PRÄZISE ZEITMESSUNG",
+        "feature2Desc": "Professionelle Zeitmessung und sofortige Ergebnisse.",
+        "feature3Title": "TOLLE ATMOSPHÄRE",
+        "feature3Desc": "Eine freundliche und unterstützende Community für alle Läufer.",
+        "upcomingTitle": "KOMMENDE RENNEN",
+        "upcomingSubtitle": "Wählen Sie aus unseren kommenden Rennen und melden Sie sich einfach an!",
+        "viewAll": "Alle Rennen ansehen",
+        "sponsorsTitle": "UNSERE SPONSOREN",
+        "sponsorsSubtitle": "WERDEN SIE SPONSOR",
+        "statsTitle": "RUNION IN ZAHLEN",
+        "statsSubtitle": "Wir sind stolz auf unsere Community und unsere Erfolge.",
+        "stat1Value": "50+",
+        "stat1Label": "Erfolgreiche Events",
+        "stat2Value": "10 000+",
+        "stat2Label": "Läufer",
+        "stat3Value": "150 000+",
+        "stat3Label": "Km Gelaufen",
+        "stat4Value": "100%",
+        "stat4Label": "Leidenschaft",
+        "galleryTitle": "MOMENTE",
+        "gallerySubtitle": "Erleben Sie die unvergesslichen Momente unserer Rennen neu!"
     }
 }
