@@ -49,7 +49,7 @@ export default function EventGrid({ events }: EventGridProps) {
             {/* List Layout (Horizontal Cards) */}
             <div className="space-y-4">
                 {filteredEvents.map((event) => {
-                    const totalRegistrations = event.distances.reduce((sum: number, dist: any) => sum + dist._count.registrations, 0);
+                    const totalRegistrations = (event.distances || []).reduce((sum: number, dist: any) => sum + (dist._count?.registrations || 0), 0);
                     const color = getStatusColor(event.status);
 
                     return (
