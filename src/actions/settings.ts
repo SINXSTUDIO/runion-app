@@ -4,37 +4,41 @@ import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { requireAdmin } from '@/lib/auth-checks';
 
+import { unstable_cache } from 'next/cache';
+
 /**
  * Retrieves global system settings.
  * Creates default settings if they don't exist.
  */
-export async function getSettings() {
-    try {
-        let settings = await prisma.globalSettings.findFirst();
+export const getSettings = unstable_cache(
+    async () => {
+        try {
+            let settings = await prisma.globalSettings.findFirst();
 
-        if (!settings) {
-            settings = await prisma.globalSettings.create({
-                data: {
-                    maintenanceMode: false,
-                    shopEnabled: true,
-                },
-            });
+            if (!settings) {
+                settings = await prisma.globalSettings.create({
+                    data: {
+                        maintenanceMode: false,
+                        shopEnabled: true,
+                    },
+                });
+            }
+
+            return settings;
+        } catch (error) {
+            console.error('CRITICAL: Failed to fetch or create global settings:', error);
+            // Fallback to default settings to prevent site crash during schema mismatch
+            return {
+                id: 'default-fallback',
+                maintenanceMode: false,
+                shopEnabled: true,
+                cancellationEnabled: false,
+            } as any;
         }
-
-        return settings;
-    } catch (error) {
-        console.error('CRITICAL: Failed to fetch or create global settings:', error);
-        // Fallback to default settings to prevent site crash during schema mismatch
-        return {
-            id: 'default-fallback',
-            maintenanceMode: false,
-            shopEnabled: true,
-            cancellationEnabled: false,
-            // Add other critical fields as null/undefined to satisfy type signature if needed
-            // casting as any to bypass strict type checks for missing fields
-        } as any;
-    }
-}
+    },
+    ['global-settings-cache'],
+    { revalidate: 60, tags: ['settings'] }
+);
 
 /**
  * Toggles the system-wide maintenance mode.

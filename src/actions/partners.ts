@@ -15,9 +15,15 @@ const partnerSchema = z.object({
     active: z.boolean().default(true),
 });
 
-export async function getPartners(): Promise<Partner[]> {
-    return genericFetch(prisma.partner) as Promise<Partner[]>;
-}
+import { unstable_cache } from "next/cache";
+
+export const getPartners = unstable_cache(
+    async (): Promise<Partner[]> => {
+        return genericFetch(prisma.partner) as Promise<Partner[]>;
+    },
+    ['partners-cache'],
+    { revalidate: 300, tags: ['partners'] }
+);
 
 export async function createPartner(prevState: any, formData: FormData) {
     await requireAdmin();

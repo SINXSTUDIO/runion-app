@@ -101,10 +101,16 @@ async function ensureSeller(
     return null;
 }
 
-export async function getPublishedEvents() {
-    const { eventService } = await import('@/lib/services');
-    return eventService.getPublishedEvents();
-}
+import { unstable_cache } from 'next/cache';
+
+export const getPublishedEvents = unstable_cache(
+    async () => {
+        const { eventService } = await import('@/lib/services');
+        return eventService.getPublishedEvents();
+    },
+    ['published-events-cache'],
+    { revalidate: 60, tags: ['published-events'] }
+);
 
 export async function getEventBySlug(slug: string) {
     const { eventService } = await import('@/lib/services');
