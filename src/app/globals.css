@@ -198,3 +198,31 @@ select {
   box-shadow: 0 0 25px rgba(0, 242, 254, 0.12);
   transform: translateY(-4px);
 }
+
+@keyframes loader-bar {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes reverse-spin {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-loader-bar {
+  animation: loader-bar 1.8s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.animate-reverse-spin {
+  animation: reverse-spin 12s linear infinite;
+}
