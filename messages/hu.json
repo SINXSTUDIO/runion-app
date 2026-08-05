@@ -1055,5 +1055,42 @@
                 "contact": "Kapcsolat"
             }
         }
+    },
+    "BoutiquePage": {
+        "title": "BUTIK",
+        "subtitle": "Válogass hivatalos RUNION kiegészítőink közül! Rendelj kényelmesen online.",
+        "premium": "PRÉMIUM MINŐSÉG",
+        "premiumDesc": "Minden termékünk tesztelt és futásra tervezett.",
+        "invoice": "ELEKTRONIKUS SZÁMLA",
+        "invoiceDesc": "Automatikus PDF számla minden vásárlásról.",
+        "support": "KÖZÖSSÉGI TÁMOGATÁS",
+        "supportDesc": "Vásárlásoddal a RUNION sportközösséget támogatod."
+    },
+    "AboutPage": {
+        "title": "RÓLUNK",
+        "description": "A RUNION egy dinamikusan fejlődő futóközösség és versenyszervező platform, amely prémium futóversenyeket szervez Magyarország legszebb helyszínein.",
+        "mission": "KÜLDETÉSÜNK",
+        "founder": "Baranyai Máté",
+        "founderRole": "Alapító & Főszervező"
+    },
+    "ContactPage": {
+        "title": "KAPCSOLAT",
+        "subtitle": "Kérdésed van a nevezéssel, versenyekkel vagy a webshoppal kapcsolatban? Írj nekünk bizalommal!",
+        "representativeLabel": "Képviselő",
+        "ibanLabel": "Bankszámlaszám (IBAN)",
+        "form": {
+            "name": "Név",
+            "email": "E-mail cím",
+            "subject": "Tárgy",
+            "message": "Üzenet",
+            "submit": "Üzenet Küldése"
+        },
+        "faq": {
+            "title": "GYAKRAN ISMÉTELT KÉRDÉSEK"
+        }
+    },
+    "Transfer": {
+        "title": "NEVEZÉS ÁTÍRÁS",
+        "subtitle": "Módosítsd vagy írd át a nevezésedet online kényelmesen."
     }
 }

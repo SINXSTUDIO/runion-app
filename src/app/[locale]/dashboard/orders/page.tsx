@@ -73,10 +73,13 @@ export default async function DashboardOrdersPage({ params }: { params: Promise<
                                                     order.status === 'CANCELLED' ? 'bg-red-500/20 text-red-400' :
                                                         'bg-yellow-500/20 text-yellow-400'
                                                 }`}>
-                                                {/* Use raw status as fallback if key missing, or ensure all keys exist */}
-                                                {t.has(`status.${order.status.toLowerCase()}`)
-                                                    ? t(`status.${order.status.toLowerCase()}`)
-                                                    : order.status}
+                                                {(() => {
+                                                    try {
+                                                        return t(`status.${order.status.toLowerCase()}`);
+                                                    } catch {
+                                                        return order.status;
+                                                    }
+                                                })()}
                                             </span>
                                         </td>
                                         <td className="p-6 text-right">

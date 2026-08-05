@@ -1055,5 +1055,42 @@
                 "contact": "Kontakt"
             }
         }
+    },
+    "BoutiquePage": {
+        "title": "SHOP",
+        "subtitle": "Wählen Sie aus unserer offiziellen RUNION-Ausrüstung und Zubehör! Bequem online bestellen.",
+        "premium": "PREMIUM-QUALITÄT",
+        "premiumDesc": "Alle Produkte wurden für den Laufsport getestet.",
+        "invoice": "ELEKTRONISCHE RECHNUNG",
+        "invoiceDesc": "Automatische PDF-Rechnung für jede Bestellung.",
+        "support": "COMMUNITY-UNTERSTÜTZUNG",
+        "supportDesc": "Ihr Kauf unterstützt die RUNION-Sport-Community."
+    },
+    "AboutPage": {
+        "title": "ÜBER UNS",
+        "description": "RUNION ist eine Sport-Community und Laufplattform.",
+        "mission": "UNSERE MISSION",
+        "founder": "Máté Baranyai",
+        "founderRole": "Gründer & Hauptorganisator"
+    },
+    "ContactPage": {
+        "title": "KONTAKT",
+        "subtitle": "Haben Sie Fragen zur Registrierung oder zum Shop? Schreiben Sie uns!",
+        "representativeLabel": "Vertreter",
+        "ibanLabel": "Bankkonto (IBAN)",
+        "form": {
+            "name": "Name",
+            "email": "E-Mail-Adresse",
+            "subject": "Betreff",
+            "message": "Nachricht",
+            "submit": "Nachricht Senden"
+        },
+        "faq": {
+            "title": "HÄUFIG GESTELLTE FRAGEN"
+        }
+    },
+    "Transfer": {
+        "title": "ANMELDUNG ÜBERTRAGEN",
+        "subtitle": "Ändern oder übertragen Sie Ihre Anmeldung bequem online."
     }
 }

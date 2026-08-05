@@ -33,18 +33,34 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     });
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function ContactPage(props: {
     params: Promise<{ locale: string }>
 }) {
     const params = await props.params;
     const { locale } = params;
-    const t = await getTranslations('ContactPage');
+    
+    let t: any;
+    try {
+        t = await getTranslations('ContactPage');
+    } catch {
+        t = (key: string) => key;
+    }
 
     // Fetch from DB
-    const [companies, faqs] = await Promise.all([
-        prisma.seller.findMany({ where: { active: true }, orderBy: { order: 'asc' } }),
-        prisma.fAQ.findMany({ where: { active: true }, orderBy: { order: 'asc' } })
-    ]);
+    let companies: any[] = [];
+    let faqs: any[] = [];
+    try {
+        const [rawCompanies, rawFaqs] = await Promise.all([
+            prisma.seller.findMany({ where: { active: true }, orderBy: { order: 'asc' } }),
+            prisma.fAQ.findMany({ where: { active: true }, orderBy: { order: 'asc' } })
+        ]);
+        companies = rawCompanies || [];
+        faqs = rawFaqs || [];
+    } catch (e) {
+        console.error('[ContactPage] DB query error:', e);
+    }
 
     return (
         <div className="min-h-screen bg-black pt-24 pb-12 text-white">
