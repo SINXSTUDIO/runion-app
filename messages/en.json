@@ -1058,42 +1058,5 @@
                 "contact": "Contact"
             }
         }
-    },
-    "BoutiquePage": {
-        "title": "BOUTIQUE",
-        "subtitle": "Choose from our official RUNION gear and accessories! Order conveniently online.",
-        "premium": "PREMIUM QUALITY",
-        "premiumDesc": "All products are tested and designed for running.",
-        "invoice": "ELECTRONIC INVOICE",
-        "invoiceDesc": "Automatic PDF invoice for every order.",
-        "support": "COMMUNITY SUPPORT",
-        "supportDesc": "Your purchase supports the RUNION sports community."
-    },
-    "AboutPage": {
-        "title": "ABOUT US",
-        "description": "RUNION is a sports community and race organization platform hosting running events in beautiful locations.",
-        "mission": "OUR MISSION",
-        "founder": "Máté Baranyai",
-        "founderRole": "Founder & Head Organizer"
-    },
-    "ContactPage": {
-        "title": "CONTACT US",
-        "subtitle": "Have questions about registration, races, or shop? Contact us!",
-        "representativeLabel": "Representative",
-        "ibanLabel": "Bank Account (IBAN)",
-        "form": {
-            "name": "Name",
-            "email": "Email address",
-            "subject": "Subject",
-            "message": "Message",
-            "submit": "Send Message"
-        },
-        "faq": {
-            "title": "FREQUENTLY ASKED QUESTIONS"
-        }
-    },
-    "Transfer": {
-        "title": "TRANSFER REGISTRATION",
-        "subtitle": "Modify or transfer your registration online easily."
     }
 }

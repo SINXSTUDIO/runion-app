@@ -5,10 +5,6 @@ import BoutiqueHeroSlideshow from '@/components/shop/BoutiqueHeroSlideshow';
 import { ShoppingBag, FileText, Users, Heart, Shield, Truck, Star, Award, Gift, Zap, TrendingUp, ThumbsUp, CheckCircle, Info } from 'lucide-react';
 import { generateMetadata as genMeta } from '@/lib/seo/metadata';
 import { Metadata } from 'next';
-import { serializeData } from '@/lib/utils/serialization';
-import { getSettings } from '@/actions/settings';
-
-export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
@@ -40,38 +36,20 @@ export default async function BoutiquePage({
     params: Promise<{ locale: string }>;
 }) {
     const { locale } = await params;
-    
-    let t: any;
-    try {
-        t = await getTranslations('BoutiquePage');
-    } catch {
-        t = (key: string) => key;
-    }
+    const t = await getTranslations('BoutiquePage');
 
-    let products: any[] = [];
-    try {
-        const productsData = await prisma.product.findMany({
-            where: { active: true },
-            orderBy: { createdAt: 'desc' },
-        });
+    const productsData = await prisma.product.findMany({
+        where: { active: true },
+        orderBy: { createdAt: 'desc' },
+    });
 
-        const serialized = serializeData(productsData) || [];
-        products = serialized.map((p: any) => ({
-            ...p,
-            price: Number(p.price || 0)
-        }));
-    } catch (err) {
-        console.error('[BoutiquePage] Failed to fetch products:', err);
-    }
+    const products = productsData.map(p => ({
+        ...p,
+        price: Number(p.price)
+    }));
 
-    let shopEnabled = true;
-    let settings: any = null;
-    try {
-        settings = await getSettings();
-        shopEnabled = settings?.shopEnabled ?? true;
-    } catch (err) {
-        console.error('[BoutiquePage] Failed to fetch settings:', err);
-    }
+    const settings = await prisma.globalSettings.findFirst();
+    const shopEnabled = (settings as any)?.shopEnabled ?? true; // Default to true if not set
 
     return (
         <div className="min-h-screen bg-black text-white">

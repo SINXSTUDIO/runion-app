@@ -7,7 +7,7 @@ import { revalidatePath } from 'next/cache';
 
 export async function forceLogoutUser(userId: string) {
     await requireAdmin();
-    const { userService } = await import('@/lib/services/user-service');
+    const { userService } = await import('@/lib/services');
     const result = await userService.forceLogout(userId);
 
     if (result.success) {

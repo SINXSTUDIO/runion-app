@@ -33,25 +33,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     });
 }
 
-export const dynamic = 'force-dynamic';
-
 export default async function TransferPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
-    
-    let t: any;
-    try {
-        t = await getTranslations({ locale, namespace: 'Transfer' });
-    } catch {
-        t = (key: string) => key;
-    }
+    const t = await getTranslations({ locale, namespace: 'Transfer' });
 
     // Fetch Global Settings
-    let settings: any = null;
-    try {
-        settings = await getSettings() as any;
-    } catch (e) {
-        console.error('[TransferPage] Settings fetch error:', e);
-    }
+    const settings = await getSettings() as any;
     const cancellationEnabled = settings?.cancellationEnabled ?? false;
 
     // Default values if not set in DB

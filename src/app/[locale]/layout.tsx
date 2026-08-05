@@ -5,6 +5,9 @@ import { routing } from '@/i18n/routing';
 import { Inter, Montserrat } from "next/font/google";
 import Navbar from '@/components/Navbar';
 // ...
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent';
 import { CartProvider } from '@/context/CartContext';
@@ -57,29 +60,19 @@ export default async function LocaleLayout({
 
     // ---------------------------------------------------------
     // Maintenance Mode Check
-    // ---------------------------------------------------------
+    // ---------------------------------------------------------    // Maintenance Mode Check
     const settings = await getSettings();
 
     if (settings?.maintenanceMode) {
         // 1. Check if exempt URL (Admin or Auth)
-        let isExempt = false;
-        try {
-            const headersList = await headers();
-            const pathname = headersList.get('x-pathname') || "";
-            isExempt = pathname.includes('/secretroom75') || pathname.includes('/api/auth');
-        } catch (e) {
-            console.error('[LocaleLayout] headers read error:', e);
-        }
+        const headersList = await headers();
+        const pathname = headersList.get('x-pathname') || "";
+        const isExempt = pathname.includes('/secretroom75') || pathname.includes('/api/auth');
 
         if (!isExempt) {
             // 2. Check if logged-in Admin
-            let isAdmin = false;
-            try {
-                const session = await auth();
-                isAdmin = session?.user?.role === 'ADMIN';
-            } catch (e) {
-                console.error('[LocaleLayout] Maintenance auth check error:', e);
-            }
+            const session = await auth();
+            const isAdmin = session?.user?.role === 'ADMIN';
 
             if (!isAdmin) {
                 // RENDER COMING SOON PAGE (Full Replacement)
@@ -97,17 +90,27 @@ export default async function LocaleLayout({
     }
     // ---------------------------------------------------------
 
-    let freshUser: any = null;
-    try {
-        const session = await auth();
-        if (session?.user) {
+    const session = await auth();
+    let freshUser = session?.user;
+
+    // Fetch fresh user data from DB to ensure Navbar (image, name) is always up to date
+    if (session?.user?.email) {
+        const dbUser = await prisma.user.findUnique({
+            where: { email: session.user.email },
+            select: {
+                image: true,
+                firstName: true,
+                lastName: true,
+            }
+        });
+
+        if (dbUser) {
             freshUser = {
                 ...session.user,
-                name: session.user.name || `${(session.user as any).lastName || ''} ${(session.user as any).firstName || ''}`.trim(),
+                image: dbUser.image || session.user.image,
+                name: `${dbUser.lastName} ${dbUser.firstName}`,
             };
         }
-    } catch (authError) {
-        console.error('[LocaleLayout] Auth session error:', authError);
     }
 
     return (

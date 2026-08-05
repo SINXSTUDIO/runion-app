@@ -29,50 +29,43 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     });
 }
 
-export const dynamic = 'force-dynamic';
-
 export default async function AboutPage(props: {
     params: Promise<{ locale: string }>
 }) {
     const params = await props.params;
     const { locale } = params;
-
-    let t: any;
-    try {
-        t = await getTranslations('AboutPage');
-    } catch {
-        t = (key: string) => key;
-    }
+    const t = await getTranslations('AboutPage');
 
     // Fetch from DB
-    let aboutData: any = null;
-    try {
-        aboutData = await prisma.aboutPage.findFirst();
-    } catch (e) {
-        console.error('[AboutPage] DB query error:', e);
-    }
+    const aboutData = await prisma.aboutPage.findFirst();
 
-    let title = aboutData?.title || (typeof t === 'function' ? t('title') : 'RÓLUNK');
-    let description = aboutData?.description || (typeof t === 'function' ? t('description') : '');
-    let founderRole = aboutData?.founderRole || (typeof t === 'function' ? t('founderRole') : 'Alapító & Főszervező');
+    // Determine content based on locale if translations exist in DB, 
+    // otherwise fallback to translation keys, then seeded/primary content
+    let title = aboutData?.title || t('title');
+    let description = aboutData?.description || t('description');
+    let founderRole = aboutData?.founderRole || t('founderRole'); // Default to HU from DB or translation key
 
     if (locale === 'en') {
         if (aboutData?.titleEn) title = aboutData.titleEn;
-        else if (typeof t === 'function') title = t('title');
+        else if (t.has('title')) title = t('title'); // Fallback to translation if localized DB title is missing
         if (aboutData?.descriptionEn) description = aboutData.descriptionEn;
-        else if (typeof t === 'function') description = t('description');
+        else if (t.has('description')) description = t('description'); // Fallback to translation file if DB is empty
+
         if (aboutData?.founderRoleEn) founderRole = aboutData.founderRoleEn;
-        else if (typeof t === 'function') founderRole = t('founderRole');
+        else if (t.has('founderRole')) founderRole = t('founderRole');
     } else if (locale === 'de') {
         if (aboutData?.titleDe) title = aboutData.titleDe;
-        else if (typeof t === 'function') title = t('title');
+        else if (t.has('title')) title = t('title');
+
         if (aboutData?.descriptionDe) description = aboutData.descriptionDe;
-        else if (typeof t === 'function') description = t('description');
+        else if (t.has('description')) description = t('description');
+
         if (aboutData?.founderRoleDe) founderRole = aboutData.founderRoleDe;
-        else if (typeof t === 'function') founderRole = t('founderRole');
+        else if (t.has('founderRole')) founderRole = t('founderRole');
     }
 
-    const founder = (typeof t === 'function' ? t('founder') : null) || aboutData?.founderName || "Baranyai Máté";
+    // For founder name, also respect locale if needed (though name usually stays same, order might change)
+    const founder = t.has('founder') ? t('founder') : (aboutData?.founderName || "Baranyai Máté");
 
     // Images
     const image1 = aboutData?.image1Url || "https://images.unsplash.com/photo-1452626038306-9aae0e07173a?q=80&w=800&auto=format&fit=crop";

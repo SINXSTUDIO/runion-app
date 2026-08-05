@@ -1,42 +1,40 @@
 'use server';
 
 import { prisma } from '@/lib/prisma';
-import { revalidatePath, unstable_cache, revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 import { requireAdmin } from '@/lib/auth-checks';
 
 /**
  * Retrieves global system settings.
  * Creates default settings if they don't exist.
  */
-export const getSettings = unstable_cache(
-    async () => {
-        try {
-            let settings = await prisma.globalSettings.findFirst();
+export async function getSettings() {
+    try {
+        let settings = await prisma.globalSettings.findFirst();
 
-            if (!settings) {
-                settings = await prisma.globalSettings.create({
-                    data: {
-                        maintenanceMode: false,
-                        shopEnabled: true,
-                    },
-                });
-            }
-
-            return settings;
-        } catch (error) {
-            console.error('CRITICAL: Failed to fetch or create global settings:', error);
-            // Fallback to default settings to prevent site crash during schema mismatch
-            return {
-                id: 'default-fallback',
-                maintenanceMode: false,
-                shopEnabled: true,
-                cancellationEnabled: false,
-            } as any;
+        if (!settings) {
+            settings = await prisma.globalSettings.create({
+                data: {
+                    maintenanceMode: false,
+                    shopEnabled: true,
+                },
+            });
         }
-    },
-    ['global-settings'],
-    { revalidate: 300, tags: ['global-settings'] }
-);
+
+        return settings;
+    } catch (error) {
+        console.error('CRITICAL: Failed to fetch or create global settings:', error);
+        // Fallback to default settings to prevent site crash during schema mismatch
+        return {
+            id: 'default-fallback',
+            maintenanceMode: false,
+            shopEnabled: true,
+            cancellationEnabled: false,
+            // Add other critical fields as null/undefined to satisfy type signature if needed
+            // casting as any to bypass strict type checks for missing fields
+        } as any;
+    }
+}
 
 /**
  * Toggles the system-wide maintenance mode.

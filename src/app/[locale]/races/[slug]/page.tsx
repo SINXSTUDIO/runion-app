@@ -12,25 +12,19 @@ import { generateEventMetadata } from '@/lib/seo/metadata';
 import { generateEventSchema, generateBreadcrumbSchema, organizationSchema, JsonLd } from '@/lib/seo/structured-data';
 import { ShareButtons } from '@/components/events/ShareButtons';
 import { InfopackSection } from '@/components/events/InfopackSection';
-export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string; locale: string }> }) {
     const { slug, locale } = await params;
 
-    let event: any = null;
-    try {
-        event = await prisma.event.findUnique({
-            where: { slug },
-            include: {
-                distances: true,
-                seller: true,
-                sellerEuro: true,
-                organizer: true
-            }
-        });
-    } catch (err) {
-        console.error('[generateMetadata] Error fetching event:', err);
-    }
+    const event = await prisma.event.findUnique({
+        where: { slug },
+        include: {
+            distances: true,
+            seller: true,
+            sellerEuro: true,
+            organizer: true
+        }
+    });
 
     if (!event) {
         return { title: 'Event not found' };

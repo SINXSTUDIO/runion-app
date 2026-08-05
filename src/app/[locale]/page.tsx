@@ -37,65 +37,71 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
     };
 }
 
-export const revalidate = 60;
-
 export default async function HomePage({ params }: HomePageProps) {
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'HomePage' });
 
-    // Fetch all homepage data in parallel to maximize performance
-    const [settings, rawUpcomingEvents, dbFeatures, dbGalleryImages, dbSponsors] = await Promise.all([
-        prisma.globalSettings.findFirst({
-            include: {
-                featuredEvent: {
-                    include: {
-                        distances: { select: { price: true, name: true } }
+
+    // Fetch global settings for featured event
+    const settings = await prisma.globalSettings.findFirst({
+        include: {
+            featuredEvent: {
+                include: {
+                    distances: {
+                        select: { price: true, name: true }
                     }
                 }
             }
-        } as any).catch(() => null),
+        } as any
+    }).catch(() => null);
 
-        prisma.event.findMany({
-            where: {
-                status: 'PUBLISHED',
-                eventDate: { gte: new Date() },
+    // Fetch upcoming events
+    const rawUpcomingEvents = await prisma.event.findMany({
+        where: {
+            status: 'PUBLISHED',
+            eventDate: {
+                gte: new Date(),
             },
-            orderBy: { eventDate: 'asc' },
-            take: 3,
-            include: {
-                distances: { select: { price: true, name: true } }
+        },
+        orderBy: {
+            eventDate: 'asc',
+        },
+        take: 3,
+        include: {
+            distances: {
+                select: { price: true, name: true }
             }
-        }).catch((err) => {
-            console.error('[HomePage] Failed to fetch upcoming events:', err);
-            return [];
-        }),
+        }
+    });
 
-        prisma.homepageFeature.findMany({
-            where: { active: true },
-            orderBy: { order: 'asc' }
-        }).catch(() => []),
-
-        prisma.galleryImage.findMany({
-            where: { active: true },
-            orderBy: { order: 'asc' },
-            take: 4
-        }).catch(() => []),
-
-        prisma.sponsor.findMany({
-            where: { active: true },
-            orderBy: { order: 'asc' }
-        }).catch(() => [])
-    ]);
-
-    const upcomingEvents = serializeData(rawUpcomingEvents) || [];
+    const upcomingEvents = serializeData(rawUpcomingEvents);
 
     // Determine featured event
     let featuredEvent = null;
     if ((settings as any)?.featuredEventActive && (settings as any)?.featuredEvent) {
         featuredEvent = serializeData((settings as any).featuredEvent);
-    } else if (Array.isArray(upcomingEvents) && upcomingEvents.length > 0) {
+    } else if (upcomingEvents.length > 0) {
         featuredEvent = upcomingEvents[0];
     }
+
+    // Fetch dynamic features
+    const dbFeatures = await prisma.homepageFeature.findMany({
+        where: { active: true },
+        orderBy: { order: 'asc' }
+    }).catch(() => []);
+
+    // Fetch dynamic gallery images
+    const dbGalleryImages = await prisma.galleryImage.findMany({
+        where: { active: true },
+        orderBy: { order: 'asc' },
+        take: 4
+    }).catch(() => []);
+
+    // Fetch dynamic sponsors
+    const dbSponsors = await prisma.sponsor.findMany({
+        where: { active: true },
+        orderBy: { order: 'asc' }
+    }).catch(() => []);
 
     return (
         <>
