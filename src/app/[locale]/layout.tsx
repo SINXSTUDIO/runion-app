@@ -60,19 +60,29 @@ export default async function LocaleLayout({
 
     // ---------------------------------------------------------
     // Maintenance Mode Check
-    // ---------------------------------------------------------    // Maintenance Mode Check
+    // ---------------------------------------------------------
     const settings = await getSettings();
 
     if (settings?.maintenanceMode) {
         // 1. Check if exempt URL (Admin or Auth)
-        const headersList = await headers();
-        const pathname = headersList.get('x-pathname') || "";
-        const isExempt = pathname.includes('/secretroom75') || pathname.includes('/api/auth');
+        let isExempt = false;
+        try {
+            const headersList = await headers();
+            const pathname = headersList.get('x-pathname') || "";
+            isExempt = pathname.includes('/secretroom75') || pathname.includes('/api/auth');
+        } catch (e) {
+            console.error('[LocaleLayout] headers read error:', e);
+        }
 
         if (!isExempt) {
             // 2. Check if logged-in Admin
-            const session = await auth();
-            const isAdmin = session?.user?.role === 'ADMIN';
+            let isAdmin = false;
+            try {
+                const session = await auth();
+                isAdmin = session?.user?.role === 'ADMIN';
+            } catch (e) {
+                console.error('[LocaleLayout] Maintenance auth check error:', e);
+            }
 
             if (!isAdmin) {
                 // RENDER COMING SOON PAGE (Full Replacement)
@@ -90,27 +100,32 @@ export default async function LocaleLayout({
     }
     // ---------------------------------------------------------
 
-    const session = await auth();
-    let freshUser = session?.user;
+    let freshUser: any = null;
+    try {
+        const session = await auth();
+        freshUser = session?.user || null;
 
-    // Fetch fresh user data from DB to ensure Navbar (image, name) is always up to date
-    if (session?.user?.email) {
-        const dbUser = await prisma.user.findUnique({
-            where: { email: session.user.email },
-            select: {
-                image: true,
-                firstName: true,
-                lastName: true,
+        // Fetch fresh user data from DB to ensure Navbar (image, name) is always up to date
+        if (session?.user?.email) {
+            const dbUser = await prisma.user.findUnique({
+                where: { email: session.user.email },
+                select: {
+                    image: true,
+                    firstName: true,
+                    lastName: true,
+                }
+            }).catch(() => null);
+
+            if (dbUser) {
+                freshUser = {
+                    ...session.user,
+                    image: dbUser.image || session.user.image,
+                    name: `${dbUser.lastName || ''} ${dbUser.firstName || ''}`.trim() || session.user.name,
+                };
             }
-        });
-
-        if (dbUser) {
-            freshUser = {
-                ...session.user,
-                image: dbUser.image || session.user.image,
-                name: `${dbUser.lastName} ${dbUser.firstName}`,
-            };
         }
+    } catch (authError) {
+        console.error('[LocaleLayout] Auth/User fetch error:', authError);
     }
 
     return (

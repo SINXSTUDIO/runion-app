@@ -137,7 +137,17 @@ export default function FeaturedEvent({ event, locale, customSettings }: Feature
     };
 
     const dateLocale = locale === 'hu' ? hu : locale === 'de' ? de : enUS;
-    const formattedDate = format(new Date(event.eventDate), 'PPP', { locale: dateLocale });
+    let formattedDate = '';
+    try {
+        if (event?.eventDate) {
+            const d = new Date(event.eventDate);
+            if (!isNaN(d.getTime())) {
+                formattedDate = format(d, 'PPP', { locale: dateLocale });
+            }
+        }
+    } catch (err) {
+        console.error('[FeaturedEvent] Failed to format date:', err);
+    }
 
     return (
         <section className="relative min-h-[500px] md:min-h-[600px] flex items-center justify-center py-10 md:py-20 overflow-hidden">
