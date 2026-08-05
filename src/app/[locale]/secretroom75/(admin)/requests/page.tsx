@@ -1,10 +1,8 @@
 import { getChangeRequests } from '@/actions/requests';
 import { getSettings } from '@/actions/settings';
 import { getCompanies } from '@/actions/content';
-import dynamic from 'next/dynamic';
-
-const RequestListClient = dynamic(() => import('./RequestListClient'), { ssr: false });
-const TransferSettingsForm = dynamic(() => import('@/components/admin/TransferSettingsForm'), { ssr: false });
+import RequestListClient from './RequestListClient';
+import TransferSettingsForm from '@/components/admin/TransferSettingsForm';
 
 import { ArrowLeftRight, Settings, List } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/Tabs';
