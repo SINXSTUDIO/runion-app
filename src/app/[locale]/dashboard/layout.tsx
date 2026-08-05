@@ -9,23 +9,35 @@ import { getUnreadNotificationCount } from '@/actions/notifications';
 
 import { DashboardProvider } from '@/components/dashboard/DashboardContext';
 
-export default async function DashboardLayout({ children }: { children: ReactNode }) {
+export default async function DashboardLayout({
+    children,
+    params
+}: {
+    children: ReactNode;
+    params: Promise<{ locale: string }>;
+}) {
+    const { locale } = await params;
     const session = await auth();
 
     if (!session?.user?.email) {
-        redirect('/login');
+        redirect(`/${locale}/login`);
     }
 
     // Fetch full user with membership tier
-    const dbUser = await prisma.user.findUnique({
-        where: { email: session.user.email },
-        include: {
-            membershipTier: true
-        }
-    });
+    let dbUser: any = null;
+    try {
+        dbUser = await prisma.user.findUnique({
+            where: { email: session.user.email },
+            include: {
+                membershipTier: true
+            }
+        });
+    } catch (e) {
+        console.error('[DashboardLayout] user query error:', e);
+    }
 
     if (!dbUser) {
-        redirect('/login');
+        redirect(`/${locale}/login`);
     }
 
     return (
