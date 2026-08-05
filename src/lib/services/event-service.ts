@@ -1,4 +1,4 @@
-import { eventRepository } from '@/lib/repositories';
+import { eventRepository } from '@/lib/repositories/event-repository';
 import { serializeData } from '@/lib/utils/serialization';
 import { prisma } from '@/lib/prisma';
 import { handleError, createErrorResponse, createSuccessResponse } from '@/lib/error-handler';

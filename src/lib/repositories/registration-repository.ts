@@ -74,3 +74,5 @@ export class RegistrationRepository extends BaseRepository<
         });
     }
 }
+
+export const registrationRepository = new RegistrationRepository();

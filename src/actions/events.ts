@@ -102,24 +102,24 @@ async function ensureSeller(
 }
 
 export async function getPublishedEvents() {
-    const { eventService } = await import('@/lib/services');
+    const { eventService } = await import('@/lib/services/event-service');
     return eventService.getPublishedEvents();
 }
 
 export async function getEventBySlug(slug: string) {
-    const { eventService } = await import('@/lib/services');
+    const { eventService } = await import('@/lib/services/event-service');
     return eventService.getEventBySlug(slug);
 }
 
 export async function updateEventFormConfig(eventId: string, config: any) {
     await requireAdmin();
-    const { eventService } = await import('@/lib/services');
+    const { eventService } = await import('@/lib/services/event-service');
     return eventService.updateFormConfig(eventId, config);
 }
 
 export async function deleteEvent(id: string) {
     await requireAdmin();
-    const { eventService } = await import('@/lib/services');
+    const { eventService } = await import('@/lib/services/event-service');
     const result = await eventService.deleteEvent(id);
 
     if (result.success) {
@@ -131,7 +131,7 @@ export async function deleteEvent(id: string) {
 
 export async function duplicateEvent(id: string) {
     await requireAdmin();
-    const { eventService } = await import('@/lib/services');
+    const { eventService } = await import('@/lib/services/event-service');
     const result = await eventService.duplicateEvent(id);
 
     if (result.success) {

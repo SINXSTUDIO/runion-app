@@ -43,7 +43,7 @@ export async function getUserRegistrations(userId: string) {
             throw new Error('Unauthorized');
         }
 
-        const { registrationService } = await import('@/lib/services');
+        const { registrationService } = await import('@/lib/services/registration-service');
         const result = await registrationService.getUserRegistrations(userId);
 
         if (!result.success) {
@@ -70,7 +70,7 @@ export async function getRegistrationDetails(registrationId: string) {
             throw new Error('Unauthorized');
         }
 
-        const { registrationService } = await import('@/lib/services');
+        const { registrationService } = await import('@/lib/services/registration-service');
         const result = await registrationService.getRegistrationDetails(registrationId);
 
         if (!result.success) {

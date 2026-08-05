@@ -52,3 +52,5 @@ export class UserRepository extends BaseRepository<
         });
     }
 }
+
+export const userRepository = new UserRepository();

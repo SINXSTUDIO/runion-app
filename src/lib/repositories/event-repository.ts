@@ -113,3 +113,5 @@ export class EventRepository extends BaseRepository<
         });
     }
 }
+
+export const eventRepository = new EventRepository();

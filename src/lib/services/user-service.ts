@@ -1,4 +1,4 @@
-import { userRepository } from '@/lib/repositories';
+import { userRepository } from '@/lib/repositories/user-repository';
 import { signOut } from '@/auth';
 
 /**

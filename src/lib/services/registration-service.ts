@@ -1,4 +1,4 @@
-import { registrationRepository } from '@/lib/repositories';
+import { registrationRepository } from '@/lib/repositories/registration-repository';
 import { serializeData } from '@/lib/utils/serialization';
 import { handleError, createErrorResponse, createSuccessResponse } from '@/lib/error-handler';
 
