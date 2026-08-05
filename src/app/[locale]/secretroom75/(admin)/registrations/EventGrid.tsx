@@ -164,7 +164,7 @@ export default function EventGrid({ events }: EventGridProps) {
                                         <div className="flex items-center gap-2">
                                             <Calendar className="w-4 h-4 shrink-0 text-zinc-500" />
                                             <span>
-                                                {event.eventDate && !isNaN(new Date(event.eventDate).getTime()) ? new Date(event.eventDate).toLocaleDateString(locale === 'hu' ? 'hu-HU' : locale === 'de' ? 'de-DE' : 'en-US') : '—'}
+                                                {event.eventDate ? String(event.eventDate).substring(0, 10) : '—'}
                                             </span>
                                         </div>
                                         <div className="flex items-center gap-2">
