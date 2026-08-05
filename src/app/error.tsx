@@ -33,18 +33,18 @@ export default function Error({
                     Sajnáljuk, de valami váratlan probléma lépett fel. Próbáld újra!
                 </p>
 
-                {process.env.NODE_ENV === 'development' && (
-                    <details className="mb-8 text-left bg-zinc-900 p-4 rounded-lg">
-                        <summary className="cursor-pointer text-sm font-mono text-red-400 mb-2">
-                            Fejlesztői infó
-                        </summary>
-                        <pre className="text-xs overflow-auto text-zinc-300">
-                            {error.message}
-                            {'\n'}
-                            {error.stack}
-                        </pre>
-                    </details>
-                )}
+                <div className="mb-8 text-left bg-zinc-900/90 border border-red-500/30 p-4 rounded-xl max-w-lg mx-auto">
+                    <p className="text-xs font-mono text-red-400 font-bold mb-2">
+                        HIBA RÉSZLETEI:
+                    </p>
+                    <pre className="text-xs overflow-auto text-zinc-300 font-mono whitespace-pre-wrap max-h-48">
+                        {error?.message || 'Ismeretlen szerveroldali hiba'}
+                        {'\n'}
+                        {error?.digest ? `Digest: ${error.digest}` : ''}
+                        {'\n'}
+                        {error?.stack || ''}
+                    </pre>
+                </div>
 
                 <Button onClick={() => reset()} className="mb-4">
                     Újrapróbálkozás
